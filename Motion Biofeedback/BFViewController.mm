@@ -10,6 +10,7 @@
 #import <GPUImage.h>
 #import "BFOpenCVConverter.h"
 #import "BFOpenCVEdgeDetector.h"
+#import "BFOpenCVFaceDetector.h"
 
 using namespace cv;
 
@@ -21,6 +22,8 @@ using namespace cv;
 @property (nonatomic, strong) GPUImageVideoCamera *videoCamera;
 @property (nonatomic) Mat currentMat;
 
+@property (nonatomic, strong) BFOpenCVFaceDetector *faceDetector;
+
 @end
 
 @implementation BFViewController
@@ -31,12 +34,16 @@ using namespace cv;
 {
     [super viewDidLoad];
     
+    // camera
     self.videoCamera = [[GPUImageVideoCamera alloc] initWithSessionPreset:AVCaptureSessionPresetHigh
                                                            cameraPosition:AVCaptureDevicePositionFront];
     [self.videoCamera startCameraCapture];
     self.videoCamera.delegate = self;
     self.videoCamera.outputImageOrientation = UIInterfaceOrientationPortrait;
     [self.videoCamera addTarget:self.previewView];
+    
+    // initialize detectors
+    self.faceDetector = [BFOpenCVFaceDetector new];
 }
 
 - (void)didReceiveMemoryWarning
@@ -52,6 +59,9 @@ using namespace cv;
     transpose(mat, mat);
     NSLog(@"cols %d", mat.cols);
     self.currentMat = mat;
+    
+    [self.faceDetector faceFrameFromMat:mat];
+    
 }
 
 #pragma mark - IBAction
@@ -59,11 +69,15 @@ using namespace cv;
 - (IBAction)captureButtonTapped:(id)sender
 {
     self.imagePreviewView.image = [BFOpenCVConverter imageForMat:self.currentMat];
+    
 }
 
 
 
-
++ (void)matHere:(cv::Mat)mat
+{
+    
+}
 
 
 
@@ -74,6 +88,7 @@ using namespace cv;
 - (void)displayFaces:(const std::vector<cv::Rect> &)faces
         forVideoRect:(CGRect)rect
     videoOrientation:(AVCaptureVideoOrientation)videoOrientation
+              inView:(UIView *)view
 {
     NSArray *sublayers = [NSArray arrayWithArray:[self.view.layer sublayers]];
     int sublayersCount = [sublayers count];
@@ -97,7 +112,7 @@ using namespace cv;
     
     // Create transform to convert from vide frame coordinate space to view coordinate space
     CGAffineTransform t = [BFOpenCVConverter affineTransformForVideoFrame:rect
-                                                              inViewFrame:self.view.frame
+                                                              inViewFrame:view.frame
                                                               orientation:AVCaptureVideoOrientationPortrait
                                                  videoPreviewLayerGravity:AVLayerVideoGravityResizeAspectFill];
     

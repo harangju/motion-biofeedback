@@ -8,13 +8,42 @@
 
 #import "BFOpenCVFaceDetector.h"
 
+// Name of face cascade resource file without xml extension
+NSString * const kFaceCascadeFilename = @"haarcascade_frontalface_alt2";
+const int kHaarOptions =  CV_HAAR_FIND_BIGGEST_OBJECT | CV_HAAR_DO_ROUGH_SEARCH;
+
+@interface BFOpenCVFaceDetector ()
+
+@property (nonatomic) cv::CascadeClassifier faceCascade;
+
+@end
+
 @implementation BFOpenCVFaceDetector
 
-+ (cv::Rect)faceFrameFromMat:(cv::Mat)mat
+- (id)init
 {
-    std::vector<cv::Rect> faces;
+    self = [super init];
+    if (self) {
+        // Load the face Haar cascade from resources
+        NSString *faceCascadePath = [[NSBundle mainBundle] pathForResource:kFaceCascadeFilename ofType:@"xml"];
+        if (!self.faceCascade.load(faceCascadePath.UTF8String))
+        {
+            NSLog(@"Could not load face cascade: %@", faceCascadePath);
+        }
+    }
+    return self;
+}
+
+//+ (cv::Rect)faceFrameFromMat:(cv::Mat)mat
+//{
+//    std::vector<cv::Rect> faces;
+//    _faceCascade.detectMultiScale(mat, faces, 1.1, 2, kHaarOptions, cv::Size(60, 60));
+//    return faces.front();
+//}
+
+- (void)faceFrameFromMat:(cv::Mat)mat
+{
     
-    return faces.front();
 }
 
 @end

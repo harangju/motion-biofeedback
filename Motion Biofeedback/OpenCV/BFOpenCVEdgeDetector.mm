@@ -10,7 +10,16 @@
 
 @implementation BFOpenCVEdgeDetector
 
-+ (cv::Mat)edgesFromMat:(cv::Mat)mat
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        
+    }
+    return self;
+}
+
+- (cv::Mat)edgesFromMat:(cv::Mat)mat
 {
     cv::Mat edges;
     

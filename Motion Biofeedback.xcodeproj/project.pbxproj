@@ -34,6 +34,7 @@
 		7DB9C33A18C2D83E00CCDED9 /* BFOpenCVConverter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7DB9C33318C2D83E00CCDED9 /* BFOpenCVConverter.mm */; };
 		7DB9C33C18C2D83E00CCDED9 /* BFOpenCVEdgeDetector.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7DB9C33718C2D83E00CCDED9 /* BFOpenCVEdgeDetector.mm */; };
 		7DB9C33D18C2D83E00CCDED9 /* BFOpenCVFaceDetector.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7DB9C33918C2D83E00CCDED9 /* BFOpenCVFaceDetector.mm */; };
+		7DECCCCE18C2E59A00984387 /* haarcascade_frontalface_alt2.xml in Resources */ = {isa = PBXBuildFile; fileRef = 7DECCCCD18C2E59A00984387 /* haarcascade_frontalface_alt2.xml */; };
 		F7E84084BE3542CBA28449D7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1545215E15347C8A01FA00B /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -86,6 +87,7 @@
 		7DB9C33718C2D83E00CCDED9 /* BFOpenCVEdgeDetector.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BFOpenCVEdgeDetector.mm; sourceTree = "<group>"; };
 		7DB9C33818C2D83E00CCDED9 /* BFOpenCVFaceDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFOpenCVFaceDetector.h; sourceTree = "<group>"; };
 		7DB9C33918C2D83E00CCDED9 /* BFOpenCVFaceDetector.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BFOpenCVFaceDetector.mm; sourceTree = "<group>"; };
+		7DECCCCD18C2E59A00984387 /* haarcascade_frontalface_alt2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_frontalface_alt2.xml; sourceTree = "<group>"; };
 		C1545215E15347C8A01FA00B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -226,6 +228,7 @@
 				7DB9C33718C2D83E00CCDED9 /* BFOpenCVEdgeDetector.mm */,
 				7DB9C33818C2D83E00CCDED9 /* BFOpenCVFaceDetector.h */,
 				7DB9C33918C2D83E00CCDED9 /* BFOpenCVFaceDetector.mm */,
+				7DECCCCD18C2E59A00984387 /* haarcascade_frontalface_alt2.xml */,
 			);
 			path = OpenCV;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 			files = (
 				7DB9C2FB18C2D2EF00CCDED9 /* Main_iPad.storyboard in Resources */,
 				7DB9C30018C2D2EF00CCDED9 /* Images.xcassets in Resources */,
+				7DECCCCE18C2E59A00984387 /* haarcascade_frontalface_alt2.xml in Resources */,
 				7DB9C2F818C2D2EF00CCDED9 /* Main_iPhone.storyboard in Resources */,
 				7DB9C2EF18C2D2EF00CCDED9 /* InfoPlist.strings in Resources */,
 			);

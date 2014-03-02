@@ -10,6 +10,7 @@
 
 @interface BFOpenCVFaceDetector : NSObject
 
-+ (cv::Rect)faceFrameFromMat:(cv::Mat)mat;
+//+ (cv::Rect)faceFrameFromMat:(cv::Mat)mat;
+- (void)faceFrameFromMat:(cv::Mat)mat;
 
 @end
