@@ -41,9 +41,11 @@ const int kHaarOptions =  CV_HAAR_FIND_BIGGEST_OBJECT | CV_HAAR_DO_ROUGH_SEARCH;
 //    return faces.front();
 //}
 
-- (void)faceFrameFromMat:(cv::Mat)mat
+- (cv::Rect)faceFrameFromMat:(cv::Mat)mat
 {
+    cv::Rect faceFrame;
     
+    return faceFrame;
 }
 
 @end
