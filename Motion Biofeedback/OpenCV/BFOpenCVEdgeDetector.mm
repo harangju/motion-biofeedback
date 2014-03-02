@@ -10,4 +10,11 @@
 
 @implementation BFOpenCVEdgeDetector
 
++ (cv::Mat)edgesFromMat:(cv::Mat)mat
+{
+    cv::Mat edges;
+    
+    return edges;
+}
+
 @end

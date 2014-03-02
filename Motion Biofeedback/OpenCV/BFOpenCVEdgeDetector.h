@@ -10,4 +10,6 @@
 
 @interface BFOpenCVEdgeDetector : NSObject
 
++ (cv::Mat)edgesFromMat:(cv::Mat)mat;
+
 @end

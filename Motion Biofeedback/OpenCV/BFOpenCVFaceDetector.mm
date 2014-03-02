@@ -10,4 +10,11 @@
 
 @implementation BFOpenCVFaceDetector
 
++ (cv::Rect)faceFrameFromMat:(cv::Mat)mat
+{
+    std::vector<cv::Rect> faces;
+    
+    return faces.front();
+}
+
 @end
