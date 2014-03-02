@@ -13,8 +13,9 @@ NSString * const kFaceCascadeFilename = @"haarcascade_frontalface_alt2";
 const int kHaarOptions =  CV_HAAR_FIND_BIGGEST_OBJECT | CV_HAAR_DO_ROUGH_SEARCH;
 
 @interface BFOpenCVFaceDetector ()
-
-@property (nonatomic) cv::CascadeClassifier faceCascade;
+{
+    cv::CascadeClassifier _faceCascade;
+}
 
 @end
 
@@ -25,8 +26,9 @@ const int kHaarOptions =  CV_HAAR_FIND_BIGGEST_OBJECT | CV_HAAR_DO_ROUGH_SEARCH;
     self = [super init];
     if (self) {
         // Load the face Haar cascade from resources
-        NSString *faceCascadePath = [[NSBundle mainBundle] pathForResource:kFaceCascadeFilename ofType:@"xml"];
-        if (!self.faceCascade.load(faceCascadePath.UTF8String))
+        NSString *faceCascadePath = [[NSBundle mainBundle] pathForResource:kFaceCascadeFilename
+                                                                    ofType:@"xml"];
+        if (!_faceCascade.load(faceCascadePath.UTF8String))
         {
             NSLog(@"Could not load face cascade: %@", faceCascadePath);
         }
@@ -34,18 +36,12 @@ const int kHaarOptions =  CV_HAAR_FIND_BIGGEST_OBJECT | CV_HAAR_DO_ROUGH_SEARCH;
     return self;
 }
 
-//+ (cv::Rect)faceFrameFromMat:(cv::Mat)mat
-//{
-//    std::vector<cv::Rect> faces;
-//    _faceCascade.detectMultiScale(mat, faces, 1.1, 2, kHaarOptions, cv::Size(60, 60));
-//    return faces.front();
-//}
-
-- (cv::Rect)faceFrameFromMat:(cv::Mat)mat
+- (std::vector<cv::Rect>)faceFrameFromMat:(cv::Mat)mat
 {
-    cv::Rect faceFrame;
-    
-    return faceFrame;
+    std::vector<cv::Rect> faces;
+    _faceCascade.detectMultiScale(mat, faces, 1.1, 2, kHaarOptions, cv::Size(60, 60));
+    NSLog(@"face count - %lu", faces.size());
+    return faces;
 }
 
 @end

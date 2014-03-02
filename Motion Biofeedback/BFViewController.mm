@@ -60,8 +60,17 @@ using namespace cv;
     NSLog(@"cols %d", mat.cols);
     self.currentMat = mat;
     
-    cv::Rect faceFrame = [self.faceDetector faceFrameFromMat:mat];
+    std::vector<cv::Rect> faces = [self.faceDetector faceFrameFromMat:mat];
     
+    if (faces.size() == 1)
+    {
+        CVPixelBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+        CGRect videoRect = CGRectMake(0.0f, 0.0f, CVPixelBufferGetWidth(pixelBuffer), CVPixelBufferGetHeight(pixelBuffer));
+        [self displayFaces:faces
+              forVideoRect:videoRect
+          videoOrientation:AVCaptureVideoOrientationPortrait
+                    inView:self.previewView];
+    }
 }
 
 #pragma mark - IBAction
@@ -71,14 +80,6 @@ using namespace cv;
     self.imagePreviewView.image = [BFOpenCVConverter imageForMat:self.currentMat];
     
 }
-
-
-
-+ (void)matHere:(cv::Mat)mat
-{
-    
-}
-
 
 
 
