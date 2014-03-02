@@ -8,10 +8,14 @@
 
 #import "BFViewController.h"
 #import <GPUImage.h>
+#import "BFOpenCVConverter.h"
+
+using namespace cv;
 
 @interface BFViewController () <GPUImageVideoCameraDelegate>
 
 @property (nonatomic, strong) GPUImageVideoCamera *videoCamera;
+@property (nonatomic) Mat currentMat;
 
 @end
 
@@ -44,7 +48,9 @@
 
 - (void)willOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 {
-    
+    Mat mat = [BFOpenCVConverter matForSampleBuffer:sampleBuffer];
+    NSLog(@"cols %d", mat.cols);
+    self.currentMat = mat;
 }
 
 @end
