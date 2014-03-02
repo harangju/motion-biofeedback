@@ -14,6 +14,9 @@ using namespace cv;
 
 @interface BFViewController () <GPUImageVideoCameraDelegate>
 
+@property (nonatomic, weak) IBOutlet UIImageView *imagePreviewView;
+@property (nonatomic, weak) IBOutlet GPUImageView *previewView;
+
 @property (nonatomic, strong) GPUImageVideoCamera *videoCamera;
 @property (nonatomic) Mat currentMat;
 
@@ -32,11 +35,7 @@ using namespace cv;
     [self.videoCamera startCameraCapture];
     self.videoCamera.delegate = self;
     self.videoCamera.outputImageOrientation = UIInterfaceOrientationPortrait;
-    
-    GPUImageView *previewView = [[GPUImageView alloc] initWithFrame:self.view.bounds];
-    [self.view addSubview:previewView];
-    
-    [self.videoCamera addTarget:previewView];
+    [self.videoCamera addTarget:self.previewView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -49,8 +48,16 @@ using namespace cv;
 - (void)willOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 {
     Mat mat = [BFOpenCVConverter matForSampleBuffer:sampleBuffer];
+    transpose(mat, mat);
     NSLog(@"cols %d", mat.cols);
     self.currentMat = mat;
+}
+
+#pragma mark - IBAction
+
+- (IBAction)captureButtonTapped:(id)sender
+{
+    self.imagePreviewView.image = [BFOpenCVConverter imageForMat:self.currentMat];
 }
 
 @end

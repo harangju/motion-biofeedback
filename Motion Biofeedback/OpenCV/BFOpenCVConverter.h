@@ -14,6 +14,6 @@ using namespace cv;
 @interface BFOpenCVConverter : NSObject
 
 + (Mat)matForSampleBuffer:(CMSampleBufferRef)sampleBuffer;
-+ (UIImage *)imageForMat:(Mat &)mat;
++ (UIImage *)imageForMat:(Mat)mat;
 
 @end

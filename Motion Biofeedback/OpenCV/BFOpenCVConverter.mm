@@ -43,7 +43,7 @@
     return Mat();
 }
 
-+ (UIImage *)imageForMat:(Mat &)mat
++ (UIImage *)imageForMat:(Mat)mat
 {
     NSData *data = [NSData dataWithBytes:mat.data
                                   length:mat.elemSize() * mat.total()];
