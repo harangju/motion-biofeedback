@@ -12,8 +12,6 @@
 #import "BFOpenCVEdgeDetector.h"
 #import "BFOpenCVFaceDetector.h"
 
-#import "BFFaceDetector.h"
-
 using namespace cv;
 
 @interface BFViewController () <GPUImageVideoCameraDelegate>
@@ -25,8 +23,6 @@ using namespace cv;
 @property (nonatomic) Mat currentMat;
 
 @property (nonatomic, strong) BFOpenCVFaceDetector *faceDetector;
-
-//@property (nonatomic, strong) BFFaceDetector *faceDetector;
 
 @end
 
@@ -45,10 +41,10 @@ using namespace cv;
     self.videoCamera.delegate = self;
     self.videoCamera.outputImageOrientation = UIInterfaceOrientationPortrait;
     [self.videoCamera addTarget:self.previewView];
+    self.videoCamera.horizontallyMirrorFrontFacingCamera = YES;
     
     // initialize detectors
     self.faceDetector = [BFOpenCVFaceDetector new];
-//    self.faceDetector = [BFFaceDetector new];
 }
 
 - (void)didReceiveMemoryWarning
@@ -60,43 +56,31 @@ using namespace cv;
 
 - (void)willOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 {
-//    CIImage *ciImage = [CIImage imageWithCVPixelBuffer:CMSampleBufferGetImageBuffer(sampleBuffer)
-//                                               options:@{kCIImageColorSpace: [NSNull null]}];
-//    _image = ciImage;
-//    [self.faceDetector detectFacesInCIImage:ciImage];
-    
+    // get mat
     Mat mat = [BFOpenCVConverter matForSampleBuffer:sampleBuffer];
     transpose(mat, mat);
-    NSLog(@"cols %d", mat.cols);
     self.currentMat = mat;
     
+    // get face
     std::vector<cv::Rect> faces = [self.faceDetector faceFrameFromMat:mat];
     
-    if (faces.size() == 1)
-    {
-        CVPixelBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
-        CGRect videoRect = CGRectMake(0.0f, 0.0f, CVPixelBufferGetWidth(pixelBuffer), CVPixelBufferGetHeight(pixelBuffer));
-        [self displayFaces:faces
-              forVideoRect:videoRect
-          videoOrientation:AVCaptureVideoOrientationPortrait
-                    inView:self.view];
-    }
-    
+    CVPixelBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+    CGRect videoRect = CGRectMake(0.0f, 0.0f,
+                                  CVPixelBufferGetHeight(pixelBuffer),
+                                  CVPixelBufferGetWidth(pixelBuffer));
+    // display faces
+    [self displayFaces:faces
+          forVideoRect:videoRect
+      videoOrientation:AVCaptureVideoOrientationLandscapeRight
+                inView:self.view];
 }
 
 #pragma mark - IBAction
 
 - (IBAction)captureButtonTapped:(id)sender
 {
-//    self.imagePreviewView.image = [BFOpenCVConverter imageForMat:self.currentMat];
-    UIImage *image = [UIImage imageWithCIImage:_image];
-    self.imagePreviewView.image = image;
+    self.imagePreviewView.image = [BFOpenCVConverter imageForMat:self.currentMat];
 }
-
-
-
-
-
 
 - (void)displayFaces:(const std::vector<cv::Rect> &)faces
         forVideoRect:(CGRect)rect
@@ -104,7 +88,7 @@ using namespace cv;
               inView:(UIView *)view
 {
     NSArray *sublayers = [NSArray arrayWithArray:[view.layer sublayers]];
-    int sublayersCount = [sublayers count];
+    NSUInteger sublayersCount = sublayers.count;
     int currentSublayer = 0;
     
     if (faces.size() > 0)
@@ -129,8 +113,8 @@ using namespace cv;
                                                               orientation:AVCaptureVideoOrientationPortrait
                                                  videoPreviewLayerGravity:AVLayerVideoGravityResizeAspectFill];
     
-    for (int i = 0; i < faces.size(); i++) {
-        
+    for (int i = 0; i < faces.size(); i++)
+    {
         CGRect faceRect;
         faceRect.origin.x = faces[i].x;
         faceRect.origin.y = faces[i].y;
@@ -141,23 +125,26 @@ using namespace cv;
         
         CALayer *featureLayer = nil;
         
-        while (!featureLayer && (currentSublayer < sublayersCount)) {
+        while (!featureLayer &&
+               currentSublayer < sublayersCount)
+        {
 			CALayer *currentLayer = [sublayers objectAtIndex:currentSublayer++];
-			if ([[currentLayer name] isEqualToString:@"FaceLayer"]) {
+			if ([currentLayer.name isEqualToString:@"FaceLayer"])
+            {
 				featureLayer = currentLayer;
-				[currentLayer setHidden:NO];
+				currentLayer.hidden = NO;
 			}
 		}
         
-        if (!featureLayer) {
+        if (!featureLayer)
+        {
             // Create a new feature marker layer
 			featureLayer = [[CALayer alloc] init];
             featureLayer.name = @"FaceLayer";
             featureLayer.borderColor = [[UIColor redColor] CGColor];
-            featureLayer.borderWidth = 10.0f;
+            featureLayer.borderWidth = 5.0f;
 			[self.view.layer addSublayer:featureLayer];
 		}
-        
         featureLayer.frame = faceRect;
     }
     

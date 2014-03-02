@@ -35,7 +35,6 @@
 		7DB9C33C18C2D83E00CCDED9 /* BFOpenCVEdgeDetector.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7DB9C33718C2D83E00CCDED9 /* BFOpenCVEdgeDetector.mm */; };
 		7DB9C33D18C2D83E00CCDED9 /* BFOpenCVFaceDetector.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7DB9C33918C2D83E00CCDED9 /* BFOpenCVFaceDetector.mm */; };
 		7DECCCCE18C2E59A00984387 /* haarcascade_frontalface_alt2.xml in Resources */ = {isa = PBXBuildFile; fileRef = 7DECCCCD18C2E59A00984387 /* haarcascade_frontalface_alt2.xml */; };
-		7DECCCD418C2FFF900984387 /* BFFaceDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DECCCD318C2FFF900984387 /* BFFaceDetector.m */; };
 		F7E84084BE3542CBA28449D7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1545215E15347C8A01FA00B /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -89,8 +88,6 @@
 		7DB9C33818C2D83E00CCDED9 /* BFOpenCVFaceDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFOpenCVFaceDetector.h; sourceTree = "<group>"; };
 		7DB9C33918C2D83E00CCDED9 /* BFOpenCVFaceDetector.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BFOpenCVFaceDetector.mm; sourceTree = "<group>"; };
 		7DECCCCD18C2E59A00984387 /* haarcascade_frontalface_alt2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_frontalface_alt2.xml; sourceTree = "<group>"; };
-		7DECCCD218C2FFF900984387 /* BFFaceDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BFFaceDetector.h; path = Detectors/BFFaceDetector.h; sourceTree = "<group>"; };
-		7DECCCD318C2FFF900984387 /* BFFaceDetector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BFFaceDetector.m; path = Detectors/BFFaceDetector.m; sourceTree = "<group>"; };
 		C1545215E15347C8A01FA00B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -174,7 +171,6 @@
 				7DB9C2F918C2D2EF00CCDED9 /* Main_iPad.storyboard */,
 				7DB9C2FC18C2D2EF00CCDED9 /* BFViewController.h */,
 				7DB9C2FD18C2D2EF00CCDED9 /* BFViewController.mm */,
-				7DECCCD518C2FFFD00984387 /* Detectors */,
 				7DB9C33118C2D83E00CCDED9 /* OpenCV */,
 				7DB9C32A18C2D7F000CCDED9 /* Biofeedback */,
 				7DB9C2FF18C2D2EF00CCDED9 /* Images.xcassets */,
@@ -235,15 +231,6 @@
 				7DECCCCD18C2E59A00984387 /* haarcascade_frontalface_alt2.xml */,
 			);
 			path = OpenCV;
-			sourceTree = "<group>";
-		};
-		7DECCCD518C2FFFD00984387 /* Detectors */ = {
-			isa = PBXGroup;
-			children = (
-				7DECCCD218C2FFF900984387 /* BFFaceDetector.h */,
-				7DECCCD318C2FFF900984387 /* BFFaceDetector.m */,
-			);
-			name = Detectors;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -385,7 +372,6 @@
 				7DB9C33A18C2D83E00CCDED9 /* BFOpenCVConverter.mm in Sources */,
 				7DB9C33C18C2D83E00CCDED9 /* BFOpenCVEdgeDetector.mm in Sources */,
 				7DB9C33018C2D7F000CCDED9 /* BFTracker.mm in Sources */,
-				7DECCCD418C2FFF900984387 /* BFFaceDetector.m in Sources */,
 				7DB9C2F518C2D2EF00CCDED9 /* BFAppDelegate.mm in Sources */,
 				7DB9C33D18C2D83E00CCDED9 /* BFOpenCVFaceDetector.mm in Sources */,
 				7DB9C32F18C2D7F000CCDED9 /* BFHeadTracker.mm in Sources */,
