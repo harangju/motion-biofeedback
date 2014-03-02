@@ -7,8 +7,8 @@
 //
 
 #import "BFHeadTracker.h"
-//#import "BFOpenCVEdgeDetector.h"
-//#import "BFOpenCVFaceDetector.h"
+#import "BFOpenCVEdgeDetector.h"
+#import "BFOpenCVFaceDetector.h"
 
 @implementation BFHeadTracker
 
