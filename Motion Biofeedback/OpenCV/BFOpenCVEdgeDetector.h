@@ -10,6 +10,10 @@
 
 @interface BFOpenCVEdgeDetector : NSObject
 
-- (cv::Mat)edgesFromMat:(cv::Mat)mat;
+@property (nonatomic) CGFloat lowerThreshold;
+@property (nonatomic) CGFloat upperThreshold;
+
+- (void)getEdges:(cv::Mat)edges
+         fromMat:(cv::Mat)mat;
 
 @end

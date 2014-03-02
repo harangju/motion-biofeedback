@@ -23,6 +23,7 @@ using namespace cv;
 @property (nonatomic) Mat currentMat;
 
 @property (nonatomic, strong) BFOpenCVFaceDetector *faceDetector;
+@property (nonatomic, strong) BFOpenCVEdgeDetector *edgeDetector;
 
 @end
 
@@ -45,6 +46,7 @@ using namespace cv;
     
     // initialize detectors
     self.faceDetector = [BFOpenCVFaceDetector new];
+    self.edgeDetector = [BFOpenCVEdgeDetector new];
 }
 
 - (void)didReceiveMemoryWarning
@@ -59,20 +61,39 @@ using namespace cv;
     // get mat
     Mat mat = [BFOpenCVConverter matForSampleBuffer:sampleBuffer];
     transpose(mat, mat);
+//    self.currentMat = mat;
+    
+    // get edges
+//    [self.edgeDetector edgesFromMat:mat];
+    
+    cv::Mat edges;
+//    [self getEdges:mat fromMat:mat];
+    [self.edgeDetector getEdges:mat fromMat:mat];
+    
     self.currentMat = mat;
     
-    // get face
-    std::vector<cv::Rect> faces = [self.faceDetector faceFrameFromMat:mat];
+//    blur(mat, mat, cv::Size(3,3));
+//    Canny(mat, mat, 100, 200);
+//    self.currentMat = mat;
     
-    CVPixelBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
-    CGRect videoRect = CGRectMake(0.0f, 0.0f,
-                                  CVPixelBufferGetHeight(pixelBuffer),
-                                  CVPixelBufferGetWidth(pixelBuffer));
-    // display faces
-    [self displayFaces:faces
-          forVideoRect:videoRect
-      videoOrientation:AVCaptureVideoOrientationLandscapeRight
-                inView:self.view];
+//    // get face
+//    std::vector<cv::Rect> faces = [self.faceDetector faceFrameFromMat:mat];
+//    
+//    CVPixelBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+//    CGRect videoRect = CGRectMake(0.0f, 0.0f,
+//                                  CVPixelBufferGetHeight(pixelBuffer),
+//                                  CVPixelBufferGetWidth(pixelBuffer));
+//    // display faces
+//    [self displayFaces:faces
+//          forVideoRect:videoRect
+//      videoOrientation:AVCaptureVideoOrientationLandscapeRight
+//                inView:self.view];
+}
+
+- (void)getEdges:(cv::Mat)edges fromMat:(cv::Mat)mat
+{
+    cv::GaussianBlur(mat, edges, cv::Size(5,5), 20);
+    cv::Canny(edges, edges, 100, 300);
 }
 
 #pragma mark - IBAction
