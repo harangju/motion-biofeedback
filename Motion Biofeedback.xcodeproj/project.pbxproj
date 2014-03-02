@@ -29,6 +29,8 @@
 		7DB9C32518C2D39800CCDED9 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DB9C32418C2D39800CCDED9 /* CoreVideo.framework */; };
 		7DB9C32718C2D39D00CCDED9 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DB9C32618C2D39D00CCDED9 /* CoreMedia.framework */; };
 		7DB9C32918C2D43500CCDED9 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DB9C32818C2D43500CCDED9 /* AssetsLibrary.framework */; };
+		7DB9C32F18C2D7F000CCDED9 /* BFHeadTracker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7DB9C32C18C2D7F000CCDED9 /* BFHeadTracker.mm */; };
+		7DB9C33018C2D7F000CCDED9 /* BFTracker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7DB9C32E18C2D7F000CCDED9 /* BFTracker.mm */; };
 		F7E84084BE3542CBA28449D7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1545215E15347C8A01FA00B /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +73,10 @@
 		7DB9C32418C2D39800CCDED9 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		7DB9C32618C2D39D00CCDED9 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		7DB9C32818C2D43500CCDED9 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		7DB9C32B18C2D7F000CCDED9 /* BFHeadTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFHeadTracker.h; sourceTree = "<group>"; };
+		7DB9C32C18C2D7F000CCDED9 /* BFHeadTracker.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BFHeadTracker.mm; sourceTree = "<group>"; };
+		7DB9C32D18C2D7F000CCDED9 /* BFTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFTracker.h; sourceTree = "<group>"; };
+		7DB9C32E18C2D7F000CCDED9 /* BFTracker.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BFTracker.mm; sourceTree = "<group>"; };
 		C1545215E15347C8A01FA00B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -154,6 +160,7 @@
 				7DB9C2F918C2D2EF00CCDED9 /* Main_iPad.storyboard */,
 				7DB9C2FC18C2D2EF00CCDED9 /* BFViewController.h */,
 				7DB9C2FD18C2D2EF00CCDED9 /* BFViewController.m */,
+				7DB9C32A18C2D7F000CCDED9 /* Biofeedback */,
 				7DB9C2FF18C2D2EF00CCDED9 /* Images.xcassets */,
 				7DB9C2EB18C2D2EF00CCDED9 /* Supporting Files */,
 			);
@@ -187,6 +194,17 @@
 				7DB9C30F18C2D2EF00CCDED9 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7DB9C32A18C2D7F000CCDED9 /* Biofeedback */ = {
+			isa = PBXGroup;
+			children = (
+				7DB9C32B18C2D7F000CCDED9 /* BFHeadTracker.h */,
+				7DB9C32C18C2D7F000CCDED9 /* BFHeadTracker.mm */,
+				7DB9C32D18C2D7F000CCDED9 /* BFTracker.h */,
+				7DB9C32E18C2D7F000CCDED9 /* BFTracker.mm */,
+			);
+			path = Biofeedback;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -324,7 +342,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DB9C2FE18C2D2EF00CCDED9 /* BFViewController.m in Sources */,
+				7DB9C33018C2D7F000CCDED9 /* BFTracker.mm in Sources */,
 				7DB9C2F518C2D2EF00CCDED9 /* BFAppDelegate.mm in Sources */,
+				7DB9C32F18C2D7F000CCDED9 /* BFHeadTracker.mm in Sources */,
 				7DB9C2F118C2D2EF00CCDED9 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
