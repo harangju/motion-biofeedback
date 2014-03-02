@@ -15,5 +15,9 @@ using namespace cv;
 
 + (Mat)matForSampleBuffer:(CMSampleBufferRef)sampleBuffer;
 + (UIImage *)imageForMat:(Mat)mat;
++ (CGAffineTransform)affineTransformForVideoFrame:(CGRect)videoFrame
+                                      inViewFrame:(CGRect)viewFrame
+                                      orientation:(AVCaptureVideoOrientation)videoOrientation
+                         videoPreviewLayerGravity:(NSString *)videoGravity;
 
 @end

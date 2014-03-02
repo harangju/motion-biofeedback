@@ -61,4 +61,79 @@ using namespace cv;
     self.imagePreviewView.image = [BFOpenCVConverter imageForMat:self.currentMat];
 }
 
+
+
+
+
+
+
+
+
+
+
+- (void)displayFaces:(const std::vector<cv::Rect> &)faces
+        forVideoRect:(CGRect)rect
+    videoOrientation:(AVCaptureVideoOrientation)videoOrientation
+{
+    NSArray *sublayers = [NSArray arrayWithArray:[self.view.layer sublayers]];
+    int sublayersCount = [sublayers count];
+    int currentSublayer = 0;
+    
+    if (faces.size() > 0)
+    {
+        cv::Rect faceRect = faces[0];
+        NSLog(@"%d %d %d %d", faceRect.x, faceRect.y, faceRect.width, faceRect.height);
+    }
+    
+	[CATransaction begin];
+	[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
+	
+	// hide all the face layers
+	for (CALayer *layer in sublayers) {
+        NSString *layerName = [layer name];
+		if ([layerName isEqualToString:@"FaceLayer"])
+			[layer setHidden:YES];
+	}
+    
+    // Create transform to convert from vide frame coordinate space to view coordinate space
+    CGAffineTransform t = [BFOpenCVConverter affineTransformForVideoFrame:rect
+                                                              inViewFrame:self.view.frame
+                                                              orientation:AVCaptureVideoOrientationPortrait
+                                                 videoPreviewLayerGravity:AVLayerVideoGravityResizeAspectFill];
+    
+    for (int i = 0; i < faces.size(); i++) {
+        
+        CGRect faceRect;
+        faceRect.origin.x = faces[i].x;
+        faceRect.origin.y = faces[i].y;
+        faceRect.size.width = faces[i].width;
+        faceRect.size.height = faces[i].height;
+        
+        faceRect = CGRectApplyAffineTransform(faceRect, t);
+        
+        CALayer *featureLayer = nil;
+        
+        while (!featureLayer && (currentSublayer < sublayersCount)) {
+			CALayer *currentLayer = [sublayers objectAtIndex:currentSublayer++];
+			if ([[currentLayer name] isEqualToString:@"FaceLayer"]) {
+				featureLayer = currentLayer;
+				[currentLayer setHidden:NO];
+			}
+		}
+        
+        if (!featureLayer) {
+            // Create a new feature marker layer
+			featureLayer = [[CALayer alloc] init];
+            featureLayer.name = @"FaceLayer";
+            featureLayer.borderColor = [[UIColor redColor] CGColor];
+            featureLayer.borderWidth = 10.0f;
+			[self.view.layer addSublayer:featureLayer];
+		}
+        
+        featureLayer.frame = faceRect;
+    }
+    
+    [CATransaction commit];
+}
+
 @end

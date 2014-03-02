@@ -77,4 +77,60 @@
     return finalImage;
 }
 
++ (CGAffineTransform)affineTransformForVideoFrame:(CGRect)videoFrame
+                                      inViewFrame:(CGRect)viewFrame
+                                      orientation:(AVCaptureVideoOrientation)videoOrientation
+                         videoPreviewLayerGravity:(NSString *)videoGravity
+{
+    CGSize viewSize = viewFrame.size;
+    CGFloat widthScale = 1.0f;
+    CGFloat heightScale = 1.0f;
+    
+    // Move origin to center so rotation and scale are applied correctly
+    CGAffineTransform t = CGAffineTransformMakeTranslation(-videoFrame.size.width / 2.0f, -videoFrame.size.height / 2.0f);
+    
+    switch (videoOrientation) {
+        case AVCaptureVideoOrientationPortrait:
+            widthScale = viewSize.width / videoFrame.size.width;
+            heightScale = viewSize.height / videoFrame.size.height;
+            break;
+            
+        case AVCaptureVideoOrientationPortraitUpsideDown:
+            t = CGAffineTransformConcat(t, CGAffineTransformMakeRotation(M_PI));
+            widthScale = viewSize.width / videoFrame.size.width;
+            heightScale = viewSize.height / videoFrame.size.height;
+            break;
+            
+        case AVCaptureVideoOrientationLandscapeRight:
+            t = CGAffineTransformConcat(t, CGAffineTransformMakeRotation(M_PI_2));
+            widthScale = viewSize.width / videoFrame.size.height;
+            heightScale = viewSize.height / videoFrame.size.width;
+            break;
+            
+        case AVCaptureVideoOrientationLandscapeLeft:
+            t = CGAffineTransformConcat(t, CGAffineTransformMakeRotation(-M_PI_2));
+            widthScale = viewSize.width / videoFrame.size.height;
+            heightScale = viewSize.height / videoFrame.size.width;
+            break;
+    }
+    
+    // Adjust scaling to match video gravity mode of video preview
+    if (videoGravity == AVLayerVideoGravityResizeAspect) {
+        heightScale = MIN(heightScale, widthScale);
+        widthScale = heightScale;
+    }
+    else if (videoGravity == AVLayerVideoGravityResizeAspectFill) {
+        heightScale = MAX(heightScale, widthScale);
+        widthScale = heightScale;
+    }
+    
+    // Apply the scaling
+    t = CGAffineTransformConcat(t, CGAffineTransformMakeScale(widthScale, heightScale));
+    
+    // Move origin back from center
+    t = CGAffineTransformConcat(t, CGAffineTransformMakeTranslation(viewSize.width / 2.0f, viewSize.height / 2.0f));
+    
+    return t;
+}
+
 @end
