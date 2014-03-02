@@ -60,7 +60,7 @@ using namespace cv;
     NSLog(@"cols %d", mat.cols);
     self.currentMat = mat;
     
-    [self.faceDetector faceFrameFromMat:mat];
+    cv::Rect faceFrame = [self.faceDetector faceFrameFromMat:mat];
     
 }
 
