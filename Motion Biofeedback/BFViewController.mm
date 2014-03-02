@@ -69,7 +69,7 @@ using namespace cv;
         [self displayFaces:faces
               forVideoRect:videoRect
           videoOrientation:AVCaptureVideoOrientationPortrait
-                    inView:self.previewView];
+                    inView:self.view];
     }
 }
 
@@ -91,7 +91,7 @@ using namespace cv;
     videoOrientation:(AVCaptureVideoOrientation)videoOrientation
               inView:(UIView *)view
 {
-    NSArray *sublayers = [NSArray arrayWithArray:[self.view.layer sublayers]];
+    NSArray *sublayers = [NSArray arrayWithArray:[view.layer sublayers]];
     int sublayersCount = [sublayers count];
     int currentSublayer = 0;
     
