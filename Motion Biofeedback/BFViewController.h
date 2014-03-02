@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface BFViewController : UIViewController
+{
+    CIImage *_image;
+}
 
 @end

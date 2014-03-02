@@ -12,6 +12,8 @@
 #import "BFOpenCVEdgeDetector.h"
 #import "BFOpenCVFaceDetector.h"
 
+#import "BFFaceDetector.h"
+
 using namespace cv;
 
 @interface BFViewController () <GPUImageVideoCameraDelegate>
@@ -23,6 +25,8 @@ using namespace cv;
 @property (nonatomic) Mat currentMat;
 
 @property (nonatomic, strong) BFOpenCVFaceDetector *faceDetector;
+
+//@property (nonatomic, strong) BFFaceDetector *faceDetector;
 
 @end
 
@@ -44,6 +48,7 @@ using namespace cv;
     
     // initialize detectors
     self.faceDetector = [BFOpenCVFaceDetector new];
+//    self.faceDetector = [BFFaceDetector new];
 }
 
 - (void)didReceiveMemoryWarning
@@ -55,6 +60,11 @@ using namespace cv;
 
 - (void)willOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 {
+//    CIImage *ciImage = [CIImage imageWithCVPixelBuffer:CMSampleBufferGetImageBuffer(sampleBuffer)
+//                                               options:@{kCIImageColorSpace: [NSNull null]}];
+//    _image = ciImage;
+//    [self.faceDetector detectFacesInCIImage:ciImage];
+    
     Mat mat = [BFOpenCVConverter matForSampleBuffer:sampleBuffer];
     transpose(mat, mat);
     NSLog(@"cols %d", mat.cols);
@@ -71,14 +81,16 @@ using namespace cv;
           videoOrientation:AVCaptureVideoOrientationPortrait
                     inView:self.view];
     }
+    
 }
 
 #pragma mark - IBAction
 
 - (IBAction)captureButtonTapped:(id)sender
 {
-    self.imagePreviewView.image = [BFOpenCVConverter imageForMat:self.currentMat];
-    
+//    self.imagePreviewView.image = [BFOpenCVConverter imageForMat:self.currentMat];
+    UIImage *image = [UIImage imageWithCIImage:_image];
+    self.imagePreviewView.image = image;
 }
 
 

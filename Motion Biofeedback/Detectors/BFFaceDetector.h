@@ -10,4 +10,6 @@
 
 @interface BFFaceDetector : NSObject
 
+- (CIFaceFeature *)detectFacesInCIImage:(CIImage *)image;
+
 @end
