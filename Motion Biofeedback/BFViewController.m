@@ -7,23 +7,44 @@
 //
 
 #import "BFViewController.h"
+#import <GPUImage.h>
 
-@interface BFViewController ()
+@interface BFViewController () <GPUImageVideoCameraDelegate>
+
+@property (nonatomic, strong) GPUImageVideoCamera *videoCamera;
 
 @end
 
 @implementation BFViewController
 
+#pragma mark - LifeCycle
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    
+    self.videoCamera = [[GPUImageVideoCamera alloc] initWithSessionPreset:AVCaptureSessionPresetHigh
+                                                           cameraPosition:AVCaptureDevicePositionFront];
+    [self.videoCamera startCameraCapture];
+    self.videoCamera.delegate = self;
+    self.videoCamera.outputImageOrientation = UIInterfaceOrientationPortrait;
+    
+    GPUImageView *previewView = [[GPUImageView alloc] initWithFrame:self.view.bounds];
+    [self.view addSubview:previewView];
+    
+    [self.videoCamera addTarget:previewView];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - GPUImageVideoCamera Delegate
+
+- (void)willOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
+{
+    
 }
 
 @end
