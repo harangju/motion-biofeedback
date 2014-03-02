@@ -12,7 +12,7 @@
 		7DB9C2E918C2D2EF00CCDED9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DB9C2E818C2D2EF00CCDED9 /* UIKit.framework */; };
 		7DB9C2EF18C2D2EF00CCDED9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7DB9C2ED18C2D2EF00CCDED9 /* InfoPlist.strings */; };
 		7DB9C2F118C2D2EF00CCDED9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB9C2F018C2D2EF00CCDED9 /* main.m */; };
-		7DB9C2F518C2D2EF00CCDED9 /* BFAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB9C2F418C2D2EF00CCDED9 /* BFAppDelegate.m */; };
+		7DB9C2F518C2D2EF00CCDED9 /* BFAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7DB9C2F418C2D2EF00CCDED9 /* BFAppDelegate.mm */; };
 		7DB9C2F818C2D2EF00CCDED9 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DB9C2F618C2D2EF00CCDED9 /* Main_iPhone.storyboard */; };
 		7DB9C2FB18C2D2EF00CCDED9 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DB9C2F918C2D2EF00CCDED9 /* Main_iPad.storyboard */; };
 		7DB9C2FE18C2D2EF00CCDED9 /* BFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB9C2FD18C2D2EF00CCDED9 /* BFViewController.m */; };
@@ -22,6 +22,14 @@
 		7DB9C30918C2D2EF00CCDED9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DB9C2E818C2D2EF00CCDED9 /* UIKit.framework */; };
 		7DB9C31118C2D2EF00CCDED9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7DB9C30F18C2D2EF00CCDED9 /* InfoPlist.strings */; };
 		7DB9C31318C2D2EF00CCDED9 /* Motion_BiofeedbackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB9C31218C2D2EF00CCDED9 /* Motion_BiofeedbackTests.m */; };
+		7DB9C31D18C2D34A00CCDED9 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DB9C31C18C2D34A00CCDED9 /* opencv2.framework */; };
+		7DB9C31F18C2D38600CCDED9 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DB9C31E18C2D38600CCDED9 /* AVFoundation.framework */; };
+		7DB9C32118C2D38D00CCDED9 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DB9C32018C2D38D00CCDED9 /* ImageIO.framework */; };
+		7DB9C32318C2D39200CCDED9 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DB9C32218C2D39200CCDED9 /* libz.dylib */; };
+		7DB9C32518C2D39800CCDED9 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DB9C32418C2D39800CCDED9 /* CoreVideo.framework */; };
+		7DB9C32718C2D39D00CCDED9 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DB9C32618C2D39D00CCDED9 /* CoreMedia.framework */; };
+		7DB9C32918C2D43500CCDED9 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DB9C32818C2D43500CCDED9 /* AssetsLibrary.framework */; };
+		F7E84084BE3542CBA28449D7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1545215E15347C8A01FA00B /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6B95C62388D34EA7AAD08B55 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		7DB9C2E118C2D2EF00CCDED9 /* Motion Biofeedback.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Motion Biofeedback.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DB9C2E418C2D2EF00CCDED9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7DB9C2E618C2D2EF00CCDED9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -44,7 +53,7 @@
 		7DB9C2F018C2D2EF00CCDED9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7DB9C2F218C2D2EF00CCDED9 /* Motion Biofeedback-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Motion Biofeedback-Prefix.pch"; sourceTree = "<group>"; };
 		7DB9C2F318C2D2EF00CCDED9 /* BFAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BFAppDelegate.h; sourceTree = "<group>"; };
-		7DB9C2F418C2D2EF00CCDED9 /* BFAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BFAppDelegate.m; sourceTree = "<group>"; };
+		7DB9C2F418C2D2EF00CCDED9 /* BFAppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = BFAppDelegate.mm; sourceTree = "<group>"; };
 		7DB9C2F718C2D2EF00CCDED9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		7DB9C2FA18C2D2EF00CCDED9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		7DB9C2FC18C2D2EF00CCDED9 /* BFViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BFViewController.h; sourceTree = "<group>"; };
@@ -55,6 +64,14 @@
 		7DB9C30E18C2D2EF00CCDED9 /* Motion BiofeedbackTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Motion BiofeedbackTests-Info.plist"; sourceTree = "<group>"; };
 		7DB9C31018C2D2EF00CCDED9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7DB9C31218C2D2EF00CCDED9 /* Motion_BiofeedbackTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Motion_BiofeedbackTests.m; sourceTree = "<group>"; };
+		7DB9C31C18C2D34A00CCDED9 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
+		7DB9C31E18C2D38600CCDED9 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		7DB9C32018C2D38D00CCDED9 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		7DB9C32218C2D39200CCDED9 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		7DB9C32418C2D39800CCDED9 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		7DB9C32618C2D39D00CCDED9 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		7DB9C32818C2D43500CCDED9 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		C1545215E15347C8A01FA00B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,9 +79,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DB9C32918C2D43500CCDED9 /* AssetsLibrary.framework in Frameworks */,
+				7DB9C32718C2D39D00CCDED9 /* CoreMedia.framework in Frameworks */,
+				7DB9C32518C2D39800CCDED9 /* CoreVideo.framework in Frameworks */,
+				7DB9C32318C2D39200CCDED9 /* libz.dylib in Frameworks */,
+				7DB9C32118C2D38D00CCDED9 /* ImageIO.framework in Frameworks */,
+				7DB9C31F18C2D38600CCDED9 /* AVFoundation.framework in Frameworks */,
 				7DB9C2E718C2D2EF00CCDED9 /* CoreGraphics.framework in Frameworks */,
 				7DB9C2E918C2D2EF00CCDED9 /* UIKit.framework in Frameworks */,
 				7DB9C2E518C2D2EF00CCDED9 /* Foundation.framework in Frameworks */,
+				7DB9C31D18C2D34A00CCDED9 /* opencv2.framework in Frameworks */,
+				F7E84084BE3542CBA28449D7 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +113,7 @@
 				7DB9C30C18C2D2EF00CCDED9 /* Motion BiofeedbackTests */,
 				7DB9C2E318C2D2EF00CCDED9 /* Frameworks */,
 				7DB9C2E218C2D2EF00CCDED9 /* Products */,
+				6B95C62388D34EA7AAD08B55 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,10 +129,18 @@
 		7DB9C2E318C2D2EF00CCDED9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7DB9C32818C2D43500CCDED9 /* AssetsLibrary.framework */,
+				7DB9C32618C2D39D00CCDED9 /* CoreMedia.framework */,
+				7DB9C32418C2D39800CCDED9 /* CoreVideo.framework */,
+				7DB9C32218C2D39200CCDED9 /* libz.dylib */,
+				7DB9C32018C2D38D00CCDED9 /* ImageIO.framework */,
+				7DB9C31E18C2D38600CCDED9 /* AVFoundation.framework */,
+				7DB9C31C18C2D34A00CCDED9 /* opencv2.framework */,
 				7DB9C2E418C2D2EF00CCDED9 /* Foundation.framework */,
 				7DB9C2E618C2D2EF00CCDED9 /* CoreGraphics.framework */,
 				7DB9C2E818C2D2EF00CCDED9 /* UIKit.framework */,
 				7DB9C30618C2D2EF00CCDED9 /* XCTest.framework */,
+				C1545215E15347C8A01FA00B /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -115,7 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				7DB9C2F318C2D2EF00CCDED9 /* BFAppDelegate.h */,
-				7DB9C2F418C2D2EF00CCDED9 /* BFAppDelegate.m */,
+				7DB9C2F418C2D2EF00CCDED9 /* BFAppDelegate.mm */,
 				7DB9C2F618C2D2EF00CCDED9 /* Main_iPhone.storyboard */,
 				7DB9C2F918C2D2EF00CCDED9 /* Main_iPad.storyboard */,
 				7DB9C2FC18C2D2EF00CCDED9 /* BFViewController.h */,
@@ -162,9 +196,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7DB9C31618C2D2EF00CCDED9 /* Build configuration list for PBXNativeTarget "Motion Biofeedback" */;
 			buildPhases = (
+				4B4D63C799894A0AB29B129A /* Check Pods Manifest.lock */,
 				7DB9C2DD18C2D2EF00CCDED9 /* Sources */,
 				7DB9C2DE18C2D2EF00CCDED9 /* Frameworks */,
 				7DB9C2DF18C2D2EF00CCDED9 /* Resources */,
+				CDA96635FD1A4060A0D15B18 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -249,13 +285,46 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4B4D63C799894A0AB29B129A /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		CDA96635FD1A4060A0D15B18 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		7DB9C2DD18C2D2EF00CCDED9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				7DB9C2FE18C2D2EF00CCDED9 /* BFViewController.m in Sources */,
-				7DB9C2F518C2D2EF00CCDED9 /* BFAppDelegate.m in Sources */,
+				7DB9C2F518C2D2EF00CCDED9 /* BFAppDelegate.mm in Sources */,
 				7DB9C2F118C2D2EF00CCDED9 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -390,9 +459,14 @@
 		};
 		7DB9C31718C2D2EF00CCDED9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6B95C62388D34EA7AAD08B55 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/harangju/Developer/Motion\\ Biofeedback",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Motion Biofeedback/Motion Biofeedback-Prefix.pch";
 				INFOPLIST_FILE = "Motion Biofeedback/Motion Biofeedback-Info.plist";
@@ -403,9 +477,14 @@
 		};
 		7DB9C31818C2D2EF00CCDED9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6B95C62388D34EA7AAD08B55 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/harangju/Developer/Motion\\ Biofeedback",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Motion Biofeedback/Motion Biofeedback-Prefix.pch";
 				INFOPLIST_FILE = "Motion Biofeedback/Motion Biofeedback-Info.plist";
@@ -475,6 +554,7 @@
 				7DB9C31818C2D2EF00CCDED9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7DB9C31918C2D2EF00CCDED9 /* Build configuration list for PBXNativeTarget "Motion BiofeedbackTests" */ = {
 			isa = XCConfigurationList;
@@ -483,6 +563,7 @@
 				7DB9C31B18C2D2EF00CCDED9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
