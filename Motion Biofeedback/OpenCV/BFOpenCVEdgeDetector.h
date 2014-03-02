@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Harang Ju. All rights reserved.
 //
 
-#import "BFOpenCVDetector.h"
+#import <Foundation/Foundation.h>
 
-@interface BFOpenCVEdgeDetector : BFOpenCVDetector
+@interface BFOpenCVEdgeDetector : NSObject
 
 @end

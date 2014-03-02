@@ -9,6 +9,7 @@
 #import "BFViewController.h"
 #import <GPUImage.h>
 #import "BFOpenCVConverter.h"
+#import "BFOpenCVEdgeDetector.h"
 
 using namespace cv;
 

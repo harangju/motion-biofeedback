@@ -32,7 +32,6 @@
 		7DB9C32F18C2D7F000CCDED9 /* BFHeadTracker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7DB9C32C18C2D7F000CCDED9 /* BFHeadTracker.mm */; };
 		7DB9C33018C2D7F000CCDED9 /* BFTracker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7DB9C32E18C2D7F000CCDED9 /* BFTracker.mm */; };
 		7DB9C33A18C2D83E00CCDED9 /* BFOpenCVConverter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7DB9C33318C2D83E00CCDED9 /* BFOpenCVConverter.mm */; };
-		7DB9C33B18C2D83E00CCDED9 /* BFOpenCVDetector.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7DB9C33518C2D83E00CCDED9 /* BFOpenCVDetector.mm */; };
 		7DB9C33C18C2D83E00CCDED9 /* BFOpenCVEdgeDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB9C33718C2D83E00CCDED9 /* BFOpenCVEdgeDetector.m */; };
 		7DB9C33D18C2D83E00CCDED9 /* BFOpenCVFaceDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB9C33918C2D83E00CCDED9 /* BFOpenCVFaceDetector.m */; };
 		F7E84084BE3542CBA28449D7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1545215E15347C8A01FA00B /* libPods.a */; };
@@ -83,8 +82,6 @@
 		7DB9C32E18C2D7F000CCDED9 /* BFTracker.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BFTracker.mm; sourceTree = "<group>"; };
 		7DB9C33218C2D83E00CCDED9 /* BFOpenCVConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFOpenCVConverter.h; sourceTree = "<group>"; };
 		7DB9C33318C2D83E00CCDED9 /* BFOpenCVConverter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BFOpenCVConverter.mm; sourceTree = "<group>"; };
-		7DB9C33418C2D83E00CCDED9 /* BFOpenCVDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFOpenCVDetector.h; sourceTree = "<group>"; };
-		7DB9C33518C2D83E00CCDED9 /* BFOpenCVDetector.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BFOpenCVDetector.mm; sourceTree = "<group>"; };
 		7DB9C33618C2D83E00CCDED9 /* BFOpenCVEdgeDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFOpenCVEdgeDetector.h; sourceTree = "<group>"; };
 		7DB9C33718C2D83E00CCDED9 /* BFOpenCVEdgeDetector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFOpenCVEdgeDetector.m; sourceTree = "<group>"; };
 		7DB9C33818C2D83E00CCDED9 /* BFOpenCVFaceDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFOpenCVFaceDetector.h; sourceTree = "<group>"; };
@@ -225,8 +222,6 @@
 			children = (
 				7DB9C33218C2D83E00CCDED9 /* BFOpenCVConverter.h */,
 				7DB9C33318C2D83E00CCDED9 /* BFOpenCVConverter.mm */,
-				7DB9C33418C2D83E00CCDED9 /* BFOpenCVDetector.h */,
-				7DB9C33518C2D83E00CCDED9 /* BFOpenCVDetector.mm */,
 				7DB9C33618C2D83E00CCDED9 /* BFOpenCVEdgeDetector.h */,
 				7DB9C33718C2D83E00CCDED9 /* BFOpenCVEdgeDetector.m */,
 				7DB9C33818C2D83E00CCDED9 /* BFOpenCVFaceDetector.h */,
@@ -370,7 +365,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DB9C2FE18C2D2EF00CCDED9 /* BFViewController.mm in Sources */,
-				7DB9C33B18C2D83E00CCDED9 /* BFOpenCVDetector.mm in Sources */,
 				7DB9C33A18C2D83E00CCDED9 /* BFOpenCVConverter.mm in Sources */,
 				7DB9C33C18C2D83E00CCDED9 /* BFOpenCVEdgeDetector.m in Sources */,
 				7DB9C33018C2D7F000CCDED9 /* BFTracker.mm in Sources */,
