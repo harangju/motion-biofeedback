@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D0436AA18CBE2B10006E551 /* BFFaceVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0436A918CBE2B10006E551 /* BFFaceVideoViewController.m */; };
 		7DB9C2E518C2D2EF00CCDED9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DB9C2E418C2D2EF00CCDED9 /* Foundation.framework */; };
 		7DB9C2E718C2D2EF00CCDED9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DB9C2E618C2D2EF00CCDED9 /* CoreGraphics.framework */; };
 		7DB9C2E918C2D2EF00CCDED9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DB9C2E818C2D2EF00CCDED9 /* UIKit.framework */; };
@@ -51,6 +52,8 @@
 
 /* Begin PBXFileReference section */
 		6B95C62388D34EA7AAD08B55 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		7D0436A818CBE2B10006E551 /* BFFaceVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BFFaceVideoViewController.h; path = "Face Video/BFFaceVideoViewController.h"; sourceTree = "<group>"; };
+		7D0436A918CBE2B10006E551 /* BFFaceVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BFFaceVideoViewController.m; path = "Face Video/BFFaceVideoViewController.m"; sourceTree = "<group>"; };
 		7DB9C2E118C2D2EF00CCDED9 /* Motion Biofeedback.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Motion Biofeedback.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DB9C2E418C2D2EF00CCDED9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7DB9C2E618C2D2EF00CCDED9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -126,6 +129,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7D0436AB18CBE2C10006E551 /* Face Video */ = {
+			isa = PBXGroup;
+			children = (
+				7D0436A818CBE2B10006E551 /* BFFaceVideoViewController.h */,
+				7D0436A918CBE2B10006E551 /* BFFaceVideoViewController.m */,
+			);
+			name = "Face Video";
+			sourceTree = "<group>";
+		};
 		7DB9C2D818C2D2EF00CCDED9 = {
 			isa = PBXGroup;
 			children = (
@@ -172,6 +184,7 @@
 				7DB9C2F418C2D2EF00CCDED9 /* BFAppDelegate.mm */,
 				7DB9C2F618C2D2EF00CCDED9 /* Main_iPhone.storyboard */,
 				7DB9C2F918C2D2EF00CCDED9 /* Main_iPad.storyboard */,
+				7D0436AB18CBE2C10006E551 /* Face Video */,
 				7DB9C2FC18C2D2EF00CCDED9 /* BFViewController.h */,
 				7DB9C2FD18C2D2EF00CCDED9 /* BFViewController.mm */,
 				7DB9C33118C2D83E00CCDED9 /* OpenCV */,
@@ -380,6 +393,7 @@
 				7DF6BDEB18CB7A54007B72FC /* BFOpenCVTracker.mm in Sources */,
 				7DB9C2F518C2D2EF00CCDED9 /* BFAppDelegate.mm in Sources */,
 				7DB9C33D18C2D83E00CCDED9 /* BFOpenCVFaceDetector.mm in Sources */,
+				7D0436AA18CBE2B10006E551 /* BFFaceVideoViewController.m in Sources */,
 				7DB9C32F18C2D7F000CCDED9 /* BFHeadTracker.mm in Sources */,
 				7DB9C2F118C2D2EF00CCDED9 /* main.m in Sources */,
 			);
