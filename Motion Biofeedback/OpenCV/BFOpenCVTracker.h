@@ -17,5 +17,9 @@ using namespace cv;
 @property (nonatomic) NSInteger maxNumberOfPoints;
 
 @property (nonatomic) Mat previousImage;
+@property (nonatomic) Mat nextImage;
+
+- (void)processFrameFromFrame:(const Mat &)inputFrame
+                      toFrame:(Mat &)outputFrame;
 
 @end

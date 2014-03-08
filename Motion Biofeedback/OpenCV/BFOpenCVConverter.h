@@ -19,6 +19,7 @@ using namespace cv;
                                       inViewFrame:(CGRect)viewFrame
                                       orientation:(AVCaptureVideoOrientation)videoOrientation
                          videoPreviewLayerGravity:(NSString *)videoGravity;
-+ (void)getGrayMat:(Mat &)gray fromMat:(Mat &)input;
++ (void)getGrayMat:(Mat &)gray
+           fromMat:(Mat &)input;
 
 @end

@@ -133,7 +133,8 @@
     return t;
 }
 
-+ (void)getGrayMat:(cv::Mat &)gray fromMat:(cv::Mat &)input
++ (void)getGrayMat:(cv::Mat &)gray
+           fromMat:(cv::Mat &)input
 {
     const int numChannes = input.channels();
     

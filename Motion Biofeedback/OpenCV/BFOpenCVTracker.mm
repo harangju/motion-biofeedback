@@ -10,4 +10,26 @@
 
 @implementation BFOpenCVTracker
 
+#pragma mark - Setup
+
+- (id)init
+{
+    self = [super init];
+    if (self)
+    {
+        self.maxNumberOfPoints = 50;
+    }
+    return self;
+}
+
+#pragma mark - Image Processing
+
+- (void)processFrameFromFrame:(const Mat &)inputFrame
+                      toFrame:(Mat &)outputFrame
+{
+    inputFrame.copyTo(outputFrame);
+    
+    
+}
+
 @end

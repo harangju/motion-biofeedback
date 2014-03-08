@@ -11,6 +11,7 @@
 #import "BFOpenCVConverter.h"
 #import "BFOpenCVEdgeDetector.h"
 #import "BFOpenCVFaceDetector.h"
+#import "BFOpenCVTracker.h"
 
 using namespace cv;
 
@@ -24,6 +25,7 @@ using namespace cv;
 
 @property (nonatomic, strong) BFOpenCVFaceDetector *faceDetector;
 @property (nonatomic, strong) BFOpenCVEdgeDetector *edgeDetector;
+@property (nonatomic, strong) BFOpenCVTracker *tracker;
 
 @end
 
@@ -47,6 +49,7 @@ using namespace cv;
     // initialize detectors
     self.faceDetector = [BFOpenCVFaceDetector new];
     self.edgeDetector = [BFOpenCVEdgeDetector new];
+    self.tracker = [BFOpenCVTracker new];
 }
 
 - (void)didReceiveMemoryWarning
@@ -62,29 +65,35 @@ using namespace cv;
     Mat mat = [BFOpenCVConverter matForSampleBuffer:sampleBuffer];
     transpose(mat, mat);
     
-    // get face
-    std::vector<cv::Rect> faces = [self.faceDetector faceFrameFromMat:mat];
+    Mat output;
+    [self.tracker processFrameFromFrame:mat
+                                toFrame:output];
     
-    CVPixelBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
-    CGRect videoRect = CGRectMake(0.0f, 0.0f,
-                                  CVPixelBufferGetHeight(pixelBuffer),
-                                  CVPixelBufferGetWidth(pixelBuffer));
-    // display faces
-    [self displayFaces:faces
-          forVideoRect:videoRect
-      videoOrientation:AVCaptureVideoOrientationLandscapeRight
-                inView:self.view];
+    self.currentMat = output;
     
-    if (faces.size() == 0)
-    {
-        return;
-    }
-    
-    cv::Rect faceRect = faces.front();
-    cv::Mat faceMat = mat(faceRect);
-    cv::Mat edges;
-    [self.edgeDetector getEdges:faceMat fromMat:faceMat];
-    self.currentMat = faceMat;
+//    // get face
+//    std::vector<cv::Rect> faces = [self.faceDetector faceFrameFromMat:mat];
+//    
+//    CVPixelBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+//    CGRect videoRect = CGRectMake(0.0f, 0.0f,
+//                                  CVPixelBufferGetHeight(pixelBuffer),
+//                                  CVPixelBufferGetWidth(pixelBuffer));
+//    // display faces
+//    [self displayFaces:faces
+//          forVideoRect:videoRect
+//      videoOrientation:AVCaptureVideoOrientationLandscapeRight
+//                inView:self.view];
+//    
+//    if (faces.size() == 0)
+//    {
+//        return;
+//    }
+//    
+//    cv::Rect faceRect = faces.front();
+//    cv::Mat faceMat = mat(faceRect);
+//    cv::Mat edges;
+//    [self.edgeDetector getEdges:faceMat fromMat:faceMat];
+//    self.currentMat = faceMat;
 }
 
 #pragma mark - IBAction
