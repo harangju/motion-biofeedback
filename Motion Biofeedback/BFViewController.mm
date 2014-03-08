@@ -70,17 +70,14 @@
     if (self.lockFaceRect)
     {
         // get motion
-        
+        cv::Mat output;
+        [self.tracker processFrameFromFrame:mat(self.faceRect)
+                                    toFrame:output];
+        self.currentMat = output;
     }
     else
     {
         // track face
-        
-    }
-    
-    if (self.faceRect.width == 0)
-    {
-        // get face
         std::vector<cv::Rect> faces = [self.faceDetector faceFrameFromMat:mat];
         
         CVPixelBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
@@ -97,14 +94,6 @@
           videoOrientation:AVCaptureVideoOrientationLandscapeRight
                     inView:self.view];
     }
-    else
-    {
-        cv::Mat output;
-        [self.tracker processFrameFromFrame:mat(self.faceRect)
-                                    toFrame:output];
-        
-        self.currentMat = output;
-    }
 }
 
 #pragma mark - IBAction
@@ -116,7 +105,7 @@
 
 - (IBAction)lockFaceButtonTapped:(id)sender
 {
-    
+    self.lockFaceRect = YES;
 }
 
 #pragma mark - Face
