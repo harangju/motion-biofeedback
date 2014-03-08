@@ -15,8 +15,24 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3iB-x2-IjY" customClass="GPUImageView">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="3iB-x2-IjY" secondAttribute="trailing" id="AVF-5Y-XVO"/>
+                            <constraint firstItem="3iB-x2-IjY" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="FW7-vk-qDk"/>
+                            <constraint firstItem="5Bl-Fc-0ng" firstAttribute="top" secondItem="3iB-x2-IjY" secondAttribute="bottom" id="VNQ-cn-QX9"/>
+                            <constraint firstItem="3iB-x2-IjY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="pTw-Hq-ldc"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="previewImageView" destination="3iB-x2-IjY" id="bSq-m4-1SF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

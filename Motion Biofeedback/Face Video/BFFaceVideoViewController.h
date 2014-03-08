@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <GPUImage.h>
 
-@interface BFFaceVideoViewController : UIViewController
+@interface BFFaceVideoViewController : UIViewController <GPUImageVideoCameraDelegate>
+
+@property (nonatomic, weak) IBOutlet GPUImageView *previewImageView;
+@property (nonatomic, strong) GPUImageVideoCamera *videoCamera;
 
 @end
