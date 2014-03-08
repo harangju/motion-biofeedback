@@ -7,13 +7,8 @@
 //
 
 #import "BFFaceVideoViewController.h"
-#import "BFOpenCVTracker.h"
-#import "BFOpenCVFaceDetector.h"
 
 @interface BFFaceVideoViewController ()
-
-@property (nonatomic, strong) BFOpenCVTracker *tracker;
-@property (nonatomic, strong) BFOpenCVFaceDetector *faceDetector;
 
 @end
 

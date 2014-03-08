@@ -8,10 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import <GPUImage.h>
+#import "BFOpenCVTracker.h"
+#import "BFOpenCVFaceDetector.h"
 
 @interface BFFaceVideoViewController : UIViewController <GPUImageVideoCameraDelegate>
 
 @property (nonatomic, weak) IBOutlet GPUImageView *previewImageView;
 @property (nonatomic, strong) GPUImageVideoCamera *videoCamera;
+
+@property (nonatomic, strong) BFOpenCVTracker *tracker;
+@property (nonatomic, strong) BFOpenCVFaceDetector *faceDetector;
+
+@property (nonatomic) cv::Rect faceRect;
+@property (nonatomic) BOOL lockFaceRect;
 
 @end
