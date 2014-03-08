@@ -26,11 +26,15 @@
     cv::Mat _nextDescriptors;
     cv::ORB _orbFeatureEngine;
     cv::BFMatcher _orbMatcher;
+    
+    CGPoint _previousAveragePoint;
 }
 
 @property (nonatomic) NSInteger maxNumberOfPoints;
 
+// only use one method in a tracking session
 - (void)processFrameFromFrame:(const cv::Mat &)inputFrame
                       toFrame:(cv::Mat &)outputFrame;
+- (CGPoint)naiveDeltaFromFrame:(const cv::Mat &)inputFrame;
 
 @end

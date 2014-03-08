@@ -70,10 +70,12 @@
     if (self.lockFaceRect)
     {
         // get motion
-        cv::Mat output;
-        [self.tracker processFrameFromFrame:mat(self.faceRect)
-                                    toFrame:output];
-        self.currentMat = output;
+        cv::Mat matInFaceRect = mat(self.faceRect);
+//        cv::Mat output;
+//        [self.tracker processFrameFromFrame:mat(self.faceRect) toFrame:output];
+//        self.currentMat = output;
+        CGPoint deltaPoint = [self.tracker naiveDeltaFromFrame:matInFaceRect];
+        NSLog(@"delta.x =\t%f\t\t delta.y =\t%f", deltaPoint.x, deltaPoint.y);
     }
     else
     {
