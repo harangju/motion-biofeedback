@@ -133,4 +133,22 @@
     return t;
 }
 
++ (void)getGrayMat:(cv::Mat &)gray fromMat:(cv::Mat &)input
+{
+    const int numChannes = input.channels();
+    
+    if (numChannes == 4)
+    {
+        cv::cvtColor(input, gray, CV_BGRA2GRAY);
+    }
+    else if (numChannes == 3)
+    {
+        cv::cvtColor(input, gray, CV_BGR2GRAY);
+    }
+    else if (numChannes == 1)
+    {
+        gray = input;
+    }
+}
+
 @end
