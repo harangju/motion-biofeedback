@@ -13,15 +13,13 @@
 #import "BFOpenCVFaceDetector.h"
 #import "BFOpenCVTracker.h"
 
-using namespace cv;
-
 @interface BFViewController () <GPUImageVideoCameraDelegate>
 
 @property (nonatomic, weak) IBOutlet UIImageView *imagePreviewView;
 @property (nonatomic, weak) IBOutlet GPUImageView *previewView;
 
 @property (nonatomic, strong) GPUImageVideoCamera *videoCamera;
-@property (nonatomic) Mat currentMat;
+@property (nonatomic) cv::Mat currentMat;
 
 @property (nonatomic, strong) BFOpenCVFaceDetector *faceDetector;
 @property (nonatomic, strong) BFOpenCVEdgeDetector *edgeDetector;
@@ -62,10 +60,10 @@ using namespace cv;
 - (void)willOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 {
     // get mat
-    Mat mat = [BFOpenCVConverter matForSampleBuffer:sampleBuffer];
+    cv::Mat mat = [BFOpenCVConverter matForSampleBuffer:sampleBuffer];
     transpose(mat, mat);
     
-    Mat output;
+    cv::Mat output;
     [self.tracker processFrameFromFrame:mat
                                 toFrame:output];
     

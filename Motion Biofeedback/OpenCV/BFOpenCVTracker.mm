@@ -18,18 +18,29 @@
     if (self)
     {
         self.maxNumberOfPoints = 50;
+        
     }
     return self;
 }
 
 #pragma mark - Image Processing
 
-- (void)processFrameFromFrame:(const Mat &)inputFrame
-                      toFrame:(Mat &)outputFrame
+- (void)processFrameFromFrame:(const cv::Mat &)inputFrame
+                      toFrame:(cv::Mat &)outputFrame
 {
     inputFrame.copyTo(outputFrame);
     
-    
+    if (self.mask.rows != inputFrame.rows ||
+        self.mask.cols != inputFrame.cols)
+    {
+        self.mask.create(inputFrame.rows,
+                         inputFrame.cols,
+                         CV_8UC1);
+    }
+    if (_previousKeyPoints.size() > 0)
+    {
+        
+    }
 }
 
 @end
