@@ -19,7 +19,11 @@
 @property (nonatomic, weak) IBOutlet GPUImageView *previewView;
 
 @property (nonatomic, strong) GPUImageVideoCamera *videoCamera;
+
 @property (nonatomic) cv::Mat currentMat;
+
+@property (nonatomic) cv::Rect faceRect;
+@property (nonatomic) BOOL lockFaceRect;
 
 @property (nonatomic, strong) BFOpenCVFaceDetector *faceDetector;
 @property (nonatomic, strong) BFOpenCVEdgeDetector *edgeDetector;
@@ -63,35 +67,44 @@
     cv::Mat mat = [BFOpenCVConverter matForSampleBuffer:sampleBuffer];
     transpose(mat, mat);
     
-    cv::Mat output;
-    [self.tracker processFrameFromFrame:mat
-                                toFrame:output];
+    if (self.lockFaceRect)
+    {
+        // get motion
+        
+    }
+    else
+    {
+        // track face
+        
+    }
     
-    self.currentMat = output;
-    
-//    // get face
-//    std::vector<cv::Rect> faces = [self.faceDetector faceFrameFromMat:mat];
-//    
-//    CVPixelBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
-//    CGRect videoRect = CGRectMake(0.0f, 0.0f,
-//                                  CVPixelBufferGetHeight(pixelBuffer),
-//                                  CVPixelBufferGetWidth(pixelBuffer));
-//    // display faces
-//    [self displayFaces:faces
-//          forVideoRect:videoRect
-//      videoOrientation:AVCaptureVideoOrientationLandscapeRight
-//                inView:self.view];
-//    
-//    if (faces.size() == 0)
-//    {
-//        return;
-//    }
-//    
-//    cv::Rect faceRect = faces.front();
-//    cv::Mat faceMat = mat(faceRect);
-//    cv::Mat edges;
-//    [self.edgeDetector getEdges:faceMat fromMat:faceMat];
-//    self.currentMat = faceMat;
+    if (self.faceRect.width == 0)
+    {
+        // get face
+        std::vector<cv::Rect> faces = [self.faceDetector faceFrameFromMat:mat];
+        
+        CVPixelBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+        CGRect videoRect = CGRectMake(0.0f, 0.0f,
+                                      CVPixelBufferGetHeight(pixelBuffer),
+                                      CVPixelBufferGetWidth(pixelBuffer));
+        if (faces.size() > 0)
+        {
+            self.faceRect = faces.front();
+        }
+        // display faces
+        [self displayFaces:faces
+              forVideoRect:videoRect
+          videoOrientation:AVCaptureVideoOrientationLandscapeRight
+                    inView:self.view];
+    }
+    else
+    {
+        cv::Mat output;
+        [self.tracker processFrameFromFrame:mat(self.faceRect)
+                                    toFrame:output];
+        
+        self.currentMat = output;
+    }
 }
 
 #pragma mark - IBAction
@@ -100,6 +113,13 @@
 {
     self.imagePreviewView.image = [BFOpenCVConverter imageForMat:self.currentMat];
 }
+
+- (IBAction)lockFaceButtonTapped:(id)sender
+{
+    
+}
+
+#pragma mark - Face
 
 - (void)displayFaces:(const std::vector<cv::Rect> &)faces
         forVideoRect:(CGRect)rect
@@ -160,8 +180,8 @@
             // Create a new feature marker layer
 			featureLayer = [[CALayer alloc] init];
             featureLayer.name = @"FaceLayer";
-            featureLayer.borderColor = [[UIColor redColor] CGColor];
-            featureLayer.borderWidth = 5.0f;
+            featureLayer.borderColor = [[UIColor greenColor] CGColor];
+            featureLayer.borderWidth = 2.0f;
 			[self.view.layer addSublayer:featureLayer];
 		}
         featureLayer.frame = faceRect;

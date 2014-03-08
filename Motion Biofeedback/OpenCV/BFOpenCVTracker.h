@@ -16,13 +16,19 @@
     std::vector<cv::KeyPoint> _nextKeyPoints;
     std::vector<cv::Point2f> _previousPoints;
     std::vector<cv::Point2f> _nextPoints;
+    cv::Mat _previousImage;
+    cv::Mat _nextImage;
+    cv::Mat _mask;
+    std::vector<unsigned char> _status;
+    std::vector<float> _error;
+    cv::Ptr<cv::FeatureDetector> _detector;
+    cv::Mat _previousDescriptors;
+    cv::Mat _nextDescriptors;
+    cv::ORB _orbFeatureEngine;
+    cv::BFMatcher _orbMatcher;
 }
 
 @property (nonatomic) NSInteger maxNumberOfPoints;
-
-@property (nonatomic) cv::Mat previousImage;
-@property (nonatomic) cv::Mat nextImage;
-@property (nonatomic) cv::Mat mask;
 
 - (void)processFrameFromFrame:(const cv::Mat &)inputFrame
                       toFrame:(cv::Mat &)outputFrame;
