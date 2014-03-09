@@ -113,12 +113,13 @@ static CGFloat FaceRectCircleMatchCenterDifferentThreshold = 25;
             {
                 NSLog(@"inside circle");
                 self.circleView.circleColor = [UIColor blueColor].CGColor;
+                [self.circleView setNeedsLayout];
             }
 //            else
 //            {
 //                self.circleView.circleColor = [UIColor redColor].CGColor;
 //            }
-            [self.circleView setNeedsLayout];
+            
         }
     }
 }
