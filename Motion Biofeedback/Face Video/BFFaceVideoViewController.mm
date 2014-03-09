@@ -87,7 +87,9 @@ static CGFloat FaceRectCircleMatchCenterDifferentThreshold = 25;
 {
     if (self.lockFaceRect)
     {
-        
+        // get delta
+        CGPoint delta = [self.tracker naiveDeltaFromFrame:mat];
+        NSLog(@"%f %f", delta.x, delta.y);
     }
     else
     {
@@ -128,20 +130,30 @@ static CGFloat FaceRectCircleMatchCenterDifferentThreshold = 25;
             {
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^
                  {
-                     self.circleView.circleColor = [UIColor redColor].CGColor;
-                     [self.circleView setNeedsDisplay];
                      self.statusLabel.text = @"Position your face inside the circle.";
-                     self.statusLabel.textColor = [UIColor redColor];
-                     self.faceInCircle = NO;
-                     self.readyToBegin = NO;
-                     self.startButton.hidden = YES;
-                     [self.readyTimer invalidate];
-                     self.readyTimer = nil;
+                     [self setStatesToDefault];
                  }];
             }
             
         }
     }
+}
+
+- (void)setStatesToDefault
+{
+    // circle view
+    self.circleView.circleColor = [UIColor redColor].CGColor;
+    [self.circleView setNeedsDisplay];
+    // status label
+    self.statusLabel.textColor = [UIColor redColor];
+    // states
+    self.faceInCircle = NO;
+    self.readyToBegin = NO;
+    // button
+    self.startButton.hidden = YES;
+    // invalidate timer
+    [self.readyTimer invalidate];
+    self.readyTimer = nil;
 }
 
 - (BOOL)faceRectIsInsideCircle:(cv::Rect)faceRect
@@ -191,7 +203,14 @@ static CGFloat FaceRectCircleMatchCenterDifferentThreshold = 25;
 {
     if (self.readyToBegin)
     {
+        // move to delta mode
         self.lockFaceRect = YES;
+        // remove old views
+        self.previewImageView.hidden = YES;
+        [self.videoCamera removeTarget:self.previewImageView];
+        self.statusLabel.text = @"";
+        // show delta circle
+        
     }
 }
 

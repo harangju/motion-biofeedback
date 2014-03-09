@@ -14,4 +14,8 @@
 @property (nonatomic) CGFloat circleRadius;
 @property (nonatomic) CGColorRef circleColor;
 
+@property (nonatomic) BOOL shouldShowDeltaCircle;
+@property (nonatomic) CGPoint deltaCircleCenter;
+@property (nonatomic) CGFloat deltaCircleRadius;
+
 @end

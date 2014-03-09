@@ -37,17 +37,27 @@
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
+    // main circle
     CGContextSetLineWidth(context, 2.0);
     CGContextSetStrokeColorWithColor(context, self.circleColor);
-    CGContextAddPath(context, [self makeCircle].CGPath);
+    UIBezierPath *mainCircle = [self makeCircleWithCenter:self.circleCenter
+                                                   radius:self.circleRadius];
+    CGContextAddPath(context, mainCircle.CGPath);
+    // delta circle
+    if (self.shouldShowDeltaCircle)
+    {
+        UIBezierPath *deltaCircle = [self makeCircleWithCenter:self.deltaCircleCenter
+                                                        radius:self.deltaCircleRadius];
+        CGContextAddPath(context, deltaCircle.CGPath);
+    }
     CGContextStrokePath(context);
 }
 
-- (UIBezierPath *)makeCircle
+- (UIBezierPath *)makeCircleWithCenter:(CGPoint)center radius:(CGFloat)radius
 {
     UIBezierPath *path = [UIBezierPath bezierPath];
-    [path addArcWithCenter:self.circleCenter
-                    radius:self.circleRadius
+    [path addArcWithCenter:center
+                    radius:radius
                 startAngle:0.0
                   endAngle:M_PI * 2.0
                  clockwise:YES];
