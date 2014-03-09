@@ -107,6 +107,7 @@ static CGFloat FaceRectCircleMatchCenterDifferentThreshold = 25;
                      self.circleView.circleColor = [UIColor blueColor].CGColor;
                      [self.circleView setNeedsDisplay];
                      self.statusLabel.text = @"Your face is inside the circle. Hold it there!";
+                     self.statusLabel.textColor = [UIColor blueColor];
                  }];
             }
             else
@@ -115,7 +116,8 @@ static CGFloat FaceRectCircleMatchCenterDifferentThreshold = 25;
                  {
                      self.circleView.circleColor = [UIColor redColor].CGColor;
                      [self.circleView setNeedsDisplay];
-                     self.statusLabel.text = @"";
+                     self.statusLabel.text = @"Position your face inside the circle.";
+                     self.statusLabel.textColor = [UIColor redColor];
                  }];
             }
             
