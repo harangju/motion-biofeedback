@@ -111,13 +111,16 @@ static CGFloat FaceRectCircleMatchCenterDifferentThreshold = 25;
                          self.statusLabel.text = @"Your face is inside the circle. Hold it there!";
                          self.statusLabel.textColor = [UIColor blueColor];
                          self.faceInCircle = YES;
-                         NSTimer *timer = [NSTimer timerWithTimeInterval:3
-                                                                  target:self
-                                                                selector:@selector(checkIfReady)
-                                                                userInfo:nil
-                                                                 repeats:NO];
-                         [[NSRunLoop mainRunLoop] addTimer:timer
-                                                   forMode:NSDefaultRunLoopMode];
+                         if (!self.readyTimer)
+                         {
+                             self.readyTimer = [NSTimer timerWithTimeInterval:3
+                                                                       target:self
+                                                                     selector:@selector(checkIfReady)
+                                                                     userInfo:nil
+                                                                      repeats:NO];
+                             [[NSRunLoop mainRunLoop] addTimer:self.readyTimer
+                                                       forMode:NSDefaultRunLoopMode];
+                         }
                      }
                  }];
             }
@@ -132,6 +135,8 @@ static CGFloat FaceRectCircleMatchCenterDifferentThreshold = 25;
                      self.faceInCircle = NO;
                      self.readyToBegin = NO;
                      self.startButton.hidden = YES;
+                     [self.readyTimer invalidate];
+                     self.readyTimer = nil;
                  }];
             }
             
@@ -186,7 +191,7 @@ static CGFloat FaceRectCircleMatchCenterDifferentThreshold = 25;
 {
     if (self.readyToBegin)
     {
-        
+        self.lockFaceRect = YES;
     }
 }
 

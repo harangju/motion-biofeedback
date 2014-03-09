@@ -26,6 +26,7 @@
 
 @property (nonatomic) BOOL faceInCircle;
 @property (nonatomic) BOOL readyToBegin;
+@property (nonatomic, strong) NSTimer *readyTimer;
 
 @property (nonatomic, weak) IBOutlet BFCircleView *circleView;
 
