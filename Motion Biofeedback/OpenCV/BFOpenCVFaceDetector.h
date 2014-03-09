@@ -10,6 +10,7 @@
 
 @interface BFOpenCVFaceDetector : NSObject
 
+@property (nonatomic, readonly) BOOL isProcessingFrame;
 - (std::vector<cv::Rect>)faceFrameFromMat:(cv::Mat)mat;
 
 @end

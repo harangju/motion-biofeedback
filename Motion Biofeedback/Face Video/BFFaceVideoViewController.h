@@ -22,6 +22,7 @@
 
 @property (nonatomic) cv::Rect faceRect;
 @property (nonatomic) BOOL lockFaceRect;
+@property (nonatomic) BOOL processingAFrameForFaceRect;
 
 @property (nonatomic, strong) BFCircleLayer *circleLayer;
 

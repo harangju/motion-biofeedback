@@ -7,6 +7,7 @@
 //
 
 #import "BFFaceVideoViewController.h"
+#import "BFOpenCVConverter.h"
 
 @interface BFFaceVideoViewController ()
 
@@ -55,14 +56,47 @@
     CGPoint center = CGPointMake(self.view.bounds.size.width/2.0,
                                  self.view.bounds.size.height/2.0);
     self.circleLayer = [[BFCircleLayer alloc] initAtLocation:center
-                                                      radius:300];
+                                                      radius:200];
 }
 
 #pragma mark - GPUImage VideoCamera Delegate
 
 - (void)willOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 {
+    // get mat
+    cv::Mat mat = [BFOpenCVConverter matForSampleBuffer:sampleBuffer];
+    transpose(mat, mat);
     
+    // processs video
+    [self processFrame:mat];
+}
+
+- (CGRect)videoRectFromBuffer:(CMSampleBufferRef)sampleBuffer
+{
+    CVPixelBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+    CGRect videoRect = CGRectMake(0.0f, 0.0f,
+                                  CVPixelBufferGetHeight(pixelBuffer),
+                                  CVPixelBufferGetWidth(pixelBuffer));
+    return videoRect;
+}
+
+#pragma mark - Video Processing
+
+- (void)processFrame:(cv::Mat &)mat
+{
+    if (self.lockFaceRect)
+    {
+        
+    }
+    else
+    {
+        // get face rect
+        std::vector<cv::Rect> faceRects = [self.faceDetector faceFrameFromMat:mat];
+        if (faceRects.size() > 0)
+        {
+            
+        }
+    }
 }
 
 #pragma mark - Orientation

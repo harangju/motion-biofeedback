@@ -15,6 +15,7 @@ const int kHaarOptions =  CV_HAAR_FIND_BIGGEST_OBJECT | CV_HAAR_DO_ROUGH_SEARCH;
 @interface BFOpenCVFaceDetector ()
 {
     cv::CascadeClassifier _faceCascade;
+    BOOL _isProcessingFrame;
 }
 
 @end
@@ -38,10 +39,12 @@ const int kHaarOptions =  CV_HAAR_FIND_BIGGEST_OBJECT | CV_HAAR_DO_ROUGH_SEARCH;
 
 - (std::vector<cv::Rect>)faceFrameFromMat:(cv::Mat)mat
 {
+    _isProcessingFrame = YES;
     std::vector<cv::Rect> faces;
-    _faceCascade.detectMultiScale(mat, faces, 1.1, 2, kHaarOptions, cv::Size(60, 60));
+    _faceCascade.detectMultiScale(mat, faces, 1.1, 3, kHaarOptions, cv::Size(60, 60));
     NSLog(@"face count - %lu", faces.size());
     return faces;
+    _isProcessingFrame = NO;
 }
 
 @end
