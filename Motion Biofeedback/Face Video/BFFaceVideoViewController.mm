@@ -40,7 +40,7 @@
     self.videoCamera = [[GPUImageVideoCamera alloc] initWithSessionPreset:AVCaptureSessionPresetHigh
                                                            cameraPosition:AVCaptureDevicePositionFront];
     self.videoCamera.delegate = self;
-    self.videoCamera.outputImageOrientation = UIInterfaceOrientationLandscapeRight;
+    self.videoCamera.outputImageOrientation = UIInterfaceOrientationPortrait;
     self.videoCamera.horizontallyMirrorFrontFacingCamera = YES;
 }
 
@@ -55,7 +55,7 @@
     CGPoint center = CGPointMake(self.view.bounds.size.width/2.0,
                                  self.view.bounds.size.height/2.0);
     self.circleLayer = [[BFCircleLayer alloc] initAtLocation:center
-                                                      radius:50];
+                                                      radius:300];
 }
 
 #pragma mark - GPUImage VideoCamera Delegate
@@ -71,21 +71,7 @@
                                 duration:(NSTimeInterval)duration
 {
     self.videoCamera.outputImageOrientation = toInterfaceOrientation;
-//    [self moveCircleLayerToPosition];
 }
 
-#pragma mark - Circle Layer
-
-- (void)moveCircleLayerToPosition
-{
-//    CGPoint location = CGPointMake(self.view.bounds.size.width/2.0,
-//                                   self.view.bounds.size.height/2.0);
-//    if (self.interfaceOrientation == UIInterfaceOrientationLandscapeRight)
-//    {
-//        location = CGPointMake(self.view.bounds.size.height/2.0,
-//                               self.view.bounds.size.width/2.0);
-//    }
-//    self.circleLayer.center = location;
-}
 
 @end

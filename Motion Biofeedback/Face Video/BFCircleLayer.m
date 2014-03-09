@@ -15,7 +15,8 @@
     self = [super init];
     if (self)
     {
-        self.path = [[self makeCircleAtLocation:location radius:50.0] CGPath];
+        self.path = [[self makeCircleAtLocation:location
+                                         radius:radius] CGPath];
         self.strokeColor = [UIColor redColor].CGColor;
         self.fillColor = nil;
         self.lineWidth = 3.0;
