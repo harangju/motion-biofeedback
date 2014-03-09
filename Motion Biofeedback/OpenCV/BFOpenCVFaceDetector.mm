@@ -42,7 +42,7 @@ const int kHaarOptions =  CV_HAAR_FIND_BIGGEST_OBJECT | CV_HAAR_DO_ROUGH_SEARCH;
     _isProcessingFrame = YES;
     std::vector<cv::Rect> faces;
     _faceCascade.detectMultiScale(mat, faces, 1.1, 3, kHaarOptions, cv::Size(60, 60));
-    NSLog(@"face count - %lu", faces.size());
+//    NSLog(@"face count - %lu", faces.size());
     return faces;
     _isProcessingFrame = NO;
 }

@@ -23,7 +23,9 @@
 
 @property (nonatomic) cv::Rect faceRect;
 @property (nonatomic) BOOL lockFaceRect;
-@property (nonatomic) BOOL processingAFrameForFaceRect;
+
+@property (nonatomic) BOOL faceInCircle;
+@property (nonatomic) BOOL readyToBegin;
 
 @property (nonatomic, weak) IBOutlet BFCircleView *circleView;
 

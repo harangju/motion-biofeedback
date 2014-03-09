@@ -103,11 +103,18 @@ static CGFloat FaceRectCircleMatchCenterDifferentThreshold = 25;
             {
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^
                  {
-                     NSLog(@"inside circle");
                      self.circleView.circleColor = [UIColor blueColor].CGColor;
                      [self.circleView setNeedsDisplay];
                      self.statusLabel.text = @"Your face is inside the circle. Hold it there!";
                      self.statusLabel.textColor = [UIColor blueColor];
+                     self.faceInCircle = YES;
+                     NSTimer *timer = [NSTimer timerWithTimeInterval:1
+                                                              target:self
+                                                            selector:@selector(checkIfReady)
+                                                            userInfo:nil
+                                                             repeats:NO];
+                     [[NSRunLoop mainRunLoop] addTimer:timer
+                                               forMode:NSDefaultRunLoopMode];
                  }];
             }
             else
@@ -118,6 +125,7 @@ static CGFloat FaceRectCircleMatchCenterDifferentThreshold = 25;
                      [self.circleView setNeedsDisplay];
                      self.statusLabel.text = @"Position your face inside the circle.";
                      self.statusLabel.textColor = [UIColor redColor];
+                     self.faceInCircle = NO;
                  }];
             }
             
@@ -138,9 +146,23 @@ static CGFloat FaceRectCircleMatchCenterDifferentThreshold = 25;
     CGFloat circleRadiusInVideoFrame = mat.rows * (self.circleView.circleRadius/self.view.bounds.size.height);
     CGFloat topOfCircle = faceRectCenter.y - circleRadiusInVideoFrame;
     CGFloat bottomOfCircle = faceRectCenter.y + circleRadiusInVideoFrame;
-    NSLog(@"center %f top %f bottom %f", centerCloseness, topOfCircle, bottomOfCircle);
     return (centerCloseness < FaceRectCircleMatchCenterDifferentThreshold &&
             faceRect.y > topOfCircle && (faceRect.y + faceRect.height) < bottomOfCircle);
+}
+
+- (void)checkIfReady
+{
+    if (!self.faceInCircle)
+    {
+        NSLog(@"face not in circle - not ready");
+        return;
+    }
+    else
+    {
+        NSLog(@"face in circle - ready");
+        self.statusLabel.text = @"Ready? Tap the ready button to begin.";
+        self.readyToBegin = YES;
+    }
 }
 
 #pragma mark - Orientation
@@ -153,6 +175,12 @@ static CGFloat FaceRectCircleMatchCenterDifferentThreshold = 25;
 
 #pragma mark - IBAction
 
-
+- (IBAction)readyButtonTapped:(id)sender
+{
+    if (self.readyToBegin)
+    {
+        
+    }
+}
 
 @end

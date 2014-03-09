@@ -24,33 +24,30 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3OU-hf-V84" customClass="BFCircleView">
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Idc-Hp-vir">
-                                        <rect key="frame" x="73" y="20" width="622" height="92"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="92" id="hCB-tf-yAk"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                        <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="Idc-Hp-vir" secondAttribute="trailing" constant="73" id="BUP-CM-h8G"/>
-                                    <constraint firstItem="Idc-Hp-vir" firstAttribute="leading" secondItem="3OU-hf-V84" secondAttribute="leading" constant="73" id="Fcc-oh-xMY"/>
-                                    <constraint firstItem="Idc-Hp-vir" firstAttribute="top" secondItem="3OU-hf-V84" secondAttribute="top" constant="20" id="MEL-VF-qxg"/>
-                                </constraints>
                             </view>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Idc-Hp-vir">
+                                <rect key="frame" x="73" y="20" width="622" height="92"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="92" id="hCB-tf-yAk"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="92" id="pOu-G9-8tk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="3iB-x2-IjY" secondAttribute="trailing" id="AVF-5Y-XVO"/>
+                            <constraint firstItem="Idc-Hp-vir" firstAttribute="top" secondItem="7Bu-kC-DgJ" secondAttribute="bottom" id="DJJ-PP-DlU"/>
                             <constraint firstItem="3iB-x2-IjY" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="FW7-vk-qDk"/>
+                            <constraint firstAttribute="trailing" secondItem="Idc-Hp-vir" secondAttribute="trailing" constant="73" id="KOw-dc-wIA"/>
                             <constraint firstItem="5Bl-Fc-0ng" firstAttribute="top" secondItem="3OU-hf-V84" secondAttribute="bottom" id="TDN-P6-lg7"/>
                             <constraint firstItem="5Bl-Fc-0ng" firstAttribute="top" secondItem="3iB-x2-IjY" secondAttribute="bottom" id="VNQ-cn-QX9"/>
                             <constraint firstAttribute="trailing" secondItem="3OU-hf-V84" secondAttribute="trailing" id="c3S-go-Mpr"/>
+                            <constraint firstItem="Idc-Hp-vir" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="73" id="fmU-Zj-QJu"/>
                             <constraint firstItem="3OU-hf-V84" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="p8U-SS-1Ra"/>
                             <constraint firstItem="3iB-x2-IjY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="pTw-Hq-ldc"/>
                             <constraint firstItem="3OU-hf-V84" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="yPx-E6-qaf"/>
