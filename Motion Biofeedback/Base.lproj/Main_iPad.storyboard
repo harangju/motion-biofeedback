@@ -24,7 +24,24 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3OU-hf-V84" customClass="BFCircleView">
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Idc-Hp-vir">
+                                        <rect key="frame" x="73" y="20" width="622" height="92"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="92" id="hCB-tf-yAk"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                        <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Idc-Hp-vir" secondAttribute="trailing" constant="73" id="BUP-CM-h8G"/>
+                                    <constraint firstItem="Idc-Hp-vir" firstAttribute="leading" secondItem="3OU-hf-V84" secondAttribute="leading" constant="73" id="Fcc-oh-xMY"/>
+                                    <constraint firstItem="Idc-Hp-vir" firstAttribute="top" secondItem="3OU-hf-V84" secondAttribute="top" constant="20" id="MEL-VF-qxg"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -42,6 +59,7 @@
                     <connections>
                         <outlet property="circleView" destination="3OU-hf-V84" id="zmG-Zd-3l2"/>
                         <outlet property="previewImageView" destination="3iB-x2-IjY" id="bSq-m4-1SF"/>
+                        <outlet property="statusLabel" destination="Idc-Hp-vir" id="cmm-UT-IaU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

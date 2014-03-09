@@ -28,8 +28,6 @@ static CGFloat FaceRectCircleMatchCenterDifferentThreshold = 25;
     [self.videoCamera addTarget:self.previewImageView];
     [self.videoCamera startCameraCapture];
     [self initializeCircleView];
-//    [self initializeCircleLayer];
-//    [self.view.layer addSublayer:self.circleLayer];
 }
 
 - (void)didReceiveMemoryWarning
@@ -52,14 +50,6 @@ static CGFloat FaceRectCircleMatchCenterDifferentThreshold = 25;
 {
     self.tracker = [BFOpenCVTracker new];
     self.faceDetector = [BFOpenCVFaceDetector new];
-}
-
-- (void)initializeCircleLayer
-{
-    CGPoint center = CGPointMake(self.view.bounds.size.width/2.0,
-                                 self.view.bounds.size.height/2.0);
-    self.circleLayer = [[BFCircleLayer alloc] initAtLocation:center
-                                                      radius:200];
 }
 
 - (void)initializeCircleView
@@ -111,14 +101,23 @@ static CGFloat FaceRectCircleMatchCenterDifferentThreshold = 25;
                                                                mat:mat];
             if (faceIsInsideCircle)
             {
-                NSLog(@"inside circle");
-                self.circleView.circleColor = [UIColor blueColor].CGColor;
-                [self.circleView setNeedsLayout];
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^
+                 {
+                     NSLog(@"inside circle");
+                     self.circleView.circleColor = [UIColor blueColor].CGColor;
+                     [self.circleView setNeedsDisplay];
+                     self.statusLabel.text = @"Your face is inside the circle. Hold it there!";
+                 }];
             }
-//            else
-//            {
-//                self.circleView.circleColor = [UIColor redColor].CGColor;
-//            }
+            else
+            {
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^
+                 {
+                     self.circleView.circleColor = [UIColor redColor].CGColor;
+                     [self.circleView setNeedsDisplay];
+                     self.statusLabel.text = @"";
+                 }];
+            }
             
         }
     }
@@ -149,6 +148,9 @@ static CGFloat FaceRectCircleMatchCenterDifferentThreshold = 25;
 {
     self.videoCamera.outputImageOrientation = toInterfaceOrientation;
 }
+
+#pragma mark - IBAction
+
 
 
 @end
