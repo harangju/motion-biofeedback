@@ -68,7 +68,6 @@ static CGFloat FaceRectCircleMatchCenterDifferentThreshold = 25;
                                  self.circleView.bounds.size.height/2.0);
     self.circleView.circleCenter = center;
     self.circleView.circleRadius = 200;
-    [self.circleView layoutIfNeeded];
 }
 
 #pragma mark - GPUImage VideoCamera Delegate
@@ -107,32 +106,39 @@ static CGFloat FaceRectCircleMatchCenterDifferentThreshold = 25;
         if (faceRects.size() > 0)
         {
             cv::Rect faceRect = faceRects.front();
-            // is the rect close to the circle?
-            CGPoint faceRectCenter = CGPointMake(faceRect.x + faceRect.width/2.0,
-                                                 faceRect.y + faceRect.height/2.0);
-            CGPoint frameCenter = CGPointMake(videoRect.origin.x + videoRect.size.width/2.0,
-                                              videoRect.origin.y + videoRect.size.height/2.0);
-            CGFloat centerCloseness = MAX(ABS(faceRectCenter.x - frameCenter.x),
-                                          ABS(faceRectCenter.y - frameCenter.y));
-            CGFloat circleRadiusInVideoFrame = mat.rows * (self.circleView.circleRadius/self.view.bounds.size.height);
-            CGFloat topOfCircle = faceRectCenter.y - circleRadiusInVideoFrame;
-            CGFloat bottomOfCircle = faceRectCenter.y + circleRadiusInVideoFrame;
-            NSLog(@"center %f top %f bottom %f", centerCloseness, topOfCircle, bottomOfCircle);
-            if (centerCloseness < FaceRectCircleMatchCenterDifferentThreshold &&
-                faceRect.y > topOfCircle && (faceRect.y + faceRect.height) < bottomOfCircle)
-                // close to center &
-                // inside the circle
+            BOOL faceIsInsideCircle = [self faceRectIsInsideCircle:faceRect
+                                                       inVideoRect:videoRect
+                                                               mat:mat];
+            if (faceIsInsideCircle)
             {
                 NSLog(@"inside circle");
-                self.circleView.circleColor = [UIColor greenColor].CGColor;
+                self.circleView.circleColor = [UIColor blueColor].CGColor;
             }
-            else
-            {
-                self.circleView.circleColor = [UIColor redColor].CGColor;
-            }
+//            else
+//            {
+//                self.circleView.circleColor = [UIColor redColor].CGColor;
+//            }
             [self.circleView setNeedsLayout];
         }
     }
+}
+
+- (BOOL)faceRectIsInsideCircle:(cv::Rect)faceRect
+                   inVideoRect:(CGRect)videoRect
+                           mat:(cv::Mat &)mat
+{
+    CGPoint faceRectCenter = CGPointMake(faceRect.x + faceRect.width/2.0,
+                                         faceRect.y + faceRect.height/2.0);
+    CGPoint frameCenter = CGPointMake(videoRect.origin.x + videoRect.size.width/2.0,
+                                      videoRect.origin.y + videoRect.size.height/2.0);
+    CGFloat centerCloseness = MAX(ABS(faceRectCenter.x - frameCenter.x),
+                                  ABS(faceRectCenter.y - frameCenter.y));
+    CGFloat circleRadiusInVideoFrame = mat.rows * (self.circleView.circleRadius/self.view.bounds.size.height);
+    CGFloat topOfCircle = faceRectCenter.y - circleRadiusInVideoFrame;
+    CGFloat bottomOfCircle = faceRectCenter.y + circleRadiusInVideoFrame;
+    NSLog(@"center %f top %f bottom %f", centerCloseness, topOfCircle, bottomOfCircle);
+    return (centerCloseness < FaceRectCircleMatchCenterDifferentThreshold &&
+            faceRect.y > topOfCircle && (faceRect.y + faceRect.height) < bottomOfCircle);
 }
 
 #pragma mark - Orientation
