@@ -52,6 +52,18 @@
                                 <rect key="frame" x="0.0" y="0.0" width="431" height="442"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b2U-fy-2oi">
+                                <rect key="frame" x="286" y="907" width="196" height="97"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <state key="normal" title="Stop">
+                                    <color key="titleColor" red="0.89366083559999998" green="0.1391422202" blue="0.16149279029999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="stopButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cNs-6P-J1i"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -74,6 +86,7 @@
                         <outlet property="previewImageView" destination="3iB-x2-IjY" id="bSq-m4-1SF"/>
                         <outlet property="startButton" destination="5IB-5B-fB3" id="fxG-g7-wa8"/>
                         <outlet property="statusLabel" destination="Idc-Hp-vir" id="cmm-UT-IaU"/>
+                        <outlet property="stopButton" destination="b2U-fy-2oi" id="GG1-hH-XrT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

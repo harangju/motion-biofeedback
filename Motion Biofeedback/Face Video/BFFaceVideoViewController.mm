@@ -10,6 +10,7 @@
 #import "BFOpenCVConverter.h"
 
 static CGFloat FaceRectCircleMatchCenterDifferentThreshold = 25;
+static CGFloat FaceCircleMaximumDifference = 30;
 
 static CGFloat CircleRadius = 200;
 
@@ -108,6 +109,16 @@ static CGFloat CircleRadius = 200;
         CGPoint deltaCircleCenter = self.faceRectCenterInView;
         deltaCircleCenter.x += deltaPoint.x;
         
+        // doesn't work
+//        if (deltaCircleCenter.x == NAN ||
+//            ABS(deltaCircleCenter.x - self.circleView.circleCenter.x) > FaceCircleMaximumDifference)
+//            // if head is too far out
+//            // then return back
+//        {
+//            self.lockFaceRect = NO;
+//            [self setStatesToDefault];
+//            return;
+//        }
         self.faceRectCenterInView = deltaCircleCenter;
         [[NSOperationQueue mainQueue] addOperationWithBlock:^
          {
@@ -200,9 +211,16 @@ static CGFloat CircleRadius = 200;
     self.readyToBegin = NO;
     // button
     self.startButton.hidden = YES;
+    self.stopButton.hidden = YES;
     // invalidate timer
     [self.readyTimer invalidate];
     self.readyTimer = nil;
+    // preview
+    self.previewImageView.hidden = NO;
+    if (![self.videoCamera.targets containsObject:self.previewImageView])
+    {
+        [self.videoCamera addTarget:self.previewImageView];
+    }
 }
 
 - (BOOL)faceRectIsInsideCircle:(cv::Rect)faceRect
@@ -261,19 +279,25 @@ static CGFloat CircleRadius = 200;
         // calculate center in view
         CGPoint faceRectCenter = CGPointMake(self.faceRect.x + self.faceRect.width/2.0,
                                              self.faceRect.y + self.faceRect.height/2.0);
-//        self.faceRectCenterInView = CGPointMake(faceRectCenter.x / self.matSize.width * self.view.bounds.size.width,
-//                                                faceRectCenter.y / self.matSize.height * self.view.bounds.size.height);
         self.faceRectCenterInView = CGPointMake(faceRectCenter.x / self.matSize.width * self.view.bounds.size.width,
                                                 self.circleView.circleCenter.y);
         // show delta circle
         self.circleView.shouldShowDeltaCircle = YES;
         self.circleView.circleColor = [UIColor blueColor].CGColor;
+        // remove button
+        self.startButton.hidden = YES;
+        self.stopButton.hidden = NO;
     }
     // for debugging
     if (self.lockFaceRect)
     {
         self.imageView.image = [BFOpenCVConverter imageForMat:self.currentMat];
     }
+}
+
+- (IBAction)stopButtonTapped:(id)sender
+{
+    NSLog(@"stop button tapped");
 }
 
 @end

@@ -37,6 +37,7 @@
 
 @property (nonatomic, weak) IBOutlet BFCircleView *circleView;
 
+@property (nonatomic, weak) IBOutlet UIButton *stopButton;
 @property (nonatomic, weak) IBOutlet UIButton *startButton;
 @property (nonatomic, weak) IBOutlet UILabel *statusLabel;
 
