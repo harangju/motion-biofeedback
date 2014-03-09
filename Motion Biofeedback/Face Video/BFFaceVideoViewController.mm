@@ -9,6 +9,9 @@
 #import "BFFaceVideoViewController.h"
 #import "BFOpenCVConverter.h"
 
+static CGFloat FaceRectCircleMatchAreaThreshold = 1;
+static CGFloat FaceRectCircleMatchCenterDifferentThreshold = 25;
+
 @interface BFFaceVideoViewController ()
 
 @end
@@ -68,7 +71,7 @@
     transpose(mat, mat);
     
     // processs video
-    [self processFrame:mat];
+    [self processFrame:mat withVideoRect:[self videoRectFromBuffer:sampleBuffer]];
 }
 
 - (CGRect)videoRectFromBuffer:(CMSampleBufferRef)sampleBuffer
@@ -82,7 +85,7 @@
 
 #pragma mark - Video Processing
 
-- (void)processFrame:(cv::Mat &)mat
+- (void)processFrame:(cv::Mat &)mat withVideoRect:(CGRect)videoRect
 {
     if (self.lockFaceRect)
     {
@@ -94,7 +97,25 @@
         std::vector<cv::Rect> faceRects = [self.faceDetector faceFrameFromMat:mat];
         if (faceRects.size() > 0)
         {
-            
+            cv::Rect faceRect = faceRects.front();
+            // is the rect close to the circle?
+            CGPoint faceRectCenter = CGPointMake(faceRect.x + faceRect.width/2.0,
+                                                 faceRect.y + faceRect.height/2.0);
+            CGPoint frameCenter = CGPointMake(videoRect.origin.x + videoRect.size.width/2.0,
+                                              videoRect.origin.y + videoRect.size.height/2.0);
+            CGFloat centerCloseness = MAX(ABS(faceRectCenter.x - frameCenter.x),
+                                          ABS(faceRectCenter.y - frameCenter.y));
+            CGFloat circleRadiusInVideoFrame = mat.rows * (self.circleLayer.radius/self.view.bounds.size.height);
+            CGFloat topOfCircle = faceRectCenter.y - circleRadiusInVideoFrame;
+            CGFloat bottomOfCircle = faceRectCenter.y + circleRadiusInVideoFrame;
+            NSLog(@"center %f top %f bottom %f", centerCloseness, topOfCircle, bottomOfCircle);
+            if (centerCloseness < FaceRectCircleMatchCenterDifferentThreshold &&
+                faceRect.y > topOfCircle && (faceRect.y + faceRect.height) < bottomOfCircle)
+                // close to center &
+                // inside the circle
+            {
+                NSLog(@"inside circle");
+            }
         }
     }
 }
