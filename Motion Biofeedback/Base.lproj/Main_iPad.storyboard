@@ -21,21 +21,32 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3OU-hf-V84" customClass="BFCircleView">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="3iB-x2-IjY" secondAttribute="trailing" id="AVF-5Y-XVO"/>
                             <constraint firstItem="3iB-x2-IjY" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="FW7-vk-qDk"/>
+                            <constraint firstItem="5Bl-Fc-0ng" firstAttribute="top" secondItem="3OU-hf-V84" secondAttribute="bottom" id="TDN-P6-lg7"/>
                             <constraint firstItem="5Bl-Fc-0ng" firstAttribute="top" secondItem="3iB-x2-IjY" secondAttribute="bottom" id="VNQ-cn-QX9"/>
+                            <constraint firstAttribute="trailing" secondItem="3OU-hf-V84" secondAttribute="trailing" id="c3S-go-Mpr"/>
+                            <constraint firstItem="3OU-hf-V84" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="p8U-SS-1Ra"/>
                             <constraint firstItem="3iB-x2-IjY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="pTw-Hq-ldc"/>
+                            <constraint firstItem="3OU-hf-V84" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="yPx-E6-qaf"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="circleView" destination="3OU-hf-V84" id="zmG-Zd-3l2"/>
                         <outlet property="previewImageView" destination="3iB-x2-IjY" id="bSq-m4-1SF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-11" y="-255"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

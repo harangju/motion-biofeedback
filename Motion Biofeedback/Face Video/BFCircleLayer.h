@@ -14,5 +14,6 @@
 
 @property (nonatomic) CGPoint center;
 @property (nonatomic) CGFloat radius;
+@property (nonatomic) CGColorRef circleColor;
 
 @end

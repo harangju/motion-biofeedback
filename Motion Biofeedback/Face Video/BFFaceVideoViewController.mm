@@ -9,7 +9,6 @@
 #import "BFFaceVideoViewController.h"
 #import "BFOpenCVConverter.h"
 
-static CGFloat FaceRectCircleMatchAreaThreshold = 1;
 static CGFloat FaceRectCircleMatchCenterDifferentThreshold = 25;
 
 @interface BFFaceVideoViewController ()
@@ -28,8 +27,9 @@ static CGFloat FaceRectCircleMatchCenterDifferentThreshold = 25;
     [self initializeDetectors];
     [self.videoCamera addTarget:self.previewImageView];
     [self.videoCamera startCameraCapture];
-    [self initializeCircleLayer];
-    [self.view.layer addSublayer:self.circleLayer];
+    [self initializeCircleView];
+//    [self initializeCircleLayer];
+//    [self.view.layer addSublayer:self.circleLayer];
 }
 
 - (void)didReceiveMemoryWarning
@@ -60,6 +60,15 @@ static CGFloat FaceRectCircleMatchCenterDifferentThreshold = 25;
                                  self.view.bounds.size.height/2.0);
     self.circleLayer = [[BFCircleLayer alloc] initAtLocation:center
                                                       radius:200];
+}
+
+- (void)initializeCircleView
+{
+    CGPoint center = CGPointMake(self.circleView.bounds.size.width/2.0,
+                                 self.circleView.bounds.size.height/2.0);
+    self.circleView.circleCenter = center;
+    self.circleView.circleRadius = 200;
+    [self.circleView layoutIfNeeded];
 }
 
 #pragma mark - GPUImage VideoCamera Delegate
@@ -105,7 +114,7 @@ static CGFloat FaceRectCircleMatchCenterDifferentThreshold = 25;
                                               videoRect.origin.y + videoRect.size.height/2.0);
             CGFloat centerCloseness = MAX(ABS(faceRectCenter.x - frameCenter.x),
                                           ABS(faceRectCenter.y - frameCenter.y));
-            CGFloat circleRadiusInVideoFrame = mat.rows * (self.circleLayer.radius/self.view.bounds.size.height);
+            CGFloat circleRadiusInVideoFrame = mat.rows * (self.circleView.circleRadius/self.view.bounds.size.height);
             CGFloat topOfCircle = faceRectCenter.y - circleRadiusInVideoFrame;
             CGFloat bottomOfCircle = faceRectCenter.y + circleRadiusInVideoFrame;
             NSLog(@"center %f top %f bottom %f", centerCloseness, topOfCircle, bottomOfCircle);
@@ -115,7 +124,13 @@ static CGFloat FaceRectCircleMatchCenterDifferentThreshold = 25;
                 // inside the circle
             {
                 NSLog(@"inside circle");
+                self.circleView.circleColor = [UIColor greenColor].CGColor;
             }
+            else
+            {
+                self.circleView.circleColor = [UIColor redColor].CGColor;
+            }
+            [self.circleView setNeedsLayout];
         }
     }
 }

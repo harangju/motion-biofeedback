@@ -17,7 +17,8 @@
     {
         self.path = [[self makeCircleAtLocation:location
                                          radius:radius] CGPath];
-        self.strokeColor = [UIColor redColor].CGColor;
+        self.circleColor = [UIColor redColor].CGColor;
+        self.strokeColor = self.circleColor;
         self.fillColor = nil;
         self.lineWidth = 3.0;
     }
@@ -38,6 +39,26 @@
                  clockwise:YES];
     
     return path;
+}
+
+- (void)setCircleColor:(CGColorRef)circleColor
+{
+    if (_circleColor != circleColor)
+    {
+        _circleColor = circleColor;
+        self.strokeColor = circleColor;
+        [self setNeedsDisplay];
+    }
+}
+
+- (void)drawLayer:(CALayer *)layer inContext:(CGContextRef)ctx
+{
+    CGContextRef context = ctx;
+    CGContextSetLineWidth(context, 2.0);
+    CGContextSetStrokeColorWithColor(context, [UIColor blueColor].CGColor);
+    CGRect rectangle = CGRectMake(60,170,200,80);
+    CGContextAddEllipseInRect(context, rectangle);
+    CGContextStrokePath(context);
 }
 
 @end
