@@ -94,12 +94,20 @@ static CGFloat CircleRadius = 200;
     {
         // get mat in facerect
         cv::Mat matInFaceRect = mat(self.faceRect);
+        
+        // for debugging
+//        cv::Mat output;
+//        [self.tracker processFrameFromFrame:matInFaceRect
+//                                    toFrame:output];
+//        self.currentMat = output;
+        
         // get delta
         CGPoint deltaPoint = [self.tracker naiveDeltaFromFrame:matInFaceRect];
         deltaPoint.x *= 5;
         deltaPoint.y *= 5;
         CGPoint deltaCircleCenter = self.faceRectCenterInView;
         deltaCircleCenter.x += deltaPoint.x;
+        
         self.faceRectCenterInView = deltaCircleCenter;
         [[NSOperationQueue mainQueue] addOperationWithBlock:^
          {
@@ -260,6 +268,11 @@ static CGFloat CircleRadius = 200;
         // show delta circle
         self.circleView.shouldShowDeltaCircle = YES;
         self.circleView.circleColor = [UIColor blueColor].CGColor;
+    }
+    // for debugging
+    if (self.lockFaceRect)
+    {
+        self.imageView.image = [BFOpenCVConverter imageForMat:self.currentMat];
     }
 }
 

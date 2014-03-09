@@ -48,24 +48,29 @@
                                 <color key="textColor" red="0.89366083559999998" green="0.1391422202" blue="0.16149279029999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RkS-yu-p48">
+                                <rect key="frame" x="0.0" y="0.0" width="431" height="442"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="5Bl-Fc-0ng" firstAttribute="top" secondItem="3OU-hf-V84" secondAttribute="bottom" id="5SJ-wc-7Ut"/>
+                            <constraint firstItem="5Bl-Fc-0ng" firstAttribute="top" secondItem="3iB-x2-IjY" secondAttribute="bottom" id="9W6-vA-lZ5"/>
                             <constraint firstAttribute="trailing" secondItem="3iB-x2-IjY" secondAttribute="trailing" id="AVF-5Y-XVO"/>
-                            <constraint firstItem="Idc-Hp-vir" firstAttribute="top" secondItem="7Bu-kC-DgJ" secondAttribute="bottom" id="DJJ-PP-DlU"/>
                             <constraint firstItem="3iB-x2-IjY" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="FW7-vk-qDk"/>
                             <constraint firstAttribute="trailing" secondItem="Idc-Hp-vir" secondAttribute="trailing" constant="73" id="KOw-dc-wIA"/>
-                            <constraint firstItem="5Bl-Fc-0ng" firstAttribute="top" secondItem="3OU-hf-V84" secondAttribute="bottom" id="TDN-P6-lg7"/>
-                            <constraint firstItem="5Bl-Fc-0ng" firstAttribute="top" secondItem="3iB-x2-IjY" secondAttribute="bottom" id="VNQ-cn-QX9"/>
                             <constraint firstAttribute="trailing" secondItem="3OU-hf-V84" secondAttribute="trailing" id="c3S-go-Mpr"/>
                             <constraint firstItem="Idc-Hp-vir" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="73" id="fmU-Zj-QJu"/>
                             <constraint firstItem="3OU-hf-V84" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="p8U-SS-1Ra"/>
                             <constraint firstItem="3iB-x2-IjY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="pTw-Hq-ldc"/>
+                            <constraint firstItem="Idc-Hp-vir" firstAttribute="top" secondItem="7Bu-kC-DgJ" secondAttribute="bottom" id="psQ-vi-eoK"/>
                             <constraint firstItem="3OU-hf-V84" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="yPx-E6-qaf"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="circleView" destination="3OU-hf-V84" id="zmG-Zd-3l2"/>
+                        <outlet property="imageView" destination="RkS-yu-p48" id="Ehs-sq-sj3"/>
                         <outlet property="previewImageView" destination="3iB-x2-IjY" id="bSq-m4-1SF"/>
                         <outlet property="startButton" destination="5IB-5B-fB3" id="fxG-g7-wa8"/>
                         <outlet property="statusLabel" destination="Idc-Hp-vir" id="cmm-UT-IaU"/>

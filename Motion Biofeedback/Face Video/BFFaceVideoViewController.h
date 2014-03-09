@@ -21,6 +21,10 @@
 @property (nonatomic, strong) BFOpenCVTracker *tracker;
 @property (nonatomic, strong) BFOpenCVFaceDetector *faceDetector;
 
+// for debugging
+@property (nonatomic) cv::Mat currentMat;
+@property (nonatomic, weak) IBOutlet UIImageView *imageView;
+
 @property (nonatomic) cv::Rect faceRect;
 @property (nonatomic) BOOL lockFaceRect;
 @property (nonatomic) cv::Size matSize;

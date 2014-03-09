@@ -16,7 +16,6 @@
 		7DB9C2F518C2D2EF00CCDED9 /* BFAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7DB9C2F418C2D2EF00CCDED9 /* BFAppDelegate.mm */; };
 		7DB9C2F818C2D2EF00CCDED9 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DB9C2F618C2D2EF00CCDED9 /* Main_iPhone.storyboard */; };
 		7DB9C2FB18C2D2EF00CCDED9 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DB9C2F918C2D2EF00CCDED9 /* Main_iPad.storyboard */; };
-		7DB9C2FE18C2D2EF00CCDED9 /* BFViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7DB9C2FD18C2D2EF00CCDED9 /* BFViewController.mm */; };
 		7DB9C30018C2D2EF00CCDED9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DB9C2FF18C2D2EF00CCDED9 /* Images.xcassets */; };
 		7DB9C30718C2D2EF00CCDED9 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DB9C30618C2D2EF00CCDED9 /* XCTest.framework */; };
 		7DB9C30818C2D2EF00CCDED9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DB9C2E418C2D2EF00CCDED9 /* Foundation.framework */; };
@@ -67,8 +66,6 @@
 		7DB9C2F418C2D2EF00CCDED9 /* BFAppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = BFAppDelegate.mm; sourceTree = "<group>"; };
 		7DB9C2F718C2D2EF00CCDED9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		7DB9C2FA18C2D2EF00CCDED9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		7DB9C2FC18C2D2EF00CCDED9 /* BFViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BFViewController.h; sourceTree = "<group>"; };
-		7DB9C2FD18C2D2EF00CCDED9 /* BFViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = BFViewController.mm; sourceTree = "<group>"; };
 		7DB9C2FF18C2D2EF00CCDED9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		7DB9C30518C2D2EF00CCDED9 /* Motion BiofeedbackTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Motion BiofeedbackTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DB9C30618C2D2EF00CCDED9 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -190,8 +187,6 @@
 				7DB9C2F618C2D2EF00CCDED9 /* Main_iPhone.storyboard */,
 				7DB9C2F918C2D2EF00CCDED9 /* Main_iPad.storyboard */,
 				7D0436AB18CBE2C10006E551 /* Face Video */,
-				7DB9C2FC18C2D2EF00CCDED9 /* BFViewController.h */,
-				7DB9C2FD18C2D2EF00CCDED9 /* BFViewController.mm */,
 				7DB9C33118C2D83E00CCDED9 /* OpenCV */,
 				7DB9C32A18C2D7F000CCDED9 /* Biofeedback */,
 				7DB9C2FF18C2D2EF00CCDED9 /* Images.xcassets */,
@@ -391,7 +386,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7DB9C2FE18C2D2EF00CCDED9 /* BFViewController.mm in Sources */,
 				7DB9C33A18C2D83E00CCDED9 /* BFOpenCVConverter.mm in Sources */,
 				7DD8FEC418CC11BA00E5A213 /* BFCircleView.m in Sources */,
 				7DB9C33C18C2D83E00CCDED9 /* BFOpenCVEdgeDetector.mm in Sources */,
