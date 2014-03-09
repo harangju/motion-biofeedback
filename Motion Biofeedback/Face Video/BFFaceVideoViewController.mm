@@ -11,6 +11,8 @@
 
 static CGFloat FaceRectCircleMatchCenterDifferentThreshold = 25;
 
+static CGFloat CircleRadius = 200;
+
 @interface BFFaceVideoViewController ()
 
 @end
@@ -57,7 +59,8 @@ static CGFloat FaceRectCircleMatchCenterDifferentThreshold = 25;
     CGPoint center = CGPointMake(self.circleView.bounds.size.width/2.0,
                                  self.circleView.bounds.size.height/2.0);
     self.circleView.circleCenter = center;
-    self.circleView.circleRadius = 200;
+    self.circleView.circleRadius = CircleRadius;
+    self.circleView.deltaCircleRadius = CircleRadius;
 }
 
 #pragma mark - GPUImage VideoCamera Delegate
@@ -67,6 +70,8 @@ static CGFloat FaceRectCircleMatchCenterDifferentThreshold = 25;
     // get mat
     cv::Mat mat = [BFOpenCVConverter matForSampleBuffer:sampleBuffer];
     transpose(mat, mat);
+    
+    self.matSize = cv::Size(mat.cols, mat.rows);
     
     // processs video
     [self processFrame:mat withVideoRect:[self videoRectFromBuffer:sampleBuffer]];
@@ -89,8 +94,17 @@ static CGFloat FaceRectCircleMatchCenterDifferentThreshold = 25;
     {
         // get delta
         CGPoint delta = [self.tracker naiveDeltaFromFrame:mat];
-        NSLog(@"%f %f", delta.x, delta.y);
-        
+        delta.x *= 5;
+        delta.y *= 5;
+//        NSLog(@"%f %f", delta.x, delta.y);
+        CGPoint deltaCircleCenter = self.faceRectCenterInView;
+        deltaCircleCenter.x += delta.x;
+        self.faceRectCenterInView = deltaCircleCenter;
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^
+         {
+             self.circleView.deltaCircleCenter = self.faceRectCenterInView;
+             [self.circleView setNeedsDisplay];
+         }];
     }
     else
     {
@@ -211,11 +225,16 @@ static CGFloat FaceRectCircleMatchCenterDifferentThreshold = 25;
         self.previewImageView.hidden = YES;
         [self.videoCamera removeTarget:self.previewImageView];
         self.statusLabel.text = @"";
-        // calculate center
-        self.faceRectCenter = CGPointMake(self.faceRect.x + self.faceRect.width/2.0,
-                                          self.faceRect.y + self.faceRect.height/2.0);
+        // calculate center in view
+        CGPoint faceRectCenter = CGPointMake(self.faceRect.x + self.faceRect.width/2.0,
+                                             self.faceRect.y + self.faceRect.height/2.0);
+//        self.faceRectCenterInView = CGPointMake(faceRectCenter.x / self.matSize.width * self.view.bounds.size.width,
+//                                                faceRectCenter.y / self.matSize.height * self.view.bounds.size.height);
+        self.faceRectCenterInView = CGPointMake(faceRectCenter.x / self.matSize.width * self.view.bounds.size.width,
+                                                self.circleView.circleCenter.y);
         // show delta circle
         self.circleView.shouldShowDeltaCircle = YES;
+        self.circleView.circleColor = [UIColor blueColor].CGColor;
     }
 }
 
