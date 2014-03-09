@@ -126,6 +126,8 @@ static CGFloat FaceRectCircleMatchCenterDifferentThreshold = 25;
                      self.statusLabel.text = @"Position your face inside the circle.";
                      self.statusLabel.textColor = [UIColor redColor];
                      self.faceInCircle = NO;
+                     self.readyToBegin = NO;
+                     self.startButton.hidden = YES;
                  }];
             }
             
@@ -161,6 +163,7 @@ static CGFloat FaceRectCircleMatchCenterDifferentThreshold = 25;
     {
         NSLog(@"face in circle - ready");
         self.statusLabel.text = @"Ready? Tap the ready button to begin.";
+        self.startButton.hidden = NO;
         self.readyToBegin = YES;
     }
 }
@@ -175,7 +178,7 @@ static CGFloat FaceRectCircleMatchCenterDifferentThreshold = 25;
 
 #pragma mark - IBAction
 
-- (IBAction)readyButtonTapped:(id)sender
+- (IBAction)startButtonTapped:(id)sender
 {
     if (self.readyToBegin)
     {
