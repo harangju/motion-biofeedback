@@ -90,6 +90,7 @@ static CGFloat FaceRectCircleMatchCenterDifferentThreshold = 25;
         // get delta
         CGPoint delta = [self.tracker naiveDeltaFromFrame:mat];
         NSLog(@"%f %f", delta.x, delta.y);
+        
     }
     else
     {
@@ -143,6 +144,7 @@ static CGFloat FaceRectCircleMatchCenterDifferentThreshold = 25;
 {
     // circle view
     self.circleView.circleColor = [UIColor redColor].CGColor;
+    self.circleView.shouldShowDeltaCircle = NO;
     [self.circleView setNeedsDisplay];
     // status label
     self.statusLabel.textColor = [UIColor redColor];
@@ -209,8 +211,11 @@ static CGFloat FaceRectCircleMatchCenterDifferentThreshold = 25;
         self.previewImageView.hidden = YES;
         [self.videoCamera removeTarget:self.previewImageView];
         self.statusLabel.text = @"";
+        // calculate center
+        self.faceRectCenter = CGPointMake(self.faceRect.x + self.faceRect.width/2.0,
+                                          self.faceRect.y + self.faceRect.height/2.0);
         // show delta circle
-        
+        self.circleView.shouldShowDeltaCircle = YES;
     }
 }
 

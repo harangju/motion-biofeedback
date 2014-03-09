@@ -46,6 +46,7 @@
     // delta circle
     if (self.shouldShowDeltaCircle)
     {
+        CGContextSetStrokeColorWithColor(context, [UIColor redColor].CGColor);
         UIBezierPath *deltaCircle = [self makeCircleWithCenter:self.deltaCircleCenter
                                                         radius:self.deltaCircleRadius];
         CGContextAddPath(context, deltaCircle.CGPath);

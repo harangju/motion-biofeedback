@@ -159,6 +159,12 @@
     CGPoint deltaPoint;
     deltaPoint.x = averagePoint.x - _previousAveragePoint.x;
     deltaPoint.y = averagePoint.y - _previousAveragePoint.y;
+    // if no previous average point
+    // return zero
+    if (_previousAveragePoint.x == 0 && _previousAveragePoint.y == 0)
+    {
+        deltaPoint = CGPointZero;
+    }
     // next values become previous values
     _previousAveragePoint = averagePoint;
     _previousPoints = trackedPoints;

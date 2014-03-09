@@ -22,6 +22,7 @@
 @property (nonatomic, strong) BFOpenCVFaceDetector *faceDetector;
 
 @property (nonatomic) cv::Rect faceRect;
+@property (nonatomic) CGPoint faceRectCenter;
 @property (nonatomic) BOOL lockFaceRect;
 
 @property (nonatomic) BOOL faceInCircle;
