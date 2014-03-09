@@ -10,6 +10,7 @@
 #import <GPUImage.h>
 #import "BFOpenCVTracker.h"
 #import "BFOpenCVFaceDetector.h"
+#import "BFCircleLayer.h"
 
 @interface BFFaceVideoViewController : UIViewController <GPUImageVideoCameraDelegate>
 
@@ -21,5 +22,7 @@
 
 @property (nonatomic) cv::Rect faceRect;
 @property (nonatomic) BOOL lockFaceRect;
+
+@property (nonatomic, strong) BFCircleLayer *circleLayer;
 
 @end
