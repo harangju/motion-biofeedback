@@ -101,6 +101,7 @@ static CGFloat FaceRectCircleMatchCenterDifferentThreshold = 25;
                                                                mat:mat];
             if (faceIsInsideCircle)
             {
+                self.faceRect = faceRect;
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^
                  {
                      if (!self.readyToBegin)
