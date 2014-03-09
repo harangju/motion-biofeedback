@@ -104,15 +104,29 @@ static CGFloat CircleRadius = 200;
         [[NSOperationQueue mainQueue] addOperationWithBlock:^
          {
              self.circleView.deltaCircleCenter = self.faceRectCenterInView;
-             CGFloat delta = ABS(deltaCircleCenter.x - self.circleView.circleCenter.x);
-             if (delta < 5)
+             CGFloat delta = deltaCircleCenter.x - self.circleView.circleCenter.x;
+             if (ABS(delta) < 5)
              {
                  self.circleView.circleColor = [UIColor greenColor].CGColor;
-                 
+                 self.circleView.deltaCircleColor = [UIColor greenColor].CGColor;
+                 self.statusLabel.text = @"Great! Stay there.";
+                 self.statusLabel.textColor = [UIColor greenColor];
              }
              else
              {
-                 
+                 self.circleView.circleColor = [UIColor blueColor].CGColor;
+                 self.circleView.deltaCircleColor = [UIColor redColor].CGColor;
+                 if (delta > 0)
+                     // head moved right
+                 {
+                     self.statusLabel.text = @"Move your head to the left!";
+                 }
+                 else
+                     // head moved left
+                 {
+                     self.statusLabel.text = @"Move your head to the right!";
+                 }
+                 self.statusLabel.textColor = [UIColor redColor];
              }
              [self.circleView setNeedsDisplay];
          }];
