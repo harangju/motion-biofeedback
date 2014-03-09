@@ -17,7 +17,7 @@
     self = [super init];
     if (self)
     {
-        self.maxNumberOfPoints = 50;
+        self.maxNumberOfPoints = 75;
         _detector = cv::FeatureDetector::create("FAST");
     }
     return self;
