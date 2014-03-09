@@ -92,17 +92,19 @@ static CGFloat CircleRadius = 200;
 {
     if (self.lockFaceRect)
     {
+        // get mat in facerect
+        cv::Mat matInFaceRect = mat(self.faceRect);
         // get delta
-        CGPoint delta = [self.tracker naiveDeltaFromFrame:mat];
+        CGPoint delta = [self.tracker naiveDeltaFromFrame:matInFaceRect];
         delta.x *= 5;
         delta.y *= 5;
-//        NSLog(@"%f %f", delta.x, delta.y);
         CGPoint deltaCircleCenter = self.faceRectCenterInView;
         deltaCircleCenter.x += delta.x;
         self.faceRectCenterInView = deltaCircleCenter;
         [[NSOperationQueue mainQueue] addOperationWithBlock:^
          {
              self.circleView.deltaCircleCenter = self.faceRectCenterInView;
+
              [self.circleView setNeedsDisplay];
          }];
     }
