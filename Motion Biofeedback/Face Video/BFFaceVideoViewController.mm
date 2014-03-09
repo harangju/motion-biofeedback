@@ -103,18 +103,21 @@ static CGFloat FaceRectCircleMatchCenterDifferentThreshold = 25;
             {
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^
                  {
-                     self.circleView.circleColor = [UIColor blueColor].CGColor;
-                     [self.circleView setNeedsDisplay];
-                     self.statusLabel.text = @"Your face is inside the circle. Hold it there!";
-                     self.statusLabel.textColor = [UIColor blueColor];
-                     self.faceInCircle = YES;
-                     NSTimer *timer = [NSTimer timerWithTimeInterval:1
-                                                              target:self
-                                                            selector:@selector(checkIfReady)
-                                                            userInfo:nil
-                                                             repeats:NO];
-                     [[NSRunLoop mainRunLoop] addTimer:timer
-                                               forMode:NSDefaultRunLoopMode];
+                     if (!self.readyToBegin)
+                     {
+                         self.circleView.circleColor = [UIColor blueColor].CGColor;
+                         [self.circleView setNeedsDisplay];
+                         self.statusLabel.text = @"Your face is inside the circle. Hold it there!";
+                         self.statusLabel.textColor = [UIColor blueColor];
+                         self.faceInCircle = YES;
+                         NSTimer *timer = [NSTimer timerWithTimeInterval:3
+                                                                  target:self
+                                                                selector:@selector(checkIfReady)
+                                                                userInfo:nil
+                                                                 repeats:NO];
+                         [[NSRunLoop mainRunLoop] addTimer:timer
+                                                   forMode:NSDefaultRunLoopMode];
+                     }
                  }];
             }
             else
