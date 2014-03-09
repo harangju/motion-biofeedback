@@ -95,16 +95,25 @@ static CGFloat CircleRadius = 200;
         // get mat in facerect
         cv::Mat matInFaceRect = mat(self.faceRect);
         // get delta
-        CGPoint delta = [self.tracker naiveDeltaFromFrame:matInFaceRect];
-        delta.x *= 5;
-        delta.y *= 5;
+        CGPoint deltaPoint = [self.tracker naiveDeltaFromFrame:matInFaceRect];
+        deltaPoint.x *= 5;
+        deltaPoint.y *= 5;
         CGPoint deltaCircleCenter = self.faceRectCenterInView;
-        deltaCircleCenter.x += delta.x;
+        deltaCircleCenter.x += deltaPoint.x;
         self.faceRectCenterInView = deltaCircleCenter;
         [[NSOperationQueue mainQueue] addOperationWithBlock:^
          {
              self.circleView.deltaCircleCenter = self.faceRectCenterInView;
-
+             CGFloat delta = ABS(deltaCircleCenter.x - self.circleView.circleCenter.x);
+             if (delta < 5)
+             {
+                 self.circleView.circleColor = [UIColor greenColor].CGColor;
+                 
+             }
+             else
+             {
+                 
+             }
              [self.circleView setNeedsDisplay];
          }];
     }
