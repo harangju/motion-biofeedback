@@ -9,6 +9,7 @@
 #import "BFPatientListViewController.h"
 #import "Patient.h"
 #import "BFAddPatientViewController.h"
+#import "BFPatientDetailViewController.h"
 
 static NSString * const CellIdentifier = @"BFPatientListCellIdentifier";
 static NSString * const AddPatientNavVCIdentifier = @"BFAddPatientNavVCIdentifier";
@@ -30,6 +31,18 @@ static NSString * const AddPatientNavVCIdentifier = @"BFAddPatientNavVCIdentifie
     
     [self fetchForPatients];
     [self.tableView reloadData];
+    
+    if (self.patients.count)
+    {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0
+                                                    inSection:0];
+        [self.tableView selectRowAtIndexPath:indexPath
+                                    animated:NO
+                              scrollPosition:UITableViewScrollPositionNone];
+        UINavigationController *patientDetailNavVC = self.splitViewController.viewControllers.lastObject;
+        BFPatientDetailViewController *patientDetailVC = patientDetailNavVC.viewControllers.firstObject;
+        patientDetailVC.patient = self.patients.firstObject;
+    }
 }
 
 - (void)didReceiveMemoryWarning

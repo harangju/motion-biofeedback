@@ -59,6 +59,7 @@
 
 - (IBAction)doneButtonTapped:(UIBarButtonItem *)item
 {
+    [self.lastNameTextField resignFirstResponder];
     [self saveContext];
     [self dismissViewControllerAnimated:YES
                              completion:nil];
@@ -86,6 +87,7 @@
     }
     else if ([textField isEqual:self.lastNameTextField])
     {
+        [self.lastNameTextField resignFirstResponder];
         [self saveContext];
         [self dismissViewControllerAnimated:YES
                                  completion:nil];

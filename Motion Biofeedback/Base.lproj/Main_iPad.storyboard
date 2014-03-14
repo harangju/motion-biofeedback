@@ -4,25 +4,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="L38-qW-gge">
-            <objects>
-                <viewController id="QvW-jL-FUZ" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="8A4-1n-TfQ"/>
-                        <viewControllerLayoutGuide type="bottom" id="GVv-cw-CEU"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="qB4-2b-oD5">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <toolbarItems/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gGC-4w-itr" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="8" y="-1620"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="1X5-sp-tvk">
             <objects>
@@ -102,6 +83,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wMJ-HO-QT5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="456" y="-2557"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="v1b-JO-SU5">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="Cem-wH-yYm" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iNc-Jz-N6b">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="58v-Zz-mbk" kind="relationship" relationship="rootViewController" id="Qyi-6D-Tcn"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j7U-Nj-Ul7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="8" y="-1363"/>
+        </scene>
+        <!--Patient Detail View Controller-->
+        <scene sceneID="jHN-WV-Rd4">
+            <objects>
+                <viewController id="58v-Zz-mbk" customClass="BFPatientDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8qo-Pi-XAf"/>
+                        <viewControllerLayoutGuide type="bottom" id="KYG-ZW-Qn5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wrf-TE-MgQ">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="hKC-bV-ePN"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ITC-ue-MEO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="977" y="-1363"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cAc-QK-1vq">
@@ -217,7 +232,7 @@
                     <toolbarItems/>
                     <connections>
                         <segue destination="KA7-BR-xB4" kind="relationship" relationship="masterViewController" id="1Ci-E6-Jwd"/>
-                        <segue destination="QvW-jL-FUZ" kind="relationship" relationship="detailViewController" id="42Q-qR-23o"/>
+                        <segue destination="Cem-wH-yYm" kind="relationship" relationship="detailViewController" id="Aah-eT-kXL"/>
                     </connections>
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RVz-bI-kgF" userLabel="First Responder" sceneMemberID="firstResponder"/>
