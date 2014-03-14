@@ -10,4 +10,6 @@
 
 @interface BFSettingsDetailInfoViewController : UIViewController
 
+@property (nonatomic, strong) NSString *text;
+
 @end

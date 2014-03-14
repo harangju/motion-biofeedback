@@ -8,7 +8,11 @@
 
 #import "BFSettingsViewController.h"
 #import "BFSettingsDetailViewController.h"
+#import "BFSettingsDetailInfoViewController.h"
 #import "BFSettings.h"
+
+static NSString * const ContactText = @"For technical issues, contact the developer at hj4hz@virginia.edu.";
+static NSString * const AcknowledgementText = @"";
 
 static NSArray *_settings;
 
@@ -94,6 +98,18 @@ static NSString * const SettingsDetailInfoVCSegue = @"SettingsDetailInfoVCSegue"
         else if (self.selectedIndexPath.row == 1)
         {
             detailVC.selectedIndex = [BFSettings dimension];
+        }
+    }
+    else if ([segue.identifier isEqualToString:SettingsDetailInfoVCSegue])
+    {
+        BFSettingsDetailInfoViewController *detailInfoVC = (BFSettingsDetailInfoViewController *)destinationVC;
+        if (self.selectedIndexPath.row == 0)
+        {
+            detailInfoVC.text = ContactText;
+        }
+        else if (self.selectedIndexPath.row == 1)
+        {
+            detailInfoVC.text = AcknowledgementText;
         }
     }
 }

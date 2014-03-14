@@ -152,9 +152,29 @@
                     <view key="view" contentMode="scaleToFill" id="T88-Pu-yHG">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BZI-hh-2cN">
+                                <rect key="frame" x="20" y="0.0" width="728" height="1004"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="BZI-hh-2cN" firstAttribute="top" secondItem="T88-Pu-yHG" secondAttribute="top" id="1jP-Zq-pT0"/>
+                            <constraint firstAttribute="trailing" secondItem="BZI-hh-2cN" secondAttribute="trailing" constant="20" id="5Hm-qb-lhM"/>
+                            <constraint firstItem="BZI-hh-2cN" firstAttribute="leading" secondItem="T88-Pu-yHG" secondAttribute="leading" constant="20" id="GDw-64-QYO"/>
+                            <constraint firstItem="kat-Yy-6Yu" firstAttribute="top" secondItem="BZI-hh-2cN" secondAttribute="bottom" constant="20" id="zQ8-cz-ZYR"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="zYL-K3-vrU"/>
+                    <connections>
+                        <outlet property="textView" destination="BZI-hh-2cN" id="DZc-VU-JaB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rBu-R8-VIK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
