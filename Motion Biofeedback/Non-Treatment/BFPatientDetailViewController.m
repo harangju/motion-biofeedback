@@ -16,6 +16,7 @@ static NSString * const CellIdentifier = @"PatientDetailCellIdentifier";
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *imageHeightConstraint;
 
 @property (nonatomic, strong) UIBarButtonItem *viewPatientsButton;
+@property (nonatomic, strong) UIPopoverController *popover;
 
 @end
 
@@ -27,16 +28,16 @@ static NSString * const CellIdentifier = @"PatientDetailCellIdentifier";
 {
     [super viewDidLoad];
     
-    UIImage *menuImage = [UIImage imageNamed:@"menu"];
-    self.viewPatientsButton = [[UIBarButtonItem alloc] initWithImage:menuImage
-                                                               style:UIBarButtonItemStylePlain
-                                                              target:self
-                                                              action:@selector(patientButtonTapped:)];
-    if (self.interfaceOrientation == UIInterfaceOrientationPortrait ||
-        self.interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
-    {
-        self.navigationItem.leftBarButtonItem = self.viewPatientsButton;
-    }
+//    UIImage *menuImage = [UIImage imageNamed:@"menu"];
+//    self.viewPatientsButton = [[UIBarButtonItem alloc] initWithImage:menuImage
+//                                                               style:UIBarButtonItemStylePlain
+//                                                              target:self
+//                                                              action:@selector(patientButtonTapped:)];
+//    if (self.interfaceOrientation == UIInterfaceOrientationPortrait ||
+//        self.interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
+//    {
+//        self.navigationItem.leftBarButtonItem = self.viewPatientsButton;
+//    }
     
     self.title = [NSString stringWithFormat:@"%@ %@",
                   self.patient.firstName, self.patient.lastName];
@@ -56,7 +57,11 @@ static NSString * const CellIdentifier = @"PatientDetailCellIdentifier";
 
 - (void)patientButtonTapped:(UIBarButtonItem *)item
 {
-    
+    UIViewController *masterVC = self.splitViewController.viewControllers.firstObject;
+    self.popover = [[UIPopoverController alloc] initWithContentViewController:masterVC];
+    [self.popover presentPopoverFromBarButtonItem:item
+                         permittedArrowDirections:UIPopoverArrowDirectionDown
+                                         animated:YES];
 }
 
 #pragma mark - TableView Datasource
