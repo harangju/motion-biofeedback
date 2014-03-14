@@ -110,9 +110,72 @@
                     <view key="view" contentMode="scaleToFill" id="wrf-TE-MgQ">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="T4j-lL-Xx2">
+                                <rect key="frame" x="60" y="118" width="347" height="384"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="384" id="098-Bj-dtg"/>
+                                    <constraint firstAttribute="width" constant="347" id="Hxm-bc-HLk"/>
+                                </constraints>
+                            </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="zty-V5-vUs">
+                                <rect key="frame" x="0.0" y="624" width="768" height="400"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="400" id="sf3-98-Re0"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PatientDetailCellIdentifier" id="4rd-8U-hEg">
+                                        <rect key="frame" x="0.0" y="22" width="768" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4rd-8U-hEg" id="ojq-pE-Gub">
+                                            <rect key="frame" x="0.0" y="0.0" width="768" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="58v-Zz-mbk" id="nG9-XJ-hkC"/>
+                                    <outlet property="delegate" destination="58v-Zz-mbk" id="PZm-7u-SAN"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YPh-sN-RHx">
+                                <rect key="frame" x="441" y="164" width="267" height="110"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="110" id="YeJ-ZC-iOc"/>
+                                    <constraint firstAttribute="width" constant="267" id="vBa-ae-EuK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <state key="normal" title="Start Treatment">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="startButtonTapped:" destination="58v-Zz-mbk" eventType="touchUpInside" id="MW8-en-j8W"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="T4j-lL-Xx2" firstAttribute="leading" secondItem="wrf-TE-MgQ" secondAttribute="leading" constant="60" id="C1M-s9-UuC"/>
+                            <constraint firstAttribute="trailing" secondItem="zty-V5-vUs" secondAttribute="trailing" id="L7p-6w-Ejo"/>
+                            <constraint firstItem="KYG-ZW-Qn5" firstAttribute="top" secondItem="zty-V5-vUs" secondAttribute="bottom" id="RY0-q6-beE"/>
+                            <constraint firstItem="T4j-lL-Xx2" firstAttribute="top" secondItem="8qo-Pi-XAf" secondAttribute="bottom" constant="54" id="caE-pS-S7A"/>
+                            <constraint firstItem="YPh-sN-RHx" firstAttribute="top" secondItem="8qo-Pi-XAf" secondAttribute="bottom" constant="100" id="kPK-fW-odR"/>
+                            <constraint firstAttribute="trailing" secondItem="YPh-sN-RHx" secondAttribute="trailing" constant="60" id="nW2-O1-0a3"/>
+                            <constraint firstItem="zty-V5-vUs" firstAttribute="leading" secondItem="wrf-TE-MgQ" secondAttribute="leading" id="uvO-Ws-PzB"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="hKC-bV-ePN"/>
+                    <connections>
+                        <outlet property="imageHeightConstraint" destination="098-Bj-dtg" id="FMk-rm-gAB"/>
+                        <outlet property="imageView" destination="T4j-lL-Xx2" id="Ahw-bX-8TI"/>
+                        <outlet property="tableView" destination="zty-V5-vUs" id="q9H-vZ-ws0"/>
+                        <outlet property="tableViewHeightConstraint" destination="sf3-98-Re0" id="aBw-rz-IlH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ITC-ue-MEO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

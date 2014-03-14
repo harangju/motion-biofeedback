@@ -9,8 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "Patient.h"
 
-@interface BFPatientDetailViewController : UIViewController
+@interface BFPatientDetailViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) Patient *patient;
+
+@property (nonatomic, weak) IBOutlet UIImageView *imageView;
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
 
 @end

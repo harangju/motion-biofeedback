@@ -8,7 +8,12 @@
 
 #import "BFPatientDetailViewController.h"
 
+static NSString * const CellIdentifier = @"PatientDetailCellIdentifier";
+
 @interface BFPatientDetailViewController ()
+
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *tableViewHeightConstraint;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *imageHeightConstraint;
 
 @end
 
@@ -29,6 +34,44 @@
     [super didReceiveMemoryWarning];
 }
 
+#pragma mark - IBAction
 
+- (IBAction)startButtonTapped:(UIButton *)button
+{
+    
+}
+
+#pragma mark - TableView Datasource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 5;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier
+                                                            forIndexPath:indexPath];
+    return cell;
+}
+
+#pragma mark - UI
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+                                duration:(NSTimeInterval)duration
+{
+    if (toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
+        toInterfaceOrientation == UIInterfaceOrientationLandscapeRight)
+    {
+        self.imageHeightConstraint.constant = 300;
+        self.tableViewHeightConstraint.constant = 340;
+    }
+    else if (toInterfaceOrientation == UIInterfaceOrientationPortrait ||
+             toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
+    {
+        self.imageHeightConstraint.constant = 400;
+        self.tableViewHeightConstraint.constant = 480;
+    }
+}
 
 @end
