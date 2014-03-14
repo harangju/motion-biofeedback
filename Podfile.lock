@@ -1,12 +1,10 @@
 PODS:
   - GPUImage (0.1.2)
-  - MagicalRecord (2.2):
-    - MagicalRecord/Core
-  - MagicalRecord/Core (2.2)
+  - MagicalRecord/Shorthand (2.2)
 
 DEPENDENCIES:
   - GPUImage (= 0.1.2)
-  - MagicalRecord (= 2.2)
+  - MagicalRecord/Shorthand (= 2.2)
 
 SPEC CHECKSUMS:
   GPUImage: 007145faa0e27f1ddbcab93e07f026c9776e2fa2

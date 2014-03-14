@@ -21,7 +21,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gGC-4w-itr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1008" y="118"/>
+            <point key="canvasLocation" x="8" y="-1620"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1X5-sp-tvk">
@@ -36,7 +36,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2dG-QI-Ih5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1008" y="-819"/>
+            <point key="canvasLocation" x="8" y="-2557"/>
         </scene>
         <!--Patient List View Controller - Patients-->
         <scene sceneID="ndg-wg-RQu">
@@ -87,14 +87,65 @@
                             <constraint firstItem="FOn-aB-zEt" firstAttribute="top" secondItem="vrW-7k-qW0" secondAttribute="top" id="myR-aJ-OGO"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Patients" id="G0I-9n-KXB"/>
+                    <navigationItem key="navigationItem" title="Patients" id="G0I-9n-KXB">
+                        <barButtonItem key="rightBarButtonItem" title="+" id="TPL-Us-I1j">
+                            <connections>
+                                <action selector="addButtonTapped:" destination="2iO-n1-gqh" id="NWw-Qp-3Ck"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="FOn-aB-zEt" id="exc-XW-EN3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wMJ-HO-QT5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-560" y="-819"/>
+            <point key="canvasLocation" x="456" y="-2557"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="cAc-QK-1vq">
+            <objects>
+                <navigationController storyboardIdentifier="BFAddPatientNavVCIdentifier" definesPresentationContext="YES" modalPresentationStyle="formSheet" id="Qve-eD-u9e" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bSA-wH-Lgn">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="bdC-jb-xrs" kind="relationship" relationship="rootViewController" id="zdD-mb-XzC"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9gC-E1-sZ3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="977" y="-2596"/>
+        </scene>
+        <!--Add Patient View Controller-->
+        <scene sceneID="pLR-1T-JBI">
+            <objects>
+                <viewController modalPresentationStyle="formSheet" id="bdC-jb-xrs" customClass="BFAddPatientViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wFe-9F-bKk"/>
+                        <viewControllerLayoutGuide type="bottom" id="vKh-mp-f35"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="TdK-MO-Hdr">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Gkb-dj-OCb">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="HKA-ww-GfN">
+                            <connections>
+                                <action selector="cancelButtonTapped:" destination="bdC-jb-xrs" id="bNk-Vh-eWn"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="Qil-oS-nUk">
+                            <connections>
+                                <action selector="doneButtonTapped:" destination="bdC-jb-xrs" id="65M-Na-9j7"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9jk-NP-q6L" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1835" y="-2596"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="WSL-Je-HIS">
@@ -108,7 +159,7 @@
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RVz-bI-kgF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1990" y="-352"/>
+            <point key="canvasLocation" x="-974" y="-2090"/>
         </scene>
         <!--Face Video View Controller-->
         <scene sceneID="tne-QT-ifu">
