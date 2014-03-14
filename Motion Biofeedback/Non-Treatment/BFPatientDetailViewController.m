@@ -22,6 +22,17 @@ static NSString * const CellIdentifier = @"PatientDetailCellIdentifier";
 
 @implementation BFPatientDetailViewController
 
+#pragma mark - Getters/Setters
+
+- (void)setPatient:(Patient *)patient
+{
+    if (_patient != patient)
+    {
+        _patient = patient;
+        [self displayPatientInfo];
+    }
+}
+
 #pragma mark - LifeCycle
 
 - (void)viewDidLoad
@@ -38,14 +49,19 @@ static NSString * const CellIdentifier = @"PatientDetailCellIdentifier";
 //    {
 //        self.navigationItem.leftBarButtonItem = self.viewPatientsButton;
 //    }
-    
-    self.title = [NSString stringWithFormat:@"%@ %@",
-                  self.patient.firstName, self.patient.lastName];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+#pragma mark - Model
+
+- (void)displayPatientInfo
+{
+    self.title = [NSString stringWithFormat:@"%@ %@",
+                  self.patient.firstName, self.patient.lastName];
 }
 
 #pragma mark - Buttons

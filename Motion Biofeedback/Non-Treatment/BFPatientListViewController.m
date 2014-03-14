@@ -39,9 +39,8 @@ static NSString * const AddPatientNavVCIdentifier = @"BFAddPatientNavVCIdentifie
         [self.tableView selectRowAtIndexPath:indexPath
                                     animated:NO
                               scrollPosition:UITableViewScrollPositionNone];
-        UINavigationController *patientDetailNavVC = self.splitViewController.viewControllers.lastObject;
-        BFPatientDetailViewController *patientDetailVC = patientDetailNavVC.viewControllers.firstObject;
-        patientDetailVC.patient = self.patients.firstObject;
+        Patient *patient = self.patients.firstObject;
+        [self setInDetailVCPatient:patient];
     }
 }
 
@@ -69,6 +68,13 @@ static NSString * const AddPatientNavVCIdentifier = @"BFAddPatientNavVCIdentifie
             NSLog(@"Error saving context: %@", error.description);
         }
     }];
+}
+
+- (void)setInDetailVCPatient:(Patient *)patient
+{
+    UINavigationController *patientDetailNavVC = self.splitViewController.viewControllers.lastObject;
+    BFPatientDetailViewController *patientDetailVC = patientDetailNavVC.viewControllers.firstObject;
+    patientDetailVC.patient = patient;
 }
 
 #pragma mark - TableView DataSource
@@ -101,6 +107,14 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
                                                   otherButtonTitles:@"Remove", nil];
         [alertView show];
     }
+}
+
+#pragma mark - TableView Delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Patient *patient = self.patients[indexPath.row];
+    [self setInDetailVCPatient:patient];
 }
                                  
 #pragma mark - AlertView Delegate
