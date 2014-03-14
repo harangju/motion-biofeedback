@@ -19,6 +19,76 @@
             </objects>
             <point key="canvasLocation" x="8" y="-2557"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="oWS-oz-TyA">
+            <objects>
+                <navigationController storyboardIdentifier="BFSettingsNavVC" definesPresentationContext="YES" modalPresentationStyle="pageSheet" id="cTh-0t-FIQ" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="eyK-Q2-baM">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="5Db-3Y-sDU" kind="relationship" relationship="rootViewController" id="ETk-b4-5iR"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tOX-EF-Zrn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="167" y="-3971"/>
+        </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="7be-sm-cge">
+            <objects>
+                <tableViewController id="5Db-3Y-sDU" customClass="BFSettingsViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="mKE-tS-VLS">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection id="0IB-f9-oNy">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="xgL-vb-SaN">
+                                        <rect key="frame" x="0.0" y="99" width="768" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xgL-vb-SaN" id="Hns-Jb-RjG">
+                                            <rect key="frame" x="0.0" y="0.0" width="768" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="vy1-2H-twJ">
+                                        <rect key="frame" x="0.0" y="143" width="768" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vy1-2H-twJ" id="oOP-Nf-k50">
+                                            <rect key="frame" x="0.0" y="0.0" width="768" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="ZUs-gQ-CdL">
+                                        <rect key="frame" x="0.0" y="187" width="768" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZUs-gQ-CdL" id="3CR-Bc-iau">
+                                            <rect key="frame" x="0.0" y="0.0" width="768" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="5Db-3Y-sDU" id="IQk-wS-kqV"/>
+                            <outlet property="delegate" destination="5Db-3Y-sDU" id="1gy-7W-bYl"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="zfY-8I-NC8">
+                        <barButtonItem key="leftBarButtonItem" image="close" id="PdA-hk-IkB">
+                            <connections>
+                                <action selector="cancelButtonTapped:" destination="5Db-3Y-sDU" id="Vk1-9d-OBE"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bsj-fk-9un" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1098" y="-3971"/>
+        </scene>
         <!--Patient List View Controller - Patients-->
         <scene sceneID="ndg-wg-RQu">
             <objects>
@@ -69,7 +139,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Patients" id="G0I-9n-KXB">
-                        <barButtonItem key="leftBarButtonItem" image="settings" id="KRg-Df-gnW"/>
+                        <barButtonItem key="leftBarButtonItem" image="settings" id="KRg-Df-gnW">
+                            <connections>
+                                <action selector="settingsButtonTapped:" destination="2iO-n1-gqh" id="ezm-Th-MTp"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="+" id="TPL-Us-I1j">
                             <connections>
                                 <action selector="addButtonTapped:" destination="2iO-n1-gqh" id="NWw-Qp-3Ck"/>
@@ -432,6 +506,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="close" width="22" height="22"/>
         <image name="settings" width="22" height="22"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

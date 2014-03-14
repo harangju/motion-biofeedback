@@ -13,6 +13,7 @@
 
 static NSString * const CellIdentifier = @"BFPatientListCellIdentifier";
 static NSString * const AddPatientNavVCIdentifier = @"BFAddPatientNavVCIdentifier";
+static NSString * const SettingsNavVCIdentifier = @"BFSettingsNavVC";
 
 @interface BFPatientListViewController () <BFAddPatientViewController>
 
@@ -147,6 +148,14 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     BFAddPatientViewController *patientVC = patientNavVC.viewControllers.firstObject;
     patientVC.delegate = self;
     [self presentViewController:patientNavVC
+                       animated:YES
+                     completion:nil];
+}
+
+- (IBAction)settingsButtonTapped:(id)sender
+{
+    UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:SettingsNavVCIdentifier];
+    [self presentViewController:vc
                        animated:YES
                      completion:nil];
 }
