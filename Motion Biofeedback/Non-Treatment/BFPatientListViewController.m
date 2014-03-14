@@ -13,9 +13,9 @@
 static NSString * const CellIdentifier = @"BFPatientListCellIdentifier";
 static NSString * const AddPatientNavVCIdentifier = @"BFAddPatientNavVCIdentifier";
 
-@interface BFPatientListViewController ()
+@interface BFPatientListViewController () <BFAddPatientViewController>
 
-@property (nonatomic, strong) NSArray *patients;
+@property (nonatomic, strong) NSMutableArray *patients;
 
 @end
 
@@ -40,7 +40,7 @@ static NSString * const AddPatientNavVCIdentifier = @"BFAddPatientNavVCIdentifie
 
 - (void)fetchForPatients
 {
-    self.patients = [Patient findAll];
+    self.patients = [[Patient findAll] mutableCopy];
     NSLog(@"patients - %@", self.patients);
 }
 
@@ -65,10 +65,29 @@ static NSString * const AddPatientNavVCIdentifier = @"BFAddPatientNavVCIdentifie
 
 - (IBAction)addButtonTapped:(id)sender
 {
-    BFAddPatientViewController *patientVC = [self.storyboard instantiateViewControllerWithIdentifier:AddPatientNavVCIdentifier];
-    [self presentViewController:patientVC
+    UINavigationController *patientNavVC = [self.storyboard instantiateViewControllerWithIdentifier:AddPatientNavVCIdentifier];
+    BFAddPatientViewController *patientVC = patientNavVC.viewControllers.firstObject;
+    patientVC.delegate = self;
+    [self presentViewController:patientNavVC
                        animated:YES
                      completion:nil];
+}
+
+#pragma mark - AddPatientVC Delegate
+
+- (void)addPatientViewController:(BFAddPatientViewController *)addPatientVC
+                   didAddPatient:(Patient *)patient
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"firstName == %@ AND lastName == %@",
+                              addPatientVC.patient.firstName,
+                              addPatientVC.patient.lastName];
+    Patient *newPatient = [Patient findAllWithPredicate:predicate].lastObject;
+    [self.patients insertObject:newPatient
+                        atIndex:0];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0
+                                                inSection:0];
+    [self.tableView insertRowsAtIndexPaths:@[indexPath]
+                          withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 @end

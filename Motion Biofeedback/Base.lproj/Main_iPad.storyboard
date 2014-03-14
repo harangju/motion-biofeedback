@@ -88,6 +88,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Patients" id="G0I-9n-KXB">
+                        <barButtonItem key="leftBarButtonItem" image="settings" id="KRg-Df-gnW"/>
                         <barButtonItem key="rightBarButtonItem" title="+" id="TPL-Us-I1j">
                             <connections>
                                 <action selector="addButtonTapped:" destination="2iO-n1-gqh" id="NWw-Qp-3Ck"/>
@@ -110,7 +111,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="bdC-jb-xrs" kind="relationship" relationship="rootViewController" id="zdD-mb-XzC"/>
+                        <segue destination="ECN-AI-N4g" kind="relationship" relationship="rootViewController" id="ze8-QA-3zg"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9gC-E1-sZ3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -118,34 +119,96 @@
             <point key="canvasLocation" x="977" y="-2596"/>
         </scene>
         <!--Add Patient View Controller-->
-        <scene sceneID="pLR-1T-JBI">
+        <scene sceneID="Q7x-Dp-GID">
             <objects>
-                <viewController modalPresentationStyle="formSheet" id="bdC-jb-xrs" customClass="BFAddPatientViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="wFe-9F-bKk"/>
-                        <viewControllerLayoutGuide type="bottom" id="vKh-mp-f35"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="TdK-MO-Hdr">
+                <tableViewController id="ECN-AI-N4g" customClass="BFAddPatientViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="86R-QA-PNI">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="Gkb-dj-OCb">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="HKA-ww-GfN">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection id="QtF-Zr-Gur">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="P2c-eb-6Z1">
+                                        <rect key="frame" x="0.0" y="99" width="768" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="P2c-eb-6Z1" id="0GL-3H-Eew">
+                                            <rect key="frame" x="0.0" y="0.0" width="768" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="First name" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pxy-NV-y0L">
+                                                    <rect key="frame" x="20" y="11" width="119" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zOD-gc-SjG">
+                                                    <rect key="frame" x="147" y="7" width="601" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="ECN-AI-N4g" id="Kyo-X7-XOY"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="FMC-rd-3ZE">
+                                        <rect key="frame" x="0.0" y="143" width="768" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FMC-rd-3ZE" id="VDi-Az-wmc">
+                                            <rect key="frame" x="0.0" y="0.0" width="768" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Last name" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gCS-Kc-jaE">
+                                                    <rect key="frame" x="20" y="11" width="119" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Imm-Im-BeN">
+                                                    <rect key="frame" x="147" y="7" width="601" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="ECN-AI-N4g" id="gZb-cG-lr8"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="ECN-AI-N4g" id="s0q-2y-8HE"/>
+                            <outlet property="delegate" destination="ECN-AI-N4g" id="T1D-ok-c9X"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="JBi-cg-NqJ">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="WjT-E7-5zB">
                             <connections>
-                                <action selector="cancelButtonTapped:" destination="bdC-jb-xrs" id="bNk-Vh-eWn"/>
+                                <action selector="cancelButtonTapped:" destination="ECN-AI-N4g" id="XT6-9C-fsT"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="Qil-oS-nUk">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="bTi-aq-0lI">
                             <connections>
-                                <action selector="doneButtonTapped:" destination="bdC-jb-xrs" id="65M-Na-9j7"/>
+                                <action selector="doneButtonTapped:" destination="ECN-AI-N4g" id="6R6-yw-zQx"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9jk-NP-q6L" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                    <connections>
+                        <outlet property="firstNameTextField" destination="zOD-gc-SjG" id="pOp-RY-ym0"/>
+                        <outlet property="lastNameTextField" destination="Imm-Im-BeN" id="c4I-U9-bfK"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YNn-m9-owI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1835" y="-2596"/>
+            <point key="canvasLocation" x="1871" y="-2596"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="WSL-Je-HIS">
@@ -251,6 +314,9 @@
             <point key="canvasLocation" x="-11" y="-255"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="settings" width="22" height="22"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackOpaque"/>
         <simulatedOrientationMetrics key="orientation"/>
