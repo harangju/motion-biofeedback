@@ -7,7 +7,7 @@
         <!--Navigation Controller-->
         <scene sceneID="1X5-sp-tvk">
             <objects>
-                <navigationController id="KA7-BR-xB4" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="PatientListNavVC" id="KA7-BR-xB4" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="Yoo-Ik-RhI">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

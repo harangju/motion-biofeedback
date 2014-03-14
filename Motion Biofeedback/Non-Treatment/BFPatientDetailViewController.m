@@ -11,6 +11,7 @@
 
 static NSString * const CellIdentifier = @"PatientDetailCellIdentifier";
 static NSString * const SessionDetailIdentifier = @"SessionDetailIdentifier";
+static NSString * const PopoverStoryboardID = @"PatientListNavVC";
 
 static const CGFloat TableViewHeightVertical = 460;
 static const CGFloat TableViewHeightHorizontal = 320;
@@ -46,17 +47,10 @@ static const CGFloat TableViewHeightHorizontal = 320;
 {
     [super viewDidLoad];
     
-//    UIImage *menuImage = [UIImage imageNamed:@"menu"];
-//    self.viewPatientsButton = [[UIBarButtonItem alloc] initWithImage:menuImage
-//                                                               style:UIBarButtonItemStylePlain
-//                                                              target:self
-//                                                              action:@selector(patientButtonTapped:)];
-//    if (self.interfaceOrientation == UIInterfaceOrientationPortrait ||
-//        self.interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
-//    {
-//        self.navigationItem.leftBarButtonItem = self.viewPatientsButton;
-//    }
+    // split vc
+    self.splitViewController.delegate = self;
     
+    // debugging
     self.imageView.layer.borderWidth = 1;
     self.imageView.layer.borderColor = [UIColor greenColor].CGColor;
     
@@ -102,9 +96,13 @@ static const CGFloat TableViewHeightHorizontal = 320;
 
 - (void)patientButtonTapped:(UIBarButtonItem *)item
 {
-    UIViewController *masterVC = self.splitViewController.viewControllers.firstObject;
-    self.popover = [[UIPopoverController alloc] initWithContentViewController:masterVC];
-    [self.popover presentPopoverFromBarButtonItem:item
+//    UIViewController *masterVC = self.splitViewController.viewControllers.firstObject;
+//    UIViewController *masterVC = [self.storyboard instantiateViewControllerWithIdentifier:PopoverStoryboardID];
+//    self.popover = [[UIPopoverController alloc] initWithContentViewController:masterVC];
+//    [self.popover presentPopoverFromBarButtonItem:item
+//                         permittedArrowDirections:UIPopoverArrowDirectionDown
+//                                         animated:YES];
+    [self.popover presentPopoverFromBarButtonItem:self.navigationItem.leftBarButtonItem
                          permittedArrowDirections:UIPopoverArrowDirectionDown
                                          animated:YES];
 }
@@ -144,14 +142,12 @@ static const CGFloat TableViewHeightHorizontal = 320;
     {
         self.imageHeightConstraint.constant = 300;
         self.tableViewHeightConstraint.constant = TableViewHeightHorizontal;
-        self.navigationItem.leftBarButtonItem = nil;
     }
     else if (interfaceOrientation == UIInterfaceOrientationPortrait ||
              interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
     {
         self.imageHeightConstraint.constant = 400;
         self.tableViewHeightConstraint.constant = TableViewHeightVertical;
-        self.navigationItem.leftBarButtonItem = self.viewPatientsButton;
     }
 }
 
@@ -169,6 +165,27 @@ static const CGFloat TableViewHeightHorizontal = 320;
     {
         
     }
+}
+
+#pragma mark - SplitViewController Delegate
+
+- (void)splitViewController:(UISplitViewController *)svc
+     willHideViewController:(UIViewController *)aViewController
+          withBarButtonItem:(UIBarButtonItem *)barButtonItem
+       forPopoverController:(UIPopoverController *)pc
+{
+    self.navigationItem.leftBarButtonItem = barButtonItem;
+    barButtonItem.target = self;
+    barButtonItem.action = @selector(patientButtonTapped:);
+    barButtonItem.image = [UIImage imageNamed:@"menu"];
+    self.popover = pc;
+}
+
+- (void)splitViewController:(UISplitViewController *)svc
+     willShowViewController:(UIViewController *)aViewController
+  invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
+{
+    self.navigationItem.leftBarButtonItem = nil;
 }
 
 @end
