@@ -16,6 +16,7 @@ static NSString * const AddPatientNavVCIdentifier = @"BFAddPatientNavVCIdentifie
 @interface BFPatientListViewController () <BFAddPatientViewController>
 
 @property (nonatomic, strong) NSMutableArray *patients;
+@property (nonatomic, strong) NSIndexPath *indexPathToRemove;
 
 @end
 
@@ -44,6 +45,19 @@ static NSString * const AddPatientNavVCIdentifier = @"BFAddPatientNavVCIdentifie
     NSLog(@"patients - %@", self.patients);
 }
 
+#pragma mark - Model
+
+- (void)saveContext
+{
+    [[NSManagedObjectContext defaultContext] saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
+        if (success) {
+            NSLog(@"You successfully saved your context.");
+        } else if (error) {
+            NSLog(@"Error saving context: %@", error.description);
+        }
+    }];
+}
+
 #pragma mark - TableView DataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -59,6 +73,43 @@ static NSString * const AddPatientNavVCIdentifier = @"BFAddPatientNavVCIdentifie
     cell.textLabel.text = [NSString stringWithFormat:@"%@ %@",
                            patient.firstName, patient.lastName];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        self.indexPathToRemove = indexPath;
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Remove patient"
+                                                            message:@"Are you sure you want to remove the patient?"
+                                                           delegate:self
+                                                  cancelButtonTitle:@"Cancel"
+                                                  otherButtonTitles:@"Remove", nil];
+        [alertView show];
+    }
+}
+                                 
+#pragma mark - AlertView Delegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0)
+    {
+        // ok this doesn't work but whatever
+        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:self.indexPathToRemove];
+        [cell setEditing:NO animated:YES];
+    }
+    else if (buttonIndex == 1) // this should be yes - for deletion
+    {
+        Patient *patientToRemove = self.patients[self.indexPathToRemove.row];
+        // Deleting an Entity with MagicalRecord
+        [patientToRemove deleteEntity];
+        [self saveContext];
+        [self.patients removeObjectAtIndex:self.indexPathToRemove.row];
+        [self.tableView deleteRowsAtIndexPaths:@[self.indexPathToRemove]
+                              withRowAnimation:UITableViewRowAnimationFade];
+    }
 }
 
 #pragma mark - IBAction

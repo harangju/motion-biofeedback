@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BFPatientListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface BFPatientListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 
