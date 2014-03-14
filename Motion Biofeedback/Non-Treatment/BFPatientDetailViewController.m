@@ -57,6 +57,9 @@ static const CGFloat TableViewHeightHorizontal = 320;
 //        self.navigationItem.leftBarButtonItem = self.viewPatientsButton;
 //    }
     
+    self.imageView.layer.borderWidth = 1;
+    self.imageView.layer.borderColor = [UIColor greenColor].CGColor;
+    
     [self adjustHeightAccordingToInterfaceOrientation:self.interfaceOrientation];
 }
 
@@ -75,6 +78,19 @@ static const CGFloat TableViewHeightHorizontal = 320;
                                                                      ascending:YES];
     self.sessions = [self.patient.sessions.allObjects sortedArrayUsingDescriptors:@[sortDescriptor]];
     [self.tableView reloadData];
+    
+//    Session *session = [Session createEntity];
+//    session.number = @(self.patient.sessions.count);
+//    session.startTime = [NSDate dateWithTimeIntervalSinceNow:30];
+//    session.startTime = [NSDate dateWithTimeIntervalSinceNow:300];
+//    [self.patient addSessionsObject:session];
+//    [[NSManagedObjectContext defaultContext] saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
+//        if (success) {
+//            NSLog(@"You successfully saved your context.");
+//        } else if (error) {
+//            NSLog(@"Error saving context: %@", error.description);
+//        }
+//    }];
 }
 
 #pragma mark - Buttons
@@ -105,10 +121,10 @@ static const CGFloat TableViewHeightHorizontal = 320;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier
                                                             forIndexPath:indexPath];
     Session *session = self.sessions[indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@",
+    cell.textLabel.text = [NSString stringWithFormat:@"Session #%@",
                            session.number];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",
-                                 session.date];
+                                 session.startTime];
     return cell;
 }
 

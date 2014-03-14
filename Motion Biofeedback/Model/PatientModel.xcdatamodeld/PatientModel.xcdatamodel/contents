@@ -6,12 +6,13 @@
         <relationship name="sessions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Session" inverseName="patient" inverseEntity="Session" syncable="YES"/>
     </entity>
     <entity name="Session" representedClassName="Session" syncable="YES">
-        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="endTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="number" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="patient" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Patient" inverseName="sessions" inverseEntity="Patient" syncable="YES"/>
     </entity>
     <elements>
         <element name="Patient" positionX="-263" positionY="-1" width="128" height="88"/>
-        <element name="Session" positionX="-54" positionY="9" width="128" height="88"/>
+        <element name="Session" positionX="-54" positionY="9" width="128" height="105"/>
     </elements>
 </model>

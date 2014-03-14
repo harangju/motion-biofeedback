@@ -12,8 +12,9 @@
 
 @implementation Session
 
-@dynamic date;
+@dynamic endTime;
 @dynamic number;
+@dynamic startTime;
 @dynamic patient;
 
 @end
