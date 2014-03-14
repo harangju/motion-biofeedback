@@ -7,10 +7,11 @@
     </entity>
     <entity name="Session" representedClassName="Session" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="number" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="patient" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Patient" inverseName="sessions" inverseEntity="Patient" syncable="YES"/>
     </entity>
     <elements>
         <element name="Patient" positionX="-263" positionY="-1" width="128" height="88"/>
-        <element name="Session" positionX="-54" positionY="9" width="128" height="73"/>
+        <element name="Session" positionX="-54" positionY="9" width="128" height="88"/>
     </elements>
 </model>

@@ -14,6 +14,7 @@
 @interface Session : NSManagedObject
 
 @property (nonatomic, retain) NSDate * date;
+@property (nonatomic, retain) NSNumber * number;
 @property (nonatomic, retain) Patient *patient;
 
 @end

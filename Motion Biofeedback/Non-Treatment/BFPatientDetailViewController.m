@@ -7,6 +7,7 @@
 //
 
 #import "BFPatientDetailViewController.h"
+#import "Session.h"
 
 static NSString * const CellIdentifier = @"PatientDetailCellIdentifier";
 static NSString * const SessionDetailIdentifier = @"SessionDetailIdentifier";
@@ -21,6 +22,8 @@ static const CGFloat TableViewHeightHorizontal = 320;
 
 @property (nonatomic, strong) UIBarButtonItem *viewPatientsButton;
 @property (nonatomic, strong) UIPopoverController *popover;
+
+@property (nonatomic, strong) NSArray *sessions;
 
 @end
 
@@ -68,6 +71,10 @@ static const CGFloat TableViewHeightHorizontal = 320;
 {
     self.title = [NSString stringWithFormat:@"%@ %@",
                   self.patient.firstName, self.patient.lastName];
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"number"
+                                                                     ascending:YES];
+    self.sessions = [self.patient.sessions.allObjects sortedArrayUsingDescriptors:@[sortDescriptor]];
+    [self.tableView reloadData];
 }
 
 #pragma mark - Buttons
@@ -90,13 +97,18 @@ static const CGFloat TableViewHeightHorizontal = 320;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return self.sessions.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier
                                                             forIndexPath:indexPath];
+    Session *session = self.sessions[indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@",
+                           session.number];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",
+                                 session.date];
     return cell;
 }
 

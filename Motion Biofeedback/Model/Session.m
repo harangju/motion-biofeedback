@@ -13,6 +13,7 @@
 @implementation Session
 
 @dynamic date;
+@dynamic number;
 @dynamic patient;
 
 @end
