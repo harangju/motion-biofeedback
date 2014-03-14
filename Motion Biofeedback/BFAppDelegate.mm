@@ -12,7 +12,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    // Set up MagicalRecord
+    [MagicalRecord setupCoreDataStackWithStoreNamed:@"PatientModel"];
+    
     return YES;
 }
 							
