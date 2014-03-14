@@ -15,6 +15,8 @@ static NSString * const CellIdentifier = @"PatientDetailCellIdentifier";
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *tableViewHeightConstraint;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *imageHeightConstraint;
 
+@property (nonatomic, strong) UIBarButtonItem *viewPatientsButton;
+
 @end
 
 @implementation BFPatientDetailViewController
@@ -25,6 +27,17 @@ static NSString * const CellIdentifier = @"PatientDetailCellIdentifier";
 {
     [super viewDidLoad];
     
+    UIImage *menuImage = [UIImage imageNamed:@"menu"];
+    self.viewPatientsButton = [[UIBarButtonItem alloc] initWithImage:menuImage
+                                                               style:UIBarButtonItemStylePlain
+                                                              target:self
+                                                              action:@selector(patientButtonTapped:)];
+    if (self.interfaceOrientation == UIInterfaceOrientationPortrait ||
+        self.interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
+    {
+        self.navigationItem.leftBarButtonItem = self.viewPatientsButton;
+    }
+    
     self.title = [NSString stringWithFormat:@"%@ %@",
                   self.patient.firstName, self.patient.lastName];
 }
@@ -34,9 +47,14 @@ static NSString * const CellIdentifier = @"PatientDetailCellIdentifier";
     [super didReceiveMemoryWarning];
 }
 
-#pragma mark - IBAction
+#pragma mark - Buttons
 
 - (IBAction)startButtonTapped:(UIButton *)button
+{
+    
+}
+
+- (void)patientButtonTapped:(UIBarButtonItem *)item
 {
     
 }
@@ -65,12 +83,14 @@ static NSString * const CellIdentifier = @"PatientDetailCellIdentifier";
     {
         self.imageHeightConstraint.constant = 300;
         self.tableViewHeightConstraint.constant = 340;
+        self.navigationItem.leftBarButtonItem = nil;
     }
     else if (toInterfaceOrientation == UIInterfaceOrientationPortrait ||
              toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
     {
         self.imageHeightConstraint.constant = 400;
         self.tableViewHeightConstraint.constant = 480;
+        self.navigationItem.leftBarButtonItem = self.viewPatientsButton;
     }
 }
 
