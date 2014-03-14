@@ -43,12 +43,17 @@ static const CGFloat TableViewHeightHorizontal = 320;
 
 #pragma mark - LifeCycle
 
-- (void)viewDidLoad
+- (void)awakeFromNib
 {
-    [super viewDidLoad];
+    [super awakeFromNib];
     
     // split vc
     self.splitViewController.delegate = self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
     
     // debugging
     self.imageView.layer.borderWidth = 1;
@@ -96,12 +101,6 @@ static const CGFloat TableViewHeightHorizontal = 320;
 
 - (void)patientButtonTapped:(UIBarButtonItem *)item
 {
-//    UIViewController *masterVC = self.splitViewController.viewControllers.firstObject;
-//    UIViewController *masterVC = [self.storyboard instantiateViewControllerWithIdentifier:PopoverStoryboardID];
-//    self.popover = [[UIPopoverController alloc] initWithContentViewController:masterVC];
-//    [self.popover presentPopoverFromBarButtonItem:item
-//                         permittedArrowDirections:UIPopoverArrowDirectionDown
-//                                         animated:YES];
     [self.popover presentPopoverFromBarButtonItem:self.navigationItem.leftBarButtonItem
                          permittedArrowDirections:UIPopoverArrowDirectionDown
                                          animated:YES];
