@@ -3,8 +3,14 @@
     <entity name="Patient" representedClassName="Patient" syncable="YES">
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="sessions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Session" inverseName="patient" inverseEntity="Session" syncable="YES"/>
+    </entity>
+    <entity name="Session" representedClassName="Session" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="patient" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Patient" inverseName="sessions" inverseEntity="Patient" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Patient" positionX="-63" positionY="-18" width="128" height="75"/>
+        <element name="Patient" positionX="-263" positionY="-1" width="128" height="88"/>
+        <element name="Session" positionX="-54" positionY="9" width="128" height="73"/>
     </elements>
 </model>
