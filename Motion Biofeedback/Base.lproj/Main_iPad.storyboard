@@ -121,20 +121,23 @@
                                 </constraints>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="zty-V5-vUs">
-                                <rect key="frame" x="0.0" y="624" width="768" height="400"/>
+                                <rect key="frame" x="0.0" y="544" width="768" height="480"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="400" id="sf3-98-Re0"/>
+                                    <constraint firstAttribute="height" constant="480" id="sf3-98-Re0"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PatientDetailCellIdentifier" id="4rd-8U-hEg">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="PatientDetailCellIdentifier" id="4rd-8U-hEg">
                                         <rect key="frame" x="0.0" y="22" width="768" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4rd-8U-hEg" id="ojq-pE-Gub">
-                                            <rect key="frame" x="0.0" y="0.0" width="768" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="735" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="2F4-zZ-nOe" kind="push" identifier="SessionDetailIdentifier" id="lt2-7O-Z0H"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -180,6 +183,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ITC-ue-MEO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="977" y="-1363"/>
+        </scene>
+        <!--View Controller - Session Detail-->
+        <scene sceneID="DRN-rS-kCQ">
+            <objects>
+                <viewController id="2F4-zZ-nOe" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BFR-e3-QK6"/>
+                        <viewControllerLayoutGuide type="bottom" id="3s4-bD-CEK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="SkC-u9-Q8W">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Session Detail" id="QoX-ST-Wws"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xBg-Ld-8Z7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1871" y="-1363"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cAc-QK-1vq">

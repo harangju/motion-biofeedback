@@ -9,6 +9,10 @@
 #import "BFPatientDetailViewController.h"
 
 static NSString * const CellIdentifier = @"PatientDetailCellIdentifier";
+static NSString * const SessionDetailIdentifier = @"SessionDetailIdentifier";
+
+static const CGFloat TableViewHeightVertical = 460;
+static const CGFloat TableViewHeightHorizontal = 320;
 
 @interface BFPatientDetailViewController ()
 
@@ -49,6 +53,8 @@ static NSString * const CellIdentifier = @"PatientDetailCellIdentifier";
 //    {
 //        self.navigationItem.leftBarButtonItem = self.viewPatientsButton;
 //    }
+    
+    [self adjustHeightAccordingToInterfaceOrientation:self.interfaceOrientation];
 }
 
 - (void)didReceiveMemoryWarning
@@ -94,24 +100,46 @@ static NSString * const CellIdentifier = @"PatientDetailCellIdentifier";
     return cell;
 }
 
+#pragma mark - TableView Delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 #pragma mark - UI
+
+- (void)adjustHeightAccordingToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    if (interfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
+        interfaceOrientation == UIInterfaceOrientationLandscapeRight)
+    {
+        self.imageHeightConstraint.constant = 300;
+        self.tableViewHeightConstraint.constant = TableViewHeightHorizontal;
+        self.navigationItem.leftBarButtonItem = nil;
+    }
+    else if (interfaceOrientation == UIInterfaceOrientationPortrait ||
+             interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
+    {
+        self.imageHeightConstraint.constant = 400;
+        self.tableViewHeightConstraint.constant = TableViewHeightVertical;
+        self.navigationItem.leftBarButtonItem = self.viewPatientsButton;
+    }
+}
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
                                 duration:(NSTimeInterval)duration
 {
-    if (toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
-        toInterfaceOrientation == UIInterfaceOrientationLandscapeRight)
+    [self adjustHeightAccordingToInterfaceOrientation:toInterfaceOrientation];
+}
+
+#pragma mark - Segue
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:SessionDetailIdentifier])
     {
-        self.imageHeightConstraint.constant = 300;
-        self.tableViewHeightConstraint.constant = 340;
-        self.navigationItem.leftBarButtonItem = nil;
-    }
-    else if (toInterfaceOrientation == UIInterfaceOrientationPortrait ||
-             toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
-    {
-        self.imageHeightConstraint.constant = 400;
-        self.tableViewHeightConstraint.constant = 480;
-        self.navigationItem.leftBarButtonItem = self.viewPatientsButton;
+        
     }
 }
 
