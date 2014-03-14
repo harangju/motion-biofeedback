@@ -7,8 +7,13 @@
 //
 
 #import "BFSettingsViewController.h"
+#import "BFSettingsDetailViewController.h"
+
+static NSString * const SettingsDetailVCSegue = @"SettingsDetailVCSegue";
 
 @interface BFSettingsViewController ()
+
+@property (nonatomic, strong) NSString *selectedSettings;
 
 @end
 
@@ -32,6 +37,29 @@
 {
     [self dismissViewControllerAnimated:YES
                              completion:nil];
+}
+
+#pragma mark - TableView Delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    self.selectedSettings = cell.textLabel.text;
+    [tableView deselectRowAtIndexPath:indexPath
+                             animated:YES];
+    [self performSegueWithIdentifier:SettingsDetailVCSegue
+                              sender:self];
+}
+
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:SettingsDetailVCSegue])
+    {
+        BFSettingsDetailViewController *detailVC = (BFSettingsDetailViewController *)segue.destinationViewController;
+        detailVC.title = self.selectedSettings;
+    }
 }
 
 @end

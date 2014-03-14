@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BFSettingsViewController : UITableViewController
+@interface BFSettingsViewController : UITableViewController <UITableViewDelegate>
 
 @end
