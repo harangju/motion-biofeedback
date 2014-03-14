@@ -14,14 +14,14 @@
 
 - (void)settingsDetailViewController:(BFSettingsDetailViewController *)settingsDetailVC
                 didSelectItemAtIndex:(NSInteger)index;
-- (void)settingsDetailViewController:(BFSettingsDetailViewController *)settingsDetailVC
-              didDeselectItemAtIndex:(NSInteger)index;
 
 @end
 
-@interface BFSettingsDetailViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface BFSettingsDetailViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
 
+@property (nonatomic) NSInteger row;
 @property (nonatomic, strong) NSArray *settings;
+@property (nonatomic) NSInteger selectedIndex;
 
 @property (nonatomic, weak) id <BFSettingsDetailViewControllerDelegate> delegate;
 

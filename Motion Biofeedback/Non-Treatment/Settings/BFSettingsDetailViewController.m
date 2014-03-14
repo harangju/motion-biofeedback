@@ -40,20 +40,30 @@ static NSString * const CellIdentifier = @"SettingsDetailCellidentifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier
                                                             forIndexPath:indexPath];
     cell.textLabel.text = self.settings[indexPath.row];
+    if (indexPath.row == self.selectedIndex)
+    {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    if (cell.accessoryType == UITableViewCellAccessoryCheckmark)
-    {
-        NSLog(@"has checkmark");
-    }
-    else
+    UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
+    if (selectedCell.accessoryType != UITableViewCellAccessoryCheckmark)
+        // not selected
     {
         NSLog(@"has no checkmark");
+        for (UITableViewCell *cell in self.tableView.visibleCells)
+        {
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
+        selectedCell.accessoryType = UITableViewCellAccessoryCheckmark;
+        self.selectedIndex = indexPath.row;
+        [self.delegate settingsDetailViewController:self
+                               didSelectItemAtIndex:indexPath.row];
     }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end

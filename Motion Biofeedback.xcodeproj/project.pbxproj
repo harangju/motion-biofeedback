@@ -17,6 +17,8 @@
 		7D2E6BE018D3349F00B03788 /* Session.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E6BDF18D3349F00B03788 /* Session.m */; };
 		7D2E6BE618D33DEE00B03788 /* BFSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E6BE518D33DEE00B03788 /* BFSettingsViewController.m */; };
 		7D2E6BEA18D3416200B03788 /* BFSettingsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E6BE918D3416200B03788 /* BFSettingsDetailViewController.m */; };
+		7D2E6BED18D350EA00B03788 /* BFSettingsDetailInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E6BEC18D350EA00B03788 /* BFSettingsDetailInfoViewController.m */; };
+		7D2E6BF018D354CC00B03788 /* BFSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E6BEF18D354CC00B03788 /* BFSettings.m */; };
 		7DB9C2E518C2D2EF00CCDED9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DB9C2E418C2D2EF00CCDED9 /* Foundation.framework */; };
 		7DB9C2E718C2D2EF00CCDED9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DB9C2E618C2D2EF00CCDED9 /* CoreGraphics.framework */; };
 		7DB9C2E918C2D2EF00CCDED9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DB9C2E818C2D2EF00CCDED9 /* UIKit.framework */; };
@@ -80,6 +82,10 @@
 		7D2E6BE518D33DEE00B03788 /* BFSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BFSettingsViewController.m; path = "Non-Treatment/Settings/BFSettingsViewController.m"; sourceTree = "<group>"; };
 		7D2E6BE818D3416200B03788 /* BFSettingsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BFSettingsDetailViewController.h; path = "Non-Treatment/Settings/BFSettingsDetailViewController.h"; sourceTree = "<group>"; };
 		7D2E6BE918D3416200B03788 /* BFSettingsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BFSettingsDetailViewController.m; path = "Non-Treatment/Settings/BFSettingsDetailViewController.m"; sourceTree = "<group>"; };
+		7D2E6BEB18D350EA00B03788 /* BFSettingsDetailInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BFSettingsDetailInfoViewController.h; path = "Non-Treatment/Settings/BFSettingsDetailInfoViewController.h"; sourceTree = "<group>"; };
+		7D2E6BEC18D350EA00B03788 /* BFSettingsDetailInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BFSettingsDetailInfoViewController.m; path = "Non-Treatment/Settings/BFSettingsDetailInfoViewController.m"; sourceTree = "<group>"; };
+		7D2E6BEE18D354CC00B03788 /* BFSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BFSettings.h; path = "Non-Treatment/Settings/BFSettings.h"; sourceTree = "<group>"; };
+		7D2E6BEF18D354CC00B03788 /* BFSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BFSettings.m; path = "Non-Treatment/Settings/BFSettings.m"; sourceTree = "<group>"; };
 		7DB9C2E118C2D2EF00CCDED9 /* Motion Biofeedback.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Motion Biofeedback.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DB9C2E418C2D2EF00CCDED9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7DB9C2E618C2D2EF00CCDED9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -201,6 +207,10 @@
 				7D2E6BE518D33DEE00B03788 /* BFSettingsViewController.m */,
 				7D2E6BE818D3416200B03788 /* BFSettingsDetailViewController.h */,
 				7D2E6BE918D3416200B03788 /* BFSettingsDetailViewController.m */,
+				7D2E6BEB18D350EA00B03788 /* BFSettingsDetailInfoViewController.h */,
+				7D2E6BEC18D350EA00B03788 /* BFSettingsDetailInfoViewController.m */,
+				7D2E6BEE18D354CC00B03788 /* BFSettings.h */,
+				7D2E6BEF18D354CC00B03788 /* BFSettings.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -470,8 +480,10 @@
 				7DF6BDEB18CB7A54007B72FC /* BFOpenCVTracker.mm in Sources */,
 				7DB9C2F518C2D2EF00CCDED9 /* BFAppDelegate.mm in Sources */,
 				7DB9C33D18C2D83E00CCDED9 /* BFOpenCVFaceDetector.mm in Sources */,
+				7D2E6BED18D350EA00B03788 /* BFSettingsDetailInfoViewController.m in Sources */,
 				7D0436AA18CBE2B10006E551 /* BFFaceVideoViewController.mm in Sources */,
 				7D2E6BEA18D3416200B03788 /* BFSettingsDetailViewController.m in Sources */,
+				7D2E6BF018D354CC00B03788 /* BFSettings.m in Sources */,
 				7DB9C32F18C2D7F000CCDED9 /* BFHeadTracker.mm in Sources */,
 				7DB9C2F118C2D2EF00CCDED9 /* main.m in Sources */,
 				7D2E6BE618D33DEE00B03788 /* BFSettingsViewController.m in Sources */,

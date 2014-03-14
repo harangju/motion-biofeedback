@@ -8,16 +8,30 @@
 
 #import "BFSettingsViewController.h"
 #import "BFSettingsDetailViewController.h"
+#import "BFSettings.h"
+
+static NSArray *_settings;
 
 static NSString * const SettingsDetailVCSegue = @"SettingsDetailVCSegue";
+static NSString * const SettingsDetailInfoVCSegue = @"SettingsDetailInfoVCSegue";
 
-@interface BFSettingsViewController ()
+@interface BFSettingsViewController () <BFSettingsDetailViewControllerDelegate>
 
 @property (nonatomic, strong) NSString *selectedSettings;
+@property (nonatomic, strong) NSIndexPath *selectedIndexPath;
 
 @end
 
 @implementation BFSettingsViewController
+
++ (void)initialize
+{
+    _settings = @[@[@"Circle",
+                    @"Bar"],
+                  @[@"Horizontal (X)",
+                    @"Vertical (Y)",
+                    @"Horizontal & Vertical (X & Y)"]];
+}
 
 #pragma mark - LifeCycle
 
@@ -43,11 +57,21 @@ static NSString * const SettingsDetailVCSegue = @"SettingsDetailVCSegue";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSString *segueIdentifier;
+    if (indexPath.section == 0)
+    {
+        segueIdentifier = SettingsDetailVCSegue;
+    }
+    else if (indexPath.section == 1)
+    {
+        segueIdentifier = SettingsDetailInfoVCSegue;
+    }
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     self.selectedSettings = cell.textLabel.text;
+    self.selectedIndexPath = indexPath;
     [tableView deselectRowAtIndexPath:indexPath
                              animated:YES];
-    [self performSegueWithIdentifier:SettingsDetailVCSegue
+    [self performSegueWithIdentifier:segueIdentifier
                               sender:self];
 }
 
@@ -55,10 +79,45 @@ static NSString * const SettingsDetailVCSegue = @"SettingsDetailVCSegue";
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    UIViewController *destinationVC = segue.destinationViewController;
+    destinationVC.title = self.selectedSettings;
     if ([segue.identifier isEqualToString:SettingsDetailVCSegue])
     {
-        BFSettingsDetailViewController *detailVC = (BFSettingsDetailViewController *)segue.destinationViewController;
-        detailVC.title = self.selectedSettings;
+        BFSettingsDetailViewController *detailVC = (BFSettingsDetailViewController *)destinationVC;
+        detailVC.delegate = self;
+        detailVC.settings = _settings[self.selectedIndexPath.row];
+        detailVC.row = self.selectedIndexPath.row;
+        if (self.selectedIndexPath.row == 0)
+        {
+            detailVC.selectedIndex = [BFSettings visualization];
+        }
+        else if (self.selectedIndexPath.row == 1)
+        {
+            detailVC.selectedIndex = [BFSettings dimension];
+        }
+    }
+}
+
+#pragma mark - Setting Details Delegate
+
+- (void)settingsDetailViewController:(BFSettingsDetailViewController *)settingsDetailVC
+                didSelectItemAtIndex:(NSInteger)index
+{
+    if (settingsDetailVC.row == 0)
+    {
+        if (index < BFSettingsVisualizationSentry)
+        {
+            [BFSettings setVisualization:index];
+            NSLog(@"set visualization %lu", (long)index);
+        }
+    }
+    else if (settingsDetailVC.row == 1)
+    {
+        if (index < BFSettingsDimensionSentry)
+        {
+            [BFSettings setDimension:index];
+            NSLog(@"set dimension %lu", (long)index);
+        }
     }
 }
 
