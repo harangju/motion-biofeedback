@@ -39,7 +39,7 @@
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
     // main circle
-    CGContextSetLineWidth(context, 2.0);
+    CGContextSetLineWidth(context, 5.0);
     CGContextSetStrokeColorWithColor(context, self.circleColor);
     UIBezierPath *mainCircle = [self makeCircleWithCenter:self.circleCenter
                                                    radius:self.circleRadius];

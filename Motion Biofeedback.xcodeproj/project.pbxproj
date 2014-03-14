@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		7D0436AA18CBE2B10006E551 /* BFFaceVideoViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7D0436A918CBE2B10006E551 /* BFFaceVideoViewController.mm */; };
+		7D16ED3018D2B4A400EF7D56 /* BFPatientListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D16ED2F18D2B4A400EF7D56 /* BFPatientListViewController.m */; };
+		7D16ED3718D2B60100EF7D56 /* PatientModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7D16ED3518D2B60100EF7D56 /* PatientModel.xcdatamodeld */; };
 		7DB9C2E518C2D2EF00CCDED9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DB9C2E418C2D2EF00CCDED9 /* Foundation.framework */; };
 		7DB9C2E718C2D2EF00CCDED9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DB9C2E618C2D2EF00CCDED9 /* CoreGraphics.framework */; };
 		7DB9C2E918C2D2EF00CCDED9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DB9C2E818C2D2EF00CCDED9 /* UIKit.framework */; };
@@ -54,6 +56,9 @@
 		6B95C62388D34EA7AAD08B55 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		7D0436A818CBE2B10006E551 /* BFFaceVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BFFaceVideoViewController.h; path = "Face Video/BFFaceVideoViewController.h"; sourceTree = "<group>"; };
 		7D0436A918CBE2B10006E551 /* BFFaceVideoViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = BFFaceVideoViewController.mm; path = "Face Video/BFFaceVideoViewController.mm"; sourceTree = "<group>"; };
+		7D16ED2E18D2B4A400EF7D56 /* BFPatientListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BFPatientListViewController.h; path = "Non-Treatment/BFPatientListViewController.h"; sourceTree = "<group>"; };
+		7D16ED2F18D2B4A400EF7D56 /* BFPatientListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BFPatientListViewController.m; path = "Non-Treatment/BFPatientListViewController.m"; sourceTree = "<group>"; };
+		7D16ED3618D2B60100EF7D56 /* PatientModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PatientModel.xcdatamodel; sourceTree = "<group>"; };
 		7DB9C2E118C2D2EF00CCDED9 /* Motion Biofeedback.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Motion Biofeedback.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DB9C2E418C2D2EF00CCDED9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7DB9C2E618C2D2EF00CCDED9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -140,6 +145,23 @@
 			name = "Face Video";
 			sourceTree = "<group>";
 		};
+		7D16ED3118D2B4AB00EF7D56 /* Non-Treatment */ = {
+			isa = PBXGroup;
+			children = (
+				7D16ED2E18D2B4A400EF7D56 /* BFPatientListViewController.h */,
+				7D16ED2F18D2B4A400EF7D56 /* BFPatientListViewController.m */,
+			);
+			name = "Non-Treatment";
+			sourceTree = "<group>";
+		};
+		7D16ED3818D2B60800EF7D56 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7D16ED3518D2B60100EF7D56 /* PatientModel.xcdatamodeld */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		7DB9C2D818C2D2EF00CCDED9 = {
 			isa = PBXGroup;
 			children = (
@@ -186,6 +208,8 @@
 				7DB9C2F418C2D2EF00CCDED9 /* BFAppDelegate.mm */,
 				7DB9C2F618C2D2EF00CCDED9 /* Main_iPhone.storyboard */,
 				7DB9C2F918C2D2EF00CCDED9 /* Main_iPad.storyboard */,
+				7D16ED3818D2B60800EF7D56 /* Model */,
+				7D16ED3118D2B4AB00EF7D56 /* Non-Treatment */,
 				7D0436AB18CBE2C10006E551 /* Face Video */,
 				7DB9C33118C2D83E00CCDED9 /* OpenCV */,
 				7DB9C32A18C2D7F000CCDED9 /* Biofeedback */,
@@ -301,6 +325,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Harang Ju";
 				TargetAttributes = {
+					7DB9C2E018C2D2EF00CCDED9 = {
+						DevelopmentTeam = 9VPE894343;
+					};
 					7DB9C30418C2D2EF00CCDED9 = {
 						TestTargetID = 7DB9C2E018C2D2EF00CCDED9;
 					};
@@ -386,8 +413,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D16ED3018D2B4A400EF7D56 /* BFPatientListViewController.m in Sources */,
 				7DB9C33A18C2D83E00CCDED9 /* BFOpenCVConverter.mm in Sources */,
 				7DD8FEC418CC11BA00E5A213 /* BFCircleView.m in Sources */,
+				7D16ED3718D2B60100EF7D56 /* PatientModel.xcdatamodeld in Sources */,
 				7DB9C33C18C2D83E00CCDED9 /* BFOpenCVEdgeDetector.mm in Sources */,
 				7DB9C33018C2D7F000CCDED9 /* BFTracker.mm in Sources */,
 				7DF6BDEB18CB7A54007B72FC /* BFOpenCVTracker.mm in Sources */,
@@ -533,6 +562,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/harangju/Developer/Motion\\ Biofeedback",
@@ -542,6 +573,8 @@
 				GCC_PREFIX_HEADER = "Motion Biofeedback/Motion Biofeedback-Prefix.pch";
 				INFOPLIST_FILE = "Motion Biofeedback/Motion Biofeedback-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -552,6 +585,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/harangju/Developer/Motion\\ Biofeedback",
@@ -561,6 +596,8 @@
 				GCC_PREFIX_HEADER = "Motion Biofeedback/Motion Biofeedback-Prefix.pch";
 				INFOPLIST_FILE = "Motion Biofeedback/Motion Biofeedback-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -638,6 +675,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		7D16ED3518D2B60100EF7D56 /* PatientModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				7D16ED3618D2B60100EF7D56 /* PatientModel.xcdatamodel */,
+			);
+			currentVersion = 7D16ED3618D2B60100EF7D56 /* PatientModel.xcdatamodel */;
+			name = PatientModel.xcdatamodeld;
+			path = Model/PatientModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 7DB9C2D918C2D2EF00CCDED9 /* Project object */;
 }

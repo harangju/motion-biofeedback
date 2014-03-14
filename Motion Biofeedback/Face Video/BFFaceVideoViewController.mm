@@ -12,7 +12,7 @@
 static CGFloat FaceRectCircleMatchCenterDifferentThreshold = 25;
 static CGFloat FaceCircleMaximumDifference = 30;
 
-static CGFloat CircleRadius = 200;
+static CGFloat CircleRadius = 300;
 
 @interface BFFaceVideoViewController ()
 
@@ -28,6 +28,7 @@ static CGFloat CircleRadius = 200;
     
     [self initializeVideoCamera];
     [self initializeDetectors];
+    self.previewImageView.fillMode = kGPUImageFillModePreserveAspectRatioAndFill;
     [self.videoCamera addTarget:self.previewImageView];
     [self.videoCamera startCameraCapture];
     [self initializeCircleView];
@@ -109,16 +110,6 @@ static CGFloat CircleRadius = 200;
         CGPoint deltaCircleCenter = self.faceRectCenterInView;
         deltaCircleCenter.x += deltaPoint.x;
         
-        // doesn't work
-//        if (deltaCircleCenter.x == NAN ||
-//            ABS(deltaCircleCenter.x - self.circleView.circleCenter.x) > FaceCircleMaximumDifference)
-//            // if head is too far out
-//            // then return back
-//        {
-//            self.lockFaceRect = NO;
-//            [self setStatesToDefault];
-//            return;
-//        }
         self.faceRectCenterInView = deltaCircleCenter;
         [[NSOperationQueue mainQueue] addOperationWithBlock:^
          {
