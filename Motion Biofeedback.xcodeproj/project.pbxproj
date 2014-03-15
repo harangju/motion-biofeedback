@@ -25,6 +25,10 @@
 		7D2E6C1B18D4E9D700B03788 /* Patient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E6C1618D4E9D700B03788 /* Patient.m */; };
 		7D2E6C1C18D4E9D700B03788 /* PatientModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E6C1718D4E9D700B03788 /* PatientModel.xcdatamodeld */; };
 		7D2E6C1D18D4E9D700B03788 /* Session.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E6C1A18D4E9D700B03788 /* Session.m */; };
+		7D2E6C2018D4F1DC00B03788 /* BFVisualizationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E6C1F18D4F1DC00B03788 /* BFVisualizationView.m */; };
+		7D2E6C2318D4F37900B03788 /* BFVisualizationCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E6C2218D4F37900B03788 /* BFVisualizationCircleView.m */; };
+		7D2E6C2618D4F38300B03788 /* BFVisualizationBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E6C2518D4F38300B03788 /* BFVisualizationBarView.m */; };
+		7D2E6C2918D4F55800B03788 /* BFBiofeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E6C2818D4F55800B03788 /* BFBiofeedbackViewController.m */; };
 		7DB9C2E518C2D2EF00CCDED9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DB9C2E418C2D2EF00CCDED9 /* Foundation.framework */; };
 		7DB9C2E718C2D2EF00CCDED9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DB9C2E618C2D2EF00CCDED9 /* CoreGraphics.framework */; };
 		7DB9C2E918C2D2EF00CCDED9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DB9C2E818C2D2EF00CCDED9 /* UIKit.framework */; };
@@ -95,6 +99,14 @@
 		7D2E6C1818D4E9D700B03788 /* PatientModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PatientModel.xcdatamodel; sourceTree = "<group>"; };
 		7D2E6C1918D4E9D700B03788 /* Session.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Session.h; sourceTree = "<group>"; };
 		7D2E6C1A18D4E9D700B03788 /* Session.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Session.m; sourceTree = "<group>"; };
+		7D2E6C1E18D4F1DC00B03788 /* BFVisualizationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFVisualizationView.h; sourceTree = "<group>"; };
+		7D2E6C1F18D4F1DC00B03788 /* BFVisualizationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFVisualizationView.m; sourceTree = "<group>"; };
+		7D2E6C2118D4F37900B03788 /* BFVisualizationCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFVisualizationCircleView.h; sourceTree = "<group>"; };
+		7D2E6C2218D4F37900B03788 /* BFVisualizationCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFVisualizationCircleView.m; sourceTree = "<group>"; };
+		7D2E6C2418D4F38300B03788 /* BFVisualizationBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFVisualizationBarView.h; sourceTree = "<group>"; };
+		7D2E6C2518D4F38300B03788 /* BFVisualizationBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFVisualizationBarView.m; sourceTree = "<group>"; };
+		7D2E6C2718D4F55800B03788 /* BFBiofeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BFBiofeedbackViewController.h; path = Treatment/BFBiofeedbackViewController.h; sourceTree = "<group>"; };
+		7D2E6C2818D4F55800B03788 /* BFBiofeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BFBiofeedbackViewController.m; path = Treatment/BFBiofeedbackViewController.m; sourceTree = "<group>"; };
 		7DB9C2E118C2D2EF00CCDED9 /* Motion Biofeedback.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Motion Biofeedback.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DB9C2E418C2D2EF00CCDED9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7DB9C2E618C2D2EF00CCDED9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -158,6 +170,8 @@
 		7D0436AB18CBE2C10006E551 /* Treatment */ = {
 			isa = PBXGroup;
 			children = (
+				7D2E6C2718D4F55800B03788 /* BFBiofeedbackViewController.h */,
+				7D2E6C2818D4F55800B03788 /* BFBiofeedbackViewController.m */,
 				7D2E6BF418D4E23200B03788 /* BFFaceVideoViewController.h */,
 				7D2E6BF518D4E23200B03788 /* BFFaceVideoViewController.mm */,
 				7D2E6BF718D4E25800B03788 /* Visualization */,
@@ -200,6 +214,12 @@
 		7D2E6BF718D4E25800B03788 /* Visualization */ = {
 			isa = PBXGroup;
 			children = (
+				7D2E6C1E18D4F1DC00B03788 /* BFVisualizationView.h */,
+				7D2E6C1F18D4F1DC00B03788 /* BFVisualizationView.m */,
+				7D2E6C2118D4F37900B03788 /* BFVisualizationCircleView.h */,
+				7D2E6C2218D4F37900B03788 /* BFVisualizationCircleView.m */,
+				7D2E6C2418D4F38300B03788 /* BFVisualizationBarView.h */,
+				7D2E6C2518D4F38300B03788 /* BFVisualizationBarView.m */,
 				7D2E6BF818D4E25800B03788 /* BFCircleView.h */,
 				7D2E6BF918D4E25800B03788 /* BFCircleView.m */,
 			);
@@ -461,16 +481,20 @@
 				7D16ED4118D2CE1600EF7D56 /* BFPatientDetailViewController.m in Sources */,
 				7D16ED3E18D2BC3600EF7D56 /* BFAddPatientViewController.m in Sources */,
 				7D2E6BFA18D4E25800B03788 /* BFCircleView.m in Sources */,
+				7D2E6C2618D4F38300B03788 /* BFVisualizationBarView.m in Sources */,
 				7D2E6C1C18D4E9D700B03788 /* PatientModel.xcdatamodeld in Sources */,
 				7D2E6C1D18D4E9D700B03788 /* Session.m in Sources */,
+				7D2E6C2918D4F55800B03788 /* BFBiofeedbackViewController.m in Sources */,
 				7D2E6C0818D4E27400B03788 /* BFOpenCVTracker.mm in Sources */,
 				7D2E6C0518D4E27400B03788 /* BFOpenCVConverter.mm in Sources */,
 				7D2E6C0618D4E27400B03788 /* BFOpenCVEdgeDetector.mm in Sources */,
 				7D16ED3018D2B4A400EF7D56 /* BFPatientListViewController.m in Sources */,
 				7D16ED4418D2DAD100EF7D56 /* BFPatientSessionDetailViewController.m in Sources */,
+				7D2E6C2318D4F37900B03788 /* BFVisualizationCircleView.m in Sources */,
 				7D2E6C0718D4E27400B03788 /* BFOpenCVFaceDetector.mm in Sources */,
 				7DB9C2F518C2D2EF00CCDED9 /* BFAppDelegate.mm in Sources */,
 				7D2E6BED18D350EA00B03788 /* BFSettingsDetailInfoViewController.m in Sources */,
+				7D2E6C2018D4F1DC00B03788 /* BFVisualizationView.m in Sources */,
 				7D2E6BEA18D3416200B03788 /* BFSettingsDetailViewController.m in Sources */,
 				7D2E6BF018D354CC00B03788 /* BFSettings.m in Sources */,
 				7DB9C2F118C2D2EF00CCDED9 /* main.m in Sources */,

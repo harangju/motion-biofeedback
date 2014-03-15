@@ -10,7 +10,8 @@
 #import "Session.h"
 
 static NSString * const CellIdentifier = @"PatientDetailCellIdentifier";
-static NSString * const SessionDetailIdentifier = @"SessionDetailIdentifier";
+static NSString * const SessionDetailSegueIdentifier = @"SessionDetailSegueIdentifier";
+static NSString * const BiofeedbackSegueIdentifier = @"BiofeedbackSegueIdentifier";
 static NSString * const PopoverStoryboardID = @"PatientListNavVC";
 
 static const CGFloat TableViewHeightVertical = 460;
@@ -168,9 +169,13 @@ static const CGFloat TableViewHeightHorizontal = 320;
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:SessionDetailIdentifier])
+    if ([segue.identifier isEqualToString:SessionDetailSegueIdentifier])
     {
         
+    }
+    else if ([segue.identifier isEqualToString:BiofeedbackSegueIdentifier])
+    {
+        self.view.window.windowLevel = UIWindowLevelStatusBar + 1;
     }
 }
 
