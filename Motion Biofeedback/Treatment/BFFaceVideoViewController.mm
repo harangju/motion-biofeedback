@@ -10,7 +10,7 @@
 #import "BFOpenCVConverter.h"
 
 static CGFloat FaceRectCircleMatchCenterDifferentThreshold = 25;
-static CGFloat FaceCircleMaximumDifference = 30;
+//static CGFloat FaceCircleMaximumDifference = 30;
 
 static CGFloat CircleRadius = 300;
 

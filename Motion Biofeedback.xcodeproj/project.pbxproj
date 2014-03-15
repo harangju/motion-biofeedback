@@ -646,7 +646,6 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/harangju/Developer/Motion\\ Biofeedback",
 					"/Users/harangju/Developer/motion-biofeedback",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -669,7 +668,6 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/harangju/Developer/Motion\\ Biofeedback",
 					"/Users/harangju/Developer/motion-biofeedback",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
