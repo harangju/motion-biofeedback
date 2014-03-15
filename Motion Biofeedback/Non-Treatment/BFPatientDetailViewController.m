@@ -71,12 +71,20 @@ static const CGFloat TableViewHeightHorizontal = 320;
 
 - (void)displayPatientInfo
 {
+    // show name in title
     self.title = [NSString stringWithFormat:@"%@ %@",
                   self.patient.firstName, self.patient.lastName];
+    // load sessions
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"number"
                                                                      ascending:YES];
     self.sessions = [self.patient.sessions.allObjects sortedArrayUsingDescriptors:@[sortDescriptor]];
     [self.tableView reloadData];
+    // load image
+    if (self.patient.referenceImageData)
+    {
+        self.imageView.image = [UIImage imageWithData:self.patient.referenceImageData];
+        self.imageView.backgroundColor = [UIColor clearColor];
+    }
     
 //    Session *session = [Session createEntity];
 //    session.number = @(self.patient.sessions.count);

@@ -2,7 +2,7 @@
 //  Patient.h
 //  Motion Biofeedback
 //
-//  Created by Harang Ju on 3/14/14.
+//  Created by Harang Ju on 3/15/14.
 //  Copyright (c) 2014 Harang Ju. All rights reserved.
 //
 
@@ -15,6 +15,7 @@
 
 @property (nonatomic, retain) NSString * firstName;
 @property (nonatomic, retain) NSString * lastName;
+@property (nonatomic, retain) NSData * referenceImageData;
 @property (nonatomic, retain) NSSet *sessions;
 @end
 
