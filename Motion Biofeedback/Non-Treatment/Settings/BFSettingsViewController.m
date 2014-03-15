@@ -12,7 +12,7 @@
 #import "BFSettings.h"
 
 static NSString * const ContactText = @"For technical issues, contact the developer at hj4hz@virginia.edu.";
-static NSString * const AcknowledgementText = @"";
+static NSString * const AcknowledgementText = @"Thanks to \nOpenCV (opencv.org) for its computer vision algorithms \nIcons8 (icon8.com) for free icons";
 
 static NSArray *_settings;
 
