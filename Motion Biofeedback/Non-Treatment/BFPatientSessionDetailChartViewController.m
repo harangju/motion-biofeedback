@@ -1,18 +1,18 @@
 //
-//  BFPatientSessionDetailViewController.m
+//  BFPatientSessionDetailChartViewController.m
 //  Motion Biofeedback
 //
-//  Created by Harang Ju on 3/14/14.
+//  Created by Harang Ju on 3/15/14.
 //  Copyright (c) 2014 Harang Ju. All rights reserved.
 //
 
-#import "BFPatientSessionDetailViewController.h"
+#import "BFPatientSessionDetailChartViewController.h"
 
-@interface BFPatientSessionDetailViewController ()
+@interface BFPatientSessionDetailChartViewController ()
 
 @end
 
-@implementation BFPatientSessionDetailViewController
+@implementation BFPatientSessionDetailChartViewController
 
 #pragma mark - LifeCycle
 

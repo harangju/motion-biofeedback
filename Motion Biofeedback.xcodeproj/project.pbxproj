@@ -10,7 +10,6 @@
 		7D16ED3018D2B4A400EF7D56 /* BFPatientListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D16ED2F18D2B4A400EF7D56 /* BFPatientListViewController.m */; };
 		7D16ED3E18D2BC3600EF7D56 /* BFAddPatientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D16ED3D18D2BC3600EF7D56 /* BFAddPatientViewController.m */; };
 		7D16ED4118D2CE1600EF7D56 /* BFPatientDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D16ED4018D2CE1600EF7D56 /* BFPatientDetailViewController.m */; };
-		7D16ED4418D2DAD100EF7D56 /* BFPatientSessionDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D16ED4318D2DAD100EF7D56 /* BFPatientSessionDetailViewController.m */; };
 		7D2E6BE618D33DEE00B03788 /* BFSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E6BE518D33DEE00B03788 /* BFSettingsViewController.m */; };
 		7D2E6BEA18D3416200B03788 /* BFSettingsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E6BE918D3416200B03788 /* BFSettingsDetailViewController.m */; };
 		7D2E6BED18D350EA00B03788 /* BFSettingsDetailInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E6BEC18D350EA00B03788 /* BFSettingsDetailInfoViewController.m */; };
@@ -29,6 +28,8 @@
 		7D2E6C2318D4F37900B03788 /* BFVisualizationCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E6C2218D4F37900B03788 /* BFVisualizationCircleView.m */; };
 		7D2E6C2618D4F38300B03788 /* BFVisualizationBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E6C2518D4F38300B03788 /* BFVisualizationBarView.m */; };
 		7D2E6C2918D4F55800B03788 /* BFBiofeedbackViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E6C2818D4F55800B03788 /* BFBiofeedbackViewController.mm */; };
+		7D2E6C2C18D5078C00B03788 /* BFPatientSessionDetailChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E6C2B18D5078C00B03788 /* BFPatientSessionDetailChartViewController.m */; };
+		7D2E6C2F18D5079800B03788 /* BFPatientSessionDetailListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E6C2E18D5079800B03788 /* BFPatientSessionDetailListViewController.m */; };
 		7DB9C2E518C2D2EF00CCDED9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DB9C2E418C2D2EF00CCDED9 /* Foundation.framework */; };
 		7DB9C2E718C2D2EF00CCDED9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DB9C2E618C2D2EF00CCDED9 /* CoreGraphics.framework */; };
 		7DB9C2E918C2D2EF00CCDED9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DB9C2E818C2D2EF00CCDED9 /* UIKit.framework */; };
@@ -71,8 +72,6 @@
 		7D16ED3D18D2BC3600EF7D56 /* BFAddPatientViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BFAddPatientViewController.m; path = "Non-Treatment/BFAddPatientViewController.m"; sourceTree = "<group>"; };
 		7D16ED3F18D2CE1600EF7D56 /* BFPatientDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BFPatientDetailViewController.h; path = "Non-Treatment/BFPatientDetailViewController.h"; sourceTree = "<group>"; };
 		7D16ED4018D2CE1600EF7D56 /* BFPatientDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BFPatientDetailViewController.m; path = "Non-Treatment/BFPatientDetailViewController.m"; sourceTree = "<group>"; };
-		7D16ED4218D2DAD100EF7D56 /* BFPatientSessionDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BFPatientSessionDetailViewController.h; path = "Non-Treatment/BFPatientSessionDetailViewController.h"; sourceTree = "<group>"; };
-		7D16ED4318D2DAD100EF7D56 /* BFPatientSessionDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BFPatientSessionDetailViewController.m; path = "Non-Treatment/BFPatientSessionDetailViewController.m"; sourceTree = "<group>"; };
 		7D2E6BE418D33DEE00B03788 /* BFSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BFSettingsViewController.h; path = "Non-Treatment/Settings/BFSettingsViewController.h"; sourceTree = "<group>"; };
 		7D2E6BE518D33DEE00B03788 /* BFSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BFSettingsViewController.m; path = "Non-Treatment/Settings/BFSettingsViewController.m"; sourceTree = "<group>"; };
 		7D2E6BE818D3416200B03788 /* BFSettingsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BFSettingsDetailViewController.h; path = "Non-Treatment/Settings/BFSettingsDetailViewController.h"; sourceTree = "<group>"; };
@@ -107,6 +106,10 @@
 		7D2E6C2518D4F38300B03788 /* BFVisualizationBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFVisualizationBarView.m; sourceTree = "<group>"; };
 		7D2E6C2718D4F55800B03788 /* BFBiofeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BFBiofeedbackViewController.h; path = Treatment/BFBiofeedbackViewController.h; sourceTree = "<group>"; };
 		7D2E6C2818D4F55800B03788 /* BFBiofeedbackViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = BFBiofeedbackViewController.mm; path = Treatment/BFBiofeedbackViewController.mm; sourceTree = "<group>"; };
+		7D2E6C2A18D5078C00B03788 /* BFPatientSessionDetailChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BFPatientSessionDetailChartViewController.h; path = "Non-Treatment/BFPatientSessionDetailChartViewController.h"; sourceTree = "<group>"; };
+		7D2E6C2B18D5078C00B03788 /* BFPatientSessionDetailChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BFPatientSessionDetailChartViewController.m; path = "Non-Treatment/BFPatientSessionDetailChartViewController.m"; sourceTree = "<group>"; };
+		7D2E6C2D18D5079800B03788 /* BFPatientSessionDetailListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BFPatientSessionDetailListViewController.h; path = "Non-Treatment/BFPatientSessionDetailListViewController.h"; sourceTree = "<group>"; };
+		7D2E6C2E18D5079800B03788 /* BFPatientSessionDetailListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BFPatientSessionDetailListViewController.m; path = "Non-Treatment/BFPatientSessionDetailListViewController.m"; sourceTree = "<group>"; };
 		7DB9C2E118C2D2EF00CCDED9 /* Motion Biofeedback.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Motion Biofeedback.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DB9C2E418C2D2EF00CCDED9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7DB9C2E618C2D2EF00CCDED9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -189,8 +192,10 @@
 				7D16ED3D18D2BC3600EF7D56 /* BFAddPatientViewController.m */,
 				7D16ED3F18D2CE1600EF7D56 /* BFPatientDetailViewController.h */,
 				7D16ED4018D2CE1600EF7D56 /* BFPatientDetailViewController.m */,
-				7D16ED4218D2DAD100EF7D56 /* BFPatientSessionDetailViewController.h */,
-				7D16ED4318D2DAD100EF7D56 /* BFPatientSessionDetailViewController.m */,
+				7D2E6C2A18D5078C00B03788 /* BFPatientSessionDetailChartViewController.h */,
+				7D2E6C2B18D5078C00B03788 /* BFPatientSessionDetailChartViewController.m */,
+				7D2E6C2D18D5079800B03788 /* BFPatientSessionDetailListViewController.h */,
+				7D2E6C2E18D5079800B03788 /* BFPatientSessionDetailListViewController.m */,
 				7D2E6BE718D33DF500B03788 /* Settings */,
 			);
 			name = "Non-Treatment";
@@ -489,7 +494,6 @@
 				7D2E6C0518D4E27400B03788 /* BFOpenCVConverter.mm in Sources */,
 				7D2E6C0618D4E27400B03788 /* BFOpenCVEdgeDetector.mm in Sources */,
 				7D16ED3018D2B4A400EF7D56 /* BFPatientListViewController.m in Sources */,
-				7D16ED4418D2DAD100EF7D56 /* BFPatientSessionDetailViewController.m in Sources */,
 				7D2E6C2318D4F37900B03788 /* BFVisualizationCircleView.m in Sources */,
 				7D2E6C0718D4E27400B03788 /* BFOpenCVFaceDetector.mm in Sources */,
 				7DB9C2F518C2D2EF00CCDED9 /* BFAppDelegate.mm in Sources */,
@@ -497,7 +501,9 @@
 				7D2E6C2018D4F1DC00B03788 /* BFVisualizationView.m in Sources */,
 				7D2E6BEA18D3416200B03788 /* BFSettingsDetailViewController.m in Sources */,
 				7D2E6BF018D354CC00B03788 /* BFSettings.m in Sources */,
+				7D2E6C2C18D5078C00B03788 /* BFPatientSessionDetailChartViewController.m in Sources */,
 				7DB9C2F118C2D2EF00CCDED9 /* main.m in Sources */,
+				7D2E6C2F18D5079800B03788 /* BFPatientSessionDetailListViewController.m in Sources */,
 				7D2E6C1B18D4E9D700B03788 /* Patient.m in Sources */,
 				7D2E6BE618D33DEE00B03788 /* BFSettingsViewController.m in Sources */,
 				7D2E6BF618D4E23200B03788 /* BFFaceVideoViewController.mm in Sources */,
