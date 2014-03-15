@@ -40,6 +40,7 @@ static const CGFloat TableViewHeightHorizontal = 320;
     {
         _patient = patient;
         [self displayPatientInfo];
+        self.startButton.enabled = YES;
     }
 }
 
@@ -62,6 +63,11 @@ static const CGFloat TableViewHeightHorizontal = 320;
     self.imageView.layer.borderColor = [UIColor greenColor].CGColor;
     
     [self adjustHeightAccordingToInterfaceOrientation:self.interfaceOrientation];
+    
+    if (!self.patient)
+    {
+        self.startButton.enabled = NO;
+    }
 }
 
 - (void)didReceiveMemoryWarning

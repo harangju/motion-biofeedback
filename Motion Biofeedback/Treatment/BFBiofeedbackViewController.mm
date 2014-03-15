@@ -88,6 +88,12 @@
     cv::Mat mat = [BFOpenCVConverter matForSampleBuffer:sampleBuffer];
     transpose(mat, mat);
     
+    
+    
+    std::vector<cv::Rect> faceRects = [self.faceDetector faceFrameFromMat:mat];
+    
+    
+    
     if (self.shouldTakeReferenceImage)
     {
         

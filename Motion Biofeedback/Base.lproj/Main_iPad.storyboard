@@ -396,6 +396,7 @@
                     <connections>
                         <outlet property="imageHeightConstraint" destination="098-Bj-dtg" id="FMk-rm-gAB"/>
                         <outlet property="imageView" destination="T4j-lL-Xx2" id="Ahw-bX-8TI"/>
+                        <outlet property="startButton" destination="YPh-sN-RHx" id="hdA-v5-gr0"/>
                         <outlet property="tableView" destination="zty-V5-vUs" id="q9H-vZ-ws0"/>
                         <outlet property="tableViewHeightConstraint" destination="sf3-98-Re0" id="aBw-rz-IlH"/>
                     </connections>
