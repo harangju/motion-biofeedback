@@ -67,6 +67,10 @@
         self.shouldTakeReferenceImage = YES;
         self.statusLabel.text = @"Taking reference photo.";
     }
+    else
+    {
+        self.statusLabel.text = @"";
+    }
 }
 
 - (void)didReceiveMemoryWarning
