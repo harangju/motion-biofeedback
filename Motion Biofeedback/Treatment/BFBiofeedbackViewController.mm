@@ -14,11 +14,17 @@
 
 @interface BFBiofeedbackViewController () <GPUImageVideoCameraDelegate>
 
+// GPUImage
 @property (nonatomic, weak) IBOutlet GPUImageView *previewImageView;
 @property (nonatomic, strong) GPUImageVideoCamera *videoCamera;
 
+// OpenCV
 @property (nonatomic, strong) BFOpenCVTracker *tracker;
 @property (nonatomic, strong) BFOpenCVFaceDetector *faceDetector;
+
+// Views
+@property (nonatomic, weak) IBOutlet UIButton *saveButton;
+@property (nonatomic, weak) IBOutlet UIButton *beginButton;
 
 @end
 
@@ -62,7 +68,6 @@
                                                            cameraPosition:AVCaptureDevicePositionFront];
     self.videoCamera.delegate = self;
     self.videoCamera.horizontallyMirrorFrontFacingCamera = YES;
-    NSLog(@"%d", self.interfaceOrientation);
     self.videoCamera.outputImageOrientation = self.interfaceOrientation;
 }
 
@@ -105,6 +110,16 @@
                                               cancelButtonTitle:@"No"
                                               otherButtonTitles:@"Yes", nil];
     [alertView show];
+}
+
+- (IBAction)beginButtonTapped:(id)sender
+{
+    
+}
+
+- (IBAction)saveButtonTapped:(id)sender
+{
+    
 }
 
 #pragma mark - AlertView Delegate

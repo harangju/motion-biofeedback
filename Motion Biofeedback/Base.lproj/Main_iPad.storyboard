@@ -377,7 +377,7 @@
                                 </state>
                                 <connections>
                                     <action selector="startButtonTapped:" destination="58v-Zz-mbk" eventType="touchUpInside" id="MW8-en-j8W"/>
-                                    <segue destination="cPc-Yz-iv5" kind="modal" identifier="BiofeedbackSegueIdentifier" id="PKP-cR-lEK"/>
+                                    <segue destination="cPc-Yz-iv5" kind="modal" identifier="BiofeedbackSegueIdentifier" modalTransitionStyle="crossDissolve" id="PKP-cR-lEK"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -648,11 +648,45 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lBa-Fu-iJg" customClass="GPUImageView">
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yCJ-eY-RMG">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZVe-fC-kZf">
+                                <rect key="frame" x="683" y="20" width="65" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="65" id="2lP-GV-NHl"/>
+                                    <constraint firstAttribute="height" constant="36" id="cnm-fZ-J1I"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveButtonTapped:" destination="cPc-Yz-iv5" eventType="touchUpInside" id="mWW-R2-1DN"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0b3-vl-6cK">
+                                <rect key="frame" x="335" y="947" width="99" height="57"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="57" id="jZr-4P-NCD"/>
+                                    <constraint firstAttribute="width" constant="99" id="jyE-h6-3NH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Begin">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="beginButtonTapped:" destination="cPc-Yz-iv5" eventType="touchUpInside" id="pVu-zb-sDh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yCJ-eY-RMG">
                                 <rect key="frame" x="20" y="20" width="74" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="39" id="YIh-jC-n23"/>
+                                    <constraint firstAttribute="width" constant="74" id="erK-CH-8rt"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="Exit">
                                     <color key="titleColor" red="0.89366083559999998" green="0.1391422202" blue="0.16149279029999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -663,16 +697,24 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="ZVe-fC-kZf" secondAttribute="trailing" constant="20" id="A9C-Pn-ttT"/>
                             <constraint firstItem="lBa-Fu-iJg" firstAttribute="leading" secondItem="eGV-Pw-t0a" secondAttribute="leading" id="Haf-rb-5mp"/>
-                            <constraint firstItem="0lP-Ai-xhv" firstAttribute="top" secondItem="lBa-Fu-iJg" secondAttribute="bottom" id="JHd-Wc-k8h"/>
+                            <constraint firstItem="yCJ-eY-RMG" firstAttribute="top" secondItem="211-AH-T0q" secondAttribute="bottom" id="NTR-rz-pbx"/>
+                            <constraint firstItem="0lP-Ai-xhv" firstAttribute="top" secondItem="0b3-vl-6cK" secondAttribute="bottom" constant="20" id="PqF-ye-Tvp"/>
                             <constraint firstAttribute="trailing" secondItem="lBa-Fu-iJg" secondAttribute="trailing" id="WB2-IV-gHJ"/>
                             <constraint firstItem="lBa-Fu-iJg" firstAttribute="top" secondItem="eGV-Pw-t0a" secondAttribute="top" id="iXh-RF-nAN"/>
+                            <constraint firstItem="yCJ-eY-RMG" firstAttribute="leading" secondItem="eGV-Pw-t0a" secondAttribute="leading" constant="20" id="lK0-7L-9KE"/>
+                            <constraint firstItem="ZVe-fC-kZf" firstAttribute="top" secondItem="211-AH-T0q" secondAttribute="bottom" id="sWQ-v0-WrB"/>
+                            <constraint firstAttribute="centerX" secondItem="0b3-vl-6cK" secondAttribute="centerX" id="vWX-B8-kZL"/>
+                            <constraint firstItem="0lP-Ai-xhv" firstAttribute="top" secondItem="lBa-Fu-iJg" secondAttribute="bottom" id="zMb-ME-bMj"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="beginButton" destination="0b3-vl-6cK" id="PGO-6L-KEE"/>
                         <outlet property="previewImageView" destination="lBa-Fu-iJg" id="D3L-Te-lSd"/>
+                        <outlet property="saveButton" destination="ZVe-fC-kZf" id="9DZ-rq-SCT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zfu-eX-Arf" userLabel="First Responder" sceneMemberID="firstResponder"/>
