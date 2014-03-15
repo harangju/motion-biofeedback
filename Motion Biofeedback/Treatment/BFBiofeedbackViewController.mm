@@ -13,6 +13,9 @@
 #import "BFOpenCVFaceDetector.h"
 
 @interface BFBiofeedbackViewController () <GPUImageVideoCameraDelegate>
+{
+    dispatch_queue_t _faceDetectionQueue;
+}
 
 // GPUImage
 @property (nonatomic, weak) IBOutlet GPUImageView *previewImageView;
@@ -28,6 +31,7 @@
 
 // States
 @property (nonatomic) BOOL shouldTakeReferenceImage;
+@property (nonatomic) BOOL isDetectingFace;
 
 @end
 
@@ -39,6 +43,8 @@
 {
     [super viewDidLoad];
     
+    _faceDetectionQueue = dispatch_queue_create("face_detection_queue",
+                                                NULL);
     [self initializeVideoCamera];
     [self initializeDetectors];
     self.previewImageView.fillMode = kGPUImageFillModePreserveAspectRatioAndFill;
@@ -88,11 +94,17 @@
     cv::Mat mat = [BFOpenCVConverter matForSampleBuffer:sampleBuffer];
     transpose(mat, mat);
     
-    
-    
-    std::vector<cv::Rect> faceRects = [self.faceDetector faceFrameFromMat:mat];
-    
-    
+    // detect face
+    if (!self.isDetectingFace)
+    {
+        self.isDetectingFace = YES;
+        __weak typeof(self) weakSelf = self;
+        dispatch_async(_faceDetectionQueue, ^{
+            std::vector<cv::Rect> faceRects = [self.faceDetector faceFrameFromMat:mat];
+            NSLog(@"aoe %lu", faceRects.size());
+            weakSelf.isDetectingFace = NO;
+        });
+    }
     
     if (self.shouldTakeReferenceImage)
     {
