@@ -120,18 +120,19 @@ static const CGFloat TableViewHeightHorizontal = 320;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.sessions.count;
+//    return self.sessions.count;
+    return 5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier
                                                             forIndexPath:indexPath];
-    Session *session = self.sessions[indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"Session #%@",
-                           session.number];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",
-                                 session.startTime];
+//    Session *session = self.sessions[indexPath.row];
+//    cell.textLabel.text = [NSString stringWithFormat:@"Session #%@",
+//                           session.number];
+//    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",
+//                                 session.startTime];
     return cell;
 }
 

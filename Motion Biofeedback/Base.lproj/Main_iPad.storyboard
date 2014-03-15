@@ -355,7 +355,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="2F4-zZ-nOe" kind="push" identifier="SessionDetailSegueIdentifier" id="lt2-7O-Z0H"/>
+                                            <segue destination="5z4-47-Ivu" kind="push" identifier="SessionDetailSegueIdentifier" id="4iz-b4-W7D"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -404,6 +404,45 @@
             </objects>
             <point key="canvasLocation" x="977" y="-1363"/>
         </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="MkX-gc-RNv">
+            <objects>
+                <tabBarController definesPresentationContext="YES" id="5z4-47-Ivu" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="uxw-qu-zZX"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="M3V-nC-Rso">
+                        <rect key="frame" x="129" y="330" width="163" height="49"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="cgi-mW-WN9" kind="relationship" relationship="viewControllers" id="aWz-tf-aBQ"/>
+                        <segue destination="2F4-zZ-nOe" kind="relationship" relationship="viewControllers" id="QHQ-z9-fWF"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zle-7m-Uun" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1969" y="-1363"/>
+        </scene>
+        <!--View Controller - List-->
+        <scene sceneID="Ir0-hc-5uA">
+            <objects>
+                <viewController id="cgi-mW-WN9" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3QV-l4-EHm"/>
+                        <viewControllerLayoutGuide type="bottom" id="t5m-N6-FWP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FWs-bF-4PA">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="List" image="generic_sorting" id="Lgz-E1-Vu3"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BBI-jZ-iBn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2931" y="-2596"/>
+        </scene>
         <!--View Controller - Session Detail-->
         <scene sceneID="DRN-rS-kCQ">
             <objects>
@@ -417,11 +456,12 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <tabBarItem key="tabBarItem" tag="1" title="Chart" image="line_chart" id="GFn-PY-DAn"/>
                     <navigationItem key="navigationItem" title="Session Detail" id="QoX-ST-Wws"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xBg-Ld-8Z7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1969" y="-1363"/>
+            <point key="canvasLocation" x="2931" y="-1363"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cAc-QK-1vq">
@@ -724,6 +764,8 @@
     </scenes>
     <resources>
         <image name="close" width="22" height="22"/>
+        <image name="generic_sorting" width="25" height="25"/>
+        <image name="line_chart" width="22" height="22"/>
         <image name="settings" width="22" height="22"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
