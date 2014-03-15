@@ -26,6 +26,9 @@
 @property (nonatomic, weak) IBOutlet UIButton *saveButton;
 @property (nonatomic, weak) IBOutlet UIButton *beginButton;
 
+// States
+@property (nonatomic) BOOL shouldTakeReferenceImage;
+
 @end
 
 @implementation BFBiofeedbackViewController
@@ -44,7 +47,7 @@
     
     if (self.isFirstSession)
     {
-        
+        self.shouldTakeReferenceImage = YES;
     }
 }
 
@@ -85,6 +88,14 @@
     cv::Mat mat = [BFOpenCVConverter matForSampleBuffer:sampleBuffer];
     transpose(mat, mat);
     
+    if (self.shouldTakeReferenceImage)
+    {
+        
+    }
+    
+    
+    
+//
 //    self.matSize = cv::Size(mat.cols, mat.rows);
 //    
 //    // processs video
@@ -126,12 +137,7 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 0)
-        // should not cancel session
-    {
-        
-    }
-    else if (buttonIndex == 1)
+    if (buttonIndex == 1)
         // should cancel session
     {
         // cancel session

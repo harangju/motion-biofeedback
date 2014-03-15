@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@class BFBiofeedbackViewController;
+
+@protocol BFBiofeedbackViewControllerDelegate <NSObject>
+
+- (void)biofeedbackViowController:(BFBiofeedbackViewController *)biofeedbackViewController
+            didTakeReferenceImage:(UIImage *)referenceImage;
+
+@end
+
 @interface BFBiofeedbackViewController : UIViewController <UIAlertViewDelegate>
 
 @property (nonatomic) BOOL isFirstSession;
