@@ -10,4 +10,6 @@
 
 @interface BFBiofeedbackViewController : UIViewController <UIAlertViewDelegate>
 
+@property (nonatomic) BOOL isFirstSession;
+
 @end

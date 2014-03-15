@@ -8,6 +8,7 @@
 
 #import "BFPatientDetailViewController.h"
 #import "Session.h"
+#import "BFBiofeedbackViewController.h"
 
 static NSString * const CellIdentifier = @"PatientDetailCellIdentifier";
 static NSString * const SessionDetailSegueIdentifier = @"SessionDetailSegueIdentifier";
@@ -176,6 +177,11 @@ static const CGFloat TableViewHeightHorizontal = 320;
     else if ([segue.identifier isEqualToString:BiofeedbackSegueIdentifier])
     {
         self.view.window.windowLevel = UIWindowLevelStatusBar + 1;
+        BFBiofeedbackViewController *biofeedbackVC = (BFBiofeedbackViewController *)segue.destinationViewController;
+        if (self.patient.sessions.count == 0)
+        {
+            biofeedbackVC.isFirstSession = YES;
+        }
     }
 }
 
