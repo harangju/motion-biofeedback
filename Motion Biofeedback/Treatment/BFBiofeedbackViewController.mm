@@ -11,6 +11,9 @@
 #import "BFOpenCVConverter.h"
 #import "BFOpenCVTracker.h"
 #import "BFOpenCVFaceDetector.h"
+#import "BFVisualizationView.h"
+#import "BFVisualizationBarView.h"
+#import "BFVisualizationCircleView.h"
 
 @interface BFBiofeedbackViewController () <GPUImageVideoCameraDelegate>
 {
@@ -25,9 +28,16 @@
 @property (nonatomic, strong) BFOpenCVTracker *tracker;
 @property (nonatomic, strong) BFOpenCVFaceDetector *faceDetector;
 
+// Visualization
+@property (nonatomic, strong) BFVisualizationView *visualizationView;
+
+// Voice
+//@property (nonatomic, strong) AVSpeechSynthesizer *voice;
+
 // Views
 @property (nonatomic, weak) IBOutlet UIButton *saveButton;
 @property (nonatomic, weak) IBOutlet UIButton *beginButton;
+@property (nonatomic, weak) IBOutlet UILabel *statusLabel;
 
 // States
 @property (nonatomic) BOOL shouldTakeReferenceImage;
@@ -47,6 +57,7 @@
                                                 NULL);
     [self initializeVideoCamera];
     [self initializeDetectors];
+    [self initializeVisualization];
     self.previewImageView.fillMode = kGPUImageFillModePreserveAspectRatioAndFill;
     [self.videoCamera addTarget:self.previewImageView];
     [self.videoCamera startCameraCapture];
@@ -54,6 +65,7 @@
     if (self.isFirstSession)
     {
         self.shouldTakeReferenceImage = YES;
+        self.statusLabel.text = @"Taking reference photo.";
     }
 }
 
@@ -86,6 +98,19 @@
     self.faceDetector = [BFOpenCVFaceDetector new];
 }
 
+- (void)initializeVisualization
+{
+    if (self.visualizationType == BFVisualizationTypeBar)
+    {
+        self.visualizationView = [[BFVisualizationBarView alloc] initWithFrame:self.view.bounds];
+    }
+    else
+    {
+        self.visualizationView = [[BFVisualizationCircleView alloc] initWithFrame:self.view.bounds];
+    }
+    [self.view addSubview:self.visualizationView];
+}
+
 #pragma mark - GPUImage VideoCamera Delegate
 
 - (void)willOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
@@ -115,9 +140,6 @@
     
 //
 //    self.matSize = cv::Size(mat.cols, mat.rows);
-//    
-//    // processs video
-//    [self processFrame:mat withVideoRect:[self videoRectFromBuffer:sampleBuffer]];
 }
 
 //- (CGRect)videoRectFromBuffer:(CMSampleBufferRef)sampleBuffer

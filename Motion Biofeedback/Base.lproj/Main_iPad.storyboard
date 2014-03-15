@@ -737,6 +737,17 @@
                                     <action selector="exitButtonTapped:" destination="cPc-Yz-iv5" eventType="touchUpInside" id="7D1-G9-fzw"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wHW-UR-Wbe">
+                                <rect key="frame" x="147" y="20" width="475" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="ZdH-CT-Yl3"/>
+                                    <constraint firstAttribute="width" constant="475" id="kHg-0l-ecT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <color key="textColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -747,6 +758,8 @@
                             <constraint firstAttribute="trailing" secondItem="lBa-Fu-iJg" secondAttribute="trailing" id="WB2-IV-gHJ"/>
                             <constraint firstItem="lBa-Fu-iJg" firstAttribute="top" secondItem="eGV-Pw-t0a" secondAttribute="top" id="iXh-RF-nAN"/>
                             <constraint firstItem="yCJ-eY-RMG" firstAttribute="leading" secondItem="eGV-Pw-t0a" secondAttribute="leading" constant="20" id="lK0-7L-9KE"/>
+                            <constraint firstAttribute="centerX" secondItem="wHW-UR-Wbe" secondAttribute="centerX" id="mHR-py-owp"/>
+                            <constraint firstItem="wHW-UR-Wbe" firstAttribute="top" secondItem="211-AH-T0q" secondAttribute="bottom" id="pYv-8U-cma"/>
                             <constraint firstItem="ZVe-fC-kZf" firstAttribute="top" secondItem="211-AH-T0q" secondAttribute="bottom" id="sWQ-v0-WrB"/>
                             <constraint firstAttribute="centerX" secondItem="0b3-vl-6cK" secondAttribute="centerX" id="vWX-B8-kZL"/>
                             <constraint firstItem="0lP-Ai-xhv" firstAttribute="top" secondItem="lBa-Fu-iJg" secondAttribute="bottom" id="zMb-ME-bMj"/>
@@ -756,6 +769,7 @@
                         <outlet property="beginButton" destination="0b3-vl-6cK" id="PGO-6L-KEE"/>
                         <outlet property="previewImageView" destination="lBa-Fu-iJg" id="D3L-Te-lSd"/>
                         <outlet property="saveButton" destination="ZVe-fC-kZf" id="9DZ-rq-SCT"/>
+                        <outlet property="statusLabel" destination="wHW-UR-Wbe" id="Z4Q-lI-b8f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zfu-eX-Arf" userLabel="First Responder" sceneMemberID="firstResponder"/>

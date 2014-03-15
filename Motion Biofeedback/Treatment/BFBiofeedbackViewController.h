@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger, BFVisualizationType)
+{
+    BFVisualizationTypeCircle,
+    BFVisualizationTypeBar
+};
+
 @class BFBiofeedbackViewController;
 
 @protocol BFBiofeedbackViewControllerDelegate <NSObject>
@@ -19,6 +25,7 @@
 
 @interface BFBiofeedbackViewController : UIViewController <UIAlertViewDelegate>
 
+@property (nonatomic) BFVisualizationType visualizationType;
 @property (nonatomic) BOOL isFirstSession;
 
 @end
