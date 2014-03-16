@@ -242,4 +242,9 @@ static const CGFloat TableViewHeightHorizontal = 320;
     [self saveContext];
 }
 
+- (UIImage *)biofeedbackViewControllerReferenceImage:(BFBiofeedbackViewController *)biofeedbackViewController
+{
+    return self.imageView.image;//[UIImage imageWithData:self.patient.referenceImageData];
+}
+
 @end
