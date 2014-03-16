@@ -746,6 +746,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RmK-SK-x7m" customClass="BFFaceEllipseView">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZVe-fC-kZf">
                                 <rect key="frame" x="683" y="20" width="65" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -807,6 +812,9 @@
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="ZVe-fC-kZf" secondAttribute="trailing" constant="20" id="A9C-Pn-ttT"/>
+                            <constraint firstItem="RmK-SK-x7m" firstAttribute="top" secondItem="eGV-Pw-t0a" secondAttribute="top" id="CV1-jy-lA7"/>
+                            <constraint firstItem="RmK-SK-x7m" firstAttribute="leading" secondItem="eGV-Pw-t0a" secondAttribute="leading" id="CcQ-GO-9v5"/>
+                            <constraint firstAttribute="trailing" secondItem="RmK-SK-x7m" secondAttribute="trailing" id="EVG-VE-X1P"/>
                             <constraint firstItem="lBa-Fu-iJg" firstAttribute="leading" secondItem="eGV-Pw-t0a" secondAttribute="leading" id="Haf-rb-5mp"/>
                             <constraint firstItem="yCJ-eY-RMG" firstAttribute="top" secondItem="211-AH-T0q" secondAttribute="bottom" id="NTR-rz-pbx"/>
                             <constraint firstItem="0lP-Ai-xhv" firstAttribute="top" secondItem="0b3-vl-6cK" secondAttribute="bottom" constant="20" id="PqF-ye-Tvp"/>
@@ -816,6 +824,7 @@
                             <constraint firstAttribute="centerX" secondItem="wHW-UR-Wbe" secondAttribute="centerX" id="mHR-py-owp"/>
                             <constraint firstItem="wHW-UR-Wbe" firstAttribute="top" secondItem="211-AH-T0q" secondAttribute="bottom" id="pYv-8U-cma"/>
                             <constraint firstItem="ZVe-fC-kZf" firstAttribute="top" secondItem="211-AH-T0q" secondAttribute="bottom" id="sWQ-v0-WrB"/>
+                            <constraint firstItem="0lP-Ai-xhv" firstAttribute="top" secondItem="RmK-SK-x7m" secondAttribute="bottom" id="slb-Ms-8oO"/>
                             <constraint firstAttribute="centerX" secondItem="0b3-vl-6cK" secondAttribute="centerX" id="vWX-B8-kZL"/>
                             <constraint firstItem="0lP-Ai-xhv" firstAttribute="top" secondItem="lBa-Fu-iJg" secondAttribute="bottom" id="zMb-ME-bMj"/>
                         </constraints>
@@ -823,6 +832,7 @@
                     <connections>
                         <outlet property="beginButton" destination="0b3-vl-6cK" id="PGO-6L-KEE"/>
                         <outlet property="exitButton" destination="yCJ-eY-RMG" id="fNo-nf-UHG"/>
+                        <outlet property="faceEllipseView" destination="RmK-SK-x7m" id="FkS-8o-F3p"/>
                         <outlet property="previewImageView" destination="lBa-Fu-iJg" id="D3L-Te-lSd"/>
                         <outlet property="saveButton" destination="ZVe-fC-kZf" id="9DZ-rq-SCT"/>
                         <outlet property="statusLabel" destination="wHW-UR-Wbe" id="Z4Q-lI-b8f"/>

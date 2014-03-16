@@ -16,6 +16,13 @@
 #import "BFVisualizationCircleView.h"
 #import "BFFaceEllipseView.h"
 
+static const CGFloat FaceEllipseRectWidthPortrait = 700;
+static const CGFloat FaceEllipseRectHeightPortrait = 800;
+static const CGFloat FaceEllipseRectWidthLandscape = 600;
+static const CGFloat FaceEllipseRectHeightLandscape = 700;
+static CGRect FaceEllipseRectFramePortrait;
+static CGRect FaceEllipseRectFrameLandscape;
+
 @interface BFBiofeedbackViewController () <GPUImageVideoCameraDelegate>
 {
     dispatch_queue_t _faceDetectionQueue;
@@ -40,7 +47,7 @@
 @property (nonatomic, weak) IBOutlet UIButton *saveButton;
 @property (nonatomic, weak) IBOutlet UIButton *beginButton;
 @property (nonatomic, weak) IBOutlet UILabel *statusLabel;
-@property (nonatomic, strong) BFFaceEllipseView *faceEllipseView;
+@property (nonatomic, weak) IBOutlet BFFaceEllipseView *faceEllipseView;
 
 // States
 @property (nonatomic) BOOL shouldTakeReferenceImage;
@@ -69,6 +76,7 @@
     [self.view bringSubviewToFront:self.exitButton];
     [self.view bringSubviewToFront:self.beginButton];
     [self.view bringSubviewToFront:self.saveButton];
+    [self.view bringSubviewToFront:self.statusLabel];
     
     if (self.isFirstSession)
     {
@@ -126,7 +134,27 @@
 
 - (void)initializeFaceEllipseView
 {
-    self.faceEllipseView = [[BFFaceEllipseView alloc] initWithFrame:self.view.bounds];
+//    self.faceEllipseView = [[BFFaceEllipseView alloc] initWithFrame:self.view.bounds];
+    // calculate face rect
+    CGSize viewSize = self.view.bounds.size;
+    FaceEllipseRectFramePortrait = CGRectMake((viewSize.width - FaceEllipseRectWidthPortrait) / 2.0,
+                                              (viewSize.height - FaceEllipseRectHeightPortrait) / 2.0,
+                                              FaceEllipseRectWidthPortrait,
+                                              FaceEllipseRectHeightPortrait);
+    FaceEllipseRectFrameLandscape = CGRectMake((viewSize.height - FaceEllipseRectWidthLandscape) / 2.0,
+                                               (viewSize.width - FaceEllipseRectHeightLandscape) / 2.0,
+                                               FaceEllipseRectWidthLandscape,
+                                               FaceEllipseRectHeightLandscape);
+    if (self.interfaceOrientation == UIInterfaceOrientationPortrait ||
+        self.interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
+    {
+        self.faceEllipseView.faceEllipseRect = FaceEllipseRectFramePortrait;
+    }
+    else if (self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
+             self.interfaceOrientation == UIInterfaceOrientationLandscapeRight)
+    {
+        self.faceEllipseView.faceEllipseRect = FaceEllipseRectFrameLandscape;
+    }
 //    self.faceEllipseView.hidden = YES;
     [self.view addSubview:self.faceEllipseView];
 }
@@ -207,7 +235,20 @@
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
                                 duration:(NSTimeInterval)duration
 {
+    // camera orientation
     self.videoCamera.outputImageOrientation = toInterfaceOrientation;
+    // face rect orientation
+    if (toInterfaceOrientation == UIInterfaceOrientationPortrait ||
+        toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
+    {
+        self.faceEllipseView.faceEllipseRect = FaceEllipseRectFramePortrait;
+    }
+    else if (toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
+             toInterfaceOrientation == UIInterfaceOrientationLandscapeRight)
+    {
+        self.faceEllipseView.faceEllipseRect = FaceEllipseRectFrameLandscape;
+    }
+    [self.faceEllipseView setNeedsDisplay];
 }
 
 @end
