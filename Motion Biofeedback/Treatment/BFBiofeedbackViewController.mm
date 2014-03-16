@@ -56,6 +56,8 @@ static CGRect FaceEllipseRectFrameLandscape;
 // States
 @property (nonatomic) BOOL shouldTakeReferenceImage;
 @property (nonatomic) BOOL isDetectingFace;
+@property (nonatomic) BOOL faceInEllipse;
+@property (nonatomic) BOOL faceLocked;
 
 @property (nonatomic, strong) NSTimer *holdTimer;
 
@@ -75,6 +77,7 @@ static CGRect FaceEllipseRectFrameLandscape;
     [self initializeDetectors];
     [self initializeVisualization];
     [self initializeFaceEllipseView];
+//    [self initializeTimers];
     self.previewImageView.fillMode = kGPUImageFillModePreserveAspectRatioAndFill;
     [self.videoCamera addTarget:self.previewImageView];
     [self.videoCamera startCameraCapture];
@@ -190,19 +193,8 @@ static CGRect FaceEllipseRectFrameLandscape;
         __weak typeof(self) weakSelf = self;
         dispatch_async(_faceDetectionQueue, ^{
             std::vector<cv::Rect> faceRects = [self.faceDetector faceFrameFromMat:mat];
-            
-            // detected 1 face
-            if (faceRects.size() == 1)
-            {
-                // process face
-                [self processFaceRect:faceRects[0]
-                            videoRect:videoRect];
-            }
-            else
-            {
-                [self showThatFaceIsNotInCircle];
-            }
-            
+            [self processFaceRects:faceRects
+                         videoRect:videoRect];
             weakSelf.isDetectingFace = NO;
         });
     }
@@ -215,20 +207,55 @@ static CGRect FaceEllipseRectFrameLandscape;
 
 #pragma mark - Image Processing
 
-- (void)processFaceRect:(cv::Rect)faceRect
-              videoRect:(CGRect)videoRect
+- (void)processFaceRects:(std::vector<cv::Rect>)faceRects
+               videoRect:(CGRect)videoRect
 {
-    NSLog(@"asentuh %d", [self faceRectIsInsideCircleWithFaceRect:faceRect
-                                                      inVideoRect:videoRect]);
+    if (faceRects.size() != 1)
+        // not 1 face detected
+    {
+        return;
+    }
+    
+    // 1 face detected
+    cv::Rect faceRect = faceRects[0];
+
     // check if face is in ellipse
     if ([self faceRectIsInsideCircleWithFaceRect:faceRect
                                      inVideoRect:videoRect])
     {
-        [self showThatFaceIsInCircle];
+        // state
+        self.faceInEllipse = YES;
+        
+        if (!self.faceLocked)
+        {
+            // UI
+            [self showThatFaceIsInCircle];
+            
+            // timer
+            if (!self.holdTimer || self.holdTimer.isValid)
+            {
+                self.holdTimer = [NSTimer timerWithTimeInterval:3
+                                                         target:self
+                                                       selector:@selector(holdTimerFired:)
+                                                       userInfo:nil
+                                                        repeats:NO];
+                [[NSRunLoop mainRunLoop] addTimer:self.holdTimer
+                                          forMode:NSDefaultRunLoopMode];
+            }
+        }
     }
     else
     {
+        // state
+        self.faceInEllipse = NO;
+        self.faceLocked = NO;
+        
+        // UI
         [self showThatFaceIsNotInCircle];
+        
+        // timer
+        [self.holdTimer invalidate];
+        self.holdTimer = nil;
     }
 }
 
@@ -306,10 +333,14 @@ static CGRect FaceEllipseRectFrameLandscape;
 
 - (void)holdTimerFired:(id)sender
 {
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^
-     {
-         self.statusLabel.text = @"Say cheese~!";
-     }];
+    if (self.faceInEllipse)
+    {
+        self.faceLocked = YES;
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^
+         {
+             self.statusLabel.text = @"Say cheese~!";
+         }];
+    }
 }
 
 #pragma mark - IBAction
