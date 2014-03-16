@@ -10,4 +10,10 @@
 
 @implementation BFBiofeedbackPhase
 
+- (void)processFrame:(cv::Mat)mat
+           videoRect:(CGRect)videoRect
+{
+    
+}
+
 @end

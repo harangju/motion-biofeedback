@@ -19,6 +19,9 @@
 
 @interface BFBiofeedbackPhase : NSObject
 
-- (void)processFrame:(
+- (void)processFrame:(cv::Mat)mat
+           videoRect:(CGRect)videoRect;
+
+@property (nonatomic, weak) id <BFBiofeedbackPhaseDelegate> delegate;
 
 @end
