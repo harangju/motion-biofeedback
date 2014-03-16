@@ -14,6 +14,7 @@
 #import "BFVisualizationView.h"
 #import "BFVisualizationBarView.h"
 #import "BFVisualizationCircleView.h"
+#import "BFFaceEllipseView.h"
 
 @interface BFBiofeedbackViewController () <GPUImageVideoCameraDelegate>
 {
@@ -39,6 +40,7 @@
 @property (nonatomic, weak) IBOutlet UIButton *saveButton;
 @property (nonatomic, weak) IBOutlet UIButton *beginButton;
 @property (nonatomic, weak) IBOutlet UILabel *statusLabel;
+@property (nonatomic, strong) BFFaceEllipseView *faceEllipseView;
 
 // States
 @property (nonatomic) BOOL shouldTakeReferenceImage;
@@ -59,9 +61,14 @@
     [self initializeVideoCamera];
     [self initializeDetectors];
     [self initializeVisualization];
+    [self initializeFaceEllipseView];
     self.previewImageView.fillMode = kGPUImageFillModePreserveAspectRatioAndFill;
     [self.videoCamera addTarget:self.previewImageView];
     [self.videoCamera startCameraCapture];
+    
+    [self.view bringSubviewToFront:self.exitButton];
+    [self.view bringSubviewToFront:self.beginButton];
+    [self.view bringSubviewToFront:self.saveButton];
     
     if (self.isFirstSession)
     {
@@ -113,10 +120,15 @@
     {
         self.visualizationView = [[BFVisualizationCircleView alloc] initWithFrame:self.view.bounds];
     }
+    self.visualizationView.hidden = YES;
     [self.view addSubview:self.visualizationView];
-    [self.view bringSubviewToFront:self.exitButton];
-    [self.view bringSubviewToFront:self.beginButton];
-    [self.view bringSubviewToFront:self.saveButton];
+}
+
+- (void)initializeFaceEllipseView
+{
+    self.faceEllipseView = [[BFFaceEllipseView alloc] initWithFrame:self.view.bounds];
+//    self.faceEllipseView.hidden = YES;
+    [self.view addSubview:self.faceEllipseView];
 }
 
 #pragma mark - GPUImage VideoCamera Delegate

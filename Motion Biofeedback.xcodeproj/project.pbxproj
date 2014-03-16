@@ -50,6 +50,7 @@
 		7DB9C32518C2D39800CCDED9 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DB9C32418C2D39800CCDED9 /* CoreVideo.framework */; };
 		7DB9C32718C2D39D00CCDED9 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DB9C32618C2D39D00CCDED9 /* CoreMedia.framework */; };
 		7DB9C32918C2D43500CCDED9 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DB9C32818C2D43500CCDED9 /* AssetsLibrary.framework */; };
+		7DD1705418D543D300DEFD4F /* BFFaceEllipseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DD1705318D543D300DEFD4F /* BFFaceEllipseView.m */; };
 		7DF6BDE818CAF092007B72FC /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF6BDE718CAF092007B72FC /* opencv2.framework */; };
 		F7E84084BE3542CBA28449D7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1545215E15347C8A01FA00B /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -134,6 +135,8 @@
 		7DB9C32418C2D39800CCDED9 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		7DB9C32618C2D39D00CCDED9 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		7DB9C32818C2D43500CCDED9 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		7DD1705218D543D300DEFD4F /* BFFaceEllipseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BFFaceEllipseView.h; path = Treatment/BFFaceEllipseView.h; sourceTree = "<group>"; };
+		7DD1705318D543D300DEFD4F /* BFFaceEllipseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BFFaceEllipseView.m; path = Treatment/BFFaceEllipseView.m; sourceTree = "<group>"; };
 		7DF6BDE718CAF092007B72FC /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 		C1545215E15347C8A01FA00B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -175,6 +178,8 @@
 			children = (
 				7D2E6C2718D4F55800B03788 /* BFBiofeedbackViewController.h */,
 				7D2E6C2818D4F55800B03788 /* BFBiofeedbackViewController.mm */,
+				7DD1705218D543D300DEFD4F /* BFFaceEllipseView.h */,
+				7DD1705318D543D300DEFD4F /* BFFaceEllipseView.m */,
 				7D2E6BF418D4E23200B03788 /* BFFaceVideoViewController.h */,
 				7D2E6BF518D4E23200B03788 /* BFFaceVideoViewController.mm */,
 				7D2E6BF718D4E25800B03788 /* Visualization */,
@@ -484,6 +489,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D16ED4118D2CE1600EF7D56 /* BFPatientDetailViewController.m in Sources */,
+				7DD1705418D543D300DEFD4F /* BFFaceEllipseView.m in Sources */,
 				7D16ED3E18D2BC3600EF7D56 /* BFAddPatientViewController.m in Sources */,
 				7D2E6BFA18D4E25800B03788 /* BFCircleView.m in Sources */,
 				7D2E6C2618D4F38300B03788 /* BFVisualizationBarView.m in Sources */,
