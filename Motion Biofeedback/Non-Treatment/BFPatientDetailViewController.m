@@ -18,7 +18,7 @@ static NSString * const PopoverStoryboardID = @"PatientListNavVC";
 static const CGFloat TableViewHeightVertical = 460;
 static const CGFloat TableViewHeightHorizontal = 320;
 
-@interface BFPatientDetailViewController ()
+@interface BFPatientDetailViewController () <BFBiofeedbackViewControllerDelegate>
 
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *tableViewHeightConstraint;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *imageHeightConstraint;
@@ -75,6 +75,13 @@ static const CGFloat TableViewHeightHorizontal = 320;
     [super didReceiveMemoryWarning];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self displayPatientInfo];
+}
+
 #pragma mark - Model
 
 - (void)displayPatientInfo
@@ -92,6 +99,13 @@ static const CGFloat TableViewHeightHorizontal = 320;
     {
         self.imageView.image = [UIImage imageWithData:self.patient.referenceImageData];
         self.imageView.backgroundColor = [UIColor clearColor];
+        self.imageView.layer.borderWidth = 0;
+    }
+    else
+    {
+        self.imageView.image = nil;
+        self.imageView.backgroundColor = [UIColor lightGrayColor];
+        self.imageView.layer.borderWidth = 1;
     }
     
 //    Session *session = [Session createEntity];
@@ -106,6 +120,22 @@ static const CGFloat TableViewHeightHorizontal = 320;
 //            NSLog(@"Error saving context: %@", error.description);
 //        }
 //    }];
+}
+
+- (void)saveContext
+{
+    [[NSManagedObjectContext defaultContext] saveToPersistentStoreWithCompletion:^(BOOL success,
+                                                                                   NSError *error)
+     {
+         if (success)
+         {
+             NSLog(@"You successfully saved your context.");
+         }
+         else if (error)
+         {
+             NSLog(@"Error saving context: %@", error.description);
+         }
+     }];
 }
 
 #pragma mark - Buttons
@@ -185,6 +215,7 @@ static const CGFloat TableViewHeightHorizontal = 320;
     {
         self.view.window.windowLevel = UIWindowLevelStatusBar + 1;
         BFBiofeedbackViewController *biofeedbackVC = (BFBiofeedbackViewController *)segue.destinationViewController;
+        biofeedbackVC.delegate = self;
         if (self.patient.sessions.count == 0)
         {
             biofeedbackVC.isFirstSession = YES;
@@ -211,6 +242,16 @@ static const CGFloat TableViewHeightHorizontal = 320;
   invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
 {
     self.navigationItem.leftBarButtonItem = nil;
+}
+
+#pragma mark - BiofeedbackViewController Delegate
+
+- (void)biofeedbackViowController:(BFBiofeedbackViewController *)biofeedbackViewController
+            didTakeReferenceImage:(UIImage *)referenceImage
+{
+    self.patient.referenceImageData = UIImageJPEGRepresentation(referenceImage,
+                                                                0.9);
+    [self saveContext];
 }
 
 @end

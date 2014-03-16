@@ -89,9 +89,7 @@ static CGRect FaceEllipseRectFrameLandscape;
     
     if (self.isFirstSession)
     {
-        self.shouldTakeReferenceImage = YES;
         self.statusLabel.text = PutFaceInCircle;
-        
     }
     else
     {
@@ -201,7 +199,23 @@ static CGRect FaceEllipseRectFrameLandscape;
     
     if (self.shouldTakeReferenceImage)
     {
+//        CVPixelBufferRef pixelBuffer = (CVPixelBufferRef)CMSampleBufferGetImageBuffer(sampleBuffer);
+//        CIImage *ciImage = [CIImage imageWithCVPixelBuffer:pixelBuffer];
+//        
+//        CIContext *context = [CIContext contextWithOptions:nil];
+//        CGImageRef myImage = [context
+//                              createCGImage:ciImage
+//                              fromRect:CGRectMake(0, 0,
+//                                                  CVPixelBufferGetWidth(pixelBuffer),
+//                                                  CVPixelBufferGetHeight(pixelBuffer))];
+//        
+//        UIImage *image = [UIImage imageWithCGImage:myImage];
         
+        UIImage *image = [BFOpenCVConverter imageForMat:mat];
+        
+        self.shouldTakeReferenceImage = NO;
+        [self.delegate biofeedbackViowController:self
+                           didTakeReferenceImage:image];
     }
 }
 
@@ -232,7 +246,7 @@ static CGRect FaceEllipseRectFrameLandscape;
             [self showThatFaceIsInCircle];
             
             // timer
-            if (!self.holdTimer || self.holdTimer.isValid)
+            if (!self.holdTimer)
             {
                 self.holdTimer = [NSTimer timerWithTimeInterval:3
                                                          target:self
@@ -336,9 +350,12 @@ static CGRect FaceEllipseRectFrameLandscape;
     if (self.faceInEllipse)
     {
         self.faceLocked = YES;
+        self.shouldTakeReferenceImage = YES;
+        __weak typeof(self) weakSelf = self;
         [[NSOperationQueue mainQueue] addOperationWithBlock:^
          {
-             self.statusLabel.text = @"Say cheese~!";
+             weakSelf.statusLabel.text = @"Say cheese~!";
+             
          }];
     }
 }

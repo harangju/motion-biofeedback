@@ -28,4 +28,6 @@ typedef NS_ENUM(NSInteger, BFVisualizationType)
 @property (nonatomic) BFVisualizationType visualizationType;
 @property (nonatomic) BOOL isFirstSession;
 
+@property (nonatomic, weak) id <BFBiofeedbackViewControllerDelegate> delegate;
+
 @end
