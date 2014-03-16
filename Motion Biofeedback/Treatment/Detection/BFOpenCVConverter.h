@@ -13,6 +13,7 @@ using namespace cv;
 
 @interface BFOpenCVConverter : NSObject
 
+// copies memory from sampleBuffer to Mat
 + (Mat)matForSampleBuffer:(CMSampleBufferRef)sampleBuffer;
 + (UIImage *)imageForMat:(Mat)mat;
 + (CGAffineTransform)affineTransformForVideoFrame:(CGRect)videoFrame

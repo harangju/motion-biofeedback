@@ -25,7 +25,7 @@
         unsigned char *baseaddress = (unsigned char *)CVPixelBufferGetBaseAddressOfPlane(pixelBuffer, 0);
         Mat mat(videoRect.size.height, videoRect.size.width, CV_8UC1, baseaddress, 0);
         CVPixelBufferUnlockBaseAddress(pixelBuffer, 0);
-        return mat;
+        return mat.clone();
     }
     else if (format == kCVPixelFormatType_32BGRA)
     {
@@ -34,7 +34,7 @@
         unsigned char *baseaddress = (unsigned char *)CVPixelBufferGetBaseAddress(pixelBuffer);
         Mat mat(videoRect.size.height, videoRect.size.width, CV_8UC4, baseaddress, 0);
         CVPixelBufferUnlockBaseAddress(pixelBuffer, 0);
-        return mat;
+        return mat.clone();
     }
     else
     {

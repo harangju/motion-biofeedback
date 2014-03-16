@@ -82,6 +82,7 @@ static CGRect FaceEllipseRectFrameLandscape;
     {
         self.shouldTakeReferenceImage = YES;
         self.statusLabel.text = @"Taking reference photo.";
+        
     }
     else
     {
@@ -155,7 +156,7 @@ static CGRect FaceEllipseRectFrameLandscape;
     {
         self.faceEllipseView.faceEllipseRect = FaceEllipseRectFrameLandscape;
     }
-//    self.faceEllipseView.hidden = YES;
+    self.faceEllipseView.hidden = YES;
     [self.view addSubview:self.faceEllipseView];
 }
 
@@ -165,19 +166,34 @@ static CGRect FaceEllipseRectFrameLandscape;
 {
     // get mat
     cv::Mat mat = [BFOpenCVConverter matForSampleBuffer:sampleBuffer];
-    transpose(mat, mat);
+
+    if (self.interfaceOrientation == UIInterfaceOrientationPortrait ||
+        self.interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
+    {
+        cv::transpose(mat, mat);
+    }
+    else if (self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
+             self.interfaceOrientation == UIInterfaceOrientationLandscapeRight)
+    {
+        cv::flip(mat, mat, 1);
+    }
     
     // detect face
-//    if (!self.isDetectingFace)
-//    {
-//        self.isDetectingFace = YES;
-//        __weak typeof(self) weakSelf = self;
-//        dispatch_async(_faceDetectionQueue, ^{
-//            std::vector<cv::Rect> faceRects = [self.faceDetector faceFrameFromMat:mat];
-//            NSLog(@"aoe %lu", faceRects.size());
-//            weakSelf.isDetectingFace = NO;
-//        });
-//    }
+    if (!self.isDetectingFace)
+    {
+        self.isDetectingFace = YES;
+        __weak typeof(self) weakSelf = self;
+        dispatch_async(_faceDetectionQueue, ^{
+            std::vector<cv::Rect> faceRects = [self.faceDetector faceFrameFromMat:mat];
+            if (faceRects.size() == 1)
+            {
+                cv::Rect rect = faceRects[0];
+                NSLog(@"x = %d", rect.x);
+            }
+            NSLog(@"aoe %lu", faceRects.size());
+            weakSelf.isDetectingFace = NO;
+        });
+    }
     
     if (self.shouldTakeReferenceImage)
     {
@@ -242,11 +258,13 @@ static CGRect FaceEllipseRectFrameLandscape;
         toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
     {
         self.faceEllipseView.faceEllipseRect = FaceEllipseRectFramePortrait;
+        NSLog(@"will rotate to portrait");
     }
     else if (toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
              toInterfaceOrientation == UIInterfaceOrientationLandscapeRight)
     {
         self.faceEllipseView.faceEllipseRect = FaceEllipseRectFrameLandscape;
+        NSLog(@"will rotate to landscape");
     }
     [self.faceEllipseView setNeedsDisplay];
 }
