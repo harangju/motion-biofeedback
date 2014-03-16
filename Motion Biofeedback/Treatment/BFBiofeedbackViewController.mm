@@ -16,6 +16,9 @@
 #import "BFVisualizationCircleView.h"
 #import "BFFaceEllipseView.h"
 
+static NSString * const PutFaceInCircle = @"Put face inside circle";
+static NSString * const HoldFace = @"Hold";
+
 static CGFloat FaceRectCircleMatchCenterDifferentThreshold = 40;
 static const CGFloat FaceEllipseRectWidthPortrait = 700;
 static const CGFloat FaceEllipseRectHeightPortrait = 800;
@@ -54,6 +57,8 @@ static CGRect FaceEllipseRectFrameLandscape;
 @property (nonatomic) BOOL shouldTakeReferenceImage;
 @property (nonatomic) BOOL isDetectingFace;
 
+@property (nonatomic, strong) NSTimer *holdTimer;
+
 @end
 
 @implementation BFBiofeedbackViewController
@@ -82,7 +87,7 @@ static CGRect FaceEllipseRectFrameLandscape;
     if (self.isFirstSession)
     {
         self.shouldTakeReferenceImage = YES;
-        self.statusLabel.text = @"Taking reference photo.";
+        self.statusLabel.text = PutFaceInCircle;
         
     }
     else
@@ -193,6 +198,11 @@ static CGRect FaceEllipseRectFrameLandscape;
                 [self processFaceRect:faceRects[0]
                             videoRect:videoRect];
             }
+            else
+            {
+                [self showThatFaceIsNotInCircle];
+            }
+            
             weakSelf.isDetectingFace = NO;
         });
     }
@@ -214,20 +224,34 @@ static CGRect FaceEllipseRectFrameLandscape;
     if ([self faceRectIsInsideCircleWithFaceRect:faceRect
                                      inVideoRect:videoRect])
     {
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^
-         {
-             self.faceEllipseView.ellipseColor = [UIColor greenColor];
-             [self.faceEllipseView setNeedsDisplay];
-         }];
+        [self showThatFaceIsInCircle];
     }
     else
     {
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^
-         {
-             self.faceEllipseView.ellipseColor = [UIColor redColor];
-             [self.faceEllipseView setNeedsDisplay];
-         }];
+        [self showThatFaceIsNotInCircle];
     }
+}
+
+- (void)showThatFaceIsInCircle
+{
+    __weak typeof(self) weakSelf = self;;
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^
+     {
+         weakSelf.faceEllipseView.ellipseColor = [UIColor greenColor];
+         [weakSelf.faceEllipseView setNeedsDisplay];
+         weakSelf.statusLabel.text = HoldFace;
+     }];
+}
+
+- (void)showThatFaceIsNotInCircle
+{
+    __weak typeof(self) weakSelf = self;
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^
+     {
+         weakSelf.faceEllipseView.ellipseColor = [UIColor redColor];
+         [weakSelf.faceEllipseView setNeedsDisplay];
+         weakSelf.statusLabel.text = PutFaceInCircle;
+     }];
 }
 
 - (CGRect)videoRectFromBuffer:(CMSampleBufferRef)sampleBuffer
@@ -276,6 +300,16 @@ static CGRect FaceEllipseRectFrameLandscape;
           topOfFaceBelowTopOfEllipse,
           bottomOfFaceAboveBottomOfElipse);
     return faceCenterCloseToCenter && topOfFaceBelowTopOfEllipse && bottomOfFaceAboveBottomOfElipse;
+}
+
+#pragma mark - Timers
+
+- (void)holdTimerFired:(id)sender
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^
+     {
+         self.statusLabel.text = @"Say cheese~!";
+     }];
 }
 
 #pragma mark - IBAction

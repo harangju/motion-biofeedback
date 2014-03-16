@@ -257,9 +257,9 @@
 		7D2E6C1418D4E9D700B03788 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7D2E6C1718D4E9D700B03788 /* PatientModel.xcdatamodeld */,
 				7D2E6C1518D4E9D700B03788 /* Patient.h */,
 				7D2E6C1618D4E9D700B03788 /* Patient.m */,
-				7D2E6C1718D4E9D700B03788 /* PatientModel.xcdatamodeld */,
 				7D2E6C1918D4E9D700B03788 /* Session.h */,
 				7D2E6C1A18D4E9D700B03788 /* Session.m */,
 			);
