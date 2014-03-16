@@ -234,7 +234,7 @@ static const CGFloat TableViewHeightHorizontal = 320;
 
 #pragma mark - BiofeedbackViewController Delegate
 
-- (void)biofeedbackViowController:(BFBiofeedbackViewController *)biofeedbackViewController
+- (void)biofeedbackViewController:(BFBiofeedbackViewController *)biofeedbackViewController
             didTakeReferenceImage:(UIImage *)referenceImage
 {
     self.patient.referenceImageData = UIImageJPEGRepresentation(referenceImage,

@@ -48,6 +48,7 @@ static CGRect FaceEllipseRectFrameLandscape;
 @property (nonatomic, weak) IBOutlet UIButton *beginButton;
 @property (nonatomic, weak) IBOutlet UILabel *statusLabel;
 @property (nonatomic, weak) IBOutlet BFFaceEllipseView *faceEllipseView;
+@property (nonatomic, weak) IBOutlet UIImageView *referenceImageView;
 
 // Phases
 @property (nonatomic, strong) BFBiofeedbackCaptureReferencePhase *captureReferencePhase;
@@ -228,7 +229,7 @@ static CGRect FaceEllipseRectFrameLandscape;
                   capturedReferenceImage:(UIImage *)referenceImage
 {
     NSLog(@"captured reference image");
-    [self.delegate biofeedbackViowController:self
+    [self.delegate biofeedbackViewController:self
                        didTakeReferenceImage:referenceImage];
 }
 
@@ -261,6 +262,7 @@ static CGRect FaceEllipseRectFrameLandscape;
     [[NSOperationQueue mainQueue] addOperationWithBlock:^
      {
          [weakSelf showThatFaceIsInCircle];
+         weakSelf.referenceImageView.image = [UIImage imageWithData:];
      }];
 }
 

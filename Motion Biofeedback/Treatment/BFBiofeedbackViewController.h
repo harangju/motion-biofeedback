@@ -18,8 +18,9 @@ typedef NS_ENUM(NSInteger, BFVisualizationType)
 
 @protocol BFBiofeedbackViewControllerDelegate <NSObject>
 
-- (void)biofeedbackViowController:(BFBiofeedbackViewController *)biofeedbackViewController
+- (void)biofeedbackViewController:(BFBiofeedbackViewController *)biofeedbackViewController
             didTakeReferenceImage:(UIImage *)referenceImage;
+
 
 @end
 
