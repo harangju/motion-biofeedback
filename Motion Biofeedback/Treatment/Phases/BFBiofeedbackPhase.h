@@ -14,6 +14,8 @@
 
 - (void)biofeedbackPhase:(BFBiofeedbackPhase *)biofeedbackPhase
       setStateWithString:(NSString *)string;
+- (BOOL)biofeedbackPhaseViewIsInPortrait:(BFBiofeedbackPhase *)biofeedbackPhase;
+- (BOOL)biofeedbackPhaseViewIsInLandscape:(BFBiofeedbackPhase *)biofeedbackPhase;
 
 @end
 

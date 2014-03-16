@@ -9,17 +9,16 @@
 #import "BFBiofeedbackViewController.h"
 #import <GPUImage.h>
 #import "BFOpenCVConverter.h"
-#import "BFOpenCVTracker.h"
-#import "BFOpenCVFaceDetector.h"
 #import "BFVisualizationView.h"
 #import "BFVisualizationBarView.h"
 #import "BFVisualizationCircleView.h"
 #import "BFFaceEllipseView.h"
+#import "BFBiofeedbackPhase.h"
+#import "BFBiofeedbackCaptureReferencePhase.h"
 
 static NSString * const PutFaceInCircle = @"Put face inside circle";
 static NSString * const HoldFace = @"Hold";
 
-static CGFloat FaceRectCircleMatchCenterDifferentThreshold = 40;
 static const CGFloat FaceEllipseRectWidthPortrait = 700;
 static const CGFloat FaceEllipseRectHeightPortrait = 800;
 static const CGFloat FaceEllipseRectWidthLandscape = 600;
@@ -27,7 +26,7 @@ static const CGFloat FaceEllipseRectHeightLandscape = 700;
 static CGRect FaceEllipseRectFramePortrait;
 static CGRect FaceEllipseRectFrameLandscape;
 
-@interface BFBiofeedbackViewController () <GPUImageVideoCameraDelegate>
+@interface BFBiofeedbackViewController () <GPUImageVideoCameraDelegate, BFBiofeedbackPhaseDelegate, BFBiofeedbackCaptureReferencePhaseDelegate>
 {
     dispatch_queue_t _faceDetectionQueue;
 }
@@ -35,10 +34,6 @@ static CGRect FaceEllipseRectFrameLandscape;
 // GPUImage
 @property (nonatomic, weak) IBOutlet GPUImageView *previewImageView;
 @property (nonatomic, strong) GPUImageVideoCamera *videoCamera;
-
-// OpenCV
-@property (nonatomic, strong) BFOpenCVTracker *tracker;
-@property (nonatomic, strong) BFOpenCVFaceDetector *faceDetector;
 
 // Visualization
 @property (nonatomic, strong) BFVisualizationView *visualizationView;
@@ -53,13 +48,8 @@ static CGRect FaceEllipseRectFrameLandscape;
 @property (nonatomic, weak) IBOutlet UILabel *statusLabel;
 @property (nonatomic, weak) IBOutlet BFFaceEllipseView *faceEllipseView;
 
-// States
-@property (nonatomic) BOOL shouldTakeReferenceImage;
-@property (nonatomic) BOOL isDetectingFace;
-@property (nonatomic) BOOL faceInEllipse;
-@property (nonatomic) BOOL faceLocked;
-
-@property (nonatomic, strong) NSTimer *holdTimer;
+// Phases
+@property (nonatomic, strong) BFBiofeedbackCaptureReferencePhase *captureReferencePhase;
 
 @end
 
@@ -74,10 +64,10 @@ static CGRect FaceEllipseRectFrameLandscape;
     _faceDetectionQueue = dispatch_queue_create("face_detection_queue",
                                                 NULL);
     [self initializeVideoCamera];
-    [self initializeDetectors];
     [self initializeVisualization];
     [self initializeFaceEllipseView];
-//    [self initializeTimers];
+    [self initializePhases];
+    
     self.previewImageView.fillMode = kGPUImageFillModePreserveAspectRatioAndFill;
     [self.videoCamera addTarget:self.previewImageView];
     [self.videoCamera startCameraCapture];
@@ -120,12 +110,6 @@ static CGRect FaceEllipseRectFrameLandscape;
     self.videoCamera.outputImageOrientation = self.interfaceOrientation;
 }
 
-- (void)initializeDetectors
-{
-    self.tracker = [BFOpenCVTracker new];
-    self.faceDetector = [BFOpenCVFaceDetector new];
-}
-
 - (void)initializeVisualization
 {
     if (self.visualizationType == BFVisualizationTypeBar)
@@ -160,8 +144,16 @@ static CGRect FaceEllipseRectFrameLandscape;
     {
         self.faceEllipseView.faceEllipseRect = FaceEllipseRectFrameLandscape;
     }
-//    self.faceEllipseView.hidden = YES;
     [self.view addSubview:self.faceEllipseView];
+}
+
+- (void)initializePhases
+{
+    self.captureReferencePhase = [BFBiofeedbackCaptureReferencePhase new];
+    self.captureReferencePhase.delegate = self;
+    self.captureReferencePhase.captureReferenceDelegate = self;
+    self.captureReferencePhase.faceEllipseRectFramePortrait = FaceEllipseRectFramePortrait;
+    self.captureReferencePhase.faceEllipseRectFrameLandscape = FaceEllipseRectFrameLandscape;
 }
 
 #pragma mark - GPUImage VideoCamera Delegate
@@ -182,117 +174,8 @@ static CGRect FaceEllipseRectFrameLandscape;
         cv::flip(mat, mat, 1);
     }
     
-    // detect face
-    if (!self.isDetectingFace)
-    {
-        self.isDetectingFace = YES;
-        
-        // detect face in separate thread
-        __weak typeof(self) weakSelf = self;
-        dispatch_async(_faceDetectionQueue, ^{
-            std::vector<cv::Rect> faceRects = [self.faceDetector faceFrameFromMat:mat];
-            [self processFaceRects:faceRects
-                         videoRect:videoRect];
-            weakSelf.isDetectingFace = NO;
-        });
-    }
-    
-    if (self.shouldTakeReferenceImage)
-    {
-//        CVPixelBufferRef pixelBuffer = (CVPixelBufferRef)CMSampleBufferGetImageBuffer(sampleBuffer);
-//        CIImage *ciImage = [CIImage imageWithCVPixelBuffer:pixelBuffer];
-//        
-//        CIContext *context = [CIContext contextWithOptions:nil];
-//        CGImageRef myImage = [context
-//                              createCGImage:ciImage
-//                              fromRect:CGRectMake(0, 0,
-//                                                  CVPixelBufferGetWidth(pixelBuffer),
-//                                                  CVPixelBufferGetHeight(pixelBuffer))];
-//        
-//        UIImage *image = [UIImage imageWithCGImage:myImage];
-        
-        UIImage *image = [BFOpenCVConverter imageForMat:mat];
-        
-        self.shouldTakeReferenceImage = NO;
-        [self.delegate biofeedbackViowController:self
-                           didTakeReferenceImage:image];
-    }
-}
-
-#pragma mark - Image Processing
-
-- (void)processFaceRects:(std::vector<cv::Rect>)faceRects
-               videoRect:(CGRect)videoRect
-{
-    if (faceRects.size() != 1)
-        // not 1 face detected
-    {
-        return;
-    }
-    
-    // 1 face detected
-    cv::Rect faceRect = faceRects[0];
-
-    // check if face is in ellipse
-    if ([self faceRectIsInsideCircleWithFaceRect:faceRect
-                                     inVideoRect:videoRect])
-    {
-        // state
-        self.faceInEllipse = YES;
-        
-        if (!self.faceLocked)
-        {
-            // UI
-            [self showThatFaceIsInCircle];
-            
-            // timer
-            if (!self.holdTimer)
-            {
-                self.holdTimer = [NSTimer timerWithTimeInterval:3
-                                                         target:self
-                                                       selector:@selector(holdTimerFired:)
-                                                       userInfo:nil
-                                                        repeats:NO];
-                [[NSRunLoop mainRunLoop] addTimer:self.holdTimer
-                                          forMode:NSDefaultRunLoopMode];
-            }
-        }
-    }
-    else
-    {
-        // state
-        self.faceInEllipse = NO;
-        self.faceLocked = NO;
-        
-        // UI
-        [self showThatFaceIsNotInCircle];
-        
-        // timer
-        [self.holdTimer invalidate];
-        self.holdTimer = nil;
-    }
-}
-
-- (void)showThatFaceIsInCircle
-{
-    __weak typeof(self) weakSelf = self;;
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^
-     {
-         weakSelf.faceEllipseView.ellipseColor = [UIColor greenColor];
-         [weakSelf.faceEllipseView setNeedsDisplay];
-         weakSelf.statusLabel.text = HoldFace;
-     }];
-}
-
-- (void)showThatFaceIsNotInCircle
-{
-    __weak typeof(self) weakSelf = self;
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^
-     {
-         weakSelf.faceEllipseView.ellipseColor = [UIColor redColor];
-         [weakSelf.faceEllipseView setNeedsDisplay];
-         weakSelf.statusLabel.text = PutFaceInCircle;
-     }];
+    [self.captureReferencePhase processFrame:mat
+                                   videoRect:videoRect];
 }
 
 - (CGRect)videoRectFromBuffer:(CMSampleBufferRef)sampleBuffer
@@ -304,60 +187,70 @@ static CGRect FaceEllipseRectFrameLandscape;
     return videoRect;
 }
 
-- (BOOL)faceRectIsInsideCircleWithFaceRect:(cv::Rect)faceRect
-                               inVideoRect:(CGRect)videoRect
+#pragma mark - Biofeedback Phase
+
+- (void)biofeedbackPhase:(BFBiofeedbackPhase *)biofeedbackPhase
+      setStateWithString:(NSString *)string
 {
-    CGPoint faceRectCenter = CGPointMake(faceRect.x + faceRect.width/2.0,
-                                         faceRect.y + faceRect.height/2.0);
-    CGPoint frameCenter = CGPointMake(videoRect.origin.x + videoRect.size.width/2.0,
-                                      videoRect.origin.y + videoRect.size.height/2.0);
-    CGFloat topOfEllipse = 0;
-    CGFloat bottomOfEllipse = 0;
-    if ([self isUpright])
-    {
-        topOfEllipse = FaceEllipseRectFramePortrait.origin.y;
-        bottomOfEllipse = FaceEllipseRectFramePortrait.origin.y + FaceEllipseRectFramePortrait.size.height;
-        faceRectCenter.y -= 40;
-        faceRect.height -= 40; // random number?
-    }
-    else if ([self isSideways])
-    {
-        topOfEllipse = FaceEllipseRectFrameLandscape.origin.y;
-        bottomOfEllipse = FaceEllipseRectFrameLandscape.origin.y + FaceEllipseRectFrameLandscape.size.height;
-        CGFloat oldCenterX = frameCenter.x;
-        frameCenter.x = frameCenter.y;
-        frameCenter.y = oldCenterX;
-    }
-    CGFloat centerCloseness = MAX(ABS(faceRectCenter.x - frameCenter.x),
-                                  ABS(faceRectCenter.y - frameCenter.y));
-    NSLog(@"%d %d %d %d",
-          (int)faceRectCenter.x, (int)frameCenter.x,
-          (int)faceRectCenter.y, (int)frameCenter.y);
-    BOOL faceCenterCloseToCenter = centerCloseness < FaceRectCircleMatchCenterDifferentThreshold;
-    BOOL topOfFaceBelowTopOfEllipse = faceRect.y > topOfEllipse;
-    BOOL bottomOfFaceAboveBottomOfElipse = faceRect.y + faceRect.height < bottomOfEllipse;
-    NSLog(@"%d %d %d",
-          faceCenterCloseToCenter,
-          topOfFaceBelowTopOfEllipse,
-          bottomOfFaceAboveBottomOfElipse);
-    return faceCenterCloseToCenter && topOfFaceBelowTopOfEllipse && bottomOfFaceAboveBottomOfElipse;
+    __weak typeof(self) weakSelf = self;
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^
+     {
+         weakSelf.statusLabel.text = string;
+     }];
 }
 
-#pragma mark - Timers
-
-- (void)holdTimerFired:(id)sender
+- (BOOL)biofeedbackPhaseViewIsInPortrait:(BFBiofeedbackPhase *)biofeedbackPhase
 {
-    if (self.faceInEllipse)
-    {
-        self.faceLocked = YES;
-        self.shouldTakeReferenceImage = YES;
-        __weak typeof(self) weakSelf = self;
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^
-         {
-             weakSelf.statusLabel.text = @"Say cheese~!";
-             
-         }];
-    }
+    return [self isUpright];
+}
+
+- (BOOL)biofeedbackPhaseViewIsInLandscape:(BFBiofeedbackPhase *)biofeedbackPhase
+{
+    return [self isSideways];
+}
+
+#pragma mark - Capture Reference Biofeedback Phase
+
+- (void)biofeedbackCaptureReferencePhase:(BFBiofeedbackCaptureReferencePhase *)biofeedbackPhase
+                  capturedReferenceImage:(UIImage *)referenceImage
+{
+    NSLog(@"captured reference image");
+    [self.delegate biofeedbackViowController:self
+                       didTakeReferenceImage:referenceImage];
+}
+
+- (void)biofeedbackCaptureReferencePhaseFaceInEllipse:(BFBiofeedbackCaptureReferencePhase *)biofeedbackPhase
+{
+    NSLog(@"face in ellipse");
+    __weak typeof(self) weakSelf = self;
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^
+     {
+         [weakSelf showThatFaceIsInCircle];
+     }];
+}
+
+- (void)biofeedbackCaptureReferencePhaseFaceNotInEllipse:(BFBiofeedbackCaptureReferencePhase *)biofeedbackPhase
+{
+    NSLog(@"face not in ellipse");
+    __weak typeof(self) weakSelf = self;
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^
+     {
+         [weakSelf showThatFaceIsNotInCircle];
+     }];
+}
+
+#pragma mark - UI
+
+- (void)showThatFaceIsInCircle
+{
+    self.faceEllipseView.ellipseColor = [UIColor greenColor];
+    [self.faceEllipseView setNeedsDisplay];
+}
+
+- (void)showThatFaceIsNotInCircle
+{
+    self.faceEllipseView.ellipseColor = [UIColor redColor];
+    [self.faceEllipseView setNeedsDisplay];
 }
 
 #pragma mark - IBAction
