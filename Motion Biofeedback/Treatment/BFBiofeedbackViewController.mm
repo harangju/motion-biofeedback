@@ -35,6 +35,7 @@
 //@property (nonatomic, strong) AVSpeechSynthesizer *voice;
 
 // Views
+@property (nonatomic, weak) IBOutlet UIButton *exitButton;
 @property (nonatomic, weak) IBOutlet UIButton *saveButton;
 @property (nonatomic, weak) IBOutlet UIButton *beginButton;
 @property (nonatomic, weak) IBOutlet UILabel *statusLabel;
@@ -113,6 +114,9 @@
         self.visualizationView = [[BFVisualizationCircleView alloc] initWithFrame:self.view.bounds];
     }
     [self.view addSubview:self.visualizationView];
+    [self.view bringSubviewToFront:self.exitButton];
+    [self.view bringSubviewToFront:self.beginButton];
+    [self.view bringSubviewToFront:self.saveButton];
 }
 
 #pragma mark - GPUImage VideoCamera Delegate
@@ -124,26 +128,21 @@
     transpose(mat, mat);
     
     // detect face
-    if (!self.isDetectingFace)
-    {
-        self.isDetectingFace = YES;
-        __weak typeof(self) weakSelf = self;
-        dispatch_async(_faceDetectionQueue, ^{
-            std::vector<cv::Rect> faceRects = [self.faceDetector faceFrameFromMat:mat];
-            NSLog(@"aoe %lu", faceRects.size());
-            weakSelf.isDetectingFace = NO;
-        });
-    }
+//    if (!self.isDetectingFace)
+//    {
+//        self.isDetectingFace = YES;
+//        __weak typeof(self) weakSelf = self;
+//        dispatch_async(_faceDetectionQueue, ^{
+//            std::vector<cv::Rect> faceRects = [self.faceDetector faceFrameFromMat:mat];
+//            NSLog(@"aoe %lu", faceRects.size());
+//            weakSelf.isDetectingFace = NO;
+//        });
+//    }
     
     if (self.shouldTakeReferenceImage)
     {
         
     }
-    
-    
-    
-//
-//    self.matSize = cv::Size(mat.cols, mat.rows);
 }
 
 //- (CGRect)videoRectFromBuffer:(CMSampleBufferRef)sampleBuffer

@@ -767,6 +767,7 @@
                     </view>
                     <connections>
                         <outlet property="beginButton" destination="0b3-vl-6cK" id="PGO-6L-KEE"/>
+                        <outlet property="exitButton" destination="yCJ-eY-RMG" id="fNo-nf-UHG"/>
                         <outlet property="previewImageView" destination="lBa-Fu-iJg" id="D3L-Te-lSd"/>
                         <outlet property="saveButton" destination="ZVe-fC-kZf" id="9DZ-rq-SCT"/>
                         <outlet property="statusLabel" destination="wHW-UR-Wbe" id="Z4Q-lI-b8f"/>
