@@ -8,6 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
+@class BFBiofeedbackPhase;
+
+@protocol BFBiofeedbackPhaseDelegate <NSObject>
+
+- (void)biofeedbackPhase:(BFBiofeedbackPhase *)biofeedbackPhase
+      setStateWithString:(NSString *)string;
+
+@end
+
 @interface BFBiofeedbackPhase : NSObject
+
+- (void)processFrame:(
 
 @end
