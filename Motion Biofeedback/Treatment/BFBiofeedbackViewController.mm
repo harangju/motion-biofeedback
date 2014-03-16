@@ -15,6 +15,7 @@
 #import "BFFaceEllipseView.h"
 #import "BFBiofeedbackPhase.h"
 #import "BFBiofeedbackCaptureReferencePhase.h"
+#import "BFBiofeedbackMatchReferencePhase.h"
 
 static NSString * const PutFaceInCircle = @"Put face inside circle";
 static NSString * const HoldFace = @"Hold";
@@ -26,7 +27,7 @@ static const CGFloat FaceEllipseRectHeightLandscape = 700;
 static CGRect FaceEllipseRectFramePortrait;
 static CGRect FaceEllipseRectFrameLandscape;
 
-@interface BFBiofeedbackViewController () <GPUImageVideoCameraDelegate, BFBiofeedbackPhaseDelegate, BFBiofeedbackCaptureReferencePhaseDelegate>
+@interface BFBiofeedbackViewController () <GPUImageVideoCameraDelegate, BFBiofeedbackPhaseDelegate, BFBiofeedbackCaptureReferencePhaseDelegate, BFBiofeedbackMatchReferencePhaseDelegate>
 {
     dispatch_queue_t _faceDetectionQueue;
 }
@@ -50,6 +51,7 @@ static CGRect FaceEllipseRectFrameLandscape;
 
 // Phases
 @property (nonatomic, strong) BFBiofeedbackCaptureReferencePhase *captureReferencePhase;
+@property (nonatomic, strong) BFBiofeedbackMatchReferencePhase *matchReferencePhase;
 
 @end
 
@@ -79,11 +81,11 @@ static CGRect FaceEllipseRectFrameLandscape;
     
     if (self.isFirstSession)
     {
-        self.statusLabel.text = PutFaceInCircle;
+        
     }
     else
     {
-        self.statusLabel.text = @"";
+        
     }
 }
 
@@ -149,11 +151,19 @@ static CGRect FaceEllipseRectFrameLandscape;
 
 - (void)initializePhases
 {
+    // capture reference phase
     self.captureReferencePhase = [BFBiofeedbackCaptureReferencePhase new];
     self.captureReferencePhase.delegate = self;
     self.captureReferencePhase.captureReferenceDelegate = self;
     self.captureReferencePhase.faceEllipseRectFramePortrait = FaceEllipseRectFramePortrait;
     self.captureReferencePhase.faceEllipseRectFrameLandscape = FaceEllipseRectFrameLandscape;
+    
+    // match referenec phase
+    self.matchReferencePhase = [BFBiofeedbackMatchReferencePhase new];
+    self.matchReferencePhase.delegate = self;
+    self.matchReferencePhase.matchReferenceDelegate = self;
+    self.matchReferencePhase.faceEllipseRectFramePortrait = FaceEllipseRectFramePortrait;
+    self.matchReferencePhase.faceEllipseRectFrameLandscape = FaceEllipseRectFrameLandscape;
 }
 
 #pragma mark - GPUImage VideoCamera Delegate
@@ -174,8 +184,11 @@ static CGRect FaceEllipseRectFrameLandscape;
         cv::flip(mat, mat, 1);
     }
     
-    [self.captureReferencePhase processFrame:mat
-                                   videoRect:videoRect];
+//    [self.captureReferencePhase processFrame:mat
+//                                   videoRect:videoRect];
+    
+    [self.matchReferencePhase processFrame:mat
+                                 videoRect:videoRect];
 }
 
 - (CGRect)videoRectFromBuffer:(CMSampleBufferRef)sampleBuffer
@@ -209,7 +222,7 @@ static CGRect FaceEllipseRectFrameLandscape;
     return [self isSideways];
 }
 
-#pragma mark - Capture Reference Biofeedback Phase
+#pragma mark - Capture Reference Biofeedback Phase Delegate
 
 - (void)biofeedbackCaptureReferencePhase:(BFBiofeedbackCaptureReferencePhase *)biofeedbackPhase
                   capturedReferenceImage:(UIImage *)referenceImage
@@ -221,7 +234,7 @@ static CGRect FaceEllipseRectFrameLandscape;
 
 - (void)biofeedbackCaptureReferencePhaseFaceInEllipse:(BFBiofeedbackCaptureReferencePhase *)biofeedbackPhase
 {
-    NSLog(@"face in ellipse");
+    NSLog(@"capture - face in ellipse");
     __weak typeof(self) weakSelf = self;
     [[NSOperationQueue mainQueue] addOperationWithBlock:^
      {
@@ -231,7 +244,29 @@ static CGRect FaceEllipseRectFrameLandscape;
 
 - (void)biofeedbackCaptureReferencePhaseFaceNotInEllipse:(BFBiofeedbackCaptureReferencePhase *)biofeedbackPhase
 {
-    NSLog(@"face not in ellipse");
+    NSLog(@"capture - face not in ellipse");
+    __weak typeof(self) weakSelf = self;
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^
+     {
+         [weakSelf showThatFaceIsNotInCircle];
+     }];
+}
+
+#pragma mark - Match Reference Biofeedback Phase Delegate
+
+- (void)biofeedbackMatchReferencePhaseFaceInEllipse:(BFBiofeedbackMatchReferencePhase *)biofeedbackPhase
+{
+    NSLog(@"match - face in ellipse");
+    __weak typeof(self) weakSelf = self;
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^
+     {
+         [weakSelf showThatFaceIsInCircle];
+     }];
+}
+
+- (void)biofeedbackMatchReferencePhaseFaceNotInEllipse:(BFBiofeedbackMatchReferencePhase *)biofeedbackPhase
+{
+    NSLog(@"match - face not in ellipse");
     __weak typeof(self) weakSelf = self;
     [[NSOperationQueue mainQueue] addOperationWithBlock:^
      {

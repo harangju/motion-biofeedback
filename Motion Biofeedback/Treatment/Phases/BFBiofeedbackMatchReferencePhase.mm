@@ -130,8 +130,8 @@ static CGFloat FaceRectCircleMatchCenterDifferentThreshold = 40;
     {
         topOfEllipse = self.faceEllipseRectFramePortrait.origin.y;
         bottomOfEllipse = self.faceEllipseRectFramePortrait.origin.y + self.faceEllipseRectFramePortrait.size.height;
-        faceRectCenter.y -= 50;
-        faceRect.height -= 50; // random number?
+        faceRectCenter.y -= 45;
+        faceRect.height -= 45; // random number?
     }
     else if ([self.delegate biofeedbackPhaseViewIsInLandscape:self])
     {
