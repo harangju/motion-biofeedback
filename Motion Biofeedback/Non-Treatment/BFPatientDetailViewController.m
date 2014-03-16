@@ -107,19 +107,6 @@ static const CGFloat TableViewHeightHorizontal = 320;
         self.imageView.backgroundColor = [UIColor lightGrayColor];
         self.imageView.layer.borderWidth = 1;
     }
-    
-//    Session *session = [Session createEntity];
-//    session.number = @(self.patient.sessions.count);
-//    session.startTime = [NSDate dateWithTimeIntervalSinceNow:30];
-//    session.startTime = [NSDate dateWithTimeIntervalSinceNow:300];
-//    [self.patient addSessionsObject:session];
-//    [[NSManagedObjectContext defaultContext] saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
-//        if (success) {
-//            NSLog(@"You successfully saved your context.");
-//        } else if (error) {
-//            NSLog(@"Error saving context: %@", error.description);
-//        }
-//    }];
 }
 
 - (void)saveContext
