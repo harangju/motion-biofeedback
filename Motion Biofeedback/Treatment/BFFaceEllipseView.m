@@ -10,6 +10,16 @@
 
 @implementation BFFaceEllipseView
 
+#pragma mark - Setters/Getters
+
+- (void)setEllipseColor:(UIColor *)ellipseColor
+{
+    if (_ellipseColor != ellipseColor)
+    {
+        _ellipseColor = ellipseColor;
+    }
+}
+
 #pragma mark - LifeCycle
 
 - (id)initWithFrame:(CGRect)frame
