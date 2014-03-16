@@ -14,7 +14,6 @@
 		7D2E6BEA18D3416200B03788 /* BFSettingsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E6BE918D3416200B03788 /* BFSettingsDetailViewController.m */; };
 		7D2E6BED18D350EA00B03788 /* BFSettingsDetailInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E6BEC18D350EA00B03788 /* BFSettingsDetailInfoViewController.m */; };
 		7D2E6BF018D354CC00B03788 /* BFSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E6BEF18D354CC00B03788 /* BFSettings.m */; };
-		7D2E6BF618D4E23200B03788 /* BFFaceVideoViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E6BF518D4E23200B03788 /* BFFaceVideoViewController.mm */; };
 		7D2E6BFA18D4E25800B03788 /* BFCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E6BF918D4E25800B03788 /* BFCircleView.m */; };
 		7D2E6C0518D4E27400B03788 /* BFOpenCVConverter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E6BFD18D4E27400B03788 /* BFOpenCVConverter.mm */; };
 		7D2E6C0618D4E27400B03788 /* BFOpenCVEdgeDetector.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E6BFF18D4E27400B03788 /* BFOpenCVEdgeDetector.mm */; };
@@ -85,8 +84,6 @@
 		7D2E6BEC18D350EA00B03788 /* BFSettingsDetailInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BFSettingsDetailInfoViewController.m; path = "Non-Treatment/Settings/BFSettingsDetailInfoViewController.m"; sourceTree = "<group>"; };
 		7D2E6BEE18D354CC00B03788 /* BFSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BFSettings.h; path = "Non-Treatment/Settings/BFSettings.h"; sourceTree = "<group>"; };
 		7D2E6BEF18D354CC00B03788 /* BFSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BFSettings.m; path = "Non-Treatment/Settings/BFSettings.m"; sourceTree = "<group>"; };
-		7D2E6BF418D4E23200B03788 /* BFFaceVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BFFaceVideoViewController.h; path = Treatment/BFFaceVideoViewController.h; sourceTree = "<group>"; };
-		7D2E6BF518D4E23200B03788 /* BFFaceVideoViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = BFFaceVideoViewController.mm; path = Treatment/BFFaceVideoViewController.mm; sourceTree = "<group>"; };
 		7D2E6BF818D4E25800B03788 /* BFCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFCircleView.h; sourceTree = "<group>"; };
 		7D2E6BF918D4E25800B03788 /* BFCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFCircleView.m; sourceTree = "<group>"; };
 		7D2E6BFC18D4E27400B03788 /* BFOpenCVConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFOpenCVConverter.h; sourceTree = "<group>"; };
@@ -193,8 +190,6 @@
 				7DD1705218D543D300DEFD4F /* BFFaceEllipseView.h */,
 				7DD1705318D543D300DEFD4F /* BFFaceEllipseView.m */,
 				7DD1705818D6551300DEFD4F /* Phase */,
-				7D2E6BF418D4E23200B03788 /* BFFaceVideoViewController.h */,
-				7D2E6BF518D4E23200B03788 /* BFFaceVideoViewController.mm */,
 				7D2E6BF718D4E25800B03788 /* Visualization */,
 				7D2E6BFB18D4E27400B03788 /* Detection */,
 			);
@@ -544,7 +539,6 @@
 				7D2E6C2F18D5079800B03788 /* BFPatientSessionDetailListViewController.m in Sources */,
 				7D2E6C1B18D4E9D700B03788 /* Patient.m in Sources */,
 				7D2E6BE618D33DEE00B03788 /* BFSettingsViewController.m in Sources */,
-				7D2E6BF618D4E23200B03788 /* BFFaceVideoViewController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

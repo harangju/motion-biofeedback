@@ -17,13 +17,17 @@ static CGFloat FaceRectCircleMatchCenterDifferentThreshold = 40;
     dispatch_queue_t _faceDetectionQueue;
 }
 
-@property (nonatomic) BOOL isDetectingFace;
+// OpenCV
 @property (nonatomic, strong) BFOpenCVFaceDetector *faceDetector;
+
+// States
+@property (nonatomic) BOOL isDetectingFace;
 @property (nonatomic) BOOL shouldTakeReferenceImage;
 @property (nonatomic) BOOL faceLocked;
 @property (nonatomic) BOOL faceInEllipse;
 
-@property (nonatomic,strong) NSTimer *holdTimer;
+// Timer
+@property (nonatomic, strong) NSTimer *holdTimer;
 
 @end
 

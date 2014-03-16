@@ -8,6 +8,20 @@
 
 #import "BFBiofeedbackPhase.h"
 
+@class BFBiofeedbackMatchReferencePhase;
+
+@protocol BFBiofeedbackMatchReferencePhaseDelegate <NSObject>
+
+- (void)biofeedbackMatchReferencePhaseFaceInEllipse:(BFBiofeedbackMatchReferencePhase *)biofeedbackPhase;
+- (void)biofeedbackMatchReferencePhaseFaceNotInEllipse:(BFBiofeedbackMatchReferencePhase *)biofeedbackPhase;
+
+@end
+
 @interface BFBiofeedbackMatchReferencePhase : BFBiofeedbackPhase
+
+@property (nonatomic) CGRect faceEllipseRectFramePortrait;
+@property (nonatomic) CGRect faceEllipseRectFrameLandscape;
+
+@property (nonatomic, weak) id <BFBiofeedbackMatchReferencePhaseDelegate> matchReferenceDelegate;
 
 @end
