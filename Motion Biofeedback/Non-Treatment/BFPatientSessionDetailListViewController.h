@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BFPatientSessionDetailListViewController : UIViewController
+@interface BFPatientSessionDetailListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
 
 @end

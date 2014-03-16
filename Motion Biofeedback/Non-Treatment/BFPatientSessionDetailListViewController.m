@@ -8,6 +8,8 @@
 
 #import "BFPatientSessionDetailListViewController.h"
 
+static NSString * const CellIdentifier = @"SessionDetailListCellIdentifier";
+
 @interface BFPatientSessionDetailListViewController ()
 
 @end
@@ -26,5 +28,18 @@
     [super didReceiveMemoryWarning];
 }
 
+#pragma mark - TableView DataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 5;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier
+                                                            forIndexPath:indexPath];
+    return cell;
+}
 
 @end

@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <JBLineChartView.h>
 
-@interface BFPatientSessionDetailChartViewController : UIViewController
+@interface BFPatientSessionDetailChartViewController : UIViewController <JBLineChartViewDataSource, JBLineChartViewDelegate>
+
+@property (nonatomic, weak) IBOutlet JBLineChartView *lineChartView;
 
 @end

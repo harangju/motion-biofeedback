@@ -410,7 +410,7 @@
             <objects>
                 <tabBarController definesPresentationContext="YES" id="5z4-47-Ivu" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="uxw-qu-zZX"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="M3V-nC-Rso">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -436,9 +436,48 @@
                     <view key="view" contentMode="scaleToFill" id="FWs-bF-4PA">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="XJ3-Dv-G14">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SessionDetailListCellIdentifier" textLabel="MXK-V5-WCU" style="IBUITableViewCellStyleDefault" id="EYO-fl-3lZ">
+                                        <rect key="frame" x="0.0" y="86" width="768" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EYO-fl-3lZ" id="aTb-cu-80e">
+                                            <rect key="frame" x="0.0" y="0.0" width="768" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MXK-V5-WCU">
+                                                    <rect key="frame" x="15" y="0.0" width="738" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="cgi-mW-WN9" id="UTE-Fn-wuJ"/>
+                                    <outlet property="delegate" destination="cgi-mW-WN9" id="K38-lY-c1a"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="XJ3-Dv-G14" secondAttribute="bottom" id="RwZ-zs-wWK"/>
+                            <constraint firstAttribute="trailing" secondItem="XJ3-Dv-G14" secondAttribute="trailing" id="n8a-qM-ePK"/>
+                            <constraint firstItem="XJ3-Dv-G14" firstAttribute="top" secondItem="FWs-bF-4PA" secondAttribute="top" id="o2V-2T-63W"/>
+                            <constraint firstItem="XJ3-Dv-G14" firstAttribute="leading" secondItem="FWs-bF-4PA" secondAttribute="leading" id="tPA-aI-GBu"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="List" image="generic_sorting" id="Lgz-E1-Vu3"/>
+                    <connections>
+                        <outlet property="tableView" destination="XJ3-Dv-G14" id="2kl-Fx-7ag"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BBI-jZ-iBn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -455,10 +494,26 @@
                     <view key="view" contentMode="scaleToFill" id="SkC-u9-Q8W">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gDv-IO-BbM" customClass="JBLineChartView">
+                                <rect key="frame" x="20" y="124" width="728" height="791"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gDv-IO-BbM" firstAttribute="top" secondItem="BFR-e3-QK6" secondAttribute="bottom" constant="60" id="Lwn-4e-w0j"/>
+                            <constraint firstAttribute="trailing" secondItem="gDv-IO-BbM" secondAttribute="trailing" constant="20" id="WWJ-xg-CKe"/>
+                            <constraint firstItem="3s4-bD-CEK" firstAttribute="top" secondItem="gDv-IO-BbM" secondAttribute="bottom" constant="60" id="cwR-v3-ZEu"/>
+                            <constraint firstItem="gDv-IO-BbM" firstAttribute="leading" secondItem="SkC-u9-Q8W" secondAttribute="leading" constant="20" id="xB9-eO-Ym5"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" tag="1" title="Chart" image="line_chart" id="GFn-PY-DAn"/>
                     <navigationItem key="navigationItem" id="QoX-ST-Wws"/>
+                    <connections>
+                        <outlet property="lineChartView" destination="gDv-IO-BbM" id="WbL-pr-pAn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xBg-Ld-8Z7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
