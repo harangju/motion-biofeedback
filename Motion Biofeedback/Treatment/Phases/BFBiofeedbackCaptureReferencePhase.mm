@@ -81,6 +81,7 @@ static CGFloat FaceRectCircleMatchCenterDifferentThreshold = 40;
         UIImage *referenceImage = [BFOpenCVConverter imageForMat:mat];
         [self.captureReferenceDelegate biofeedbackCaptureReferencePhase:self
                                                  capturedReferenceImage:referenceImage];
+        self.shouldTakeReferenceImage = NO;
     }
 }
 
