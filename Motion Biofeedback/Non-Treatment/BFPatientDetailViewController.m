@@ -57,10 +57,7 @@ static const CGFloat TableViewHeightHorizontal = 320;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // debugging
-    self.imageView.layer.borderWidth = 1;
-    self.imageView.layer.borderColor = [UIColor greenColor].CGColor;
+
     self.imageView.layer.cornerRadius = 30;
     
     [self adjustHeightAccordingToInterfaceOrientation:self.interfaceOrientation];
@@ -104,9 +101,8 @@ static const CGFloat TableViewHeightHorizontal = 320;
     }
     else
     {
-        self.imageView.image = nil;
+        self.imageView.image = [UIImage imageNamed:@"empty_profile"];
         self.imageView.backgroundColor = [UIColor lightGrayColor];
-        self.imageView.layer.borderWidth = 1;
     }
 }
 

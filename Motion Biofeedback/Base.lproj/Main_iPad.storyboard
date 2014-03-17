@@ -315,7 +315,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="T4j-lL-Xx2">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty_profile" translatesAutoresizingMaskIntoConstraints="NO" id="T4j-lL-Xx2">
                                 <rect key="frame" x="60" y="118" width="347" height="384"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -770,6 +770,7 @@
     </scenes>
     <resources>
         <image name="close" width="22" height="22"/>
+        <image name="empty_profile" width="160" height="160"/>
         <image name="generic_sorting" width="25" height="25"/>
         <image name="line_chart" width="22" height="22"/>
         <image name="settings" width="22" height="22"/>
