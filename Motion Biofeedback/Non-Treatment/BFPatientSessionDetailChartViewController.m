@@ -7,7 +7,8 @@
 //
 
 #import "BFPatientSessionDetailChartViewController.h"
-#define ARC4RANDOM_MAX 0x100000000
+#import "DeltaPoint.h"
+//#define ARC4RANDOM_MAX 0x100000000
 
 @interface BFPatientSessionDetailChartViewController ()
 
@@ -23,12 +24,27 @@
 {
     [super viewDidLoad];
     
+    self.view.backgroundColor = [UIColor colorWithRed:183.0/256.0
+                                                green:227.0/256.0
+                                                 blue:228.0/256.0
+                                                alpha:1];
+    
     self.lineChartView.dataSource = self;
     self.lineChartView.delegate = self;
-    self.lineChartView.backgroundColor = [UIColor lightGrayColor];
+    self.lineChartView.backgroundColor = [UIColor clearColor];
     [self.lineChartView reloadData];
     
     self.deltaPoints = self.session.deltaPoints.allObjects;
+    [self.lineChartView reloadData];
+    [self.lineChartView setState:JBChartViewStateCollapsed];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [self.lineChartView setState:JBChartViewStateExpanded
+                        animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -45,12 +61,28 @@
 
 - (CGFloat)lineChartView:(JBLineChartView *)lineChartView heightForIndex:(NSInteger)index
 {
-    return (double)arc4random() / ARC4RANDOM_MAX;
+    DeltaPoint *deltaPoint = self.deltaPoints[index];
+    return deltaPoint.x.floatValue;
 }
 
 - (UIColor *)lineColorForLineChartView:(JBLineChartView *)lineChartView
 {
-    return [UIColor purpleColor];
+    return [UIColor whiteColor];
+}
+
+#pragma mark - Orientation
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+//    [self.lineChartView reloadData];
+    __weak typeof(self) weakSelf = self;
+    [self.lineChartView setState:JBChartViewStateCollapsed
+                        animated:YES
+                        callback:^
+     {
+         [weakSelf.lineChartView setState:JBChartViewStateExpanded
+                                 animated:YES];
+     }];
 }
 
 @end

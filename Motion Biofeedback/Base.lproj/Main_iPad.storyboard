@@ -490,6 +490,7 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -528,7 +529,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gDv-IO-BbM" customClass="JBLineChartView">
-                                <rect key="frame" x="20" y="124" width="728" height="791"/>
+                                <rect key="frame" x="20" y="124" width="728" height="388"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
@@ -537,7 +538,7 @@
                         <constraints>
                             <constraint firstItem="gDv-IO-BbM" firstAttribute="top" secondItem="BFR-e3-QK6" secondAttribute="bottom" constant="60" id="Lwn-4e-w0j"/>
                             <constraint firstAttribute="trailing" secondItem="gDv-IO-BbM" secondAttribute="trailing" constant="20" id="WWJ-xg-CKe"/>
-                            <constraint firstItem="3s4-bD-CEK" firstAttribute="top" secondItem="gDv-IO-BbM" secondAttribute="bottom" constant="60" id="cwR-v3-ZEu"/>
+                            <constraint firstAttribute="centerY" secondItem="gDv-IO-BbM" secondAttribute="bottom" id="vcs-yv-uzg"/>
                             <constraint firstItem="gDv-IO-BbM" firstAttribute="leading" secondItem="SkC-u9-Q8W" secondAttribute="leading" constant="20" id="xB9-eO-Ym5"/>
                         </constraints>
                     </view>
