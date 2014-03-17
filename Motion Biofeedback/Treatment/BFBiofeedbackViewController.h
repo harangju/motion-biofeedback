@@ -14,6 +14,13 @@ typedef NS_ENUM(NSInteger, BFVisualizationType)
     BFVisualizationTypeBar
 };
 
+typedef NS_ENUM(NSInteger, BFBiofeedbackState)
+{
+    BFBiofeedbackStateCapturingReference,
+    BFBiofeedbackStateMatchingReference,
+    BFBiofeedbackStateMeasuringMovement,
+};
+
 @class BFBiofeedbackViewController;
 
 @protocol BFBiofeedbackViewControllerDelegate <NSObject>

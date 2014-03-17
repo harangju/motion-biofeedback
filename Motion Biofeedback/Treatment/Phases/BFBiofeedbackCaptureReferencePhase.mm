@@ -195,12 +195,6 @@ static CGFloat FaceRectCircleMatchCenterDifferentThreshold = 40;
     {
         self.faceLocked = YES;
         self.shouldTakeReferenceImage = YES;
-        __weak typeof(self) weakSelf = self;
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^
-         {
-             [weakSelf.delegate biofeedbackPhase:self
-                              setStateWithString:@"Capturing reference image."];
-         }];
     }
 }
 

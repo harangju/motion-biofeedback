@@ -52,6 +52,10 @@ static CGRect FaceEllipseRectFrameLandscape;
 @property (nonatomic, strong) BFBiofeedbackCaptureReferencePhase *captureReferencePhase;
 @property (nonatomic, strong) BFBiofeedbackMatchReferencePhase *matchReferencePhase;
 @property (nonatomic, strong) BFBiofeedbackMeasureMovementPhase *measureMovementPhase;
+@property (nonatomic, weak) BFBiofeedbackPhase *referencePhase;
+
+// States
+@property (nonatomic) BFBiofeedbackState state;
 
 // OpenCV
 @property (nonatomic) cv::Rect faceRect;
@@ -71,6 +75,17 @@ static CGRect FaceEllipseRectFrameLandscape;
     [self initializeFaceEllipseView];
     [self initializePhases];
     
+    if (self.isFirstSession && NO)
+    {
+        self.state = BFBiofeedbackStateCapturingReference;
+        self.referencePhase = self.captureReferencePhase;
+    }
+    else
+    {
+        self.state = BFBiofeedbackStateMatchingReference;
+        self.referencePhase = self.matchReferencePhase;
+    }
+    
     self.previewImageView.fillMode = kGPUImageFillModePreserveAspectRatioAndFill;
     [self.videoCamera addTarget:self.previewImageView];
     [self.videoCamera startCameraCapture];
@@ -79,15 +94,6 @@ static CGRect FaceEllipseRectFrameLandscape;
     [self.view bringSubviewToFront:self.beginButton];
     [self.view bringSubviewToFront:self.saveButton];
     [self.view bringSubviewToFront:self.statusLabel];
-    
-    if (self.isFirstSession)
-    {
-        
-    }
-    else
-    {
-        
-    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -190,14 +196,18 @@ static CGRect FaceEllipseRectFrameLandscape;
         cv::flip(mat, mat, 1);
     }
     
-//    [self.captureReferencePhase processFrame:mat
-//                                   videoRect:videoRect];
-    
-//    [self.matchReferencePhase processFrame:mat
-//                                 videoRect:videoRect];
-    
-//    [self.measureMovementPhase processFrame:mat
-//                                  videoRect:videoRect];
+    if (self.state == BFBiofeedbackStateCapturingReference ||
+        self.state == BFBiofeedbackStateMatchingReference)
+    {
+        [self.referencePhase processFrame:mat
+                                videoRect:videoRect];
+    }
+    else if (self.state == BFBiofeedbackStateMeasuringMovement)
+    {
+        cv::Mat faceMat = mat(self.faceRect);
+        [self.measureMovementPhase processFrame:faceMat
+                                      videoRect:videoRect];
+    }
 }
 
 - (CGRect)videoRectFromBuffer:(CMSampleBufferRef)sampleBuffer
@@ -243,6 +253,7 @@ static CGRect FaceEllipseRectFrameLandscape;
     [[NSOperationQueue mainQueue] addOperationWithBlock:^
      {
          weakSelf.beginButton.hidden = NO;
+         weakSelf.statusLabel.text = @"Tap Begin to begin";
      }];
 }
 
