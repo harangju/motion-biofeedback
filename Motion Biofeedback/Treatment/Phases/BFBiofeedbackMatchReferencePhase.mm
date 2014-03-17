@@ -89,6 +89,9 @@ static CGFloat FaceRectCircleMatchCenterDifferentThreshold = 40;
     // 1 face detected
     cv::Rect faceRect = faceRects[0];
     
+    [self.matchReferenceDelegate biofeedbackMatchReferencePhase:self
+                                                       faceRect:faceRect];
+    
     // check if face is in ellipse
     if ([self faceRectIsInsideCircleWithFaceRect:faceRect
                                      inVideoRect:videoRect])

@@ -53,6 +53,9 @@ static CGRect FaceEllipseRectFrameLandscape;
 @property (nonatomic, strong) BFBiofeedbackMatchReferencePhase *matchReferencePhase;
 @property (nonatomic, strong) BFBiofeedbackMeasureMovementPhase *measureMovementPhase;
 
+// OpenCV
+@property (nonatomic) cv::Rect faceRect;
+
 @end
 
 @implementation BFBiofeedbackViewController
@@ -264,6 +267,12 @@ static CGRect FaceEllipseRectFrameLandscape;
      }];
 }
 
+- (void)biofeedbackCaptureReferencePhase:(BFBiofeedbackCaptureReferencePhase *)biofeedbackPhase
+                                faceRect:(cv::Rect)faceRect
+{
+    self.faceRect = faceRect;
+}
+
 #pragma mark - Match Reference Biofeedback Phase Delegate
 
 - (void)biofeedbackMatchReferencePhaseFaceInEllipse:(BFBiofeedbackMatchReferencePhase *)biofeedbackPhase
@@ -288,6 +297,12 @@ static CGRect FaceEllipseRectFrameLandscape;
          weakSelf.referenceImageView.image = nil;
          weakSelf.beginButton.hidden = YES;
      }];
+}
+
+- (void)biofeedbackMatchReferencePhase:(BFBiofeedbackMatchReferencePhase *)biofeedbackPhase
+                              faceRect:(cv::Rect)faceRect
+{
+    self.faceRect = faceRect;
 }
 
 #pragma mark - Measure Movement Biofeedback Phase Delegate
