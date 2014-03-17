@@ -242,9 +242,17 @@ static const CGFloat TableViewHeightHorizontal = 320;
     [self saveContext];
 }
 
-- (UIImage *)biofeedbackViewControllerReferenceImage:(BFBiofeedbackViewController *)biofeedbackViewController
+- (UIImage *)biofeedbackViewControllerHalfReferenceImage:(BFBiofeedbackViewController *)biofeedbackViewController
 {
-    return self.imageView.image;//[UIImage imageWithData:self.patient.referenceImageData];
+//    UIImage *originalImage = [UIImage imageWithData:self.patient.referenceImageData];
+//    CGRect bounds = CGRectMake(100, 100, 100, 100);
+//    CGImageRef croppedImageRefToBounds = CGImageCreateWithImageInRect(originalImage.CGImage,
+//                                                                      bounds);
+//    UIImage *image = [UIImage imageWithCGImage:croppedImageRefToBounds
+//                                         scale:[UIScreen mainScreen].scale
+//                                   orientation:UIImageOrientationUp];
+//    return originalImage;
+    return nil;
 }
 
 @end

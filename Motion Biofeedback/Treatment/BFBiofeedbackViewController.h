@@ -20,7 +20,7 @@ typedef NS_ENUM(NSInteger, BFVisualizationType)
 
 - (void)biofeedbackViewController:(BFBiofeedbackViewController *)biofeedbackViewController
             didTakeReferenceImage:(UIImage *)referenceImage;
-- (UIImage *)biofeedbackViewControllerReferenceImage:(BFBiofeedbackViewController *)biofeedbackViewController;
+- (UIImage *)biofeedbackViewControllerHalfReferenceImage:(BFBiofeedbackViewController *)biofeedbackViewController;
 
 @end
 

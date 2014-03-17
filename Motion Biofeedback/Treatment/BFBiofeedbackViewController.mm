@@ -262,7 +262,7 @@ static CGRect FaceEllipseRectFrameLandscape;
     [[NSOperationQueue mainQueue] addOperationWithBlock:^
      {
          [weakSelf showThatFaceIsInCircle];
-         weakSelf.referenceImageView.image = [self.delegate biofeedbackViewControllerReferenceImage:self];
+         weakSelf.referenceImageView.image = [self.delegate biofeedbackViewControllerHalfReferenceImage:self];
      }];
 }
 
