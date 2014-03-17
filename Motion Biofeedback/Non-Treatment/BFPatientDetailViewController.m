@@ -9,6 +9,7 @@
 #import "BFPatientDetailViewController.h"
 #import "Session.h"
 #import "BFBiofeedbackViewController.h"
+#import "BFSettings.h"
 
 static NSString * const CellIdentifier = @"PatientDetailCellIdentifier";
 static NSString * const SessionDetailSegueIdentifier = @"SessionDetailSegueIdentifier";
@@ -200,9 +201,32 @@ static const CGFloat TableViewHeightHorizontal = 320;
         self.view.window.windowLevel = UIWindowLevelStatusBar + 1;
         BFBiofeedbackViewController *biofeedbackVC = (BFBiofeedbackViewController *)segue.destinationViewController;
         biofeedbackVC.delegate = self;
+        // set settings
         if (self.patient.sessions.count == 0)
         {
             biofeedbackVC.isFirstSession = YES;
+        }
+        BFSettingsDimension dimension = [BFSettings dimension];
+        if (dimension == BFSettingsDimensionsX)
+        {
+            biofeedbackVC.dimension = BFDimensionX;
+        }
+        else if (dimension == BFSettingsDimensionsY)
+        {
+            biofeedbackVC.dimension = BFDimensionY;
+        }
+        else if (dimension == BFSettingsDimensionsXAndY)
+        {
+            biofeedbackVC.dimension = BFDimensionXAndY;
+        }
+        BFSettingsVisualization visualization = [BFSettings visualization];
+        if (visualization == BFSettingsVisualizationCircle)
+        {
+            biofeedbackVC.visualizationType = BFVisualizationTypeCircle;
+        }
+        else if (visualization == BFSettingsVisualizationBar)
+        {
+            biofeedbackVC.visualizationType = BFVisualizationTypeBar;
         }
     }
 }
