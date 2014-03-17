@@ -11,10 +11,12 @@
 
 @interface BFPatientDetailViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISplitViewControllerDelegate>
 
-@property (nonatomic, strong) Patient *patient;
+@property (nonatomic, weak) Patient *patient;
 
 @property (nonatomic, weak) IBOutlet UIImageView *imageView;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, weak) IBOutlet UIButton *startButton;
+
+- (void)displayPatientInfo;
 
 @end

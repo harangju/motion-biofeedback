@@ -10,6 +10,7 @@
 #import "Session.h"
 #import "BFBiofeedbackViewController.h"
 #import "BFSettings.h"
+#import "DeltaPoint.h"
 
 static NSString * const CellIdentifier = @"PatientDetailCellIdentifier";
 static NSString * const SessionDetailSegueIdentifier = @"SessionDetailSegueIdentifier";
@@ -86,7 +87,7 @@ static const CGFloat TableViewHeightHorizontal = 320;
 - (void)displayPatientInfo
 {
     // show name in title
-    NSMutableString *name = [NSMutableString string];
+    NSMutableString *name = [NSMutableString stringWithString:@""];
     if (self.patient.firstName)
     {
         [name appendFormat:@"%@", self.patient.firstName];
@@ -112,6 +113,11 @@ static const CGFloat TableViewHeightHorizontal = 320;
     {
         self.imageView.image = [UIImage imageNamed:@"empty_profile"];
         self.imageView.backgroundColor = [UIColor lightGrayColor];
+    }
+    // enable/disable start button
+    if (!self.patient)
+    {
+        self.startButton.enabled = NO;
     }
 }
 
@@ -144,19 +150,18 @@ static const CGFloat TableViewHeightHorizontal = 320;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-//    return self.sessions.count;
-    return 5;
+    return self.sessions.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier
                                                             forIndexPath:indexPath];
-//    Session *session = self.sessions[indexPath.row];
-//    cell.textLabel.text = [NSString stringWithFormat:@"Session #%@",
-//                           session.number];
-//    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",
-//                                 session.startTime];
+    Session *session = self.sessions[indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"Session #%@",
+                           session.number];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",
+                                 session.startTime];
     return cell;
 }
 
@@ -294,7 +299,50 @@ static const CGFloat TableViewHeightHorizontal = 320;
            didSaveWithDeltaPoints:(NSArray *)deltaPoints
                        deltaTimes:(NSArray *)deltaTimes
 {
+    NSParameterAssert(deltaPoints.count == deltaTimes.count);
     
+    // create session
+    Session *session = [Session createEntity];
+    session.number = @(self.patient.sessions.count + 1);
+    
+    // get points
+    NSMutableSet *points = [NSMutableSet set];
+    for (int i = 0; i < deltaPoints.count; i++)
+    {
+        NSValue *value = deltaPoints[i];
+        CGPoint point = [value CGPointValue];
+        NSNumber *timeNumber = deltaTimes[i];
+        NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeNumber.integerValue];
+        DeltaPoint *deltaPoint = [DeltaPoint createEntity];
+        deltaPoint.timestamp = date;
+        deltaPoint.x = @(point.x);
+        deltaPoint.y = @(point.y);
+        [points addObject:deltaPoint];
+        
+        // set session start & end times
+        if (i == 0)
+            // first point
+        {
+            session.startTime = date;
+        }
+        else if (i == deltaPoints.count - 1)
+            // last point
+        {
+            session.endTime = date;
+        }
+    }
+    // add points to session
+    [session addDeltaPoints:points];
+    
+    // add session to patient
+    [self.patient addSessionsObject:session];
+    
+    // save
+    [self saveContext];
+    
+    // dismiss viewController
+    [biofeedbackViewController dismissViewControllerAnimated:YES
+                                                  completion:nil];
 }
 
 @end

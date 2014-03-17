@@ -145,6 +145,11 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
         [self.patients removeObjectAtIndex:self.indexPathToRemove.row];
         [self.tableView deleteRowsAtIndexPaths:@[self.indexPathToRemove]
                               withRowAnimation:UITableViewRowAnimationFade];
+        UINavigationController *masterNav = self.navigationController;
+        UINavigationController *detailNav = masterNav.splitViewController.viewControllers.lastObject;
+        BFPatientDetailViewController *detailVC = (BFPatientDetailViewController *)detailNav.topViewController;
+        detailVC.patient = nil;
+        [detailVC displayPatientInfo];
     }
 }
 
@@ -183,6 +188,18 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
                                                 inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath]
                           withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+    if (self.patients.count == 1)
+    {
+        [self.tableView selectRowAtIndexPath:indexPath
+                                    animated:YES
+                              scrollPosition:UITableViewScrollPositionNone];
+    }
+    UINavigationController *masterNav = self.navigationController;
+    UINavigationController *detailNav = masterNav.splitViewController.viewControllers.lastObject;
+    BFPatientDetailViewController *detailVC = (BFPatientDetailViewController *)detailNav.topViewController;
+    detailVC.patient = patient;
+    [detailVC displayPatientInfo];
 }
 
 @end
