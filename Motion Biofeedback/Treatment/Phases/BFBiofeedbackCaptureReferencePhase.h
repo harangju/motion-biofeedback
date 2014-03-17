@@ -16,6 +16,8 @@
                   capturedReferenceImage:(UIImage *)referenceImage;
 - (void)biofeedbackCaptureReferencePhaseFaceInEllipse:(BFBiofeedbackCaptureReferencePhase *)biofeedbackPhase;
 - (void)biofeedbackCaptureReferencePhaseFaceNotInEllipse:(BFBiofeedbackCaptureReferencePhase *)biofeedbackPhase;
+- (void)biofeedbackCaptureReferencePhase:(BFBiofeedbackCaptureReferencePhase *)biofeedbackPhase
+                                faceRect:(cv::Rect)faceRect;
 
 @end
 
