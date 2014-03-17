@@ -52,4 +52,9 @@ static NSString * const CellIdentifier = @"SessionDetailListCellIdentifier";
     return cell;
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return @"Delta Point (x, y)";
+}
+
 @end
