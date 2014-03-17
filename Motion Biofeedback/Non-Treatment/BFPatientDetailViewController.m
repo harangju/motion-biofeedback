@@ -263,4 +263,10 @@ static const CGFloat TableViewHeightHorizontal = 320;
     return cropped;
 }
 
+- (void)biofeedbackViewController:(BFBiofeedbackViewController *)biofeedbackViewController
+           didSaveWithDeltaPoints:(NSArray *)deltaPoints
+{
+    
+}
+
 @end

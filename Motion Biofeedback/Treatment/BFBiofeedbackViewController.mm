@@ -63,6 +63,7 @@ static const CGFloat VisualizationCircleRadius = 300;
 
 // Model
 @property (nonatomic) CGPoint faceCenter;
+@property (nonatomic, strong) NSMutableArray *deltaPoints;
 
 @end
 
@@ -366,18 +367,26 @@ static const CGFloat VisualizationCircleRadius = 300;
         // adjust faceCenter
         if (self.dimensions == BFDimensionsX)
         {
-            
+            CGPoint faceCenter = self.faceCenter;
+            faceCenter.x += delta.x;
+            self.faceCenter = faceCenter;
         }
         else if (self.dimensions == BFDimensionsY)
         {
-            
+            CGPoint faceCenter = self.faceCenter;
+            faceCenter.y += delta.y;
+            self.faceCenter = faceCenter;
         }
         else if (self.dimensions == BFDimensionsXAndY)
         {
-            
+            CGPoint faceCenter = self.faceCenter;
+            faceCenter.x += delta.x;
+            faceCenter.y += delta.y;
+            self.faceCenter = faceCenter;
         }
         
         // save faceCenter
+        [self.deltaPoints addObject:[NSValue valueWithCGPoint:delta]];
         
         // set faceCenter
         __weak typeof(self) weakSelf = self;
