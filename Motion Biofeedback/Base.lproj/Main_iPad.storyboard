@@ -274,7 +274,7 @@
                                 <action selector="settingsButtonTapped:" destination="2iO-n1-gqh" id="ezm-Th-MTp"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="+" id="TPL-Us-I1j">
+                        <barButtonItem key="rightBarButtonItem" image="add_user" id="TPL-Us-I1j">
                             <connections>
                                 <action selector="addButtonTapped:" destination="2iO-n1-gqh" id="NWw-Qp-3Ck"/>
                             </connections>
@@ -817,6 +817,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="add_user" width="22" height="22"/>
         <image name="close" width="22" height="22"/>
         <image name="empty_profile" width="160" height="160"/>
         <image name="generic_sorting" width="25" height="25"/>
