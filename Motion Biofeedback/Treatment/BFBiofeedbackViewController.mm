@@ -29,9 +29,6 @@ static CGRect FaceEllipseRectFramePortrait;
 static CGRect FaceEllipseRectFrameLandscape;
 
 @interface BFBiofeedbackViewController () <GPUImageVideoCameraDelegate, BFBiofeedbackPhaseDelegate, BFBiofeedbackCaptureReferencePhaseDelegate, BFBiofeedbackMatchReferencePhaseDelegate, BFBiofeedbackMeasureMovementPhaseDelegate>
-{
-    dispatch_queue_t _faceDetectionQueue;
-}
 
 // GPUImage
 @property (nonatomic, weak) IBOutlet GPUImageView *previewImageView;
@@ -66,8 +63,6 @@ static CGRect FaceEllipseRectFrameLandscape;
 {
     [super viewDidLoad];
     
-    _faceDetectionQueue = dispatch_queue_create("face_detection_queue",
-                                                NULL);
     [self initializeVideoCamera];
     [self initializeVisualization];
     [self initializeFaceEllipseView];
@@ -211,7 +206,7 @@ static CGRect FaceEllipseRectFrameLandscape;
     return videoRect;
 }
 
-#pragma mark - Biofeedback Phase
+#pragma mark - Biofeedback Phase Delegate
 
 - (void)biofeedbackPhase:(BFBiofeedbackPhase *)biofeedbackPhase
       setStateWithString:(NSString *)string
