@@ -70,11 +70,13 @@ static CGRect FaceEllipseRectFrameLandscape;
 {
     [super viewDidLoad];
     
+    // initialization
     [self initializeVideoCamera];
     [self initializeVisualization];
     [self initializeFaceEllipseView];
     [self initializePhases];
     
+    // configuration
     if (self.isFirstSession && NO)
     {
         self.state = BFBiofeedbackStateCapturingReference;
@@ -86,10 +88,12 @@ static CGRect FaceEllipseRectFrameLandscape;
         self.referencePhase = self.matchReferencePhase;
     }
     
+    // configure camera
     self.previewImageView.fillMode = kGPUImageFillModePreserveAspectRatioAndFill;
     [self.videoCamera addTarget:self.previewImageView];
     [self.videoCamera startCameraCapture];
     
+    // bring buttons to the front
     [self.view bringSubviewToFront:self.exitButton];
     [self.view bringSubviewToFront:self.beginButton];
     [self.view bringSubviewToFront:self.saveButton];
