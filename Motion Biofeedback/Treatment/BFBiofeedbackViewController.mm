@@ -231,6 +231,11 @@ static CGRect FaceEllipseRectFrameLandscape;
     NSLog(@"captured reference image");
     [self.delegate biofeedbackViewController:self
                        didTakeReferenceImage:referenceImage];
+    __weak typeof(self) weakSelf = self;
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^
+     {
+         weakSelf.beginButton.hidden = NO;
+     }];
 }
 
 - (void)biofeedbackCaptureReferencePhaseFaceInEllipse:(BFBiofeedbackCaptureReferencePhase *)biofeedbackPhase
@@ -250,6 +255,7 @@ static CGRect FaceEllipseRectFrameLandscape;
     [[NSOperationQueue mainQueue] addOperationWithBlock:^
      {
          [weakSelf showThatFaceIsNotInCircle];
+         weakSelf.beginButton.hidden = YES;
      }];
 }
 
@@ -263,6 +269,7 @@ static CGRect FaceEllipseRectFrameLandscape;
      {
          [weakSelf showThatFaceIsInCircle];
          weakSelf.referenceImageView.image = [self.delegate biofeedbackViewControllerHalfReferenceImage:self];
+         weakSelf.beginButton.hidden = NO;
      }];
 }
 
@@ -274,6 +281,7 @@ static CGRect FaceEllipseRectFrameLandscape;
      {
          [weakSelf showThatFaceIsNotInCircle];
          weakSelf.referenceImageView.image = nil;
+         weakSelf.beginButton.hidden = YES;
      }];
 }
 
