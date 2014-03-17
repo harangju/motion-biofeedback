@@ -14,6 +14,13 @@ typedef NS_ENUM(NSInteger, BFVisualizationType)
     BFVisualizationTypeBar
 };
 
+typedef NS_ENUM(NSInteger, BFDimensions)
+{
+    BFSettingsDimensionsX,
+    BFSettingsDimensionsY,
+    BFSettingsDimensionsXAndY,
+};
+
 typedef NS_ENUM(NSInteger, BFBiofeedbackState)
 {
     BFBiofeedbackStateCapturingReference,
@@ -33,6 +40,7 @@ typedef NS_ENUM(NSInteger, BFBiofeedbackState)
 
 @interface BFBiofeedbackViewController : UIViewController <UIAlertViewDelegate>
 
+@property (nonatomic) BFDimensions dimensions;
 @property (nonatomic) BFVisualizationType visualizationType;
 @property (nonatomic) BOOL isFirstSession;
 
