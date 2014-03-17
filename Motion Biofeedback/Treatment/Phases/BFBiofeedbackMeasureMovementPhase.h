@@ -21,8 +21,6 @@
 
 @interface BFBiofeedbackMeasureMovementPhase : BFBiofeedbackPhase
 
-@property (nonatomic) cv::Rect faceRect;
-
 @property (nonatomic, weak) id <BFBiofeedbackMeasureMovementPhaseDelegate> measureMovementDelegate;
 
 @end

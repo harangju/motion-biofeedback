@@ -41,9 +41,7 @@
 - (void)processFrame:(cv::Mat)mat
            videoRect:(CGRect)videoRect
 {
-    cv::Mat faceMat = mat(self.faceRect);
-    
-    CGPoint naiveDelta = [self.tracker naiveDeltaFromFrame:faceMat];
+    CGPoint naiveDelta = [self.tracker naiveDeltaFromFrame:mat];
     [self.measureMovementDelegate biofeedbackMeasureMovementPhase:self
                                                    withNaiveDelta:naiveDelta];
 }
