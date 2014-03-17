@@ -250,74 +250,95 @@ static CGRect FaceEllipseRectFrameLandscape;
 - (void)biofeedbackCaptureReferencePhase:(BFBiofeedbackCaptureReferencePhase *)biofeedbackPhase
                   capturedReferenceImage:(UIImage *)referenceImage
 {
-    NSLog(@"captured reference image");
-    [self.delegate biofeedbackViewController:self
-                       didTakeReferenceImage:referenceImage];
-    __weak typeof(self) weakSelf = self;
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^
-     {
-         weakSelf.beginButton.hidden = NO;
-         weakSelf.statusLabel.text = @"Tap Begin to begin";
-     }];
+    if (self.state == BFBiofeedbackStateCapturingReference)
+    {
+        NSLog(@"captured reference image");
+        [self.delegate biofeedbackViewController:self
+                           didTakeReferenceImage:referenceImage];
+        __weak typeof(self) weakSelf = self;
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^
+         {
+             weakSelf.beginButton.hidden = NO;
+             weakSelf.statusLabel.text = @"Tap Begin to begin";
+         }];
+    }
 }
 
 - (void)biofeedbackCaptureReferencePhaseFaceInEllipse:(BFBiofeedbackCaptureReferencePhase *)biofeedbackPhase
 {
-    NSLog(@"capture - face in ellipse");
-    __weak typeof(self) weakSelf = self;
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^
-     {
-         [weakSelf showThatFaceIsInCircle];
-     }];
+    if (self.state == BFBiofeedbackStateCapturingReference)
+    {
+        NSLog(@"capture - face in ellipse");
+        __weak typeof(self) weakSelf = self;
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^
+         {
+             [weakSelf showThatFaceIsInCircle];
+         }];
+    }
 }
 
 - (void)biofeedbackCaptureReferencePhaseFaceNotInEllipse:(BFBiofeedbackCaptureReferencePhase *)biofeedbackPhase
 {
-    NSLog(@"capture - face not in ellipse");
-    __weak typeof(self) weakSelf = self;
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^
-     {
-         [weakSelf showThatFaceIsNotInCircle];
-         weakSelf.beginButton.hidden = YES;
-     }];
+    if (self.state == BFBiofeedbackStateCapturingReference)
+    {
+        NSLog(@"capture - face not in ellipse");
+        __weak typeof(self) weakSelf = self;
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^
+         {
+             [weakSelf showThatFaceIsNotInCircle];
+             weakSelf.beginButton.hidden = YES;
+         }];
+    }
 }
 
 - (void)biofeedbackCaptureReferencePhase:(BFBiofeedbackCaptureReferencePhase *)biofeedbackPhase
                                 faceRect:(cv::Rect)faceRect
 {
-    self.faceRect = faceRect;
+    if (self.state == BFBiofeedbackStateCapturingReference)
+    {
+        self.faceRect = faceRect;
+    }
 }
 
 #pragma mark - Match Reference Biofeedback Phase Delegate
 
 - (void)biofeedbackMatchReferencePhaseFaceInEllipse:(BFBiofeedbackMatchReferencePhase *)biofeedbackPhase
 {
-    NSLog(@"match - face in ellipse");
-    __weak typeof(self) weakSelf = self;
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^
-     {
-         [weakSelf showThatFaceIsInCircle];
-         weakSelf.referenceImageView.image = [self.delegate biofeedbackViewControllerHalfReferenceImage:self];
-         weakSelf.beginButton.hidden = NO;
-     }];
+    if (self.state == BFBiofeedbackStateMatchingReference)
+    {
+        NSLog(@"match - face in ellipse");
+        __weak typeof(self) weakSelf = self;
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^
+         {
+             [weakSelf showThatFaceIsInCircle];
+             weakSelf.referenceImageView.image = [self.delegate biofeedbackViewControllerHalfReferenceImage:self];
+             weakSelf.beginButton.hidden = NO;
+         }];
+    }
 }
 
 - (void)biofeedbackMatchReferencePhaseFaceNotInEllipse:(BFBiofeedbackMatchReferencePhase *)biofeedbackPhase
 {
-    NSLog(@"match - face not in ellipse");
-    __weak typeof(self) weakSelf = self;
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^
-     {
-         [weakSelf showThatFaceIsNotInCircle];
-         weakSelf.referenceImageView.image = nil;
-         weakSelf.beginButton.hidden = YES;
-     }];
+    if (self.state == BFBiofeedbackStateMatchingReference)
+    {
+        NSLog(@"match - face not in ellipse");
+        __weak typeof(self) weakSelf = self;
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^
+         {
+             [weakSelf showThatFaceIsNotInCircle];
+             weakSelf.referenceImageView.image = nil;
+             weakSelf.beginButton.hidden = YES;
+         }];
+    }
 }
 
 - (void)biofeedbackMatchReferencePhase:(BFBiofeedbackMatchReferencePhase *)biofeedbackPhase
                               faceRect:(cv::Rect)faceRect
 {
-    self.faceRect = faceRect;
+    if (self.state == BFBiofeedbackStateMatchingReference)
+    {
+        self.faceRect = faceRect;
+    }
 }
 
 #pragma mark - Measure Movement Biofeedback Phase Delegate
@@ -325,7 +346,10 @@ static CGRect FaceEllipseRectFrameLandscape;
 - (void)biofeedbackMeasureMovementPhase:(BFBiofeedbackMeasureMovementPhase *)biofeedbackPhase
                          withNaiveDelta:(CGPoint)delta
 {
-    NSLog(@"delta %d %d", (int)delta.x, (int)delta.y);
+    if (self.state == BFBiofeedbackStateMeasuringMovement)
+    {
+        NSLog(@"delta %d %d", (int)delta.x, (int)delta.y);
+    }
 }
 
 #pragma mark - UI
@@ -340,6 +364,17 @@ static CGRect FaceEllipseRectFrameLandscape;
 {
     self.faceEllipseView.ellipseColor = [UIColor redColor];
     [self.faceEllipseView setNeedsDisplay];
+}
+
+- (void)displayMeasuringMovementUI
+{
+    [self.videoCamera removeTarget:self.previewImageView];
+    self.faceEllipseView.hidden = YES;
+    self.previewImageView.hidden = YES;
+    self.referenceImageView.hidden = YES;
+    self.beginButton.hidden = YES;
+    self.saveButton.hidden = NO;
+    self.statusLabel.text = @"";
 }
 
 #pragma mark - IBAction
@@ -357,6 +392,7 @@ static CGRect FaceEllipseRectFrameLandscape;
 - (IBAction)beginButtonTapped:(id)sender
 {
     self.state = BFBiofeedbackStateMeasuringMovement;
+    [self displayMeasuringMovementUI];
 }
 
 - (IBAction)saveButtonTapped:(id)sender
