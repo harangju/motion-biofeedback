@@ -125,11 +125,6 @@ static const CGFloat TableViewHeightHorizontal = 320;
 
 #pragma mark - Buttons
 
-- (IBAction)startButtonTapped:(UIButton *)button
-{
-    
-}
-
 - (void)patientButtonTapped:(UIBarButtonItem *)item
 {
     [self.popover presentPopoverFromBarButtonItem:self.navigationItem.leftBarButtonItem

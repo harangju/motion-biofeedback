@@ -377,7 +377,6 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="startButtonTapped:" destination="58v-Zz-mbk" eventType="touchUpInside" id="MW8-en-j8W"/>
                                     <segue destination="cPc-Yz-iv5" kind="modal" identifier="BiofeedbackSegueIdentifier" modalTransitionStyle="crossDissolve" id="PKP-cR-lEK"/>
                                 </connections>
                             </button>
