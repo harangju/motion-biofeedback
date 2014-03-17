@@ -90,8 +90,16 @@ static NSString * const SettingsNavVCIdentifier = @"BFSettingsNavVC";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier
                                                             forIndexPath:indexPath];
     Patient *patient = self.patients[indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@",
-                           patient.firstName, patient.lastName];
+    NSMutableString *name = [NSMutableString string];
+    if (patient.firstName)
+    {
+        [name appendFormat:@"%@", patient.firstName];
+    }
+    if (patient.lastName)
+    {
+        [name appendFormat:@" %@", patient.lastName];
+    }
+    cell.textLabel.text = name;
     return cell;
 }
 

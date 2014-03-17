@@ -86,8 +86,16 @@ static const CGFloat TableViewHeightHorizontal = 320;
 - (void)displayPatientInfo
 {
     // show name in title
-    self.title = [NSString stringWithFormat:@"%@ %@",
-                  self.patient.firstName, self.patient.lastName];
+    NSMutableString *name = [NSMutableString string];
+    if (self.patient.firstName)
+    {
+        [name appendFormat:@"%@", self.patient.firstName];
+    }
+    if (self.patient.lastName)
+    {
+        [name appendFormat:@" %@", self.patient.lastName];
+    }
+    self.title = name;
     // load sessions
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"number"
                                                                      ascending:YES];
@@ -284,6 +292,7 @@ static const CGFloat TableViewHeightHorizontal = 320;
 
 - (void)biofeedbackViewController:(BFBiofeedbackViewController *)biofeedbackViewController
            didSaveWithDeltaPoints:(NSArray *)deltaPoints
+                       deltaTimes:(NSArray *)deltaTimes
 {
     
 }

@@ -59,6 +59,11 @@
 
 - (IBAction)doneButtonTapped:(UIBarButtonItem *)item
 {
+    if (!self.firstNameTextField.text.length ||
+        !self.lastNameTextField.text.length)
+    {
+        return;
+    }
     [self.lastNameTextField resignFirstResponder];
     [self saveContext];
     [self dismissViewControllerAnimated:YES

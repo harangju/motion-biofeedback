@@ -174,7 +174,7 @@ static const CGFloat VisualizationCircleRadius = 300;
 - (void)configure
 {
     // first session
-    if (self.isFirstSession && NO)
+    if (self.isFirstSession)
     {
         self.state = BFBiofeedbackStateCapturingReference;
         self.referencePhase = self.captureReferencePhase;

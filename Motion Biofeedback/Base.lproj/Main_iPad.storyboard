@@ -316,7 +316,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty_profile" translatesAutoresizingMaskIntoConstraints="NO" id="T4j-lL-Xx2">
-                                <rect key="frame" x="60" y="118" width="347" height="384"/>
+                                <rect key="frame" x="60" y="108" width="347" height="384"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -380,15 +380,40 @@
                                     <segue destination="cPc-Yz-iv5" kind="modal" identifier="BiofeedbackSegueIdentifier" modalTransitionStyle="crossDissolve" id="PKP-cR-lEK"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Session Number" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7oO-fr-a8B">
+                                <rect key="frame" x="20" y="510" width="180" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="26" id="23r-F0-I3c"/>
+                                    <constraint firstAttribute="width" constant="180" id="UaQ-pF-fg9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wFw-sa-ONP">
+                                <rect key="frame" x="568" y="515" width="180" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="180" id="4Ap-Y4-D5h"/>
+                                    <constraint firstAttribute="height" constant="21" id="Wwh-wu-KKM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="zty-V5-vUs" firstAttribute="top" secondItem="7oO-fr-a8B" secondAttribute="bottom" constant="8" id="0rT-GM-Of6"/>
                             <constraint firstItem="T4j-lL-Xx2" firstAttribute="leading" secondItem="wrf-TE-MgQ" secondAttribute="leading" constant="60" id="C1M-s9-UuC"/>
+                            <constraint firstItem="7oO-fr-a8B" firstAttribute="leading" secondItem="wrf-TE-MgQ" secondAttribute="leading" constant="20" id="KNQ-0Q-joY"/>
                             <constraint firstAttribute="trailing" secondItem="zty-V5-vUs" secondAttribute="trailing" id="L7p-6w-Ejo"/>
+                            <constraint firstItem="zty-V5-vUs" firstAttribute="top" secondItem="wFw-sa-ONP" secondAttribute="bottom" constant="8" id="Psm-pS-S0O"/>
                             <constraint firstItem="KYG-ZW-Qn5" firstAttribute="top" secondItem="zty-V5-vUs" secondAttribute="bottom" id="RY0-q6-beE"/>
-                            <constraint firstItem="T4j-lL-Xx2" firstAttribute="top" secondItem="8qo-Pi-XAf" secondAttribute="bottom" constant="54" id="caE-pS-S7A"/>
+                            <constraint firstItem="T4j-lL-Xx2" firstAttribute="top" secondItem="8qo-Pi-XAf" secondAttribute="bottom" constant="44" id="caE-pS-S7A"/>
                             <constraint firstItem="YPh-sN-RHx" firstAttribute="top" secondItem="8qo-Pi-XAf" secondAttribute="bottom" constant="100" id="kPK-fW-odR"/>
                             <constraint firstAttribute="trailing" secondItem="YPh-sN-RHx" secondAttribute="trailing" constant="60" id="nW2-O1-0a3"/>
+                            <constraint firstAttribute="trailing" secondItem="wFw-sa-ONP" secondAttribute="trailing" constant="20" id="qKS-Y6-hmW"/>
                             <constraint firstItem="zty-V5-vUs" firstAttribute="leading" secondItem="wrf-TE-MgQ" secondAttribute="leading" id="uvO-Ws-PzB"/>
                         </constraints>
                     </view>
