@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Session.h"
 
 @interface BFPatientSessionDetailListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic, weak) Session *session;
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 

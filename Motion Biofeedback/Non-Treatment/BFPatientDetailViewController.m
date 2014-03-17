@@ -12,6 +12,8 @@
 #import "BFSettings.h"
 #import "DeltaPoint.h"
 #import <SVProgressHUD.h>
+#import "BFPatientSessionDetailChartViewController.h"
+#import "BFPatientSessionDetailListViewController.h"
 
 static NSString * const CellIdentifier = @"PatientDetailCellIdentifier";
 static NSString * const SessionDetailSegueIdentifier = @"SessionDetailSegueIdentifier";
@@ -203,7 +205,12 @@ static const CGFloat TableViewHeightHorizontal = 320;
 {
     if ([segue.identifier isEqualToString:SessionDetailSegueIdentifier])
     {
-        
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell *)sender];
+        UITabBarController *tabbarController = segue.destinationViewController;
+        BFPatientSessionDetailListViewController *listDetailVC = tabbarController.viewControllers.firstObject;
+        listDetailVC.session = self.sessions[indexPath.row];
+        BFPatientSessionDetailChartViewController *chartDetailVC = tabbarController.viewControllers.lastObject;
+        chartDetailVC.session = self.sessions[indexPath.row];
     }
     else if ([segue.identifier isEqualToString:BiofeedbackSegueIdentifier])
     {

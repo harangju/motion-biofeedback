@@ -11,6 +11,8 @@
 
 @interface BFPatientSessionDetailChartViewController ()
 
+@property (nonatomic, strong) NSArray *deltaPoints;
+
 @end
 
 @implementation BFPatientSessionDetailChartViewController
@@ -25,6 +27,8 @@
     self.lineChartView.delegate = self;
     self.lineChartView.backgroundColor = [UIColor lightGrayColor];
     [self.lineChartView reloadData];
+    
+    self.deltaPoints = self.session.deltaPoints.allObjects;
 }
 
 - (void)didReceiveMemoryWarning
@@ -36,7 +40,7 @@
 
 - (NSInteger)numberOfPointsInLineChartView:(JBLineChartView *)lineChartView
 {
-    return 20;
+    return self.deltaPoints.count;
 }
 
 - (CGFloat)lineChartView:(JBLineChartView *)lineChartView heightForIndex:(NSInteger)index

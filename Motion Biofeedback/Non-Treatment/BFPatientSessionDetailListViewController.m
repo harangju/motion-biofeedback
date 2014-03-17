@@ -7,10 +7,13 @@
 //
 
 #import "BFPatientSessionDetailListViewController.h"
+#import "DeltaPoint.h"
 
 static NSString * const CellIdentifier = @"SessionDetailListCellIdentifier";
 
 @interface BFPatientSessionDetailListViewController ()
+
+@property (nonatomic, strong) NSArray *deltaPoints;
 
 @end
 
@@ -21,6 +24,8 @@ static NSString * const CellIdentifier = @"SessionDetailListCellIdentifier";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.deltaPoints = self.session.deltaPoints.allObjects;
 }
 
 - (void)didReceiveMemoryWarning
@@ -32,13 +37,18 @@ static NSString * const CellIdentifier = @"SessionDetailListCellIdentifier";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return self.deltaPoints.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier
                                                             forIndexPath:indexPath];
+    DeltaPoint *deltaPoint = self.deltaPoints[indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"(%f, %f)",
+                           deltaPoint.x.floatValue, deltaPoint.y.floatValue];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",
+                                 deltaPoint.timestamp];
     return cell;
 }
 
