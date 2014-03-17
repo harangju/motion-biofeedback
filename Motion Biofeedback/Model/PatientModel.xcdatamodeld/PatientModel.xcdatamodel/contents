@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5063" systemVersion="13C64" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="DeltaPoint" representedClassName="DeltaPoint" syncable="YES">
+        <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="x" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="y" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="session" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Session" inverseName="deltaPoints" inverseEntity="Session" syncable="YES"/>
+    </entity>
     <entity name="Patient" representedClassName="Patient" syncable="YES">
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
@@ -10,10 +16,12 @@
         <attribute name="endTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="number" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="deltaPoints" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DeltaPoint" inverseName="session" inverseEntity="DeltaPoint" syncable="YES"/>
         <relationship name="patient" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Patient" inverseName="sessions" inverseEntity="Patient" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Patient" positionX="-263" positionY="-1" width="128" height="105"/>
-        <element name="Session" positionX="-54" positionY="9" width="128" height="105"/>
+        <element name="Patient" positionX="-414" positionY="27" width="128" height="105"/>
+        <element name="Session" positionX="-236" positionY="44" width="128" height="118"/>
+        <element name="DeltaPoint" positionX="-27" positionY="50" width="128" height="103"/>
     </elements>
 </model>

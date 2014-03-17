@@ -20,15 +20,16 @@
 		7D2E6C0718D4E27400B03788 /* BFOpenCVFaceDetector.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E6C0118D4E27400B03788 /* BFOpenCVFaceDetector.mm */; };
 		7D2E6C0818D4E27400B03788 /* BFOpenCVTracker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E6C0318D4E27400B03788 /* BFOpenCVTracker.mm */; };
 		7D2E6C0918D4E27400B03788 /* haarcascade_frontalface_alt2.xml in Resources */ = {isa = PBXBuildFile; fileRef = 7D2E6C0418D4E27400B03788 /* haarcascade_frontalface_alt2.xml */; };
-		7D2E6C1B18D4E9D700B03788 /* Patient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E6C1618D4E9D700B03788 /* Patient.m */; };
 		7D2E6C1C18D4E9D700B03788 /* PatientModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E6C1718D4E9D700B03788 /* PatientModel.xcdatamodeld */; };
-		7D2E6C1D18D4E9D700B03788 /* Session.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E6C1A18D4E9D700B03788 /* Session.m */; };
 		7D2E6C2018D4F1DC00B03788 /* BFVisualizationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E6C1F18D4F1DC00B03788 /* BFVisualizationView.m */; };
 		7D2E6C2318D4F37900B03788 /* BFVisualizationCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E6C2218D4F37900B03788 /* BFVisualizationCircleView.m */; };
 		7D2E6C2618D4F38300B03788 /* BFVisualizationBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E6C2518D4F38300B03788 /* BFVisualizationBarView.m */; };
 		7D2E6C2918D4F55800B03788 /* BFBiofeedbackViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E6C2818D4F55800B03788 /* BFBiofeedbackViewController.mm */; };
 		7D2E6C2C18D5078C00B03788 /* BFPatientSessionDetailChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E6C2B18D5078C00B03788 /* BFPatientSessionDetailChartViewController.m */; };
 		7D2E6C2F18D5079800B03788 /* BFPatientSessionDetailListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E6C2E18D5079800B03788 /* BFPatientSessionDetailListViewController.m */; };
+		7D75798F18D6B4BE00EAA5CA /* DeltaPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D75798E18D6B4BE00EAA5CA /* DeltaPoint.m */; };
+		7D75799218D6B4BF00EAA5CA /* Patient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D75799118D6B4BF00EAA5CA /* Patient.m */; };
+		7D75799518D6B4BF00EAA5CA /* Session.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D75799418D6B4BF00EAA5CA /* Session.m */; };
 		7DB9C2E518C2D2EF00CCDED9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DB9C2E418C2D2EF00CCDED9 /* Foundation.framework */; };
 		7DB9C2E718C2D2EF00CCDED9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DB9C2E618C2D2EF00CCDED9 /* CoreGraphics.framework */; };
 		7DB9C2E918C2D2EF00CCDED9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DB9C2E818C2D2EF00CCDED9 /* UIKit.framework */; };
@@ -95,11 +96,7 @@
 		7D2E6C0218D4E27400B03788 /* BFOpenCVTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFOpenCVTracker.h; sourceTree = "<group>"; };
 		7D2E6C0318D4E27400B03788 /* BFOpenCVTracker.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BFOpenCVTracker.mm; sourceTree = "<group>"; };
 		7D2E6C0418D4E27400B03788 /* haarcascade_frontalface_alt2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_frontalface_alt2.xml; sourceTree = "<group>"; };
-		7D2E6C1518D4E9D700B03788 /* Patient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Patient.h; sourceTree = "<group>"; };
-		7D2E6C1618D4E9D700B03788 /* Patient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Patient.m; sourceTree = "<group>"; };
 		7D2E6C1818D4E9D700B03788 /* PatientModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PatientModel.xcdatamodel; sourceTree = "<group>"; };
-		7D2E6C1918D4E9D700B03788 /* Session.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Session.h; sourceTree = "<group>"; };
-		7D2E6C1A18D4E9D700B03788 /* Session.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Session.m; sourceTree = "<group>"; };
 		7D2E6C1E18D4F1DC00B03788 /* BFVisualizationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFVisualizationView.h; sourceTree = "<group>"; };
 		7D2E6C1F18D4F1DC00B03788 /* BFVisualizationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFVisualizationView.m; sourceTree = "<group>"; };
 		7D2E6C2118D4F37900B03788 /* BFVisualizationCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFVisualizationCircleView.h; sourceTree = "<group>"; };
@@ -112,6 +109,12 @@
 		7D2E6C2B18D5078C00B03788 /* BFPatientSessionDetailChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BFPatientSessionDetailChartViewController.m; path = "Non-Treatment/BFPatientSessionDetailChartViewController.m"; sourceTree = "<group>"; };
 		7D2E6C2D18D5079800B03788 /* BFPatientSessionDetailListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BFPatientSessionDetailListViewController.h; path = "Non-Treatment/BFPatientSessionDetailListViewController.h"; sourceTree = "<group>"; };
 		7D2E6C2E18D5079800B03788 /* BFPatientSessionDetailListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BFPatientSessionDetailListViewController.m; path = "Non-Treatment/BFPatientSessionDetailListViewController.m"; sourceTree = "<group>"; };
+		7D75798D18D6B4BE00EAA5CA /* DeltaPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeltaPoint.h; sourceTree = "<group>"; };
+		7D75798E18D6B4BE00EAA5CA /* DeltaPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeltaPoint.m; sourceTree = "<group>"; };
+		7D75799018D6B4BF00EAA5CA /* Patient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Patient.h; sourceTree = "<group>"; };
+		7D75799118D6B4BF00EAA5CA /* Patient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Patient.m; sourceTree = "<group>"; };
+		7D75799318D6B4BF00EAA5CA /* Session.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Session.h; sourceTree = "<group>"; };
+		7D75799418D6B4BF00EAA5CA /* Session.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Session.m; sourceTree = "<group>"; };
 		7DB9C2E118C2D2EF00CCDED9 /* Motion Biofeedback.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Motion Biofeedback.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DB9C2E418C2D2EF00CCDED9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7DB9C2E618C2D2EF00CCDED9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -266,10 +269,12 @@
 			isa = PBXGroup;
 			children = (
 				7D2E6C1718D4E9D700B03788 /* PatientModel.xcdatamodeld */,
-				7D2E6C1518D4E9D700B03788 /* Patient.h */,
-				7D2E6C1618D4E9D700B03788 /* Patient.m */,
-				7D2E6C1918D4E9D700B03788 /* Session.h */,
-				7D2E6C1A18D4E9D700B03788 /* Session.m */,
+				7D75799018D6B4BF00EAA5CA /* Patient.h */,
+				7D75799118D6B4BF00EAA5CA /* Patient.m */,
+				7D75799318D6B4BF00EAA5CA /* Session.h */,
+				7D75799418D6B4BF00EAA5CA /* Session.m */,
+				7D75798D18D6B4BE00EAA5CA /* DeltaPoint.h */,
+				7D75798E18D6B4BE00EAA5CA /* DeltaPoint.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -518,18 +523,20 @@
 				7D2E6BFA18D4E25800B03788 /* BFCircleView.m in Sources */,
 				7D2E6C2618D4F38300B03788 /* BFVisualizationBarView.m in Sources */,
 				7D2E6C1C18D4E9D700B03788 /* PatientModel.xcdatamodeld in Sources */,
-				7D2E6C1D18D4E9D700B03788 /* Session.m in Sources */,
 				7D2E6C2918D4F55800B03788 /* BFBiofeedbackViewController.mm in Sources */,
 				7DD1705E18D6555400DEFD4F /* BFBiofeedbackMatchReferencePhase.mm in Sources */,
 				7D2E6C0818D4E27400B03788 /* BFOpenCVTracker.mm in Sources */,
 				7D2E6C0518D4E27400B03788 /* BFOpenCVConverter.mm in Sources */,
 				7D2E6C0618D4E27400B03788 /* BFOpenCVEdgeDetector.mm in Sources */,
+				7D75798F18D6B4BE00EAA5CA /* DeltaPoint.m in Sources */,
 				7DD1705718D6550F00DEFD4F /* BFBiofeedbackPhase.mm in Sources */,
 				7D16ED3018D2B4A400EF7D56 /* BFPatientListViewController.m in Sources */,
 				7D2E6C2318D4F37900B03788 /* BFVisualizationCircleView.m in Sources */,
 				7D2E6C0718D4E27400B03788 /* BFOpenCVFaceDetector.mm in Sources */,
 				7DB9C2F518C2D2EF00CCDED9 /* BFAppDelegate.mm in Sources */,
+				7D75799218D6B4BF00EAA5CA /* Patient.m in Sources */,
 				7D2E6BED18D350EA00B03788 /* BFSettingsDetailInfoViewController.m in Sources */,
+				7D75799518D6B4BF00EAA5CA /* Session.m in Sources */,
 				7D2E6C2018D4F1DC00B03788 /* BFVisualizationView.m in Sources */,
 				7DD1706118D6556B00DEFD4F /* BFBiofeedbackMeasureMovementPhase.mm in Sources */,
 				7D2E6BEA18D3416200B03788 /* BFSettingsDetailViewController.m in Sources */,
@@ -537,7 +544,6 @@
 				7D2E6C2C18D5078C00B03788 /* BFPatientSessionDetailChartViewController.m in Sources */,
 				7DB9C2F118C2D2EF00CCDED9 /* main.m in Sources */,
 				7D2E6C2F18D5079800B03788 /* BFPatientSessionDetailListViewController.m in Sources */,
-				7D2E6C1B18D4E9D700B03788 /* Patient.m in Sources */,
 				7D2E6BE618D33DEE00B03788 /* BFSettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

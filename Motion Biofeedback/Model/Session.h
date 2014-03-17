@@ -2,14 +2,14 @@
 //  Session.h
 //  Motion Biofeedback
 //
-//  Created by Harang Ju on 3/14/14.
+//  Created by Harang Ju on 3/17/14.
 //  Copyright (c) 2014 Harang Ju. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Patient;
+@class DeltaPoint, Patient;
 
 @interface Session : NSManagedObject
 
@@ -17,5 +17,14 @@
 @property (nonatomic, retain) NSNumber * number;
 @property (nonatomic, retain) NSDate * startTime;
 @property (nonatomic, retain) Patient *patient;
+@property (nonatomic, retain) NSSet *deltaPoints;
+@end
+
+@interface Session (CoreDataGeneratedAccessors)
+
+- (void)addDeltaPointsObject:(DeltaPoint *)value;
+- (void)removeDeltaPointsObject:(DeltaPoint *)value;
+- (void)addDeltaPoints:(NSSet *)values;
+- (void)removeDeltaPoints:(NSSet *)values;
 
 @end
