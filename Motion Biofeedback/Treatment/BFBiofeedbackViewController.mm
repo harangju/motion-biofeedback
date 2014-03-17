@@ -364,6 +364,18 @@ static const CGFloat VisualizationCircleRadius = 300;
         NSLog(@"delta %d %d", (int)delta.x, (int)delta.y);
         
         // adjust faceCenter
+        if (self.dimensions == BFDimensionsX)
+        {
+            
+        }
+        else if (self.dimensions == BFDimensionsY)
+        {
+            
+        }
+        else if (self.dimensions == BFDimensionsXAndY)
+        {
+            
+        }
         
         // save faceCenter
         

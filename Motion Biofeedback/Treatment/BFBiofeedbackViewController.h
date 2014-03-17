@@ -16,9 +16,9 @@ typedef NS_ENUM(NSInteger, BFVisualizationType)
 
 typedef NS_ENUM(NSInteger, BFDimensions)
 {
-    BFSettingsDimensionsX,
-    BFSettingsDimensionsY,
-    BFSettingsDimensionsXAndY,
+    BFDimensionsX,
+    BFDimensionsY,
+    BFDimensionsXAndY,
 };
 
 typedef NS_ENUM(NSInteger, BFBiofeedbackState)
