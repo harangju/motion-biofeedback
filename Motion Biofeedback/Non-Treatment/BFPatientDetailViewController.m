@@ -11,6 +11,7 @@
 #import "BFBiofeedbackViewController.h"
 #import "BFSettings.h"
 #import "DeltaPoint.h"
+#import <SVProgressHUD.h>
 
 static NSString * const CellIdentifier = @"PatientDetailCellIdentifier";
 static NSString * const SessionDetailSegueIdentifier = @"SessionDetailSegueIdentifier";
@@ -343,6 +344,16 @@ static const CGFloat TableViewHeightHorizontal = 320;
     // dismiss viewController
     [biofeedbackViewController dismissViewControllerAnimated:YES
                                                   completion:nil];
+}
+
+- (void)biofeedbackViewControllerShouldForceQuit:(BFBiofeedbackViewController *)biofeedbackViewController
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^
+     {
+         [biofeedbackViewController dismissViewControllerAnimated:YES
+                                                       completion:nil];
+         [SVProgressHUD showErrorWithStatus:@"You have moved too far out."];
+     }];
 }
 
 @end

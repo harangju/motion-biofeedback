@@ -27,6 +27,8 @@ static CGRect FaceEllipseRectFrameLandscape;
 
 static const CGFloat VisualizationCircleRadius = 300;
 
+static const CGFloat MaximumAllowedDeltaFromCenter = 80;
+
 @interface BFBiofeedbackViewController () <GPUImageVideoCameraDelegate, BFBiofeedbackPhaseDelegate, BFBiofeedbackCaptureReferencePhaseDelegate, BFBiofeedbackMatchReferencePhaseDelegate, BFBiofeedbackMeasureMovementPhaseDelegate>
 
 // GPUImage
@@ -388,6 +390,13 @@ static const CGFloat VisualizationCircleRadius = 300;
             self.faceCenter = faceCenter;
         }
         
+        // check for maximum allowed delta
+        if (MAX(ABS(self.faceCenter.x - self.view.center.x),
+                ABS(self.faceCenter.y - self.view.center.y)) > MaximumAllowedDeltaFromCenter)
+        {
+            [self forceQuitSession];
+        }
+        
         // save faceCenter & time
         [self.deltaPoints addObject:[NSValue valueWithCGPoint:delta]];
         [self.deltaTimes addObject:@([[NSDate date] timeIntervalSince1970])];
@@ -400,6 +409,14 @@ static const CGFloat VisualizationCircleRadius = 300;
              [weakSelf.visualizationView setNeedsDisplay];
          }];
     }
+}
+
+- (void)forceQuitSession
+{
+    self.videoCamera.delegate = nil;
+    self.measureMovementPhase.delegate = nil;
+    self.measureMovementPhase.measureMovementDelegate = nil;
+    [self.delegate biofeedbackViewControllerShouldForceQuit:self];
 }
 
 #pragma mark - UI
