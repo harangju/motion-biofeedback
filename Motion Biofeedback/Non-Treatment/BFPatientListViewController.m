@@ -19,6 +19,7 @@ static NSString * const SettingsNavVCIdentifier = @"BFSettingsNavVC";
 
 @property (nonatomic, strong) NSMutableArray *patients;
 @property (nonatomic, strong) NSIndexPath *indexPathToRemove;
+@property (nonatomic, strong) NSIndexPath *selectedIndexPath;
 
 @end
 
@@ -37,6 +38,7 @@ static NSString * const SettingsNavVCIdentifier = @"BFSettingsNavVC";
     {
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0
                                                     inSection:0];
+        self.selectedIndexPath = indexPath;
         [self.tableView selectRowAtIndexPath:indexPath
                                     animated:NO
                               scrollPosition:UITableViewScrollPositionNone];
@@ -123,6 +125,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Patient *patient = self.patients[indexPath.row];
+    self.selectedIndexPath = indexPath;
     [self setInDetailVCPatient:patient];
 }
                                  
@@ -139,17 +142,49 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     else if (buttonIndex == 1) // this should be yes - for deletion
     {
         Patient *patientToRemove = self.patients[self.indexPathToRemove.row];
+        [self.patients removeObjectAtIndex:self.indexPathToRemove.row];
         // Deleting an Entity with MagicalRecord
         [patientToRemove deleteEntity];
         [self saveContext];
-        [self.patients removeObjectAtIndex:self.indexPathToRemove.row];
+        // update table
         [self.tableView deleteRowsAtIndexPaths:@[self.indexPathToRemove]
                               withRowAnimation:UITableViewRowAnimationFade];
-        UINavigationController *masterNav = self.navigationController;
-        UINavigationController *detailNav = masterNav.splitViewController.viewControllers.lastObject;
-        BFPatientDetailViewController *detailVC = (BFPatientDetailViewController *)detailNav.topViewController;
-        detailVC.patient = nil;
-        [detailVC displayPatientInfo];
+        // update detail
+        if (self.selectedIndexPath == self.indexPathToRemove)
+        {
+            UINavigationController *masterNav = self.navigationController;
+            UINavigationController *detailNav = masterNav.splitViewController.viewControllers.lastObject;
+            BFPatientDetailViewController *detailVC = (BFPatientDetailViewController *)detailNav.topViewController;
+            if (self.patients.count == 0)
+            {
+                detailVC.patient = nil;
+            }
+            else
+            {
+                Patient *patientToSelect = self.patients.firstObject;
+                detailVC.patient = patientToSelect;
+                NSIndexPath *firstIndexPath = [NSIndexPath indexPathForRow:0
+                                                                 inSection:0];
+                [self.tableView selectRowAtIndexPath:firstIndexPath
+                                            animated:YES
+                                      scrollPosition:UITableViewScrollPositionTop];
+            }
+            [detailVC displayPatientInfo];
+        }
+        else if (self.selectedIndexPath.row > self.indexPathToRemove.row)
+        {
+            self.selectedIndexPath = [NSIndexPath indexPathForRow:self.selectedIndexPath.row - 1
+                                                        inSection:self.selectedIndexPath.section];
+            [self.tableView selectRowAtIndexPath:self.selectedIndexPath
+                                        animated:YES
+                                  scrollPosition:UITableViewScrollPositionNone];
+        }
+        else
+        {
+            [self.tableView selectRowAtIndexPath:self.selectedIndexPath
+                                        animated:YES
+                                  scrollPosition:UITableViewScrollPositionNone];
+        }
     }
 }
 
@@ -194,12 +229,18 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
         [self.tableView selectRowAtIndexPath:indexPath
                                     animated:YES
                               scrollPosition:UITableViewScrollPositionNone];
+        UINavigationController *masterNav = self.navigationController;
+        UINavigationController *detailNav = masterNav.splitViewController.viewControllers.lastObject;
+        BFPatientDetailViewController *detailVC = (BFPatientDetailViewController *)detailNav.topViewController;
+        detailVC.patient = patient;
+        [detailVC displayPatientInfo];
     }
-    UINavigationController *masterNav = self.navigationController;
-    UINavigationController *detailNav = masterNav.splitViewController.viewControllers.lastObject;
-    BFPatientDetailViewController *detailVC = (BFPatientDetailViewController *)detailNav.topViewController;
-    detailVC.patient = patient;
-    [detailVC displayPatientInfo];
+    
+    self.selectedIndexPath = [NSIndexPath indexPathForRow:self.selectedIndexPath.row + 1
+                                                inSection:self.selectedIndexPath.section];
+    [self.tableView selectRowAtIndexPath:self.selectedIndexPath
+                                animated:YES
+                          scrollPosition:UITableViewScrollPositionNone];
 }
 
 @end
