@@ -37,7 +37,8 @@ typedef NS_ENUM(NSInteger, BFBiofeedbackState)
             didTakeReferenceImage:(UIImage *)referenceImage;
 - (UIImage *)biofeedbackViewControllerHalfReferenceImage:(BFBiofeedbackViewController *)biofeedbackViewController;
 - (void)biofeedbackViewController:(BFBiofeedbackViewController *)biofeedbackViewController
-           didSaveWithDeltaPoints:(NSArray *)deltaPoints;
+           didSaveWithDeltaPoints:(NSArray *)deltaPoints
+                       deltaTimes:(NSArray *)deltaTimes;
 
 @end
 

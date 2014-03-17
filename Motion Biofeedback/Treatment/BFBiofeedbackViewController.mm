@@ -449,7 +449,11 @@ static const CGFloat VisualizationCircleRadius = 300;
 
 - (IBAction)saveButtonTapped:(id)sender
 {
-    
+    self.state = BFBiofeedbackStateNone;
+    self.measureMovementPhase.measureMovementDelegate = nil;
+    [self.delegate biofeedbackViewController:self
+                      didSaveWithDeltaPoints:self.deltaPoints
+                                  deltaTimes:self.deltaTimes];
 }
 
 #pragma mark - AlertView Delegate
