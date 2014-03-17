@@ -36,6 +36,8 @@ static CGRect FaceEllipseRectFrameLandscape;
 
 // Visualization
 @property (nonatomic, strong) BFVisualizationView *visualizationView;
+@property (nonatomic, weak) IBOutlet BFVisualizationBarView *visualizationBarView;
+@property (nonatomic, weak) IBOutlet BFVisualizationCircleView *visualizationCircleView;
 
 // Voice
 //@property (nonatomic, strong) AVSpeechSynthesizer *voice;
@@ -60,6 +62,9 @@ static CGRect FaceEllipseRectFrameLandscape;
 // OpenCV
 @property (nonatomic) cv::Rect faceRect;
 
+// Model
+@property (nonatomic) CGPoint faceCenter;
+
 @end
 
 @implementation BFBiofeedbackViewController
@@ -72,26 +77,12 @@ static CGRect FaceEllipseRectFrameLandscape;
     
     // initialization
     [self initializeVideoCamera];
-    [self initializeVisualization];
     [self initializeFaceEllipseView];
     [self initializePhases];
+    self.faceCenter = self.view.center;
     
     // configuration
-    if (self.isFirstSession && NO)
-    {
-        self.state = BFBiofeedbackStateCapturingReference;
-        self.referencePhase = self.captureReferencePhase;
-    }
-    else
-    {
-        self.state = BFBiofeedbackStateMatchingReference;
-        self.referencePhase = self.matchReferencePhase;
-    }
-    
-    // configure camera
-    self.previewImageView.fillMode = kGPUImageFillModePreserveAspectRatioAndFill;
-    [self.videoCamera addTarget:self.previewImageView];
-    [self.videoCamera startCameraCapture];
+    [self configure];
     
     // bring buttons to the front
     [self.view bringSubviewToFront:self.exitButton];
@@ -121,20 +112,6 @@ static CGRect FaceEllipseRectFrameLandscape;
     self.videoCamera.delegate = self;
     self.videoCamera.horizontallyMirrorFrontFacingCamera = YES;
     self.videoCamera.outputImageOrientation = self.interfaceOrientation;
-}
-
-- (void)initializeVisualization
-{
-    if (self.visualizationType == BFVisualizationTypeBar)
-    {
-        self.visualizationView = [[BFVisualizationBarView alloc] initWithFrame:self.view.bounds];
-    }
-    else
-    {
-        self.visualizationView = [[BFVisualizationCircleView alloc] initWithFrame:self.view.bounds];
-    }
-    self.visualizationView.hidden = YES;
-    [self.view addSubview:self.visualizationView];
 }
 
 - (void)initializeFaceEllipseView
@@ -180,6 +157,34 @@ static CGRect FaceEllipseRectFrameLandscape;
     self.measureMovementPhase = [BFBiofeedbackMeasureMovementPhase new];
     self.measureMovementPhase.delegate = self;
     self.measureMovementPhase.measureMovementDelegate = self;
+}
+
+- (void)configure
+{
+    // first session
+    if (self.isFirstSession && NO)
+    {
+        self.state = BFBiofeedbackStateCapturingReference;
+        self.referencePhase = self.captureReferencePhase;
+    }
+    else
+    {
+        self.state = BFBiofeedbackStateMatchingReference;
+        self.referencePhase = self.matchReferencePhase;
+    }
+    // visualization
+    if (self.visualizationType == BFVisualizationTypeBar)
+    {
+        self.visualizationView = self.visualizationBarView;
+    }
+    else
+    {
+        self.visualizationView = self.visualizationCircleView;
+    }
+    // camera
+    self.previewImageView.fillMode = kGPUImageFillModePreserveAspectRatioAndFill;
+    [self.videoCamera addTarget:self.previewImageView];
+    [self.videoCamera startCameraCapture];
 }
 
 #pragma mark - GPUImage VideoCamera Delegate

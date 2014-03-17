@@ -40,11 +40,13 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     // main circle
     CGContextSetLineWidth(context, 5.0);
+    CGContextSetFillColorWithColor(context, self.circleColor);
     CGContextSetStrokeColorWithColor(context, self.circleColor);
     UIBezierPath *mainCircle = [self makeCircleWithCenter:self.circleCenter
                                                    radius:self.circleRadius];
     CGContextAddPath(context, mainCircle.CGPath);
     // delta circle
+    CGContextSetFillColorWithColor(context, [UIColor clearColor].CGColor);
     CGContextSetStrokeColorWithColor(context, self.deltaCircleColor);
     UIBezierPath *deltaCircle = [self makeCircleWithCenter:self.deltaCircleCenter
                                                     radius:self.deltaCircleRadius];
