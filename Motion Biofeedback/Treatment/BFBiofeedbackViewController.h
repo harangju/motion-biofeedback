@@ -40,10 +40,10 @@ typedef NS_ENUM(NSInteger, BFBiofeedbackState)
 
 @interface BFBiofeedbackViewController : UIViewController <UIAlertViewDelegate>
 
+// set these at start
 @property (nonatomic) BFDimensions dimensions;
 @property (nonatomic) BFVisualizationType visualizationType;
 @property (nonatomic) BOOL isFirstSession;
-
 @property (nonatomic, weak) id <BFBiofeedbackViewControllerDelegate> delegate;
 
 @end
