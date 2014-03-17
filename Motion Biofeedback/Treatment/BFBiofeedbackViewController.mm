@@ -356,7 +356,7 @@ static CGRect FaceEllipseRectFrameLandscape;
 
 - (IBAction)beginButtonTapped:(id)sender
 {
-    
+    self.state = BFBiofeedbackStateMeasuringMovement;
 }
 
 - (IBAction)saveButtonTapped:(id)sender
