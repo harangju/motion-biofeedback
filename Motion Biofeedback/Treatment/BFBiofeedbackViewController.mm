@@ -63,7 +63,8 @@ static const CGFloat VisualizationCircleRadius = 300;
 
 // Model
 @property (nonatomic) CGPoint faceCenter;
-@property (nonatomic, strong) NSMutableArray *deltaPoints;
+@property (nonatomic, strong) NSMutableArray *deltaPoints; // NSValue around CGPoints
+@property (nonatomic, strong) NSMutableArray *deltaTimes; // NSNumber around NSTimeIntervals since 1970
 
 @end
 
@@ -80,6 +81,8 @@ static const CGFloat VisualizationCircleRadius = 300;
     [self initializeFaceEllipseView];
     [self initializePhases];
     [self initializeVisualization];
+    self.deltaPoints = [NSMutableArray array];
+    self.deltaTimes = [NSMutableArray array];
     self.faceCenter = self.view.center;
     
     // configuration
@@ -385,8 +388,9 @@ static const CGFloat VisualizationCircleRadius = 300;
             self.faceCenter = faceCenter;
         }
         
-        // save faceCenter
+        // save faceCenter & time
         [self.deltaPoints addObject:[NSValue valueWithCGPoint:delta]];
+        [self.deltaTimes addObject:@([[NSDate date] timeIntervalSince1970])];
         
         // set faceCenter
         __weak typeof(self) weakSelf = self;

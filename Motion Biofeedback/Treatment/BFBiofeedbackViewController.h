@@ -26,6 +26,7 @@ typedef NS_ENUM(NSInteger, BFBiofeedbackState)
     BFBiofeedbackStateCapturingReference,
     BFBiofeedbackStateMatchingReference,
     BFBiofeedbackStateMeasuringMovement,
+    BFBiofeedbackStateNone,
 };
 
 @class BFBiofeedbackViewController;
