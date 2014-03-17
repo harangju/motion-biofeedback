@@ -18,15 +18,14 @@
 #import "BFBiofeedbackMatchReferencePhase.h"
 #import "BFBiofeedbackMeasureMovementPhase.h"
 
-static NSString * const PutFaceInCircle = @"Put face inside circle";
-static NSString * const HoldFace = @"Hold";
-
 static const CGFloat FaceEllipseRectWidthPortrait = 700;
 static const CGFloat FaceEllipseRectHeightPortrait = 800;
 static const CGFloat FaceEllipseRectWidthLandscape = 600;
 static const CGFloat FaceEllipseRectHeightLandscape = 700;
 static CGRect FaceEllipseRectFramePortrait;
 static CGRect FaceEllipseRectFrameLandscape;
+
+static const CGFloat VisualizationCircleRadius = 300;
 
 @interface BFBiofeedbackViewController () <GPUImageVideoCameraDelegate, BFBiofeedbackPhaseDelegate, BFBiofeedbackCaptureReferencePhaseDelegate, BFBiofeedbackMatchReferencePhaseDelegate, BFBiofeedbackMeasureMovementPhaseDelegate>
 
@@ -79,6 +78,7 @@ static CGRect FaceEllipseRectFrameLandscape;
     [self initializeVideoCamera];
     [self initializeFaceEllipseView];
     [self initializePhases];
+    [self initializeVisualization];
     self.faceCenter = self.view.center;
     
     // configuration
@@ -157,6 +157,14 @@ static CGRect FaceEllipseRectFrameLandscape;
     self.measureMovementPhase = [BFBiofeedbackMeasureMovementPhase new];
     self.measureMovementPhase.delegate = self;
     self.measureMovementPhase.measureMovementDelegate = self;
+}
+
+- (void)initializeVisualization
+{
+    self.visualizationCircleView.centerCircleColor = [UIColor blueColor];
+    self.visualizationCircleView.deltaCircleColor = [UIColor greenColor];
+    self.visualizationCircleView.centerCircleRadius = VisualizationCircleRadius;
+    self.visualizationCircleView.deltaCircleRadius = VisualizationCircleRadius;
 }
 
 - (void)configure
@@ -354,6 +362,18 @@ static CGRect FaceEllipseRectFrameLandscape;
     if (self.state == BFBiofeedbackStateMeasuringMovement)
     {
         NSLog(@"delta %d %d", (int)delta.x, (int)delta.y);
+        
+        // adjust faceCenter
+        
+        // save faceCenter
+        
+        // set faceCenter
+        __weak typeof(self) weakSelf = self;
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^
+         {
+             weakSelf.visualizationView.headPosition = weakSelf.faceCenter;
+             [weakSelf.visualizationView setNeedsDisplay];
+         }];
     }
 }
 
@@ -380,6 +400,7 @@ static CGRect FaceEllipseRectFrameLandscape;
     self.beginButton.hidden = YES;
     self.saveButton.hidden = NO;
     self.statusLabel.text = @"";
+    self.visualizationView.hidden = NO;
 }
 
 #pragma mark - IBAction
@@ -397,6 +418,7 @@ static CGRect FaceEllipseRectFrameLandscape;
 - (IBAction)beginButtonTapped:(id)sender
 {
     self.state = BFBiofeedbackStateMeasuringMovement;
+    self.referencePhase.delegate = nil;
     [self displayMeasuringMovementUI];
 }
 

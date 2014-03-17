@@ -8,6 +8,12 @@
 
 #import "BFVisualizationCircleView.h"
 
+@interface BFVisualizationCircleView ()
+
+@property (nonatomic) CGPoint viewCenter;
+
+@end
+
 @implementation BFVisualizationCircleView
 
 #pragma mark - LifeCycle
@@ -28,31 +34,47 @@
 
 - (void)setup
 {
-    self.backgroundColor = [UIColor clearColor];
-    self.circleColor = [UIColor redColor].CGColor;
-    self.deltaCircleColor = [UIColor redColor].CGColor;
+    self.viewCenter = self.center;
+    self.headPosition = self.center;
+    self.centerCircleColor = [UIColor redColor];
+    self.deltaCircleColor = [UIColor redColor];
 }
 
 #pragma mark - Drawing
 
 - (void)drawRect:(CGRect)rect
 {
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    // main circle
-    CGContextSetLineWidth(context, 5.0);
-    CGContextSetFillColorWithColor(context, self.circleColor);
-    CGContextSetStrokeColorWithColor(context, self.circleColor);
-    UIBezierPath *mainCircle = [self makeCircleWithCenter:self.circleCenter
-                                                   radius:self.circleRadius];
-    CGContextAddPath(context, mainCircle.CGPath);
-    // delta circle
-    CGContextSetFillColorWithColor(context, [UIColor clearColor].CGColor);
-    CGContextSetStrokeColorWithColor(context, self.deltaCircleColor);
-    UIBezierPath *deltaCircle = [self makeCircleWithCenter:self.deltaCircleCenter
-                                                    radius:self.deltaCircleRadius];
-    CGContextAddPath(context, deltaCircle.CGPath);
+    UIBezierPath *mainCircle = [self makeCircleWithCenter:self.viewCenter
+                                                   radius:self.centerCircleRadius];
+    [mainCircle closePath];
+    [self.centerCircleColor setFill];
+    [mainCircle fill];
     
-    CGContextStrokePath(context);
+    UIBezierPath *deltaCircle = [self makeCircleWithCenter:self.headPosition
+                                                    radius:self.deltaCircleRadius];
+    deltaCircle.lineWidth = 10;
+    [deltaCircle closePath];
+    [[UIColor clearColor] setFill];
+    [deltaCircle fill];
+    [self.deltaCircleColor setStroke];
+    [deltaCircle stroke];
+    
+//    CGContextRef context = UIGraphicsGetCurrentContext();
+//    // main circle
+//    CGContextSetLineWidth(context, 5.0);
+//    CGContextSetFillColorWithColor(context, self.centerCircleColor);
+//    CGContextSetStrokeColorWithColor(context, self.centerCircleColor);
+//    UIBezierPath *mainCircle = [self makeCircleWithCenter:self.viewCenter
+//                                                   radius:self.centerCircleRadius];
+//    CGContextAddPath(context, mainCircle.CGPath);
+//    // delta circle
+//    CGContextSetFillColorWithColor(context, [UIColor clearColor].CGColor);
+//    CGContextSetStrokeColorWithColor(context, self.deltaCircleColor);
+//    UIBezierPath *deltaCircle = [self makeCircleWithCenter:self.headPosition
+//                                                    radius:self.deltaCircleRadius];
+//    CGContextAddPath(context, deltaCircle.CGPath);
+//    
+//    CGContextStrokePath(context);
 }
 
 - (UIBezierPath *)makeCircleWithCenter:(CGPoint)center
