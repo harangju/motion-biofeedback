@@ -16,6 +16,7 @@
 #import "BFBiofeedbackPhase.h"
 #import "BFBiofeedbackCaptureReferencePhase.h"
 #import "BFBiofeedbackMatchReferencePhase.h"
+#import "BFBiofeedbackMeasureMovementPhase.h"
 
 static NSString * const PutFaceInCircle = @"Put face inside circle";
 static NSString * const HoldFace = @"Hold";
@@ -27,7 +28,7 @@ static const CGFloat FaceEllipseRectHeightLandscape = 700;
 static CGRect FaceEllipseRectFramePortrait;
 static CGRect FaceEllipseRectFrameLandscape;
 
-@interface BFBiofeedbackViewController () <GPUImageVideoCameraDelegate, BFBiofeedbackPhaseDelegate, BFBiofeedbackCaptureReferencePhaseDelegate, BFBiofeedbackMatchReferencePhaseDelegate>
+@interface BFBiofeedbackViewController () <GPUImageVideoCameraDelegate, BFBiofeedbackPhaseDelegate, BFBiofeedbackCaptureReferencePhaseDelegate, BFBiofeedbackMatchReferencePhaseDelegate, BFBiofeedbackMeasureMovementPhaseDelegate>
 {
     dispatch_queue_t _faceDetectionQueue;
 }
@@ -47,12 +48,13 @@ static CGRect FaceEllipseRectFrameLandscape;
 @property (nonatomic, weak) IBOutlet UIButton *saveButton;
 @property (nonatomic, weak) IBOutlet UIButton *beginButton;
 @property (nonatomic, weak) IBOutlet UILabel *statusLabel;
-@property (nonatomic, weak) IBOutlet BFFaceEllipseView *faceEllipseView;
 @property (nonatomic, weak) IBOutlet UIImageView *referenceImageView;
+@property (nonatomic, weak) IBOutlet BFFaceEllipseView *faceEllipseView;
 
 // Phases
 @property (nonatomic, strong) BFBiofeedbackCaptureReferencePhase *captureReferencePhase;
 @property (nonatomic, strong) BFBiofeedbackMatchReferencePhase *matchReferencePhase;
+@property (nonatomic, strong) BFBiofeedbackMeasureMovementPhase *measureMovementPhase;
 
 @end
 
@@ -165,6 +167,11 @@ static CGRect FaceEllipseRectFrameLandscape;
     self.matchReferencePhase.matchReferenceDelegate = self;
     self.matchReferencePhase.faceEllipseRectFramePortrait = FaceEllipseRectFramePortrait;
     self.matchReferencePhase.faceEllipseRectFrameLandscape = FaceEllipseRectFrameLandscape;
+    
+    // measure movement phase
+    self.measureMovementPhase = [BFBiofeedbackMeasureMovementPhase new];
+    self.measureMovementPhase.delegate = self;
+    self.measureMovementPhase.measureMovementDelegate = self;
 }
 
 #pragma mark - GPUImage VideoCamera Delegate
@@ -188,8 +195,11 @@ static CGRect FaceEllipseRectFrameLandscape;
 //    [self.captureReferencePhase processFrame:mat
 //                                   videoRect:videoRect];
     
-    [self.matchReferencePhase processFrame:mat
-                                 videoRect:videoRect];
+//    [self.matchReferencePhase processFrame:mat
+//                                 videoRect:videoRect];
+    
+//    [self.measureMovementPhase processFrame:mat
+//                                  videoRect:videoRect];
 }
 
 - (CGRect)videoRectFromBuffer:(CMSampleBufferRef)sampleBuffer
@@ -283,6 +293,14 @@ static CGRect FaceEllipseRectFrameLandscape;
          weakSelf.referenceImageView.image = nil;
          weakSelf.beginButton.hidden = YES;
      }];
+}
+
+#pragma mark - Measure Movement Biofeedback Phase Delegate
+
+- (void)biofeedbackMeasureMovementPhase:(BFBiofeedbackMeasureMovementPhase *)biofeedbackPhase
+                         withNaiveDelta:(CGPoint)delta
+{
+    NSLog(@"delta %d %d", (int)delta.x, (int)delta.y);
 }
 
 #pragma mark - UI

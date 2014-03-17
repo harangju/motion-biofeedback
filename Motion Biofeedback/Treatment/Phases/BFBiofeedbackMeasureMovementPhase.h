@@ -8,6 +8,19 @@
 
 #import "BFBiofeedbackPhase.h"
 
+@class BFBiofeedbackMeasureMovementPhase;
+
+@protocol BFBiofeedbackMeasureMovementPhaseDelegate <NSObject>
+
+// this is synchronous with processFrame:videoRect:
+// I made this a protocol call for consistency
+- (void)biofeedbackMeasureMovementPhase:(BFBiofeedbackMeasureMovementPhase *)biofeedbackPhase
+                         withNaiveDelta:(CGPoint)delta;
+
+@end
+
 @interface BFBiofeedbackMeasureMovementPhase : BFBiofeedbackPhase
+
+@property (nonatomic, weak) id <BFBiofeedbackMeasureMovementPhaseDelegate> measureMovementDelegate;
 
 @end

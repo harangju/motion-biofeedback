@@ -14,6 +14,7 @@
 @property (nonatomic) CGPoint headPosition;
 
 // settings
-//@property (nonatomic, strong) UIColor *;
+@property (nonatomic, strong) UIColor *deltaColor;
+//@property (nonatomic, strong) UIColor 
 
 @end

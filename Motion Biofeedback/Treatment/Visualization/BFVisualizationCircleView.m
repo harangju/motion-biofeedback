@@ -10,22 +10,60 @@
 
 @implementation BFVisualizationCircleView
 
+#pragma mark - LifeCycle
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        [self setup];
     }
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
+- (void)awakeFromNib
+{
+    [self setup];
+}
+
+- (void)setup
+{
+    self.backgroundColor = [UIColor clearColor];
+    self.circleColor = [UIColor redColor].CGColor;
+    self.deltaCircleColor = [UIColor redColor].CGColor;
+}
+
+#pragma mark - Drawing
+
 - (void)drawRect:(CGRect)rect
 {
-    // Drawing code
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    // main circle
+    CGContextSetLineWidth(context, 5.0);
+    CGContextSetStrokeColorWithColor(context, self.circleColor);
+    UIBezierPath *mainCircle = [self makeCircleWithCenter:self.circleCenter
+                                                   radius:self.circleRadius];
+    CGContextAddPath(context, mainCircle.CGPath);
+    // delta circle
+    CGContextSetStrokeColorWithColor(context, self.deltaCircleColor);
+    UIBezierPath *deltaCircle = [self makeCircleWithCenter:self.deltaCircleCenter
+                                                    radius:self.deltaCircleRadius];
+    CGContextAddPath(context, deltaCircle.CGPath);
+    
+    CGContextStrokePath(context);
 }
-*/
+
+- (UIBezierPath *)makeCircleWithCenter:(CGPoint)center
+                                radius:(CGFloat)radius
+{
+    UIBezierPath *path = [UIBezierPath bezierPath];
+    [path addArcWithCenter:center
+                    radius:radius
+                startAngle:0.0
+                  endAngle:M_PI * 2.0
+                 clockwise:YES];
+    
+    return path;
+}
 
 @end

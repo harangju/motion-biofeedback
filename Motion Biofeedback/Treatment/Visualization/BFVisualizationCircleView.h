@@ -10,4 +10,13 @@
 
 @interface BFVisualizationCircleView : BFVisualizationView
 
+@property (nonatomic) CGPoint circleCenter;
+@property (nonatomic) CGFloat circleRadius;
+@property (nonatomic) CGColorRef circleColor;
+
+@property (nonatomic) BOOL shouldShowDeltaCircle;
+@property (nonatomic) CGPoint deltaCircleCenter;
+@property (nonatomic) CGFloat deltaCircleRadius;
+@property (nonatomic) CGColorRef deltaCircleColor;
+
 @end
