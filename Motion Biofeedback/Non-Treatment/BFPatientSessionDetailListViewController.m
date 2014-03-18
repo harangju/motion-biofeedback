@@ -13,7 +13,7 @@ static NSString * const CellIdentifier = @"SessionDetailListCellIdentifier";
 
 @interface BFPatientSessionDetailListViewController ()
 
-@property (nonatomic, strong) NSArray *deltaPoints;
+@property (nonatomic, strong) NSMutableArray *deltaPoints;
 
 @end
 
@@ -25,7 +25,11 @@ static NSString * const CellIdentifier = @"SessionDetailListCellIdentifier";
 {
     [super viewDidLoad];
     
-    self.deltaPoints = self.session.deltaPoints.allObjects;
+    self.deltaPoints = self.session.deltaPoints.allObjects.mutableCopy;
+    // sort delta points
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"timestamp"
+                                                                     ascending:YES];
+    [self.deltaPoints sortUsingDescriptors:@[sortDescriptor]];
 }
 
 - (void)didReceiveMemoryWarning

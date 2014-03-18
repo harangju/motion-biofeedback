@@ -12,7 +12,7 @@
 
 @interface BFPatientSessionDetailChartViewController ()
 
-@property (nonatomic, strong) NSArray *deltaPoints;
+@property (nonatomic, strong) NSMutableArray *deltaPoints;
 
 @end
 
@@ -34,7 +34,13 @@
     self.lineChartView.backgroundColor = [UIColor clearColor];
     [self.lineChartView reloadData];
     
-    self.deltaPoints = self.session.deltaPoints.allObjects;
+    // get delta points
+    self.deltaPoints = self.session.deltaPoints.allObjects.mutableCopy;
+    // sort delta points
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"timestamp"
+                                                                     ascending:YES];
+    [self.deltaPoints sortUsingDescriptors:@[sortDescriptor]];
+    // reload chart
     [self.lineChartView reloadData];
     [self.lineChartView setState:JBChartViewStateCollapsed];
 }
