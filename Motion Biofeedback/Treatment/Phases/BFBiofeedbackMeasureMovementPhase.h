@@ -12,10 +12,13 @@
 
 @protocol BFBiofeedbackMeasureMovementPhaseDelegate <NSObject>
 
+@optional
 // this is synchronous with processFrame:videoRect:
 // I made this a protocol call for consistency
 - (void)biofeedbackMeasureMovementPhase:(BFBiofeedbackMeasureMovementPhase *)biofeedbackPhase
                          withNaiveDelta:(CGPoint)delta;
+- (void)biofeedbackMeasureMovementPhase:(BFBiofeedbackMeasureMovementPhase *)biofeedbackPhase
+                      withAbsoluteDelta:(CGPoint)delta;
 
 @end
 

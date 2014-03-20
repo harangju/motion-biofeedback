@@ -37,7 +37,7 @@
     self.viewCenter = self.center;
     self.headPosition = self.center;
     self.centerCircleColor = [UIColor redColor];
-    self.deltaCircleColor = [UIColor redColor];
+    self.deltaColor = [UIColor redColor];
 }
 
 #pragma mark - Drawing
@@ -56,7 +56,7 @@
     [deltaCircle closePath];
     [[UIColor clearColor] setFill];
     [deltaCircle fill];
-    [self.deltaCircleColor setStroke];
+    [self.deltaColor setStroke];
     [deltaCircle stroke];
     
 //    CGContextRef context = UIGraphicsGetCurrentContext();

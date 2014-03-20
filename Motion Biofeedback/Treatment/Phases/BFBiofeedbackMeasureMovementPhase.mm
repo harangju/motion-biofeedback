@@ -41,9 +41,12 @@
 - (void)processFrame:(cv::Mat)mat
            videoRect:(CGRect)videoRect
 {
-    CGPoint naiveDelta = [self.tracker naiveDeltaFromFrame:mat];
+//    CGPoint naiveDelta = [self.tracker naiveDeltaFromFrame:mat];
+//    [self.measureMovementDelegate biofeedbackMeasureMovementPhase:self
+//                                                   withNaiveDelta:naiveDelta];
+    CGPoint absoluteDelta = [self.tracker absoluteDeltaFromFrame:mat];
     [self.measureMovementDelegate biofeedbackMeasureMovementPhase:self
-                                                   withNaiveDelta:naiveDelta];
+                                                withAbsoluteDelta:absoluteDelta];
 }
 
 @end

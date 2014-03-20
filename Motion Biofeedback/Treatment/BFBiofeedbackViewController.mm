@@ -27,7 +27,11 @@ static CGRect FaceEllipseRectFrameLandscape;
 
 static const CGFloat VisualizationCircleRadius = 300;
 
-static const CGFloat MaximumAllowedDeltaFromCenter = 80;
+static const CGFloat MaximumAllowedDeltaFromCenter = 40;
+static const CGFloat WarningDeltaFromCenter = 20;
+static const CGFloat OffDeltaFromCenter = 5;
+
+static const CGFloat FeedbackAmplificationFactor = 2.0;
 
 @interface BFBiofeedbackViewController () <GPUImageVideoCameraDelegate, BFBiofeedbackPhaseDelegate, BFBiofeedbackCaptureReferencePhaseDelegate, BFBiofeedbackMatchReferencePhaseDelegate, BFBiofeedbackMeasureMovementPhaseDelegate>
 
@@ -168,7 +172,7 @@ static const CGFloat MaximumAllowedDeltaFromCenter = 80;
 - (void)initializeVisualization
 {
     self.visualizationCircleView.centerCircleColor = [UIColor blueColor];
-    self.visualizationCircleView.deltaCircleColor = [UIColor greenColor];
+    self.visualizationCircleView.deltaColor = [UIColor greenColor];
     self.visualizationCircleView.centerCircleRadius = VisualizationCircleRadius;
     self.visualizationCircleView.deltaCircleRadius = VisualizationCircleRadius;
 }
@@ -406,6 +410,89 @@ static const CGFloat MaximumAllowedDeltaFromCenter = 80;
         [[NSOperationQueue mainQueue] addOperationWithBlock:^
          {
              weakSelf.visualizationView.headPosition = weakSelf.faceCenter;
+             [weakSelf.visualizationView setNeedsDisplay];
+         }];
+    }
+}
+
+- (void)biofeedbackMeasureMovementPhase:(BFBiofeedbackMeasureMovementPhase *)biofeedbackPhase
+                      withAbsoluteDelta:(CGPoint)delta
+{
+    if (self.state == BFBiofeedbackStateMeasuringMovement)
+    {
+        NSLog(@"delta %d %d", (int)delta.x, (int)delta.y);
+        
+        CGPoint faceCenter = CGPointZero;
+        UIColor *color = [UIColor greenColor];
+        
+        // adjust faceCenter
+        if (self.dimension == BFDimensionX)
+        {
+            faceCenter = self.faceCenter;
+            faceCenter.x += delta.x * FeedbackAmplificationFactor;
+            if (ABS(delta.x) > OffDeltaFromCenter)
+            {
+                if (ABS(delta.x) > WarningDeltaFromCenter)
+                {
+                    color = [UIColor redColor];
+                }
+                else
+                {
+                    color = [UIColor yellowColor];
+                }
+            }
+        }
+        else if (self.dimension == BFDimensionY)
+        {
+            faceCenter = self.faceCenter;
+            faceCenter.y += delta.y * FeedbackAmplificationFactor;
+            if (ABS(delta.y) > OffDeltaFromCenter)
+            {
+                if (ABS(delta.y) > WarningDeltaFromCenter)
+                {
+                    color = [UIColor redColor];
+                }
+                else
+                {
+                    color = [UIColor yellowColor];
+                }
+            }
+        }
+        else if (self.dimension == BFDimensionXAndY)
+        {
+            faceCenter = self.faceCenter;
+            faceCenter.x += delta.x * FeedbackAmplificationFactor;
+            faceCenter.y += delta.y * FeedbackAmplificationFactor;
+            if (MAX(ABS(delta.x), ABS(delta.y)) > OffDeltaFromCenter)
+            {
+                if (MAX(ABS(delta.x), ABS(delta.y)) > WarningDeltaFromCenter)
+                {
+                    color = [UIColor redColor];
+                }
+                else
+                {
+                    color = [UIColor yellowColor];
+                }
+            }
+        }
+        
+        // check for maximum allowed delta
+        if (MAX(ABS(self.faceCenter.x - self.view.center.x),
+                ABS(self.faceCenter.y - self.view.center.y)) > MaximumAllowedDeltaFromCenter)
+        {
+            [self forceQuitSession];
+        }
+        
+        // save faceCenter & time
+        [self.deltaPoints addObject:[NSValue valueWithCGPoint:delta]];
+        [self.deltaTimes addObject:@([[NSDate date] timeIntervalSince1970])];
+        
+        // set faceCenter
+        __weak typeof(self) weakSelf = self;
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^
+         {
+             weakSelf.visualizationView.headPosition = faceCenter;
+             weakSelf.visualizationView.deltaColor = color;
              [weakSelf.visualizationView setNeedsDisplay];
          }];
     }
