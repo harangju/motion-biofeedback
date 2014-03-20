@@ -36,5 +36,6 @@
 - (void)processFrameFromFrame:(const cv::Mat &)inputFrame
                       toFrame:(cv::Mat &)outputFrame;
 - (CGPoint)naiveDeltaFromFrame:(const cv::Mat &)inputFrame;
+- (CGPoint)absoluteDeltaFromFrame:(const cv::Mat &)inputFrame;
 
 @end
