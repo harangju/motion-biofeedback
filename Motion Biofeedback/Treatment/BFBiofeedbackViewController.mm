@@ -87,6 +87,7 @@ static const CGFloat FeedbackAmplificationFactor = 2.0;
     [self initializeFaceEllipseView];
     [self initializePhases];
     [self initializeVisualization];
+    [self initializeViews];
     self.deltaPoints = [NSMutableArray array];
     self.deltaTimes = [NSMutableArray array];
     self.faceCenter = self.view.center;
@@ -175,6 +176,11 @@ static const CGFloat FeedbackAmplificationFactor = 2.0;
     self.visualizationCircleView.deltaColor = [UIColor greenColor];
     self.visualizationCircleView.centerCircleRadius = VisualizationCircleRadius;
     self.visualizationCircleView.deltaCircleRadius = VisualizationCircleRadius;
+}
+
+- (void)initializeViews
+{
+    self.beginButton.layer.cornerRadius = 5;
 }
 
 - (void)configure

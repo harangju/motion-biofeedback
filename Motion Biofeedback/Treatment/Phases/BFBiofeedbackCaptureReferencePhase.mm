@@ -121,7 +121,7 @@ static CGFloat FaceRectCircleMatchCenterDifferentThreshold = 40;
             // timer
             if (!self.holdTimer)
             {
-                self.holdTimer = [NSTimer timerWithTimeInterval:3
+                self.holdTimer = [NSTimer timerWithTimeInterval:1
                                                          target:self
                                                        selector:@selector(holdTimerFired:)
                                                        userInfo:nil
