@@ -444,7 +444,7 @@ static const CGFloat FeedbackAmplificationFactor = 2.0;
                 }
                 else
                 {
-                    color = [UIColor yellowColor];
+                    color = [UIColor orangeColor];
                 }
             }
         }
@@ -460,7 +460,7 @@ static const CGFloat FeedbackAmplificationFactor = 2.0;
                 }
                 else
                 {
-                    color = [UIColor yellowColor];
+                    color = [UIColor orangeColor];
                 }
             }
         }
@@ -477,7 +477,7 @@ static const CGFloat FeedbackAmplificationFactor = 2.0;
                 }
                 else
                 {
-                    color = [UIColor yellowColor];
+                    color = [UIColor orangeColor];
                 }
             }
         }
