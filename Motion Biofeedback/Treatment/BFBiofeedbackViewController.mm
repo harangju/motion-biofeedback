@@ -528,9 +528,10 @@ static const CGFloat FeedbackAmplificationFactor = 2.0;
 
 - (void)displayMeasuringMovementUI
 {
-    [self.videoCamera removeTarget:self.previewImageView];
+//    [self.videoCamera removeTarget:self.previewImageView];
+//    self.previewImageView.hidden = YES;
     self.faceEllipseView.hidden = YES;
-    self.previewImageView.hidden = YES;
+    self.previewImageView.alpha = 0.3;
     self.referenceImageView.hidden = YES;
     self.beginButton.hidden = YES;
     self.saveButton.hidden = NO;
