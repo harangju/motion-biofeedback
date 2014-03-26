@@ -176,6 +176,7 @@ static const CGFloat FeedbackAmplificationFactor = 2.0;
     self.visualizationCircleView.deltaColor = [UIColor greenColor];
     self.visualizationCircleView.centerCircleRadius = VisualizationCircleRadius;
     self.visualizationCircleView.deltaCircleRadius = VisualizationCircleRadius;
+    self.visualizationCircleView.alpha = 0.7;
 }
 
 - (void)initializeViews
