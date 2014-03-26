@@ -373,7 +373,7 @@
                                     <constraint firstAttribute="width" constant="267" id="vBa-ae-EuK"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                <state key="normal" title="Start">
+                                <state key="normal" title="START">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -726,14 +726,14 @@
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0b3-vl-6cK">
-                                <rect key="frame" x="324" y="604" width="120" height="57"/>
+                                <rect key="frame" x="314" y="601" width="140" height="62"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="57" id="jZr-4P-NCD"/>
-                                    <constraint firstAttribute="width" constant="120" id="jyE-h6-3NH"/>
+                                    <constraint firstAttribute="height" constant="62" id="jZr-4P-NCD"/>
+                                    <constraint firstAttribute="width" constant="140" id="jyE-h6-3NH"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="42"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="52"/>
                                 <state key="normal" title="Begin">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -764,7 +764,7 @@
                                     <constraint firstAttribute="height" constant="88" id="ZdH-CT-Yl3"/>
                                     <constraint firstAttribute="width" constant="475" id="kHg-0l-ecT"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="52"/>
                                 <color key="textColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
