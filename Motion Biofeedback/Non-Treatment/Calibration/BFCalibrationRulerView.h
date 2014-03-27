@@ -13,4 +13,6 @@
 @property (nonatomic) CGPoint pointA;
 @property (nonatomic) CGPoint pointB;
 
+@property (nonatomic, strong) UIColor *color;
+
 @end
