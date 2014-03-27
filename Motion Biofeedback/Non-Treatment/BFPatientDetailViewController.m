@@ -16,6 +16,8 @@
 #import "BFPatientSessionDetailListViewController.h"
 #import "BFAppDelegate.h"
 
+static NSDateFormatter *_dateFormatter = nil;
+
 static NSString * const CellIdentifier = @"PatientDetailCellIdentifier";
 static NSString * const SessionDetailSegueIdentifier = @"SessionDetailSegueIdentifier";
 static NSString * const BiofeedbackSegueIdentifier = @"BiofeedbackSegueIdentifier";
@@ -37,6 +39,14 @@ static const CGFloat TableViewHeightHorizontal = 320;
 @end
 
 @implementation BFPatientDetailViewController
+
++ (void)initialize
+{
+    _dateFormatter = [NSDateFormatter new];
+    _dateFormatter.dateFormat = @"MMM d, yyyy, h:mm a";
+    NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+    _dateFormatter.locale = usLocale;
+}
 
 #pragma mark - Getters/Setters
 
@@ -164,13 +174,11 @@ static const CGFloat TableViewHeightHorizontal = 320;
     Session *session = self.sessions[indexPath.row];
     cell.textLabel.text = [NSString stringWithFormat:@"Session #%@",
                            session.number];
-    NSDateFormatter *dateFormatter = [NSDateFormatter new];
-    dateFormatter.dateFormat = @"MM/dd/yyyy h:mm a";
     NSTimeInterval durationInSeconds = [session.endTime timeIntervalSinceDate:session.startTime];
     NSTimeInterval durationInMinutes = durationInSeconds/60;
     NSString *durationString = [NSString stringWithFormat: @"%.1f", durationInMinutes];;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@\t\t%@ minutes",
-                                 [dateFormatter stringFromDate:session.startTime],
+                                 [_dateFormatter stringFromDate:session.startTime],
                                  durationString];
     return cell;
 }
