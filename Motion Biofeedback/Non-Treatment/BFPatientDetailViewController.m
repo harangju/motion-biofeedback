@@ -164,8 +164,14 @@ static const CGFloat TableViewHeightHorizontal = 320;
     Session *session = self.sessions[indexPath.row];
     cell.textLabel.text = [NSString stringWithFormat:@"Session #%@",
                            session.number];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",
-                                 session.startTime];
+    NSDateFormatter *dateFormatter = [NSDateFormatter new];
+    dateFormatter.dateFormat = @"MM/dd/yyyy h:mm a";
+    NSTimeInterval durationInSeconds = [session.endTime timeIntervalSinceDate:session.startTime];
+    NSTimeInterval durationInMinutes = durationInSeconds/60;
+    NSString *durationString = [NSString stringWithFormat: @"%.1f", durationInMinutes];;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@\t\t%@ minutes",
+                                 [dateFormatter stringFromDate:session.startTime],
+                                 durationString];
     return cell;
 }
 
