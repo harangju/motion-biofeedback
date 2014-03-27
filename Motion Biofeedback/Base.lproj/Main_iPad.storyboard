@@ -770,6 +770,7 @@
                     <connections>
                         <outlet property="exitButton" destination="zg1-kc-1VJ" id="nVg-ad-TnO"/>
                         <outlet property="previewImageView" destination="2M1-5a-Co4" id="vmZ-yk-Lxe"/>
+                        <outlet property="rulerView" destination="xUI-eb-zkm" id="Ndv-bR-PrT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5NV-8Y-SgZ" userLabel="First Responder" sceneMemberID="firstResponder"/>

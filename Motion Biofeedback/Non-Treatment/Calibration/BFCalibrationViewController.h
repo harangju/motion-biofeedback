@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import <GPUImage.h>
+#import "BFCalibrationRulerView.h"
 
 @interface BFCalibrationViewController : UIViewController
 
 @property (nonatomic, weak) IBOutlet UIButton *exitButton;
 @property (nonatomic, weak) IBOutlet GPUImageView *previewImageView;
+@property (nonatomic, weak) IBOutlet BFCalibrationRulerView *rulerView;
 @property (nonatomic, strong) GPUImageVideoCamera *videoCamera;
 
 @end
