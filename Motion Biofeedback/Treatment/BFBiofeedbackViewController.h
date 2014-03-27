@@ -45,6 +45,9 @@ typedef NS_ENUM(NSInteger, BFBiofeedbackState)
 
 @interface BFBiofeedbackViewController : UIViewController <UIAlertViewDelegate>
 
+// save - for transition to background
+- (void)save;
+
 // set these at start
 @property (nonatomic) BFDimension dimension;
 @property (nonatomic) BFVisualizationType visualizationType;

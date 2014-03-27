@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BFBiofeedbackViewController.h"
 
 @interface BFAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+
+@property (nonatomic, weak) BFBiofeedbackViewController *biofeedbackViewController;
 
 @end

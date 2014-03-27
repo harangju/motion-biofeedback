@@ -14,6 +14,7 @@
 #import <SVProgressHUD.h>
 #import "BFPatientSessionDetailChartViewController.h"
 #import "BFPatientSessionDetailListViewController.h"
+#import "BFAppDelegate.h"
 
 static NSString * const CellIdentifier = @"PatientDetailCellIdentifier";
 static NSString * const SessionDetailSegueIdentifier = @"SessionDetailSegueIdentifier";
@@ -244,6 +245,9 @@ static const CGFloat TableViewHeightHorizontal = 320;
         {
             biofeedbackVC.visualizationType = BFVisualizationTypeBar;
         }
+        // connect to app delegate
+        BFAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+        appDelegate.biofeedbackViewController = biofeedbackVC;
     }
 }
 

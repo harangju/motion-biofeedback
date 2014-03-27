@@ -561,6 +561,11 @@ static const CGFloat FeedbackAmplificationFactor = 2.0;
 
 - (IBAction)saveButtonTapped:(id)sender
 {
+    [self save];
+}
+
+- (void)save
+{
     self.state = BFBiofeedbackStateNone;
     self.measureMovementPhase.measureMovementDelegate = nil;
     [self.delegate biofeedbackViewController:self
