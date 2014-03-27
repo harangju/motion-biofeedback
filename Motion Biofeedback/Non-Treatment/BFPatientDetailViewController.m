@@ -21,6 +21,7 @@ static NSDateFormatter *_dateFormatter = nil;
 static NSString * const CellIdentifier = @"PatientDetailCellIdentifier";
 static NSString * const SessionDetailSegueIdentifier = @"SessionDetailSegueIdentifier";
 static NSString * const BiofeedbackSegueIdentifier = @"BiofeedbackSegueIdentifier";
+static NSString * const CalibrationSegueIdentifier = @"CalibrationSegueIdentifier";
 static NSString * const PopoverStoryboardID = @"PatientListNavVC";
 
 static const CGFloat TableViewHeightVertical = 460;
@@ -75,6 +76,8 @@ static const CGFloat TableViewHeightHorizontal = 320;
     [super viewDidLoad];
 
     self.imageView.layer.cornerRadius = 30;
+    self.startButton.layer.cornerRadius = 10;
+    self.calibrateButton.layer.cornerRadius = 10;
     
     [self adjustHeightAccordingToInterfaceOrientation:self.interfaceOrientation];
     
@@ -262,6 +265,11 @@ static const CGFloat TableViewHeightHorizontal = 320;
         // connect to app delegate
         BFAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
         appDelegate.biofeedbackViewController = biofeedbackVC;
+    }
+    else if ([segue.identifier isEqualToString:CalibrationSegueIdentifier])
+    {
+        self.view.window.windowLevel = UIWindowLevelStatusBar + 1;
+        
     }
 }
 

@@ -30,6 +30,7 @@
 		7D75798F18D6B4BE00EAA5CA /* DeltaPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D75798E18D6B4BE00EAA5CA /* DeltaPoint.m */; };
 		7D75799218D6B4BF00EAA5CA /* Patient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D75799118D6B4BF00EAA5CA /* Patient.m */; };
 		7D75799518D6B4BF00EAA5CA /* Session.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D75799418D6B4BF00EAA5CA /* Session.m */; };
+		7D9B75EA18E4A6B000A4A1C9 /* BFCalibrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D9B75E918E4A6B000A4A1C9 /* BFCalibrationViewController.m */; };
 		7DB9C2E518C2D2EF00CCDED9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DB9C2E418C2D2EF00CCDED9 /* Foundation.framework */; };
 		7DB9C2E718C2D2EF00CCDED9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DB9C2E618C2D2EF00CCDED9 /* CoreGraphics.framework */; };
 		7DB9C2E918C2D2EF00CCDED9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DB9C2E818C2D2EF00CCDED9 /* UIKit.framework */; };
@@ -115,6 +116,8 @@
 		7D75799118D6B4BF00EAA5CA /* Patient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Patient.m; sourceTree = "<group>"; };
 		7D75799318D6B4BF00EAA5CA /* Session.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Session.h; sourceTree = "<group>"; };
 		7D75799418D6B4BF00EAA5CA /* Session.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Session.m; sourceTree = "<group>"; };
+		7D9B75E818E4A6B000A4A1C9 /* BFCalibrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BFCalibrationViewController.h; path = "Non-Treatment/Calibration/BFCalibrationViewController.h"; sourceTree = "<group>"; };
+		7D9B75E918E4A6B000A4A1C9 /* BFCalibrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BFCalibrationViewController.m; path = "Non-Treatment/Calibration/BFCalibrationViewController.m"; sourceTree = "<group>"; };
 		7DB9C2E118C2D2EF00CCDED9 /* Motion Biofeedback.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Motion Biofeedback.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DB9C2E418C2D2EF00CCDED9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7DB9C2E618C2D2EF00CCDED9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -212,6 +215,7 @@
 				7D2E6C2B18D5078C00B03788 /* BFPatientSessionDetailChartViewController.m */,
 				7D2E6C2D18D5079800B03788 /* BFPatientSessionDetailListViewController.h */,
 				7D2E6C2E18D5079800B03788 /* BFPatientSessionDetailListViewController.m */,
+				7D9B75EB18E4A6B500A4A1C9 /* Calibration */,
 				7D2E6BE718D33DF500B03788 /* Settings */,
 			);
 			name = "Non-Treatment";
@@ -277,6 +281,15 @@
 				7D75798E18D6B4BE00EAA5CA /* DeltaPoint.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		7D9B75EB18E4A6B500A4A1C9 /* Calibration */ = {
+			isa = PBXGroup;
+			children = (
+				7D9B75E818E4A6B000A4A1C9 /* BFCalibrationViewController.h */,
+				7D9B75E918E4A6B000A4A1C9 /* BFCalibrationViewController.m */,
+			);
+			name = Calibration;
 			sourceTree = "<group>";
 		};
 		7DB9C2D818C2D2EF00CCDED9 = {
@@ -517,6 +530,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D16ED4118D2CE1600EF7D56 /* BFPatientDetailViewController.m in Sources */,
+				7D9B75EA18E4A6B000A4A1C9 /* BFCalibrationViewController.m in Sources */,
 				7DD1705418D543D300DEFD4F /* BFFaceEllipseView.m in Sources */,
 				7D16ED3E18D2BC3600EF7D56 /* BFAddPatientViewController.m in Sources */,
 				7DD1705B18D6553900DEFD4F /* BFBiofeedbackCaptureReferencePhase.mm in Sources */,

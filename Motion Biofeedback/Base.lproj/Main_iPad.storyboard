@@ -366,14 +366,16 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YPh-sN-RHx">
-                                <rect key="frame" x="441" y="164" width="267" height="110"/>
+                                <rect key="frame" x="488" y="164" width="200" height="110"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="110" id="YeJ-ZC-iOc"/>
-                                    <constraint firstAttribute="width" constant="267" id="vBa-ae-EuK"/>
+                                    <constraint firstAttribute="width" constant="200" id="vBa-ae-EuK"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <state key="normal" title="START">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -420,29 +422,49 @@
                                     <constraint firstAttribute="height" constant="2" id="t3n-RI-T51"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iUW-64-cZl">
+                                <rect key="frame" x="478" y="314" width="220" height="92"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="92" id="AuO-YK-tIi"/>
+                                    <constraint firstAttribute="width" constant="220" id="rZb-B7-rb1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="Calibrate distance">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="bGM-aa-fW7" kind="modal" identifier="CalibrationSegueIdentifier" modalTransitionStyle="crossDissolve" id="cp3-fS-T9R"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="zty-V5-vUs" firstAttribute="top" secondItem="7oO-fr-a8B" secondAttribute="bottom" constant="8" id="0rT-GM-Of6"/>
                             <constraint firstItem="zty-V5-vUs" firstAttribute="top" secondItem="WAj-hG-mJ8" secondAttribute="bottom" constant="8" id="8fZ-Db-1Pp"/>
+                            <constraint firstItem="iUW-64-cZl" firstAttribute="top" secondItem="YPh-sN-RHx" secondAttribute="bottom" constant="40" id="Adv-aO-lYa"/>
                             <constraint firstItem="T4j-lL-Xx2" firstAttribute="leading" secondItem="wrf-TE-MgQ" secondAttribute="leading" constant="60" id="C1M-s9-UuC"/>
                             <constraint firstAttribute="trailing" secondItem="SFa-pq-dNc" secondAttribute="trailing" id="FUK-MN-bsz"/>
                             <constraint firstAttribute="trailing" secondItem="WAj-hG-mJ8" secondAttribute="trailing" constant="44" id="GKx-4l-gJ1"/>
                             <constraint firstItem="7oO-fr-a8B" firstAttribute="leading" secondItem="wrf-TE-MgQ" secondAttribute="leading" constant="20" id="KNQ-0Q-joY"/>
                             <constraint firstAttribute="trailing" secondItem="zty-V5-vUs" secondAttribute="trailing" id="L7p-6w-Ejo"/>
+                            <constraint firstAttribute="trailing" secondItem="iUW-64-cZl" secondAttribute="trailing" constant="70" id="PQe-ZW-CmS"/>
                             <constraint firstItem="zty-V5-vUs" firstAttribute="top" secondItem="wFw-sa-ONP" secondAttribute="bottom" constant="8" id="Psm-pS-S0O"/>
                             <constraint firstItem="KYG-ZW-Qn5" firstAttribute="top" secondItem="zty-V5-vUs" secondAttribute="bottom" id="RY0-q6-beE"/>
                             <constraint firstItem="SFa-pq-dNc" firstAttribute="top" secondItem="WAj-hG-mJ8" secondAttribute="bottom" constant="4" id="a8h-to-1AV"/>
                             <constraint firstItem="T4j-lL-Xx2" firstAttribute="top" secondItem="8qo-Pi-XAf" secondAttribute="bottom" constant="44" id="caE-pS-S7A"/>
                             <constraint firstItem="YPh-sN-RHx" firstAttribute="top" secondItem="8qo-Pi-XAf" secondAttribute="bottom" constant="100" id="kPK-fW-odR"/>
                             <constraint firstItem="SFa-pq-dNc" firstAttribute="leading" secondItem="wrf-TE-MgQ" secondAttribute="leading" id="kk6-Xt-ftb"/>
-                            <constraint firstAttribute="trailing" secondItem="YPh-sN-RHx" secondAttribute="trailing" constant="60" id="nW2-O1-0a3"/>
+                            <constraint firstAttribute="trailing" secondItem="YPh-sN-RHx" secondAttribute="trailing" constant="80" id="nW2-O1-0a3"/>
                             <constraint firstAttribute="trailing" secondItem="wFw-sa-ONP" secondAttribute="trailing" constant="180" id="qKS-Y6-hmW"/>
                             <constraint firstItem="zty-V5-vUs" firstAttribute="leading" secondItem="wrf-TE-MgQ" secondAttribute="leading" id="uvO-Ws-PzB"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="hKC-bV-ePN"/>
                     <connections>
+                        <outlet property="calibrateButton" destination="iUW-64-cZl" id="Zdo-zf-Oge"/>
                         <outlet property="imageHeightConstraint" destination="098-Bj-dtg" id="FMk-rm-gAB"/>
                         <outlet property="imageView" destination="T4j-lL-Xx2" id="Ahw-bX-8TI"/>
                         <outlet property="startButton" destination="YPh-sN-RHx" id="hdA-v5-gr0"/>
@@ -697,6 +719,54 @@
             </objects>
             <point key="canvasLocation" x="-974" y="-2090"/>
         </scene>
+        <!--Calibration View Controller-->
+        <scene sceneID="fcu-zk-a7q">
+            <objects>
+                <viewController id="bGM-aa-fW7" customClass="BFCalibrationViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Vkh-lD-0LL"/>
+                        <viewControllerLayoutGuide type="bottom" id="qeo-IN-X6W"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="56J-px-tT8">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2M1-5a-Co4" customClass="GPUImageView">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zg1-kc-1VJ">
+                                <rect key="frame" x="20" y="20" width="66" height="41"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.89366083559999998" green="0.1391422202" blue="0.16149279029999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="EXIT">
+                                    <color key="titleColor" cocoaTouchSystemColor="lightTextColor"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="exitButtonTapped:" destination="bGM-aa-fW7" eventType="touchUpInside" id="xQG-CG-gAg"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2M1-5a-Co4" firstAttribute="top" secondItem="56J-px-tT8" secondAttribute="top" id="4lt-wy-lZe"/>
+                            <constraint firstItem="qeo-IN-X6W" firstAttribute="top" secondItem="2M1-5a-Co4" secondAttribute="bottom" id="7pt-gg-MB5"/>
+                            <constraint firstItem="2M1-5a-Co4" firstAttribute="leading" secondItem="56J-px-tT8" secondAttribute="leading" id="rrC-VX-sTw"/>
+                            <constraint firstAttribute="trailing" secondItem="2M1-5a-Co4" secondAttribute="trailing" id="yLP-tb-7rA"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="exitButton" destination="zg1-kc-1VJ" id="nVg-ad-TnO"/>
+                        <outlet property="previewImageView" destination="2M1-5a-Co4" id="vmZ-yk-Lxe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5NV-8Y-SgZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="977" y="-123"/>
+        </scene>
         <!--Biofeedback View Controller-->
         <scene sceneID="ZWd-Qt-G06">
             <objects>
@@ -766,15 +836,16 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yCJ-eY-RMG">
-                                <rect key="frame" x="20" y="20" width="74" height="39"/>
+                                <rect key="frame" x="20" y="20" width="64" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.89366083559999998" green="0.1391422202" blue="0.16149279029999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="39" id="YIh-jC-n23"/>
-                                    <constraint firstAttribute="width" constant="74" id="erK-CH-8rt"/>
+                                    <constraint firstAttribute="width" constant="64" id="erK-CH-8rt"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="Exit">
-                                    <color key="titleColor" red="0.89366083559999998" green="0.1391422202" blue="0.16149279029999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
