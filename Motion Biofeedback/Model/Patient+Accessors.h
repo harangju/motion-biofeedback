@@ -11,6 +11,6 @@
 @interface Patient (Accessors)
 
 - (NSData *)latestImageData;
-- (NSArray *)allImageData;
+- (NSArray *)allImageData; // latest image first
 
 @end
