@@ -7,6 +7,7 @@
 //
 
 #import "BFCalibrationViewController.h"
+#import "BFSettings.h"
 
 @interface BFCalibrationViewController () <UIGestureRecognizerDelegate, UIAlertViewDelegate>
 
@@ -233,6 +234,7 @@
             // newString consists only of the digits 0 through 9
         {
             [self saveMillimeterToPixelRatio];
+            [self dismissViewControllerAnimated:YES completion:nil];
         }
         else
         {
@@ -267,7 +269,7 @@
     // get the ratio
     CGFloat millimeterToPixelRatio = millimeters / distanceBetweenPoints;
     NSLog(@"\nmm - %f \npx - %f \nratio %f", millimeters, distanceBetweenPoints, millimeterToPixelRatio);
-    
+    [BFSettings setMillimeterPerPixelRatio:millimeterToPixelRatio];
 }
 
 @end
