@@ -8,6 +8,7 @@
 
 #import "ReferenceImage.h"
 #import "Patient.h"
+#import "Session.h"
 
 
 @implementation ReferenceImage
@@ -15,5 +16,6 @@
 @dynamic imageData;
 @dynamic timestamp;
 @dynamic patient;
+@dynamic sessions;
 
 @end

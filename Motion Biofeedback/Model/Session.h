@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class DeltaPoint, Patient;
+@class DeltaPoint, Patient, ReferenceImage;
 
 @interface Session : NSManagedObject
 
@@ -19,6 +19,7 @@
 @property (nonatomic, retain) NSDate * startTime;
 @property (nonatomic, retain) NSSet *deltaPoints;
 @property (nonatomic, retain) Patient *patient;
+@property (nonatomic, retain) ReferenceImage *referenceImage;
 @end
 
 @interface Session (CoreDataGeneratedAccessors)

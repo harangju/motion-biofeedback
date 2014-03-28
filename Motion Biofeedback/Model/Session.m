@@ -9,6 +9,7 @@
 #import "Session.h"
 #import "DeltaPoint.h"
 #import "Patient.h"
+#import "ReferenceImage.h"
 
 
 @implementation Session
@@ -19,5 +20,6 @@
 @dynamic startTime;
 @dynamic deltaPoints;
 @dynamic patient;
+@dynamic referenceImage;
 
 @end

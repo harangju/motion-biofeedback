@@ -9,10 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "Session.h"
 
-@interface BFPatientSessionViewController : UIViewController <UICollectionViewDataSource>
+@interface BFPatientSessionViewController : UIViewController
 
 @property (nonatomic, strong) Session *session;
 
-@property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
+@property (nonatomic, weak) IBOutlet UIImageView *referenceImageView;
 
 @end
