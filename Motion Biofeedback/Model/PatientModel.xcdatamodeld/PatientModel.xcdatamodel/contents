@@ -24,11 +24,19 @@
         <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="deltaPoints" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DeltaPoint" inverseName="session" inverseEntity="DeltaPoint" syncable="YES"/>
         <relationship name="patient" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Patient" inverseName="sessions" inverseEntity="Patient" syncable="YES"/>
+<<<<<<< HEAD
+=======
+        <relationship name="referenceImage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ReferenceImage" syncable="YES"/>
+>>>>>>> parent of b9cae06... added sessions to reference image
     </entity>
     <elements>
         <element name="DeltaPoint" positionX="-63" positionY="59" width="128" height="103"/>
         <element name="Patient" positionX="-414" positionY="27" width="128" height="103"/>
+<<<<<<< HEAD
         <element name="Session" positionX="-236" positionY="44" width="128" height="133"/>
+=======
+        <element name="Session" positionX="-236" positionY="44" width="128" height="148"/>
+>>>>>>> parent of b9cae06... added sessions to reference image
         <element name="ReferenceImage" positionX="-236" positionY="-79" width="128" height="88"/>
     </elements>
 </model>
