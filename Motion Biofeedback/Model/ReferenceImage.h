@@ -1,5 +1,5 @@
 //
-//  DeltaPoint.h
+//  ReferenceImage.h
 //  Motion Biofeedback
 //
 //  Created by Harang Ju on 3/27/14.
@@ -9,13 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Session;
+@class Patient;
 
-@interface DeltaPoint : NSManagedObject
+@interface ReferenceImage : NSManagedObject
 
+@property (nonatomic, retain) NSData * imageData;
 @property (nonatomic, retain) NSDate * timestamp;
-@property (nonatomic, retain) NSNumber * x;
-@property (nonatomic, retain) NSNumber * y;
-@property (nonatomic, retain) Session *session;
+@property (nonatomic, retain) Patient *patient;
 
 @end

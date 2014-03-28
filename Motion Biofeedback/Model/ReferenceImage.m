@@ -1,20 +1,19 @@
 //
-//  DeltaPoint.m
+//  ReferenceImage.m
 //  Motion Biofeedback
 //
 //  Created by Harang Ju on 3/27/14.
 //  Copyright (c) 2014 Harang Ju. All rights reserved.
 //
 
-#import "DeltaPoint.h"
-#import "Session.h"
+#import "ReferenceImage.h"
+#import "Patient.h"
 
 
-@implementation DeltaPoint
+@implementation ReferenceImage
 
+@dynamic imageData;
 @dynamic timestamp;
-@dynamic x;
-@dynamic y;
-@dynamic session;
+@dynamic patient;
 
 @end

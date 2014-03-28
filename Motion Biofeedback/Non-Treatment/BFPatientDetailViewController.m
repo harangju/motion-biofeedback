@@ -7,6 +7,7 @@
 //
 
 #import "BFPatientDetailViewController.h"
+#import "Patient+Accessors.h"
 #import "Session.h"
 #import "BFBiofeedbackViewController.h"
 #import "BFSettings.h"
@@ -14,6 +15,7 @@
 #import <SVProgressHUD.h>
 #import "BFAppDelegate.h"
 #import "BFPatientSessionViewController.h"
+#import "ReferenceImage.h"
 
 static NSDateFormatter *_dateFormatter = nil;
 
@@ -35,6 +37,8 @@ static const CGFloat TableViewHeightHorizontal = 320;
 @property (nonatomic, strong) UIPopoverController *popover;
 
 @property (nonatomic, strong) NSArray *sessions;
+
+@property (nonatomic, strong) UIImage *referenceImage;
 
 @end
 
@@ -119,9 +123,9 @@ static const CGFloat TableViewHeightHorizontal = 320;
     self.sessions = [self.patient.sessions.allObjects sortedArrayUsingDescriptors:@[sortDescriptor]];
     [self.tableView reloadData];
     // load image
-    if (self.patient.referenceImageData)
+    if (self.patient.latestImageData)
     {
-        self.imageView.image = [UIImage imageWithData:self.patient.referenceImageData];
+        self.imageView.image = [UIImage imageWithData:self.patient.latestImageData];
         self.imageView.backgroundColor = [UIColor clearColor];
         self.imageView.layer.borderWidth = 0;
     }
@@ -235,7 +239,7 @@ static const CGFloat TableViewHeightHorizontal = 320;
         // set settings
         if (self.patient.sessions.count == 0)
         {
-            biofeedbackVC.isFirstSession = YES;
+            biofeedbackVC.shouldCaptureReferenceImage = YES;
         }
         BFSettingsDimension dimension = [BFSettings dimension];
         if (dimension == BFSettingsDimensionsX)
@@ -296,9 +300,18 @@ static const CGFloat TableViewHeightHorizontal = 320;
 - (void)biofeedbackViewController:(BFBiofeedbackViewController *)biofeedbackViewController
             didTakeReferenceImage:(UIImage *)referenceImage
 {
-    self.patient.referenceImageData = UIImageJPEGRepresentation(referenceImage,
-                                                                0.9);
-    [self saveContext];
+    self.referenceImage = referenceImage;
+//    NSData *imageData = UIImageJPEGRepresentation(referenceImage,
+//                                                  0.9);
+//    [[NSOperationQueue mainQueue] addOperationWithBlock:^
+//     {
+//         NSDate *now = [NSDate dateWithTimeIntervalSinceNow:0];
+//         ReferenceImage *newReferenceImage = [ReferenceImage createEntity];
+//         newReferenceImage.timestamp = now;
+//         newReferenceImage.imageData = imageData;
+//         [self.patient addReferenceImagesObject:newReferenceImage];
+//         [self saveContext];
+//     }];
 }
 
 - (UIImage *)biofeedbackViewControllerHalfReferenceImage:(BFBiofeedbackViewController *)biofeedbackViewController
@@ -376,6 +389,13 @@ static const CGFloat TableViewHeightHorizontal = 320;
     
     // add session to patient
     [self.patient addSessionsObject:session];
+    
+    // add reference image
+    ReferenceImage *referenceImage = [ReferenceImage createEntity];
+    referenceImage.timestamp = session.startTime;
+    referenceImage.imageData = UIImageJPEGRepresentation(self.referenceImage,
+                                                         0.9);
+    [self.patient addReferenceImagesObject:referenceImage];
     
     // save
     [self saveContext];

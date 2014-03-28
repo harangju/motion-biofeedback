@@ -51,7 +51,8 @@ typedef NS_ENUM(NSInteger, BFBiofeedbackState)
 // set these at start
 @property (nonatomic) BFDimension dimension;
 @property (nonatomic) BFVisualizationType visualizationType;
-@property (nonatomic) BOOL isFirstSession;
+//@property (nonatomic) BOOL isFirstSession;
+@property (nonatomic) BOOL shouldCaptureReferenceImage;
 @property (nonatomic, weak) id <BFBiofeedbackViewControllerDelegate> delegate;
 
 @end

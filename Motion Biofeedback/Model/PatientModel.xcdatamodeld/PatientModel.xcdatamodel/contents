@@ -9,8 +9,13 @@
     <entity name="Patient" representedClassName="Patient" syncable="YES">
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="referenceImageData" optional="YES" attributeType="Binary" syncable="YES"/>
+        <relationship name="referenceImages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ReferenceImage" inverseName="patient" inverseEntity="ReferenceImage" syncable="YES"/>
         <relationship name="sessions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Session" inverseName="patient" inverseEntity="Session" syncable="YES"/>
+    </entity>
+    <entity name="ReferenceImage" representedClassName="ReferenceImage" syncable="YES">
+        <attribute name="imageData" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="patient" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Patient" inverseName="referenceImages" inverseEntity="Patient" syncable="YES"/>
     </entity>
     <entity name="Session" representedClassName="Session" syncable="YES">
         <attribute name="averageSampleRate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
@@ -21,8 +26,9 @@
         <relationship name="patient" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Patient" inverseName="sessions" inverseEntity="Patient" syncable="YES"/>
     </entity>
     <elements>
-        <element name="DeltaPoint" positionX="-27" positionY="50" width="128" height="103"/>
-        <element name="Patient" positionX="-414" positionY="27" width="128" height="105"/>
+        <element name="DeltaPoint" positionX="-63" positionY="59" width="128" height="103"/>
+        <element name="Patient" positionX="-414" positionY="27" width="128" height="103"/>
         <element name="Session" positionX="-236" positionY="44" width="128" height="133"/>
+        <element name="ReferenceImage" positionX="-236" positionY="-79" width="128" height="88"/>
     </elements>
 </model>
