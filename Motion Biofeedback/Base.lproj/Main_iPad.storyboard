@@ -356,7 +356,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="5z4-47-Ivu" kind="push" identifier="SessionDetailSegueIdentifier" id="4iz-b4-W7D"/>
+                                            <segue destination="78y-oA-kKr" kind="push" identifier="SessionDetailSegueIdentifier" id="ZmE-db-vpj"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -476,10 +476,10 @@
             </objects>
             <point key="canvasLocation" x="977" y="-1363"/>
         </scene>
-        <!--View Controller-->
+        <!--Patient Session View Controller - Session-->
         <scene sceneID="z84-xG-xSN">
             <objects>
-                <viewController id="78y-oA-kKr" sceneMemberID="viewController">
+                <viewController id="78y-oA-kKr" customClass="BFPatientSessionViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5Fm-XH-DrF"/>
                         <viewControllerLayoutGuide type="bottom" id="aLl-uR-lkb"/>
@@ -489,10 +489,14 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Session" id="zLu-Zm-vVf"/>
+                    <connections>
+                        <segue destination="5z4-47-Ivu" kind="push" identifier="SessionDetailInfoSegueIdentifier" id="r3a-ac-BDe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uzb-eq-vFb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2041" y="-1363"/>
+            <point key="canvasLocation" x="1969" y="-1363"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="MkX-gc-RNv">
@@ -512,7 +516,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zle-7m-Uun" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3275" y="-1363"/>
+            <point key="canvasLocation" x="2863" y="-1363"/>
         </scene>
         <!--Patient Session Detail List View Controller - List-->
         <scene sceneID="Ir0-hc-5uA">
@@ -578,7 +582,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BBI-jZ-iBn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4237" y="-2596"/>
+            <point key="canvasLocation" x="3825" y="-2596"/>
         </scene>
         <!--Patient Session Detail Chart View Controller - Chart-->
         <scene sceneID="DRN-rS-kCQ">
@@ -614,7 +618,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xBg-Ld-8Z7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4237" y="-1363"/>
+            <point key="canvasLocation" x="3825" y="-1363"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cAc-QK-1vq">

@@ -12,9 +12,8 @@
 #import "BFSettings.h"
 #import "DeltaPoint.h"
 #import <SVProgressHUD.h>
-#import "BFPatientSessionDetailChartViewController.h"
-#import "BFPatientSessionDetailListViewController.h"
 #import "BFAppDelegate.h"
+#import "BFPatientSessionViewController.h"
 
 static NSDateFormatter *_dateFormatter = nil;
 
@@ -224,11 +223,9 @@ static const CGFloat TableViewHeightHorizontal = 320;
     if ([segue.identifier isEqualToString:SessionDetailSegueIdentifier])
     {
         NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell *)sender];
-        UITabBarController *tabbarController = segue.destinationViewController;
-        BFPatientSessionDetailListViewController *listDetailVC = tabbarController.viewControllers.firstObject;
-        listDetailVC.session = self.sessions[indexPath.row];
-        BFPatientSessionDetailChartViewController *chartDetailVC = tabbarController.viewControllers.lastObject;
-        chartDetailVC.session = self.sessions[indexPath.row];
+        Session *session = self.sessions[indexPath.row];
+        BFPatientSessionViewController *sessionViewController = segue.destinationViewController;
+        sessionViewController.session = session;
     }
     else if ([segue.identifier isEqualToString:BiofeedbackSegueIdentifier])
     {
@@ -349,8 +346,11 @@ static const CGFloat TableViewHeightHorizontal = 320;
         NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeNumber.integerValue];
         DeltaPoint *deltaPoint = [DeltaPoint createEntity];
         deltaPoint.timestamp = date;
-        deltaPoint.x = @(point.x);
-        deltaPoint.y = @(point.y);
+        // convert to mm
+        CGFloat millimeterToPixelRatio = [BFSettings millimeterPerPixelRatio];
+        if (millimeterToPixelRatio == 0) millimeterToPixelRatio = 1; // heh~
+        deltaPoint.x = @(point.x * millimeterToPixelRatio);
+        deltaPoint.y = @(point.y * millimeterToPixelRatio);
         [points addObject:deltaPoint];
         
         // set session start & end times
