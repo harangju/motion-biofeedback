@@ -10,8 +10,11 @@
 #import "BFPatientSessionReferenceImageCell.h"
 #import "Patient+Accessors.h"
 #import "ReferenceImage.h"
+#import "BFPatientSessionDetailChartViewController.h"
+#import "BFPatientSessionDetailListViewController.h"
 
-static NSString * const CellIdentifier = @"ReferenceImageCellIdentifier";
+static NSString * const CellIdentifier = @"SessionDetailCellIdentifier";
+static NSString * const DataSegueIdentifier = @"SessionDetailInfoSegueIdentifier";
 
 @interface BFPatientSessionViewController ()
 
@@ -46,11 +49,59 @@ static NSString * const CellIdentifier = @"ReferenceImageCellIdentifier";
     self.referenceImageView.image = [UIImage imageWithData:referenceImage.imageData];
 }
 
+#pragma mark - TableView DataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 2;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier
+                                                            forIndexPath:indexPath];
+    switch (indexPath.row)
+    {
+        case 0:
+            cell.textLabel.text = [NSString stringWithFormat:@"Average Sampling Rate: %@ per second",
+                                   self.session.averageSampleRate];
+            cell.detailTextLabel.text = @"";
+            break;
+        case 1:
+            cell.textLabel.text = @"View Data";
+            cell.detailTextLabel.text = @"";
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            break;
+        default:
+            break;
+    }
+    return cell;
+}
+
+#pragma mark - TableView Delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.row == 1)
+    {
+        [self performSegueWithIdentifier:DataSegueIdentifier
+                                  sender:self];
+    }
+}
+
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    
+    if ([segue.identifier isEqualToString:DataSegueIdentifier])
+    {
+        UITabBarController *tabBarController = segue.destinationViewController;
+        BFPatientSessionDetailListViewController *listVC = tabBarController.viewControllers.firstObject;
+        listVC.session = self.session;
+        BFPatientSessionDetailChartViewController *chartVC = tabBarController.viewControllers.lastObject;
+        chartVC.session = self.session;
+    }
 }
 
 @end

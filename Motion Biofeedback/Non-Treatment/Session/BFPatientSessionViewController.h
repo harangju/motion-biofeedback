@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "Session.h"
 
-@interface BFPatientSessionViewController : UIViewController
+@interface BFPatientSessionViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) Session *session;
 
 @property (nonatomic, weak) IBOutlet UIImageView *referenceImageView;
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
 
 @end

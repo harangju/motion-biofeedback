@@ -11,6 +11,8 @@
 
 static NSString * const CellIdentifier = @"SessionDetailListCellIdentifier";
 
+static NSDateFormatter *_dateFormatter;
+
 @interface BFPatientSessionDetailListViewController ()
 
 @property (nonatomic, strong) NSMutableArray *deltaPoints;
@@ -30,6 +32,9 @@ static NSString * const CellIdentifier = @"SessionDetailListCellIdentifier";
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"timestamp"
                                                                      ascending:YES];
     [self.deltaPoints sortUsingDescriptors:@[sortDescriptor]];
+    
+    _dateFormatter = [NSDateFormatter new];
+    _dateFormatter.dateFormat = @"h:mm a";
 }
 
 - (void)didReceiveMemoryWarning
@@ -52,13 +57,8 @@ static NSString * const CellIdentifier = @"SessionDetailListCellIdentifier";
     cell.textLabel.text = [NSString stringWithFormat:@"(%f, %f)",
                            deltaPoint.x.floatValue, deltaPoint.y.floatValue];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",
-                                 deltaPoint.timestamp];
+                                 [_dateFormatter stringFromDate:deltaPoint.timestamp]];
     return cell;
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    return @"Delta Point (x, y)";
 }
 
 @end
