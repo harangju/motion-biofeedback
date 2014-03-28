@@ -368,6 +368,12 @@ static const CGFloat TableViewHeightHorizontal = 320;
     // add points to session
     [session addDeltaPoints:points];
     
+    // get average sampling rate
+    NSTimeInterval duration = [session.endTime timeIntervalSinceDate:session.startTime];
+    CGFloat samplingRate = points.count / duration;
+    NSLog(@"sampling rate - %f", samplingRate);
+    session.averageSampleRate = @(samplingRate);
+    
     // add session to patient
     [self.patient addSessionsObject:session];
     

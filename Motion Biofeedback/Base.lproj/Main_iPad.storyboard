@@ -494,7 +494,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zle-7m-Uun" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1969" y="-1363"/>
+            <point key="canvasLocation" x="3275" y="-1363"/>
         </scene>
         <!--Patient Session Detail List View Controller - List-->
         <scene sceneID="Ir0-hc-5uA">
@@ -560,7 +560,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BBI-jZ-iBn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2931" y="-2596"/>
+            <point key="canvasLocation" x="4237" y="-2596"/>
         </scene>
         <!--Patient Session Detail Chart View Controller - Chart-->
         <scene sceneID="DRN-rS-kCQ">
@@ -596,7 +596,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xBg-Ld-8Z7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2931" y="-1363"/>
+            <point key="canvasLocation" x="4237" y="-1363"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cAc-QK-1vq">
