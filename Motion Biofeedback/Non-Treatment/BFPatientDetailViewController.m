@@ -398,11 +398,14 @@ static const CGFloat TableViewHeightHorizontal = 320;
     [self.patient addSessionsObject:session];
     
     // add reference image
-    ReferenceImage *referenceImage = [ReferenceImage createEntity];
-    referenceImage.timestamp = session.startTime;
-    referenceImage.imageData = UIImageJPEGRepresentation(self.referenceImage,
-                                                         0.9);
-    [self.patient addReferenceImagesObject:referenceImage];
+    if (self.referenceImage)
+    {
+        ReferenceImage *referenceImage = [ReferenceImage createEntity];
+        referenceImage.timestamp = session.startTime;
+        referenceImage.imageData = UIImageJPEGRepresentation(self.referenceImage,
+                                                             0.9);
+        [self.patient addReferenceImagesObject:referenceImage];
+    }
     
     // save
     [self saveContext];
