@@ -13,10 +13,10 @@
 
 @implementation Session
 
+@dynamic averageSampleRate;
 @dynamic endTime;
 @dynamic number;
 @dynamic startTime;
-@dynamic averageSampleRate;
 @dynamic deltaPoints;
 @dynamic patient;
 

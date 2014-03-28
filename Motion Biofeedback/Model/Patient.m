@@ -2,7 +2,7 @@
 //  Patient.m
 //  Motion Biofeedback
 //
-//  Created by Harang Ju on 3/27/14.
+//  Created by Harang Ju on 3/28/14.
 //  Copyright (c) 2014 Harang Ju. All rights reserved.
 //
 
@@ -15,7 +15,7 @@
 
 @dynamic firstName;
 @dynamic lastName;
-@dynamic sessions;
 @dynamic referenceImages;
+@dynamic sessions;
 
 @end

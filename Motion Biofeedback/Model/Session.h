@@ -13,10 +13,10 @@
 
 @interface Session : NSManagedObject
 
+@property (nonatomic, retain) NSNumber * averageSampleRate;
 @property (nonatomic, retain) NSDate * endTime;
 @property (nonatomic, retain) NSNumber * number;
 @property (nonatomic, retain) NSDate * startTime;
-@property (nonatomic, retain) NSNumber * averageSampleRate;
 @property (nonatomic, retain) NSSet *deltaPoints;
 @property (nonatomic, retain) Patient *patient;
 @end
