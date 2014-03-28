@@ -19,6 +19,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.title = [NSString stringWithFormat:@"Session #%lu",
+                  self.session.number.integerValue];
 }
 
 - (void)didReceiveMemoryWarning

@@ -139,6 +139,20 @@ static const CGFloat TableViewHeightHorizontal = 320;
     {
         self.startButton.enabled = NO;
     }
+    // enable/disable switch
+    if (self.patient)
+    {
+        if (self.patient.sessions.count == 0)
+        {
+            [self.captureReferenceSwitch setOn:YES animated:YES];
+            self.captureReferenceSwitch.userInteractionEnabled = NO;
+        }
+        else
+        {
+            [self.captureReferenceSwitch setOn:NO animated:YES];
+            self.captureReferenceSwitch.userInteractionEnabled = YES;
+        }
+    }
 }
 
 - (void)saveContext
@@ -241,6 +255,10 @@ static const CGFloat TableViewHeightHorizontal = 320;
         {
             biofeedbackVC.shouldCaptureReferenceImage = YES;
         }
+        else
+        {
+            biofeedbackVC.shouldCaptureReferenceImage = self.captureReferenceSwitch.on;
+        }
         BFSettingsDimension dimension = [BFSettings dimension];
         if (dimension == BFSettingsDimensionsX)
         {
@@ -301,17 +319,6 @@ static const CGFloat TableViewHeightHorizontal = 320;
             didTakeReferenceImage:(UIImage *)referenceImage
 {
     self.referenceImage = referenceImage;
-//    NSData *imageData = UIImageJPEGRepresentation(referenceImage,
-//                                                  0.9);
-//    [[NSOperationQueue mainQueue] addOperationWithBlock:^
-//     {
-//         NSDate *now = [NSDate dateWithTimeIntervalSinceNow:0];
-//         ReferenceImage *newReferenceImage = [ReferenceImage createEntity];
-//         newReferenceImage.timestamp = now;
-//         newReferenceImage.imageData = imageData;
-//         [self.patient addReferenceImagesObject:newReferenceImage];
-//         [self saveContext];
-//     }];
 }
 
 - (UIImage *)biofeedbackViewControllerHalfReferenceImage:(BFBiofeedbackViewController *)biofeedbackViewController

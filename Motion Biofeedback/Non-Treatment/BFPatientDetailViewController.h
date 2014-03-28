@@ -17,6 +17,7 @@
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, weak) IBOutlet UIButton *startButton;
 @property (nonatomic, weak) IBOutlet UIButton *calibrateButton;
+@property (nonatomic, weak) IBOutlet UISwitch *captureReferenceSwitch;
 
 - (void)displayPatientInfo;
 
