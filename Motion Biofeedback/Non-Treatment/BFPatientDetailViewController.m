@@ -363,7 +363,7 @@ static const CGFloat TableViewHeightHorizontal = 320;
         NSValue *value = deltaPoints[i];
         CGPoint point = [value CGPointValue];
         NSNumber *timeNumber = deltaTimes[i];
-        NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeNumber.integerValue];
+        NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeNumber.doubleValue];
         DeltaPoint *deltaPoint = [DeltaPoint createEntity];
         deltaPoint.timestamp = date;
         // convert to mm

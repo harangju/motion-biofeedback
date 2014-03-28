@@ -507,7 +507,9 @@ static const CGFloat FeedbackAmplificationFactor = 2.0;
         
         // save faceCenter & time
         [self.deltaPoints addObject:[NSValue valueWithCGPoint:delta]];
-        [self.deltaTimes addObject:@([[NSDate date] timeIntervalSince1970])];
+        [self.deltaTimes addObject:@([NSDate timeIntervalSinceReferenceDate])];
+        
+        NSLog(@"aoesu nt %f", [NSDate timeIntervalSinceReferenceDate]);
         
         // set faceCenter
         __weak typeof(self) weakSelf = self;

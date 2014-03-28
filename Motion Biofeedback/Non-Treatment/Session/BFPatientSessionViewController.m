@@ -63,8 +63,8 @@ static NSString * const DataSegueIdentifier = @"SessionDetailInfoSegueIdentifier
     switch (indexPath.row)
     {
         case 0:
-            cell.textLabel.text = [NSString stringWithFormat:@"Average Sampling Rate: %@ per second",
-                                   self.session.averageSampleRate];
+            cell.textLabel.text = [NSString stringWithFormat:@"Average Sampling Rate: %.2F per second",
+                                   self.session.averageSampleRate.floatValue];
             cell.detailTextLabel.text = @"";
             break;
         case 1:
