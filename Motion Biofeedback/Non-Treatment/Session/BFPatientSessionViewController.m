@@ -29,11 +29,21 @@ static NSString * const CellIdentifier = @"ReferenceImageCellIdentifier";
     
     self.title = [NSString stringWithFormat:@"Session #%lu",
                   self.session.number.integerValue];
+    [self initializeViews];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+#pragma mark - Initialization
+
+- (void)initializeViews
+{
+    self.referenceImageView.layer.cornerRadius = 30;
+    ReferenceImage *referenceImage = self.session.referenceImage;
+    self.referenceImageView.image = [UIImage imageWithData:referenceImage.imageData];
 }
 
 #pragma mark - Navigation

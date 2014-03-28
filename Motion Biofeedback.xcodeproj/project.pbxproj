@@ -34,7 +34,7 @@
 		7DB235D018E535A40000AA1C /* DeltaPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB235CF18E535A40000AA1C /* DeltaPoint.m */; };
 		7DB235D918E535A50000AA1C /* Patient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB235D818E535A50000AA1C /* Patient.m */; };
 		7DB235DC18E537480000AA1C /* Session.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB235DB18E537480000AA1C /* Session.m */; };
-		7DB235DF18E537490000AA1C /* ReferenceImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB235DE18E537490000AA1C /* ReferenceImage.m */; };
+		7DB235E218E539270000AA1C /* ReferenceImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB235E118E539270000AA1C /* ReferenceImage.m */; };
 		7DB9C2E518C2D2EF00CCDED9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DB9C2E418C2D2EF00CCDED9 /* Foundation.framework */; };
 		7DB9C2E718C2D2EF00CCDED9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DB9C2E618C2D2EF00CCDED9 /* CoreGraphics.framework */; };
 		7DB9C2E918C2D2EF00CCDED9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DB9C2E818C2D2EF00CCDED9 /* UIKit.framework */; };
@@ -128,8 +128,8 @@
 		7DB235D818E535A50000AA1C /* Patient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Patient.m; sourceTree = "<group>"; };
 		7DB235DA18E537480000AA1C /* Session.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Session.h; sourceTree = "<group>"; };
 		7DB235DB18E537480000AA1C /* Session.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Session.m; sourceTree = "<group>"; };
-		7DB235DD18E537490000AA1C /* ReferenceImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferenceImage.h; sourceTree = "<group>"; };
-		7DB235DE18E537490000AA1C /* ReferenceImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferenceImage.m; sourceTree = "<group>"; };
+		7DB235E018E539270000AA1C /* ReferenceImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferenceImage.h; sourceTree = "<group>"; };
+		7DB235E118E539270000AA1C /* ReferenceImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferenceImage.m; sourceTree = "<group>"; };
 		7DB9C2E118C2D2EF00CCDED9 /* Motion Biofeedback.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Motion Biofeedback.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DB9C2E418C2D2EF00CCDED9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7DB9C2E618C2D2EF00CCDED9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -295,8 +295,8 @@
 			isa = PBXGroup;
 			children = (
 				7D15BD6818E5347300EC05E3 /* PatientModel.xcdatamodeld */,
-				7DB235DD18E537490000AA1C /* ReferenceImage.h */,
-				7DB235DE18E537490000AA1C /* ReferenceImage.m */,
+				7DB235E018E539270000AA1C /* ReferenceImage.h */,
+				7DB235E118E539270000AA1C /* ReferenceImage.m */,
 				7DB235DA18E537480000AA1C /* Session.h */,
 				7DB235DB18E537480000AA1C /* Session.m */,
 				7DB235D718E535A50000AA1C /* Patient.h */,
@@ -560,7 +560,7 @@
 				7D9B75EA18E4A6B000A4A1C9 /* BFCalibrationViewController.m in Sources */,
 				7DB235D918E535A50000AA1C /* Patient.m in Sources */,
 				7DD1705418D543D300DEFD4F /* BFFaceEllipseView.m in Sources */,
-				7DB235DF18E537490000AA1C /* ReferenceImage.m in Sources */,
+				7DB235E218E539270000AA1C /* ReferenceImage.m in Sources */,
 				7D16ED3E18D2BC3600EF7D56 /* BFAddPatientViewController.m in Sources */,
 				7D15BD6A18E5347300EC05E3 /* PatientModel.xcdatamodeld in Sources */,
 				7DD1705B18D6553900DEFD4F /* BFBiofeedbackCaptureReferencePhase.mm in Sources */,

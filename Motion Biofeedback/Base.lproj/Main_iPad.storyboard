@@ -511,10 +511,17 @@
                     <view key="view" contentMode="scaleToFill" id="peF-KD-Jzc">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S6b-M7-uK7">
+                                <rect key="frame" x="40" y="104" width="362" height="402"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Session" id="zLu-Zm-vVf"/>
                     <connections>
+                        <outlet property="referenceImageView" destination="S6b-M7-uK7" id="FXg-Mu-lXq"/>
                         <segue destination="5z4-47-Ivu" kind="push" identifier="SessionDetailInfoSegueIdentifier" id="r3a-ac-BDe"/>
                     </connections>
                 </viewController>
