@@ -741,17 +741,37 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Aligns points to the edges of an object of known width" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="391" translatesAutoresizingMaskIntoConstraints="NO" id="MDV-nC-tDl">
+                                <rect key="frame" x="189" y="20" width="391" height="84"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <color key="textColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zg1-kc-1VJ">
-                                <rect key="frame" x="20" y="20" width="66" height="41"/>
+                                <rect key="frame" x="20" y="20" width="76" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.89366083559999998" green="0.1391422202" blue="0.16149279029999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <state key="normal" title="EXIT">
                                     <color key="titleColor" cocoaTouchSystemColor="lightTextColor"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="exitButtonTapped:" destination="bGM-aa-fW7" eventType="touchUpInside" id="xQG-CG-gAg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FDX-xm-gEt">
+                                <rect key="frame" x="592" y="20" width="156" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <state key="normal" title="CALIBRATE">
+                                    <color key="titleColor" cocoaTouchSystemColor="lightTextColor"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveButtonTapped:" destination="bGM-aa-fW7" eventType="touchUpInside" id="xCX-dC-bvl"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -771,6 +791,7 @@
                         <outlet property="exitButton" destination="zg1-kc-1VJ" id="nVg-ad-TnO"/>
                         <outlet property="previewImageView" destination="2M1-5a-Co4" id="vmZ-yk-Lxe"/>
                         <outlet property="rulerView" destination="xUI-eb-zkm" id="Ndv-bR-PrT"/>
+                        <outlet property="saveButton" destination="FDX-xm-gEt" id="Uhd-SU-Pdx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5NV-8Y-SgZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -846,15 +867,15 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yCJ-eY-RMG">
-                                <rect key="frame" x="20" y="20" width="64" height="39"/>
+                                <rect key="frame" x="20" y="20" width="76" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.89366083559999998" green="0.1391422202" blue="0.16149279029999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="39" id="YIh-jC-n23"/>
-                                    <constraint firstAttribute="width" constant="64" id="erK-CH-8rt"/>
+                                    <constraint firstAttribute="height" constant="44" id="YIh-jC-n23"/>
+                                    <constraint firstAttribute="width" constant="76" id="erK-CH-8rt"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <state key="normal" title="Exit">
+                                <state key="normal" title="EXIT">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>

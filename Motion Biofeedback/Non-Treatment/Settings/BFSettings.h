@@ -29,5 +29,7 @@ typedef NS_ENUM(NSInteger, BFSettingsDimension)
 + (BOOL)setVisualization:(BFSettingsVisualization)visualization;
 + (BFSettingsDimension)dimension;
 + (BOOL)setDimension:(BFSettingsDimension)dimension;
++ (CGFloat)millimeterPerPixelRatio;
++ (BOOL)setMillimeterPerPixelRatio:(CGFloat)ratio;
 
 @end

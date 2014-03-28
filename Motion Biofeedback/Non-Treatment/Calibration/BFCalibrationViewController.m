@@ -8,7 +8,7 @@
 
 #import "BFCalibrationViewController.h"
 
-@interface BFCalibrationViewController () <UIGestureRecognizerDelegate>
+@interface BFCalibrationViewController () <UIGestureRecognizerDelegate, UIAlertViewDelegate>
 
 @property (nonatomic) CGPoint pointA;
 @property (nonatomic) CGPoint pointB;
@@ -19,6 +19,10 @@
 @property (nonatomic, strong) UIPanGestureRecognizer *panGestureRecognizerB; // 2 touches
 
 @property (nonatomic) BOOL panAWithA; // recognizer A moves point a
+
+@property (nonatomic, strong) UIAlertView *millimeterAlertView;
+@property (nonatomic, strong) UIAlertView *notANumberAlertView;
+@property (nonatomic) BOOL shouldShowNotANumberAlertView;
 
 @end
 
@@ -37,6 +41,7 @@
     [self.videoCamera startCameraCapture];
     [self initializeGestureRecognizers];
     [self initializeModel];
+    [self initializeAlertViews];
 }
 
 - (void)didReceiveMemoryWarning
@@ -56,6 +61,7 @@
 - (void)initializeViews
 {
     self.exitButton.layer.cornerRadius = 3;
+    self.saveButton.layer.cornerRadius = 3;
 }
 
 - (void)initializeVideoCamera
@@ -89,6 +95,23 @@
                               self.view.bounds.size.height / 2.0);
     self.pointB = CGPointMake(self.view.bounds.size.width / 4.0 * 3.0,
                               self.view.bounds.size.height / 2.0);
+}
+
+- (void)initializeAlertViews
+{
+    self.millimeterAlertView = [[UIAlertView alloc] initWithTitle:@"Enter width of object in mm"
+                                                          message:@""
+                                                         delegate:self
+                                                cancelButtonTitle:@"Cancel"
+                                                otherButtonTitles:@"Save", nil];
+    self.millimeterAlertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    UITextField *textField = [self.millimeterAlertView textFieldAtIndex:0];
+    textField.keyboardType = UIKeyboardTypeNumberPad;
+    self.notANumberAlertView = [[UIAlertView alloc] initWithTitle:@"Not a number"
+                                                          message:@""
+                                                         delegate:self
+                                                cancelButtonTitle:@"Ok"
+                                                otherButtonTitles:nil];
 }
 
 #pragma mark - Gestures
@@ -185,6 +208,66 @@
 {
     [self dismissViewControllerAnimated:YES
                              completion:nil];
+}
+
+- (IBAction)saveButtonTapped:(id)sender
+{
+    UITextField *textField = [self.millimeterAlertView textFieldAtIndex:0];
+    textField.text = @"";
+    [self.millimeterAlertView show];
+}
+
+#pragma mark - AlertView Delegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1)
+    {
+        NSLog(@"save");
+        // get text
+        UITextField *textField = [alertView textFieldAtIndex:0];
+        NSString *text = textField.text;
+        // see if it's a number
+        NSCharacterSet* notDigits = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
+        if ([text rangeOfCharacterFromSet:notDigits].location == NSNotFound)
+            // newString consists only of the digits 0 through 9
+        {
+            [self saveMillimeterToPixelRatio];
+        }
+        else
+        {
+            self.shouldShowNotANumberAlertView = YES;
+        }
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (self.shouldShowNotANumberAlertView)
+    {
+        [self.notANumberAlertView show];
+        self.shouldShowNotANumberAlertView = NO;
+    }
+}
+
+#pragma mark - Model
+
+- (void)saveMillimeterToPixelRatio
+{
+    // get the millimeter
+    UITextField *textField = [self.millimeterAlertView textFieldAtIndex:0];
+    NSString *text = textField.text;
+    NSNumberFormatter *numberFormatter = [NSNumberFormatter new];
+    numberFormatter.numberStyle = NSNumberFormatterDecimalStyle;
+    NSNumber *number = [numberFormatter numberFromString:text];
+    CGFloat millimeters = number.doubleValue;
+    // get the pixel
+    CGFloat distanceBetweenPoints = sqrt((self.pointA.x - self.pointB.x)*(self.pointA.x - self.pointB.x) +
+                                         (self.pointA.y - self.pointB.y)*(self.pointA.y - self.pointB.y));
+    // get the ratio
+    CGFloat millimeterToPixelRatio = millimeters / distanceBetweenPoints;
+    NSLog(@"\nmm - %f \npx - %f \nratio %f", millimeters, distanceBetweenPoints, millimeterToPixelRatio);
+    
 }
 
 @end

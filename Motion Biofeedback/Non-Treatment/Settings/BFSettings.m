@@ -10,6 +10,7 @@
 
 static NSString * const VisualizationKey = @"Visualization";
 static NSString * const DimensionKey = @"Dimension";
+static NSString * const MillimeterToPixelRatioKey = @"MillimeterToPixel";
 
 @implementation BFSettings
 
@@ -38,6 +39,20 @@ static NSString * const DimensionKey = @"Dimension";
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:@(dimension)
                      forKey:DimensionKey];
+    return [userDefaults synchronize];
+}
+
++ (CGFloat)millimeterPerPixelRatio
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    return [[userDefaults objectForKey:MillimeterToPixelRatioKey] doubleValue];
+}
+
++ (BOOL)setMillimeterPerPixelRatio:(CGFloat)ratio
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:@(ratio)
+                     forKey:MillimeterToPixelRatioKey];
     return [userDefaults synchronize];
 }
 
