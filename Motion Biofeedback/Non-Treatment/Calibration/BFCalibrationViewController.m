@@ -123,7 +123,7 @@
     {
         // get touch location
         CGPoint location = [panGestureRecognizer locationInView:self.view];
-        NSLog(@"A %f %f", location.x, location.y);
+//        NSLog(@"A %f %f", location.x, location.y);
         // which point to move?
         if (panGestureRecognizer.state == UIGestureRecognizerStateBegan)
         {
@@ -163,15 +163,15 @@
         {
             location = [panGestureRecognizer locationOfTouch:0
                                                       inView:self.view];
-            NSLog(@"one touch");
+//            NSLog(@"one touch");
         }
         else if (panGestureRecognizer.numberOfTouches == 2)
         {
             location = [panGestureRecognizer locationOfTouch:1
                                                       inView:self.view];
-            NSLog(@"two touches");
+//            NSLog(@"two touches");
         }
-        NSLog(@"B %f %f", location.x, location.y);
+//        NSLog(@"B %f %f", location.x, location.y);
         // get translation
         CGPoint translation = [panGestureRecognizer translationInView:self.view];
         if (self.panAWithA)
@@ -224,7 +224,7 @@
 {
     if (buttonIndex == 1)
     {
-        NSLog(@"save");
+//        NSLog(@"save");
         // get text
         UITextField *textField = [alertView textFieldAtIndex:0];
         NSString *text = textField.text;
@@ -268,7 +268,7 @@
                                          (self.pointA.y - self.pointB.y)*(self.pointA.y - self.pointB.y));
     // get the ratio
     CGFloat millimeterToPixelRatio = millimeters / distanceBetweenPoints;
-    NSLog(@"\nmm - %f \npx - %f \nratio %f", millimeters, distanceBetweenPoints, millimeterToPixelRatio);
+//    NSLog(@"\nmm - %f \npx - %f \nratio %f", millimeters, distanceBetweenPoints, millimeterToPixelRatio);
     [BFSettings setMillimeterPerPixelRatio:millimeterToPixelRatio];
 }
 
