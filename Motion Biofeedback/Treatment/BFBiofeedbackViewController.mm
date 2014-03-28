@@ -183,6 +183,7 @@ static const CGFloat FeedbackAmplificationFactor = 2.0;
 {
     self.beginButton.layer.cornerRadius = 5;
     self.exitButton.layer.cornerRadius = 3;
+    self.saveButton.layer.cornerRadius = 4;
 }
 
 - (void)configure
