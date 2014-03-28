@@ -13,11 +13,11 @@
 
 - (NSData *)latestImageData
 {
-    ReferenceImage *referenceImage = self.allImageData.firstObject;
+    ReferenceImage *referenceImage = self.allReferenceImages.firstObject;
     return referenceImage.imageData;
 }
 
-- (NSArray *)allImageData
+- (NSArray *)allReferenceImages
 {
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"timestamp"
                                                                      ascending:NO];

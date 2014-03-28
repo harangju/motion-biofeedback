@@ -16,6 +16,7 @@
 		7D15BD5218E51B3200EC05E3 /* ReferenceImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D15BD5118E51B3200EC05E3 /* ReferenceImage.m */; };
 		7D15BD5518E51B3200EC05E3 /* DeltaPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D15BD5418E51B3200EC05E3 /* DeltaPoint.m */; };
 		7D15BD5818E51B5600EC05E3 /* Patient+Accessors.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D15BD5718E51B5600EC05E3 /* Patient+Accessors.m */; };
+		7D15BD5B18E52E0800EC05E3 /* BFPatientSessionReferenceImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D15BD5A18E52E0800EC05E3 /* BFPatientSessionReferenceImageCell.m */; };
 		7D16ED3018D2B4A400EF7D56 /* BFPatientListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D16ED2F18D2B4A400EF7D56 /* BFPatientListViewController.m */; };
 		7D16ED3E18D2BC3600EF7D56 /* BFAddPatientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D16ED3D18D2BC3600EF7D56 /* BFAddPatientViewController.m */; };
 		7D2E6BE618D33DEE00B03788 /* BFSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E6BE518D33DEE00B03788 /* BFSettingsViewController.m */; };
@@ -93,6 +94,8 @@
 		7D15BD5418E51B3200EC05E3 /* DeltaPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeltaPoint.m; sourceTree = "<group>"; };
 		7D15BD5618E51B5600EC05E3 /* Patient+Accessors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Patient+Accessors.h"; sourceTree = "<group>"; };
 		7D15BD5718E51B5600EC05E3 /* Patient+Accessors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Patient+Accessors.m"; sourceTree = "<group>"; };
+		7D15BD5918E52E0800EC05E3 /* BFPatientSessionReferenceImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BFPatientSessionReferenceImageCell.h; path = "Non-Treatment/Session/BFPatientSessionReferenceImageCell.h"; sourceTree = "<group>"; };
+		7D15BD5A18E52E0800EC05E3 /* BFPatientSessionReferenceImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BFPatientSessionReferenceImageCell.m; path = "Non-Treatment/Session/BFPatientSessionReferenceImageCell.m"; sourceTree = "<group>"; };
 		7D16ED2E18D2B4A400EF7D56 /* BFPatientListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BFPatientListViewController.h; path = "Non-Treatment/BFPatientListViewController.h"; sourceTree = "<group>"; };
 		7D16ED2F18D2B4A400EF7D56 /* BFPatientListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BFPatientListViewController.m; path = "Non-Treatment/BFPatientListViewController.m"; sourceTree = "<group>"; };
 		7D16ED3C18D2BC3600EF7D56 /* BFAddPatientViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BFAddPatientViewController.h; path = "Non-Treatment/BFAddPatientViewController.h"; sourceTree = "<group>"; };
@@ -216,6 +219,8 @@
 			children = (
 				7D15BD3B18E50EC100EC05E3 /* BFPatientSessionViewController.h */,
 				7D15BD3C18E50EC100EC05E3 /* BFPatientSessionViewController.m */,
+				7D15BD5918E52E0800EC05E3 /* BFPatientSessionReferenceImageCell.h */,
+				7D15BD5A18E52E0800EC05E3 /* BFPatientSessionReferenceImageCell.m */,
 				7D15BD3518E50E8000EC05E3 /* BFPatientSessionDetailChartViewController.h */,
 				7D15BD3618E50E8000EC05E3 /* BFPatientSessionDetailChartViewController.m */,
 				7D15BD3718E50E8000EC05E3 /* BFPatientSessionDetailListViewController.h */,
@@ -576,6 +581,7 @@
 				7DB9C2F518C2D2EF00CCDED9 /* BFAppDelegate.mm in Sources */,
 				7D2E6BED18D350EA00B03788 /* BFSettingsDetailInfoViewController.m in Sources */,
 				7D2E6C2018D4F1DC00B03788 /* BFVisualizationView.m in Sources */,
+				7D15BD5B18E52E0800EC05E3 /* BFPatientSessionReferenceImageCell.m in Sources */,
 				7D15BD4C18E51B3100EC05E3 /* Patient.m in Sources */,
 				7DD1706118D6556B00DEFD4F /* BFBiofeedbackMeasureMovementPhase.mm in Sources */,
 				7D15BD5818E51B5600EC05E3 /* Patient+Accessors.m in Sources */,
