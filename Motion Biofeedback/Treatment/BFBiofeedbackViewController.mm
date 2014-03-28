@@ -45,7 +45,7 @@ static const CGFloat FeedbackAmplificationFactor = 2.0;
 @property (nonatomic, weak) IBOutlet BFVisualizationCircleView *visualizationCircleView;
 
 // Voice
-//@property (nonatomic, strong) AVSpeechSynthesizer *voice;
+@property (nonatomic, strong) AVSpeechSynthesizer *voice;
 
 // Views
 @property (nonatomic, weak) IBOutlet UIButton *exitButton;
@@ -88,6 +88,7 @@ static const CGFloat FeedbackAmplificationFactor = 2.0;
     [self initializePhases];
     [self initializeVisualization];
     [self initializeViews];
+    [self initializeVoice];
     self.deltaPoints = [NSMutableArray array];
     self.deltaTimes = [NSMutableArray array];
     self.faceCenter = self.view.center;
@@ -184,6 +185,11 @@ static const CGFloat FeedbackAmplificationFactor = 2.0;
     self.beginButton.layer.cornerRadius = 5;
     self.exitButton.layer.cornerRadius = 3;
     self.saveButton.layer.cornerRadius = 4;
+}
+
+- (void)initializeVoice
+{
+    self.voice = [AVSpeechSynthesizer new];
 }
 
 - (void)configure
@@ -291,7 +297,10 @@ static const CGFloat FeedbackAmplificationFactor = 2.0;
         [[NSOperationQueue mainQueue] addOperationWithBlock:^
          {
              weakSelf.beginButton.hidden = NO;
-             weakSelf.statusLabel.text = @"Tap Begin to begin";
+//             weakSelf.statusLabel.text = @"Tap Begin to begin";
+//             AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString:@"Tap Begin to begin"];
+//             [weakSelf.voice stopSpeakingAtBoundary:AVSpeechBoundaryWord];
+//             [weakSelf.voice speakUtterance:utterance];
          }];
     }
 }
@@ -345,6 +354,10 @@ static const CGFloat FeedbackAmplificationFactor = 2.0;
              [weakSelf showThatFaceIsInCircle];
              weakSelf.referenceImageView.image = [self.delegate biofeedbackViewControllerHalfReferenceImage:self];
              weakSelf.beginButton.hidden = NO;
+//             AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString:@"Tap Begin to begin"];
+//             utterance.rate = (AVSpeechUtteranceMinimumSpeechRate + AVSpeechUtteranceDefaultSpeechRate)/2.0;
+//             [weakSelf.voice stopSpeakingAtBoundary:AVSpeechBoundaryWord];
+//             [weakSelf.voice speakUtterance:utterance];
          }];
     }
 }
