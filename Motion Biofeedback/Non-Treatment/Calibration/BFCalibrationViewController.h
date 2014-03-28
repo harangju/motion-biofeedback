@@ -14,6 +14,7 @@
 
 @property (nonatomic, weak) IBOutlet UIButton *exitButton;
 @property (nonatomic, weak) IBOutlet UIButton *saveButton;
+@property (nonatomic, weak) IBOutlet UILabel *statusLabel;
 @property (nonatomic, weak) IBOutlet GPUImageView *previewImageView;
 @property (nonatomic, weak) IBOutlet BFCalibrationRulerView *rulerView;
 @property (nonatomic, strong) GPUImageVideoCamera *videoCamera;

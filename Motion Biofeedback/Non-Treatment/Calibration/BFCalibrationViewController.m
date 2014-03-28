@@ -225,6 +225,10 @@
     if (buttonIndex == 1)
     {
 //        NSLog(@"save");
+//        CGFloat ratio = [BFSettings millimeterPerPixelRatio];
+//        CGFloat distanceBetweenPoints = sqrt((self.pointA.x - self.pointB.x)*(self.pointA.x - self.pointB.x) +
+//                                             (self.pointA.y - self.pointB.y)*(self.pointA.y - self.pointB.y));
+//        self.statusLabel.text = [NSString stringWithFormat:@"%f mm", ratio * distanceBetweenPoints];
         // get text
         UITextField *textField = [alertView textFieldAtIndex:0];
         NSString *text = textField.text;
