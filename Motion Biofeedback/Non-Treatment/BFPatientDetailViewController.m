@@ -406,12 +406,8 @@ static const CGFloat TableViewHeightHorizontal = 320;
         referenceImage.imageData = UIImageJPEGRepresentation(self.referenceImage,
                                                              0.9);
         [self.patient addReferenceImagesObject:referenceImage];
+        session.referenceImage = referenceImage;
     }
-    
-    // add reference image to session
-    NSArray *referenceImages = self.patient.allReferenceImages;
-    ReferenceImage *referenceImage = referenceImages.firstObject;
-    session.referenceImage = referenceImage;
     
     // save
     [self saveContext];
