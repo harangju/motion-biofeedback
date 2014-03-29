@@ -60,6 +60,7 @@
 		7DD1705B18D6553900DEFD4F /* BFBiofeedbackCaptureReferencePhase.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7DD1705A18D6553900DEFD4F /* BFBiofeedbackCaptureReferencePhase.mm */; };
 		7DD1705E18D6555400DEFD4F /* BFBiofeedbackMatchReferencePhase.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7DD1705D18D6555400DEFD4F /* BFBiofeedbackMatchReferencePhase.mm */; };
 		7DD1706118D6556B00DEFD4F /* BFBiofeedbackMeasureMovementPhase.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7DD1706018D6556B00DEFD4F /* BFBiofeedbackMeasureMovementPhase.mm */; };
+		7DEC28AD18E6EA3D008C7422 /* TSCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DEC28AC18E6EA3D008C7422 /* TSCamera.m */; };
 		7DF6BDE818CAF092007B72FC /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF6BDE718CAF092007B72FC /* opencv2.framework */; };
 		F7E84084BE3542CBA28449D7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1545215E15347C8A01FA00B /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -164,6 +165,8 @@
 		7DD1705D18D6555400DEFD4F /* BFBiofeedbackMatchReferencePhase.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = BFBiofeedbackMatchReferencePhase.mm; path = Treatment/Phases/BFBiofeedbackMatchReferencePhase.mm; sourceTree = "<group>"; };
 		7DD1705F18D6556B00DEFD4F /* BFBiofeedbackMeasureMovementPhase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BFBiofeedbackMeasureMovementPhase.h; path = Treatment/Phases/BFBiofeedbackMeasureMovementPhase.h; sourceTree = "<group>"; };
 		7DD1706018D6556B00DEFD4F /* BFBiofeedbackMeasureMovementPhase.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = BFBiofeedbackMeasureMovementPhase.mm; path = Treatment/Phases/BFBiofeedbackMeasureMovementPhase.mm; sourceTree = "<group>"; };
+		7DEC28AB18E6EA3D008C7422 /* TSCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSCamera.h; path = Treatment/TSCamera.h; sourceTree = "<group>"; };
+		7DEC28AC18E6EA3D008C7422 /* TSCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSCamera.m; path = Treatment/TSCamera.m; sourceTree = "<group>"; };
 		7DF6BDE718CAF092007B72FC /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 		C1545215E15347C8A01FA00B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -207,6 +210,8 @@
 				7D2E6C2818D4F55800B03788 /* BFBiofeedbackViewController.mm */,
 				7DD1705218D543D300DEFD4F /* BFFaceEllipseView.h */,
 				7DD1705318D543D300DEFD4F /* BFFaceEllipseView.m */,
+				7DEC28AB18E6EA3D008C7422 /* TSCamera.h */,
+				7DEC28AC18E6EA3D008C7422 /* TSCamera.m */,
 				7DD1705818D6551300DEFD4F /* Phase */,
 				7D2E6BF718D4E25800B03788 /* Visualization */,
 				7D2E6BFB18D4E27400B03788 /* Detection */,
@@ -561,6 +566,7 @@
 				7DB235D918E535A50000AA1C /* Patient.m in Sources */,
 				7DD1705418D543D300DEFD4F /* BFFaceEllipseView.m in Sources */,
 				7DB235E218E539270000AA1C /* ReferenceImage.m in Sources */,
+				7DEC28AD18E6EA3D008C7422 /* TSCamera.m in Sources */,
 				7D16ED3E18D2BC3600EF7D56 /* BFAddPatientViewController.m in Sources */,
 				7D15BD6A18E5347300EC05E3 /* PatientModel.xcdatamodeld in Sources */,
 				7DD1705B18D6553900DEFD4F /* BFBiofeedbackCaptureReferencePhase.mm in Sources */,

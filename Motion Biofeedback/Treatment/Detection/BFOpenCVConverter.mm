@@ -8,6 +8,8 @@
 
 #import "BFOpenCVConverter.h"
 
+#define clamp(a) (a>255?255:(a<0?0:a));
+
 @implementation BFOpenCVConverter
 
 + (Mat)matForSampleBuffer:(CMSampleBufferRef)sampleBuffer
@@ -17,15 +19,15 @@
     CGRect videoRect = CGRectMake(0.0f, 0.0f,
                                   CVPixelBufferGetWidth(pixelBuffer),
                                   CVPixelBufferGetHeight(pixelBuffer));
-//    Mat mat(videoRect.size.width, videoRect.size.height, );
     if (format == kCVPixelFormatType_420YpCbCr8BiPlanarFullRange)
     {
         // For grayscale mode, the luminance channel of the YUV data is used
         CVPixelBufferLockBaseAddress(pixelBuffer, 0);
         unsigned char *baseaddress = (unsigned char *)CVPixelBufferGetBaseAddressOfPlane(pixelBuffer, 0);
         Mat mat(videoRect.size.height, videoRect.size.width, CV_8UC1, baseaddress, 0);
+//        Mat mat(videoRect.size.height, videoRect.size.width, CV_8UC4, baseaddress);
         CVPixelBufferUnlockBaseAddress(pixelBuffer, 0);
-        return mat.clone();
+        return mat;
     }
     else if (format == kCVPixelFormatType_32BGRA)
     {

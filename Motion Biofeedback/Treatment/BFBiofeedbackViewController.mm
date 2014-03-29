@@ -18,6 +18,12 @@
 #import "BFBiofeedbackMatchReferencePhase.h"
 #import "BFBiofeedbackMeasureMovementPhase.h"
 
+
+
+
+#import "TSCamera.h"
+#import <AVFoundation/AVFoundation.h>
+
 static const CGFloat FaceEllipseRectWidthPortrait = 700;
 static const CGFloat FaceEllipseRectHeightPortrait = 800;
 static const CGFloat FaceEllipseRectWidthLandscape = 600;
@@ -33,7 +39,7 @@ static const CGFloat OffDeltaFromCenter = 5;
 
 static const CGFloat FeedbackAmplificationFactor = 2.0;
 
-@interface BFBiofeedbackViewController () <GPUImageVideoCameraDelegate, BFBiofeedbackPhaseDelegate, BFBiofeedbackCaptureReferencePhaseDelegate, BFBiofeedbackMatchReferencePhaseDelegate, BFBiofeedbackMeasureMovementPhaseDelegate>
+@interface BFBiofeedbackViewController () <GPUImageVideoCameraDelegate, BFBiofeedbackPhaseDelegate, BFBiofeedbackCaptureReferencePhaseDelegate, BFBiofeedbackMatchReferencePhaseDelegate, BFBiofeedbackMeasureMovementPhaseDelegate, AVCaptureVideoDataOutputSampleBufferDelegate>
 
 // GPUImage
 @property (nonatomic, weak) IBOutlet GPUImageView *previewImageView;
@@ -71,6 +77,11 @@ static const CGFloat FeedbackAmplificationFactor = 2.0;
 @property (nonatomic) CGPoint faceCenter;
 @property (nonatomic, strong) NSMutableArray *deltaPoints; // NSValue around CGPoints
 @property (nonatomic, strong) NSMutableArray *deltaTimes; // NSNumber around NSTimeIntervals since 1970
+
+
+
+//@property (nonatomic, strong) UIImageView *imageView;
+@property (nonatomic, strong) TSCamera *camera;
 
 @end
 
@@ -119,11 +130,20 @@ static const CGFloat FeedbackAmplificationFactor = 2.0;
 
 - (void)initializeVideoCamera
 {
-    self.videoCamera = [[GPUImageVideoCamera alloc] initWithSessionPreset:AVCaptureSessionPresetHigh
-                                                           cameraPosition:AVCaptureDevicePositionFront];
-    self.videoCamera.delegate = self;
-    self.videoCamera.horizontallyMirrorFrontFacingCamera = YES;
-    self.videoCamera.outputImageOrientation = self.interfaceOrientation;
+//    self.videoCamera = [[GPUImageVideoCamera alloc] initWithSessionPreset:AVCaptureSessionPresetHigh
+//                                                           cameraPosition:AVCaptureDevicePositionFront];
+//    self.videoCamera.delegate = self;
+//    self.videoCamera.horizontallyMirrorFrontFacingCamera = YES;
+//    self.videoCamera.outputImageOrientation = self.interfaceOrientation;
+    self.camera = [TSCamera videoCamera];
+    self.camera.videoPreviewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+    self.camera.videoPreviewLayer.frame = self.view.bounds;
+    [self.previewImageView.layer insertSublayer:self.camera.videoPreviewLayer
+                                        atIndex:0];
+    dispatch_queue_t queue = dispatch_queue_create("hihi", NULL);
+    [self.camera.videoDataOutput setSampleBufferDelegate:self
+                                                   queue:queue];
+    [self.camera start];
 }
 
 - (void)initializeFaceEllipseView
@@ -218,6 +238,40 @@ static const CGFloat FeedbackAmplificationFactor = 2.0;
     self.previewImageView.fillMode = kGPUImageFillModePreserveAspectRatioAndFill;
     [self.videoCamera addTarget:self.previewImageView];
     [self.videoCamera startCameraCapture];
+}
+
+#pragma mark - Video Data Output Delegate
+
+- (void)captureOutput:(AVCaptureOutput *)captureOutput
+didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
+       fromConnection:(AVCaptureConnection *)connection
+{
+    // get mat
+    cv::Mat mat = [BFOpenCVConverter matForSampleBuffer:sampleBuffer];
+    CGRect videoRect = [self videoRectFromBuffer:sampleBuffer];
+    
+    // orient mat
+    if ([self isUpright])
+    {
+        cv::transpose(mat, mat);
+    }
+    else if ([self isSideways])
+    {
+        cv::flip(mat, mat, 1);
+    }
+    
+    if (self.state == BFBiofeedbackStateCapturingReference ||
+        self.state == BFBiofeedbackStateMatchingReference)
+    {
+        [self.referencePhase processFrame:mat
+                                videoRect:videoRect];
+    }
+    else if (self.state == BFBiofeedbackStateMeasuringMovement)
+    {
+        cv::Mat faceMat = mat(self.faceRect);
+        [self.measureMovementPhase processFrame:faceMat
+                                      videoRect:videoRect];
+    }
 }
 
 #pragma mark - GPUImage VideoCamera Delegate
@@ -506,13 +560,14 @@ static const CGFloat FeedbackAmplificationFactor = 2.0;
         }
         
         // save faceCenter & time
-        [self.deltaPoints addObject:[NSValue valueWithCGPoint:delta]];
-        [self.deltaTimes addObject:@([NSDate timeIntervalSinceReferenceDate])];
-        
-        NSLog(@"aoesu nt %f", [NSDate timeIntervalSinceReferenceDate]);
+        __weak typeof(self) weakSelf = self;
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^
+         {
+             [weakSelf.deltaPoints addObject:[NSValue valueWithCGPoint:delta]];
+             [weakSelf.deltaTimes addObject:@([NSDate timeIntervalSinceReferenceDate])];
+         }];
         
         // set faceCenter
-        __weak typeof(self) weakSelf = self;
         [[NSOperationQueue mainQueue] addOperationWithBlock:^
          {
              weakSelf.visualizationView.headPosition = faceCenter;
@@ -637,6 +692,11 @@ static const CGFloat FeedbackAmplificationFactor = 2.0;
 {
     return (self.interfaceOrientation == UIInterfaceOrientationPortrait ||
             self.interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown);
+}
+
+- (BOOL)shouldAutorotate
+{
+    return NO;
 }
 
 @end
