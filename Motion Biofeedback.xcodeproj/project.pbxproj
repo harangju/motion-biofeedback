@@ -61,6 +61,7 @@
 		7DD1705E18D6555400DEFD4F /* BFBiofeedbackMatchReferencePhase.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7DD1705D18D6555400DEFD4F /* BFBiofeedbackMatchReferencePhase.mm */; };
 		7DD1706118D6556B00DEFD4F /* BFBiofeedbackMeasureMovementPhase.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7DD1706018D6556B00DEFD4F /* BFBiofeedbackMeasureMovementPhase.mm */; };
 		7DEC28AD18E6EA3D008C7422 /* TSCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DEC28AC18E6EA3D008C7422 /* TSCamera.m */; };
+		7DEC28B018E6FAE6008C7422 /* BFOpenCVColorTracker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7DEC28AF18E6FAE6008C7422 /* BFOpenCVColorTracker.mm */; };
 		7DF6BDE818CAF092007B72FC /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF6BDE718CAF092007B72FC /* opencv2.framework */; };
 		F7E84084BE3542CBA28449D7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1545215E15347C8A01FA00B /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -167,6 +168,8 @@
 		7DD1706018D6556B00DEFD4F /* BFBiofeedbackMeasureMovementPhase.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = BFBiofeedbackMeasureMovementPhase.mm; path = Treatment/Phases/BFBiofeedbackMeasureMovementPhase.mm; sourceTree = "<group>"; };
 		7DEC28AB18E6EA3D008C7422 /* TSCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSCamera.h; path = Treatment/TSCamera.h; sourceTree = "<group>"; };
 		7DEC28AC18E6EA3D008C7422 /* TSCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSCamera.m; path = Treatment/TSCamera.m; sourceTree = "<group>"; };
+		7DEC28AE18E6FAE6008C7422 /* BFOpenCVColorTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFOpenCVColorTracker.h; sourceTree = "<group>"; };
+		7DEC28AF18E6FAE6008C7422 /* BFOpenCVColorTracker.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BFOpenCVColorTracker.mm; sourceTree = "<group>"; };
 		7DF6BDE718CAF092007B72FC /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 		C1545215E15347C8A01FA00B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -290,6 +293,8 @@
 				7D2E6C0118D4E27400B03788 /* BFOpenCVFaceDetector.mm */,
 				7D2E6C0218D4E27400B03788 /* BFOpenCVTracker.h */,
 				7D2E6C0318D4E27400B03788 /* BFOpenCVTracker.mm */,
+				7DEC28AE18E6FAE6008C7422 /* BFOpenCVColorTracker.h */,
+				7DEC28AF18E6FAE6008C7422 /* BFOpenCVColorTracker.mm */,
 				7D2E6C0418D4E27400B03788 /* haarcascade_frontalface_alt2.xml */,
 			);
 			name = Detection;
@@ -585,6 +590,7 @@
 				7D2E6C0718D4E27400B03788 /* BFOpenCVFaceDetector.mm in Sources */,
 				7DB235DC18E537480000AA1C /* Session.m in Sources */,
 				7D15BD3A18E50E8000EC05E3 /* BFPatientSessionDetailListViewController.m in Sources */,
+				7DEC28B018E6FAE6008C7422 /* BFOpenCVColorTracker.mm in Sources */,
 				7D15BD3918E50E8000EC05E3 /* BFPatientSessionDetailChartViewController.m in Sources */,
 				7DB9C2F518C2D2EF00CCDED9 /* BFAppDelegate.mm in Sources */,
 				7D2E6BED18D350EA00B03788 /* BFSettingsDetailInfoViewController.m in Sources */,

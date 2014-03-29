@@ -21,6 +21,9 @@
 
 
 
+#import "BFOpenCVColorTracker.h"
+
+
 #import "TSCamera.h"
 #import <AVFoundation/AVFoundation.h>
 
@@ -80,8 +83,12 @@ static const CGFloat FeedbackAmplificationFactor = 2.0;
 
 
 
-//@property (nonatomic, strong) UIImageView *imageView;
+@property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) TSCamera *camera;
+
+
+
+@property (nonatomic, strong) BFOpenCVColorTracker *colorTracker;
 
 @end
 
@@ -112,6 +119,12 @@ static const CGFloat FeedbackAmplificationFactor = 2.0;
     [self.view bringSubviewToFront:self.beginButton];
     [self.view bringSubviewToFront:self.saveButton];
     [self.view bringSubviewToFront:self.statusLabel];
+    
+    
+    self.colorTracker = [BFOpenCVColorTracker new];
+    self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width/2.0, self.view.bounds.size.height/2.0)];
+//    self.imageView.backgroundColor = [UIColor purpleColor];
+    [self.view addSubview:self.imageView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -259,6 +272,19 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     {
         cv::flip(mat, mat, 1);
     }
+    
+    [self.colorTracker processFrameFromFrame:mat toFrame:mat];
+    UIImage *image = [BFOpenCVConverter imageForMat:mat];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^
+     {
+         self.imageView.image = image;
+     }];
+    
+    return;
+    
+    
+    
+    
     
     if (self.state == BFBiofeedbackStateCapturingReference ||
         self.state == BFBiofeedbackStateMatchingReference)
