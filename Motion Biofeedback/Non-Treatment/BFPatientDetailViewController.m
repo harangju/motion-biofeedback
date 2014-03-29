@@ -123,6 +123,7 @@ static const CGFloat TableViewHeightHorizontal = 320;
     self.sessions = [self.patient.sessions.allObjects sortedArrayUsingDescriptors:@[sortDescriptor]];
     [self.tableView reloadData];
     // load image
+    NSLog(@"patient reference images %@", self.patient.allReferenceImages);
     if (self.patient.latestImageData)
     {
         self.imageView.image = [UIImage imageWithData:self.patient.latestImageData];
