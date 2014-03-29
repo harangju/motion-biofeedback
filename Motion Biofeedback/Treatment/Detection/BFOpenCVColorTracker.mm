@@ -20,7 +20,7 @@
                       toFrame:(cv::Mat &)outputFrame
 {
     cv::cvtColor(inputFrame, outputFrame, CV_BGR2HSV);
-    
+    cv::inRange(outputFrame, cv::Scalar(35, 50, 50), cv::Scalar(60,255,255), outputFrame);
 }
 
 - (CGPoint)absoluteDeltaFromFrame:(const cv::Mat &)inputFrame
