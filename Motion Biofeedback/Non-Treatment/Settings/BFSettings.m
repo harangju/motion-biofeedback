@@ -10,6 +10,7 @@
 
 static NSString * const VisualizationKey = @"Visualization";
 static NSString * const DimensionKey = @"Dimension";
+static NSString * const DetectionKey = @"Detection";
 static NSString * const MillimeterToPixelRatioKey = @"MillimeterToPixel";
 
 @implementation BFSettings
@@ -39,6 +40,20 @@ static NSString * const MillimeterToPixelRatioKey = @"MillimeterToPixel";
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:@(dimension)
                      forKey:DimensionKey];
+    return [userDefaults synchronize];
+}
+
++ (BFSettingsDetection)detection
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    return [[userDefaults objectForKey:DetectionKey] integerValue];
+}
+
++ (BOOL)setDetection:(BFSettingsDetection)detection
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:@(detection)
+                     forKey:DetectionKey];
     return [userDefaults synchronize];
 }
 

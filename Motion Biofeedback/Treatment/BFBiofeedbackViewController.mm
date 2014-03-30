@@ -19,9 +19,8 @@
 #import "BFBiofeedbackMeasureMovementPhase.h"
 
 
-
-
 #import "BFOpenCVColorTracker.h"
+
 
 
 #import "TSCamera.h"
@@ -89,6 +88,7 @@ static const CGFloat FeedbackAmplificationFactor = 2.0;
 
 
 @property (nonatomic, strong) BFOpenCVColorTracker *colorTracker;
+
 
 @end
 
@@ -210,7 +210,7 @@ static const CGFloat FeedbackAmplificationFactor = 2.0;
     self.visualizationCircleView.deltaColor = [UIColor greenColor];
     self.visualizationCircleView.centerCircleRadius = VisualizationCircleRadius;
     self.visualizationCircleView.deltaCircleRadius = VisualizationCircleRadius;
-    self.visualizationCircleView.alpha = 0.7;
+    self.visualizationCircleView.alpha = 0.4;
 }
 
 - (void)initializeViews
@@ -273,18 +273,14 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
         cv::flip(mat, mat, 1);
     }
     
-    [self.colorTracker processFrameFromFrame:mat toFrame:mat];
-    UIImage *image = [BFOpenCVConverter imageForMat:mat];
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^
-     {
-         self.imageView.image = image;
-     }];
-    
-    return;
-    
-    
-    
-    
+//    cv::Mat filteredMat(mat.rows, mat.cols, CV_8UC1, cv::Scalar(0,0,255));
+//    [self.colorTracker processFrameFromFrame:mat toFrame:filteredMat];
+//    
+//    UIImage *image = [BFOpenCVConverter imageForMat:filteredMat];
+//    [[NSOperationQueue mainQueue] addOperationWithBlock:^
+//     {
+//         self.imageView.image = image;
+//     }];
     
     if (self.state == BFBiofeedbackStateCapturingReference ||
         self.state == BFBiofeedbackStateMatchingReference)
@@ -540,7 +536,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
                 }
                 else
                 {
-                    color = [UIColor orangeColor];
+                    color = [UIColor yellowColor];
                 }
             }
         }

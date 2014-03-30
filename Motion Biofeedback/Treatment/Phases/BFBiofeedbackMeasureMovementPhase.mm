@@ -8,10 +8,15 @@
 
 #import "BFBiofeedbackMeasureMovementPhase.h"
 #import "BFOpenCVTracker.h"
+#import "BFOpenCVColorTracker.h"
+#import "BFSettings.h"
 
 @interface BFBiofeedbackMeasureMovementPhase ()
 
 @property (nonatomic, strong) BFOpenCVTracker *tracker;
+@property (nonatomic, strong) BFOpenCVColorTracker *colorTracker;
+
+@property (nonatomic) BFSettingsDetection detectionAlgorithm;
 
 @end
 
@@ -34,6 +39,9 @@
 - (void)setup
 {
     self.tracker = [BFOpenCVTracker new];
+    self.colorTracker = [BFOpenCVColorTracker new];
+    
+    self.detectionAlgorithm = [BFSettings detection];
 }
 
 #pragma mark - Image Processing
@@ -41,12 +49,18 @@
 - (void)processFrame:(cv::Mat)mat
            videoRect:(CGRect)videoRect
 {
-//    CGPoint naiveDelta = [self.tracker naiveDeltaFromFrame:mat];
-//    [self.measureMovementDelegate biofeedbackMeasureMovementPhase:self
-//                                                   withNaiveDelta:naiveDelta];
-    CGPoint absoluteDelta = [self.tracker absoluteDeltaFromFrame:mat];
-    [self.measureMovementDelegate biofeedbackMeasureMovementPhase:self
-                                                withAbsoluteDelta:absoluteDelta];
+    if (self.detectionAlgorithm == BFSettingsDetectionFeature)
+    {
+        CGPoint absoluteDelta = [self.tracker absoluteDeltaFromFrame:mat];
+        [self.measureMovementDelegate biofeedbackMeasureMovementPhase:self
+                                                    withAbsoluteDelta:absoluteDelta];
+    }
+    else
+    {
+        CGPoint absoluteDelta = [self.colorTracker absoluteDeltaFromFrame:mat];
+        [self.measureMovementDelegate biofeedbackMeasureMovementPhase:self
+                                                    withAbsoluteDelta:absoluteDelta];
+    }
 }
 
 @end

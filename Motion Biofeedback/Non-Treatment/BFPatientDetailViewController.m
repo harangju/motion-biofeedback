@@ -88,6 +88,10 @@ static const CGFloat TableViewHeightHorizontal = 320;
     {
         self.startButton.enabled = NO;
     }
+    
+//    if (![BFSettings ]) {
+//
+//    }
 }
 
 - (void)didReceiveMemoryWarning

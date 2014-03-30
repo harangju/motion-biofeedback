@@ -23,12 +23,21 @@ typedef NS_ENUM(NSInteger, BFSettingsDimension)
     BFSettingsDimensionSentry = 3,
 };
 
+typedef NS_ENUM(NSInteger, BFSettingsDetection)
+{
+    BFSettingsDetectionMarker = 0,
+    BFSettingsDetectionFeature = 1,
+    BFSettingsDetectionSentry = 2,
+};
+
 @interface BFSettings : NSObject
 
 + (BFSettingsVisualization)visualization;
 + (BOOL)setVisualization:(BFSettingsVisualization)visualization;
 + (BFSettingsDimension)dimension;
 + (BOOL)setDimension:(BFSettingsDimension)dimension;
++ (BFSettingsDetection)detection;
++ (BOOL)setDetection:(BFSettingsDetection)detection;
 + (CGFloat)millimeterPerPixelRatio;
 + (BOOL)setMillimeterPerPixelRatio:(CGFloat)ratio;
 

@@ -34,7 +34,9 @@ static NSString * const SettingsDetailInfoVCSegue = @"SettingsDetailInfoVCSegue"
                     @"Bar"],
                   @[@"Horizontal (X)",
                     @"Vertical (Y)",
-                    @"Horizontal & Vertical (X & Y)"]];
+                    @"Horizontal & Vertical (X & Y)"],
+                  @[@"Marker",
+                    @"Face"]]; // "Feature"
 }
 
 #pragma mark - LifeCycle
@@ -99,6 +101,10 @@ static NSString * const SettingsDetailInfoVCSegue = @"SettingsDetailInfoVCSegue"
         {
             detailVC.selectedIndex = [BFSettings dimension];
         }
+        else if (self.selectedIndexPath.row == 2)
+        {
+            detailVC.selectedIndex = [BFSettings detection];
+        }
     }
     else if ([segue.identifier isEqualToString:SettingsDetailInfoVCSegue])
     {
@@ -133,6 +139,14 @@ static NSString * const SettingsDetailInfoVCSegue = @"SettingsDetailInfoVCSegue"
         {
             [BFSettings setDimension:index];
             NSLog(@"set dimension %lu", (long)index);
+        }
+    }
+    else if (settingsDetailVC.row == 2)
+    {
+        if (index < BFSettingsDetectionSentry)
+        {
+            [BFSettings setDetection:index];
+            NSLog(@"set detection %lu", (long)index);
         }
     }
 }
