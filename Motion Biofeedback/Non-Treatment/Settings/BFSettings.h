@@ -38,7 +38,7 @@ typedef NS_ENUM(NSInteger, BFSettingsDetection)
 + (BOOL)setDimension:(BFSettingsDimension)dimension;
 + (BFSettingsDetection)detection;
 + (BOOL)setDetection:(BFSettingsDetection)detection;
-+ (CGFloat)millimeterPerPixelRatio;
++ (NSNumber *)millimeterPerPixelRatio;
 + (BOOL)setMillimeterPerPixelRatio:(CGFloat)ratio;
 
 @end

@@ -187,7 +187,7 @@ static const CGFloat TableViewHeightHorizontal = 320;
 
 - (IBAction)startButtonTapped:(UIButton *)button
 {
-    if (self.patient.sessions.count)
+    if ([BFSettings millimeterPerPixelRatio])
     {
         [self performSegueWithIdentifier:BiofeedbackSegueIdentifier
                                   sender:self];
@@ -232,6 +232,22 @@ static const CGFloat TableViewHeightHorizontal = 320;
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+//        self.indexPathToRemove = indexPath;
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Remove session"
+                                                            message:@"Are you sure you want to remove the patient?"
+                                                           delegate:self
+                                                  cancelButtonTitle:@"Cancel"
+                                                  otherButtonTitles:@"Remove", nil];
+        [alertView show];
+    }
+}
+
 
 #pragma mark - UI
 
@@ -390,7 +406,7 @@ static const CGFloat TableViewHeightHorizontal = 320;
         DeltaPoint *deltaPoint = [DeltaPoint createEntity];
         deltaPoint.timestamp = date;
         // convert to mm
-        CGFloat millimeterToPixelRatio = [BFSettings millimeterPerPixelRatio];
+        CGFloat millimeterToPixelRatio = [[BFSettings millimeterPerPixelRatio] doubleValue];
         if (millimeterToPixelRatio == 0) millimeterToPixelRatio = 1; // heh~
         deltaPoint.x = @(point.x * millimeterToPixelRatio);
         deltaPoint.y = @(point.y * millimeterToPixelRatio);

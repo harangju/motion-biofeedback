@@ -268,6 +268,7 @@
     NSNumber *number = [numberFormatter numberFromString:text];
     CGFloat millimeters = number.doubleValue;
     // get the pixel
+#warning I should convert this into points in the image
     CGFloat distanceBetweenPoints = sqrt((self.pointA.x - self.pointB.x)*(self.pointA.x - self.pointB.x) +
                                          (self.pointA.y - self.pointB.y)*(self.pointA.y - self.pointB.y));
     // get the ratio

@@ -57,10 +57,10 @@ static NSString * const MillimeterToPixelRatioKey = @"MillimeterToPixel";
     return [userDefaults synchronize];
 }
 
-+ (CGFloat)millimeterPerPixelRatio
++ (NSNumber *)millimeterPerPixelRatio
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    return [[userDefaults objectForKey:MillimeterToPixelRatioKey] doubleValue];
+    return [userDefaults objectForKey:MillimeterToPixelRatioKey];
 }
 
 + (BOOL)setMillimeterPerPixelRatio:(CGFloat)ratio
