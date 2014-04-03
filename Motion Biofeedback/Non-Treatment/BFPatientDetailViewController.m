@@ -37,6 +37,7 @@ static const CGFloat TableViewHeightHorizontal = 320;
 @property (nonatomic, strong) UIPopoverController *popover;
 
 @property (nonatomic, strong) NSArray *sessions;
+@property (nonatomic, strong) NSIndexPath *indexPathToRemove;
 
 @property (nonatomic, strong) UIImage *referenceImage;
 
@@ -176,6 +177,22 @@ static const CGFloat TableViewHeightHorizontal = 320;
      }];
 }
 
+- (void)removeSessionAtIndex:(NSInteger)index
+{
+    // model
+    Session *session = self.sessions[index];
+    NSMutableArray *sessions = self.sessions.mutableCopy;
+    [sessions removeObjectAtIndex:index];
+    self.sessions = sessions;
+    [session deleteEntity];
+    [self saveContext];
+    // view
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index
+                                                inSection:0];
+    [self.tableView deleteRowsAtIndexPaths:@[indexPath]
+                          withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
 #pragma mark - Buttons
 
 - (void)patientButtonTapped:(UIBarButtonItem *)item
@@ -238,9 +255,9 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
-//        self.indexPathToRemove = indexPath;
+        self.indexPathToRemove = indexPath;
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Remove session"
-                                                            message:@"Are you sure you want to remove the patient?"
+                                                            message:@"Are you sure you want to remove the session?"
                                                            delegate:self
                                                   cancelButtonTitle:@"Cancel"
                                                   otherButtonTitles:@"Remove", nil];
@@ -248,6 +265,16 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     }
 }
 
+#pragma mark - AlertView Delegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1)
+    {
+        NSLog(@"removing session at index %lu", self.indexPathToRemove.row);
+        [self removeSessionAtIndex:self.indexPathToRemove.row];
+    }
+}
 
 #pragma mark - UI
 

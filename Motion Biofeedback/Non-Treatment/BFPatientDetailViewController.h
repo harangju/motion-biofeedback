@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Patient.h"
 
-@interface BFPatientDetailViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISplitViewControllerDelegate>
+@interface BFPatientDetailViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISplitViewControllerDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, weak) Patient *patient;
 
