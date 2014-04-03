@@ -185,6 +185,24 @@ static const CGFloat TableViewHeightHorizontal = 320;
                                          animated:YES];
 }
 
+- (IBAction)startButtonTapped:(UIButton *)button
+{
+    if (self.patient.sessions.count)
+    {
+        [self performSegueWithIdentifier:BiofeedbackSegueIdentifier
+                                  sender:self];
+    }
+    else
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Please calibrate before continuing"
+                                                            message:@""
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Ok"
+                                                  otherButtonTitles:nil, nil];
+        [alertView show];
+    }
+}
+
 #pragma mark - TableView Datasource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

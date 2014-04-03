@@ -396,7 +396,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="cPc-Yz-iv5" kind="modal" identifier="BiofeedbackSegueIdentifier" modalTransitionStyle="crossDissolve" id="PKP-cR-lEK"/>
+                                    <action selector="startButtonTapped:" destination="58v-Zz-mbk" eventType="touchUpInside" id="NvO-tw-Zdr"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Session Number" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7oO-fr-a8B">
@@ -511,6 +511,7 @@
                         <outlet property="startButton" destination="YPh-sN-RHx" id="hdA-v5-gr0"/>
                         <outlet property="tableView" destination="zty-V5-vUs" id="q9H-vZ-ws0"/>
                         <outlet property="tableViewHeightConstraint" destination="sf3-98-Re0" id="aBw-rz-IlH"/>
+                        <segue destination="cPc-Yz-iv5" kind="modal" identifier="BiofeedbackSegueIdentifier" modalTransitionStyle="crossDissolve" id="33C-iX-Yh1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ITC-ue-MEO" userLabel="First Responder" sceneMemberID="firstResponder"/>
