@@ -184,13 +184,23 @@ static const CGFloat TableViewHeightHorizontal = 320;
     NSMutableArray *sessions = self.sessions.mutableCopy;
     [sessions removeObjectAtIndex:index];
     self.sessions = sessions;
+    // check if I should remove the reference image related to the session
+    ReferenceImage *referenceImage = session.referenceImage;
+    if (referenceImage.sessions.count == 1)
+    {
+        [self.patient removeReferenceImagesObject:referenceImage];
+        [referenceImage deleteEntity];
+    }
+    // delete
     [session deleteEntity];
+    // save
     [self saveContext];
     // view
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index
                                                 inSection:0];
     [self.tableView deleteRowsAtIndexPaths:@[indexPath]
                           withRowAnimation:UITableViewRowAnimationAutomatic];
+    self.imageView.image = [UIImage imageWithData:self.patient.latestImageData];
 }
 
 #pragma mark - Buttons
