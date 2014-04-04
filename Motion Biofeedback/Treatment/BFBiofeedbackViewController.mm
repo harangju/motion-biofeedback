@@ -217,7 +217,9 @@ static const CGFloat FeedbackAmplificationFactor = 2.0;
 
 - (void)initializeGestureRecognizers
 {
-    
+    self.pinchGestureRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self
+                                                                            action:@selector(handlePinchGesture:)];
+    [self.view addGestureRecognizer:self.pinchGestureRecognizer];
 }
 
 - (void)configure
@@ -624,6 +626,24 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     self.saveButton.hidden = NO;
     self.statusLabel.text = @"";
     self.visualizationView.hidden = NO;
+}
+
+#pragma mark - Gestures
+
+- (void)handlePinchGesture:(UIPinchGestureRecognizer *)pinchGestureRecognizer
+{
+    NSLog(@"pinch gesture with scale %f", pinchGestureRecognizer.scale);
+    // pinch ellipse
+    CGFloat faceWidth = FaceEllipseRectWidthPortrait * pinchGestureRecognizer.scale;
+    CGFloat faceHeight = FaceEllipseRectHeightPortrait * pinchGestureRecognizer.scale;
+    CGRect faceEllipseRect = CGRectMake(self.view.bounds.size.width/2.0 - faceWidth/2.0,
+                                        self.view.bounds.size.height/2.0 - faceHeight/2.0,
+                                        faceWidth, faceHeight);
+    self.faceEllipseView.faceEllipseRect = faceEllipseRect;
+    [self.faceEllipseView setNeedsDisplay];
+    // update detectors
+    self.matchReferencePhase.faceEllipseRectFramePortrait = faceEllipseRect;
+    self.captureReferencePhase.faceEllipseRectFramePortrait = faceEllipseRect;
 }
 
 #pragma mark - IBAction
