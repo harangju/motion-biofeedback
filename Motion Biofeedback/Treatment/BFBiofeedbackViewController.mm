@@ -618,7 +618,6 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 
 - (void)displayMeasuringMovementUI
 {
-    self.previewView.hidden = YES;
     self.faceEllipseView.hidden = YES;
     self.previewView.alpha = 0.3;
     self.referenceImageView.hidden = YES;

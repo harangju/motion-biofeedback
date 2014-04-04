@@ -473,6 +473,11 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
         [self.patient addReferenceImagesObject:referenceImage];
         session.referenceImage = referenceImage;
     }
+    else
+    {
+        ReferenceImage *referenceimage = self.patient.allReferenceImages.lastObject;
+        session.referenceImage = referenceimage;
+    }
     
     // save
     [self saveContext];
