@@ -58,8 +58,8 @@ static NSDateFormatter *_dateFormatter;
                            deltaPoint.x.floatValue, deltaPoint.y.floatValue];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",
                                  [_dateFormatter stringFromDate:deltaPoint.timestamp]];
-    NSTimeInterval time = deltaPoint.timestamp.timeIntervalSince1970;
-    NSLog(@"aosenu th %f", time);
+//    NSTimeInterval time = deltaPoint.timestamp.timeIntervalSince1970;
+//    NSLog(@"aosenu th %f", time);
     return cell;
 }
 

@@ -30,23 +30,120 @@
                                                 green:227.0/256.0
                                                  blue:228.0/256.0
                                                 alpha:1];
+    [self getData];
+    [self setupCharts];
+    [self.lineChartXView reloadData];
+    [self.lineChartYView reloadData];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [self.lineChartXView reloadData];
+    [self.lineChartYView reloadData];
+    [self.lineChartXView setState:JBChartViewStateExpanded
+                         animated:YES];
+    [self.lineChartYView setState:JBChartViewStateExpanded
+                        animated:YES];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+}
+
+#pragma mark - Setup
+
+- (void)setupCharts
+{
+    self.lineChartXView = [[JBLineChartView alloc] init];
+    self.lineChartXView.backgroundColor = [UIColor purpleColor];
+    self.lineChartXView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.lineChartXView setState:JBChartViewStateCollapsed];
+    [self.view addSubview:self.lineChartXView];
+    
+    self.lineChartYView = [[JBLineChartView alloc] init];
+    self.lineChartYView.backgroundColor = [UIColor brownColor];
+    self.lineChartYView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.lineChartYView setState:JBChartViewStateCollapsed];
+    [self.view addSubview:self.lineChartYView];
+    
+    // layout
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.lineChartXView
+                                                          attribute:NSLayoutAttributeTop
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view
+                                                          attribute:NSLayoutAttributeTop
+                                                         multiplier:1.0
+                                                           constant:70]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.lineChartXView
+                                                          attribute:NSLayoutAttributeLeft
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view
+                                                          attribute:NSLayoutAttributeLeft
+                                                         multiplier:1.0
+                                                           constant:8]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.lineChartXView
+                                                          attribute:NSLayoutAttributeRight
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view
+                                                          attribute:NSLayoutAttributeRight
+                                                         multiplier:1.0
+                                                           constant:-8]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.lineChartXView
+                                                          attribute:NSLayoutAttributeBottom
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view
+                                                          attribute:NSLayoutAttributeCenterY
+                                                         multiplier:1.0
+                                                           constant:-8]];
+    // layout - y view
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.lineChartYView
+                                                          attribute:NSLayoutAttributeTop
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view
+                                                          attribute:NSLayoutAttributeCenterY
+                                                         multiplier:1.0
+                                                           constant:8]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.lineChartYView
+                                                          attribute:NSLayoutAttributeLeft
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view
+                                                          attribute:NSLayoutAttributeLeft
+                                                         multiplier:1.0
+                                                           constant:8]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.lineChartYView
+                                                          attribute:NSLayoutAttributeRight
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view
+                                                          attribute:NSLayoutAttributeRight
+                                                         multiplier:1.0
+                                                           constant:-8]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.lineChartYView
+                                                          attribute:NSLayoutAttributeBottom
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view
+                                                          attribute:NSLayoutAttributeBottom
+                                                         multiplier:1.0
+                                                           constant:-70]];
     
     self.lineChartXView.dataSource = self;
     self.lineChartXView.delegate = self;
-//    self.lineChartXView.backgroundColor = [UIColor clearColor];
-    [self.lineChartXView reloadData];
     
     self.lineChartYView.dataSource = self;
     self.lineChartYView.delegate = self;
-//    self.lineChartYView.backgroundColor = [UIColor clearColor];
-    [self.lineChartYView reloadData];
     
+    // debugging
     self.lineChartXView.layer.borderColor = [UIColor yellowColor].CGColor;
     self.lineChartXView.layer.borderWidth = 1;
     
     self.lineChartYView.layer.borderColor = [UIColor yellowColor].CGColor;
     self.lineChartYView.layer.borderWidth = 1;
-    
+}
+
+- (void)getData
+{
     // get delta points
     self.deltaPoints = self.session.deltaPoints.allObjects.mutableCopy;
     // sort delta points
@@ -61,27 +158,6 @@
             self.minimumDeltaX = deltaPoint.x.floatValue;
         }
     }
-    // reload chart
-    [self.lineChartXView reloadData];
-    [self.lineChartXView setState:JBChartViewStateCollapsed];
-    
-    [self.lineChartYView reloadData];
-    [self.lineChartYView setState:JBChartViewStateCollapsed];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    
-    [self.lineChartXView setState:JBChartViewStateExpanded
-                         animated:YES];
-    [self.lineChartYView setState:JBChartViewStateExpanded
-                        animated:YES];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
 }
 
 #pragma mark - LineChartView DataSource

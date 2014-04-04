@@ -49,7 +49,7 @@
 - (void)processFrame:(cv::Mat)mat
            videoRect:(CGRect)videoRect
 {
-    NSLog(@"measure movement: processing frame");
+//    NSLog(@"measure movement: processing frame");
     if (self.detectionAlgorithm == BFSettingsDetectionFeature)
     {
         CGPoint absoluteDelta = [self.tracker absoluteDeltaFromFrame:mat];

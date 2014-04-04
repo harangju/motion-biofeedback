@@ -66,7 +66,7 @@
     
     CGPoint point = CGPointMake((CGFloat)sumX / (CGFloat)total,
                                 (CGFloat)sumY / (CGFloat)total);
-    NSLog(@"(%d, %d)", (int)point.x, (int)point.y);
+//    NSLog(@"(%d, %d)", (int)point.x, (int)point.y);
     
     // get the difference
     if (_centerPoint.x == 0 && _centerPoint.y == 0)
