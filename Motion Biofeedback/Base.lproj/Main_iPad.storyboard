@@ -932,7 +932,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lBa-Fu-iJg" userLabel="GPUImage View" customClass="GPUImageView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lBa-Fu-iJg" userLabel="Preview View">
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1054,7 +1054,7 @@
                         <outlet property="beginButton" destination="0b3-vl-6cK" id="PGO-6L-KEE"/>
                         <outlet property="exitButton" destination="yCJ-eY-RMG" id="fNo-nf-UHG"/>
                         <outlet property="faceEllipseView" destination="RmK-SK-x7m" id="FkS-8o-F3p"/>
-                        <outlet property="previewImageView" destination="lBa-Fu-iJg" id="D3L-Te-lSd"/>
+                        <outlet property="previewView" destination="lBa-Fu-iJg" id="GBn-bp-3CS"/>
                         <outlet property="referenceImageView" destination="yFL-V1-93X" id="lIf-VX-1Ad"/>
                         <outlet property="saveButton" destination="ZVe-fC-kZf" id="9DZ-rq-SCT"/>
                         <outlet property="statusLabel" destination="wHW-UR-Wbe" id="Z4Q-lI-b8f"/>

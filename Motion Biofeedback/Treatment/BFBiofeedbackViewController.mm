@@ -7,7 +7,6 @@
 //
 
 #import "BFBiofeedbackViewController.h"
-#import <GPUImage.h>
 #import "BFOpenCVConverter.h"
 #import "BFVisualizationView.h"
 #import "BFVisualizationBarView.h"
@@ -36,11 +35,10 @@ static const CGFloat OffDeltaFromCenter = 5;
 
 static const CGFloat FeedbackAmplificationFactor = 2.0;
 
-@interface BFBiofeedbackViewController () <GPUImageVideoCameraDelegate, BFBiofeedbackPhaseDelegate, BFBiofeedbackCaptureReferencePhaseDelegate, BFBiofeedbackMatchReferencePhaseDelegate, BFBiofeedbackMeasureMovementPhaseDelegate, AVCaptureVideoDataOutputSampleBufferDelegate>
+@interface BFBiofeedbackViewController () <BFBiofeedbackPhaseDelegate, BFBiofeedbackCaptureReferencePhaseDelegate, BFBiofeedbackMatchReferencePhaseDelegate, BFBiofeedbackMeasureMovementPhaseDelegate, AVCaptureVideoDataOutputSampleBufferDelegate>
 
 // GPUImage
-@property (nonatomic, weak) IBOutlet GPUImageView *previewImageView;
-@property (nonatomic, strong) GPUImageVideoCamera *videoCamera;
+@property (nonatomic, weak) IBOutlet UIView *previewView;
 
 // Visualization
 @property (nonatomic, strong) BFVisualizationView *visualizationView;
@@ -78,6 +76,9 @@ static const CGFloat FeedbackAmplificationFactor = 2.0;
 // Camera
 @property (nonatomic, strong) TSCamera *camera;
 
+// Gestures
+@property (nonatomic, strong) UIPinchGestureRecognizer *pinchGestureRecognizer;
+
 // debugging
 @property (nonatomic, strong) BFOpenCVColorTracker *colorTracker;
 @property (nonatomic, strong) UIImageView *imageView;
@@ -99,7 +100,8 @@ static const CGFloat FeedbackAmplificationFactor = 2.0;
     [self initializePhases];
     [self initializeVisualization];
     [self initializeViews];
-    [self initializeVoice];
+//    [self initializeVoice];
+    [self initializeGestureRecognizers];
     self.deltaPoints = [NSMutableArray array];
     self.deltaTimes = [NSMutableArray array];
     self.faceCenter = self.view.center;
@@ -136,15 +138,10 @@ static const CGFloat FeedbackAmplificationFactor = 2.0;
 
 - (void)initializeVideoCamera
 {
-//    self.videoCamera = [[GPUImageVideoCamera alloc] initWithSessionPreset:AVCaptureSessionPresetHigh
-//                                                           cameraPosition:AVCaptureDevicePositionFront];
-//    self.videoCamera.delegate = self;
-//    self.videoCamera.horizontallyMirrorFrontFacingCamera = YES;
-//    self.videoCamera.outputImageOrientation = self.interfaceOrientation;
     self.camera = [TSCamera videoCamera];
     self.camera.videoPreviewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
     self.camera.videoPreviewLayer.frame = self.view.bounds;
-    [self.previewImageView.layer insertSublayer:self.camera.videoPreviewLayer
+    [self.previewView.layer insertSublayer:self.camera.videoPreviewLayer
                                         atIndex:0];
     dispatch_queue_t queue = dispatch_queue_create("video data output queue", NULL);
     [self.camera.videoDataOutput setSampleBufferDelegate:self
@@ -218,6 +215,11 @@ static const CGFloat FeedbackAmplificationFactor = 2.0;
     self.voice = [AVSpeechSynthesizer new];
 }
 
+- (void)initializeGestureRecognizers
+{
+    
+}
+
 - (void)configure
 {
     // first session
@@ -241,10 +243,6 @@ static const CGFloat FeedbackAmplificationFactor = 2.0;
     {
         self.visualizationView = self.visualizationCircleView;
     }
-    // camera
-    self.previewImageView.fillMode = kGPUImageFillModePreserveAspectRatioAndFill;
-    [self.videoCamera addTarget:self.previewImageView];
-    [self.videoCamera startCameraCapture];
 }
 
 #pragma mark - Video Data Output Delegate
@@ -595,7 +593,8 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 
 - (void)forceQuitSession
 {
-    self.videoCamera.delegate = nil;
+//    self.videoCamera.delegate = nil;
+    [self.camera.videoDataOutput setSampleBufferDelegate:nil queue:NULL];
     self.measureMovementPhase.delegate = nil;
     self.measureMovementPhase.measureMovementDelegate = nil;
     [self.delegate biofeedbackViewControllerShouldForceQuit:self];
@@ -617,10 +616,9 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 
 - (void)displayMeasuringMovementUI
 {
-//    [self.videoCamera removeTarget:self.previewImageView];
-//    self.previewImageView.hidden = YES;
+    self.previewView.hidden = YES;
     self.faceEllipseView.hidden = YES;
-    self.previewImageView.alpha = 0.3;
+    self.previewView.alpha = 0.3;
     self.referenceImageView.hidden = YES;
     self.beginButton.hidden = YES;
     self.saveButton.hidden = NO;
@@ -673,8 +671,6 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
         // dismiss vc
         self.measureMovementPhase.measureMovementDelegate = nil;
         [self.camera.videoDataOutput setSampleBufferDelegate:nil queue:NULL];
-//        [self dismissViewControllerAnimated:YES
-//                                 completion:nil];
         [self.delegate biofeedbackViewControllerWantsToExit:self];
     }
 }
@@ -684,8 +680,6 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
                                 duration:(NSTimeInterval)duration
 {
-    // camera orientation
-    self.videoCamera.outputImageOrientation = toInterfaceOrientation;
     // face rect orientation
     if (toInterfaceOrientation == UIInterfaceOrientationPortrait ||
         toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
