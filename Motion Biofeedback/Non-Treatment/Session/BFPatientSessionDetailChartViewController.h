@@ -14,6 +14,7 @@
 
 @property (nonatomic, weak) Session *session;
 
-@property (nonatomic, weak) IBOutlet JBLineChartView *lineChartView;
+@property (nonatomic, weak) IBOutlet JBLineChartView *lineChartXView;
+@property (nonatomic, weak) IBOutlet JBLineChartView *lineChartYView;
 
 @end
