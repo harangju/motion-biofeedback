@@ -1,17 +1,14 @@
 PODS:
-  - GPUImage (0.1.2)
   - JBChartView (1.1.6)
   - MagicalRecord/Shorthand (2.2)
   - SVProgressHUD (1.0)
 
 DEPENDENCIES:
-  - GPUImage (= 0.1.2)
   - JBChartView (= 1.1.6)
   - MagicalRecord/Shorthand (= 2.2)
   - SVProgressHUD (= 1.0)
 
 SPEC CHECKSUMS:
-  GPUImage: 007145faa0e27f1ddbcab93e07f026c9776e2fa2
   JBChartView: 9e456958366ac7191139b1666f467b96c273a160
   MagicalRecord: 95d49d74ef752cd52f6ad87bcb474817fc3978cf
   SVProgressHUD: 5e10939a296debf5fe5a5895eda9539b8b2114f1
