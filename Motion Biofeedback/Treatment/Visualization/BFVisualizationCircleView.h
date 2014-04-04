@@ -15,4 +15,6 @@
 
 @property (nonatomic, strong) UIColor *centerCircleColor;
 
+- (void)drawCenterCircle;
+
 @end

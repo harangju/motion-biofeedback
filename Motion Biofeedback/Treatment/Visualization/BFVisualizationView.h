@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface BFVisualizationView : UIView
+{
+    CGPoint _headPosition;
+    UIColor *_deltaColor;
+}
 
 // visualization
 @property (nonatomic) CGPoint headPosition;
