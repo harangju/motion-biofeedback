@@ -221,6 +221,7 @@ static const CGFloat FeedbackAmplificationFactor = 2.0;
 - (void)configure
 {
     // first session
+//    self.state = BFBiofeedbackStateMeasuringMovement;
     if (self.shouldCaptureReferenceImage)
     {
         self.state = BFBiofeedbackStateCapturingReference;

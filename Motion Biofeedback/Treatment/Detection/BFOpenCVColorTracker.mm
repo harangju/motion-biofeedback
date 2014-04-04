@@ -41,15 +41,15 @@
     [self processFrameFromFrame:inputFrame toFrame:filteredMat];
     
     // get point
-    NSInteger sumX = 0;
-    NSInteger sumY = 0;
-    NSInteger total = 0;
-    for (int r = 0; r < filteredMat.rows - 3; r += 3)
+    NSUInteger sumX = 0;
+    NSUInteger sumY = 0;
+    NSUInteger total = 0;
+    for (int r = 0; r < filteredMat.rows; r++)
     {
-        float* row_ptr = filteredMat.ptr<float>(r);
-        for (int c = 0; c < filteredMat.cols - 3; c += 3)
+        uchar *row_ptr = filteredMat.ptr(r);
+        for (int c = 0; c < filteredMat.cols; c++)
         {
-            float val = row_ptr[c];
+            int val = row_ptr[c];
             if (val > 0)
             {
                 sumX += c;
@@ -58,8 +58,14 @@
             }
         }
     }
-    CGPoint point = CGPointMake(sumX / total,
-                                sumY / total);
+    
+    if (total == 0)
+    {
+        return CGPointZero;
+    }
+    
+    CGPoint point = CGPointMake((CGFloat)sumX / (CGFloat)total,
+                                (CGFloat)sumY / (CGFloat)total);
     NSLog(@"(%d, %d)", (int)point.x, (int)point.y);
     
     // get the difference
