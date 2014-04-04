@@ -482,6 +482,11 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
                                                   completion:nil];
 }
 
+- (void)biofeedbackViewControllerWantsToExit:(BFBiofeedbackViewController *)biofeedbackViewController
+{
+    [biofeedbackViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (void)biofeedbackViewControllerShouldForceQuit:(BFBiofeedbackViewController *)biofeedbackViewController
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^

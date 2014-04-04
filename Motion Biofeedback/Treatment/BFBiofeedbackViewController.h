@@ -39,6 +39,7 @@ typedef NS_ENUM(NSInteger, BFBiofeedbackState)
 - (void)biofeedbackViewController:(BFBiofeedbackViewController *)biofeedbackViewController
            didSaveWithDeltaPoints:(NSArray *)deltaPoints
                        deltaTimes:(NSArray *)deltaTimes;
+- (void)biofeedbackViewControllerWantsToExit:(BFBiofeedbackViewController *)biofeedbackViewController;
 - (void)biofeedbackViewControllerShouldForceQuit:(BFBiofeedbackViewController *)biofeedbackViewController;
 
 @end

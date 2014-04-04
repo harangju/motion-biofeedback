@@ -17,12 +17,7 @@
 #import "BFBiofeedbackCaptureReferencePhase.h"
 #import "BFBiofeedbackMatchReferencePhase.h"
 #import "BFBiofeedbackMeasureMovementPhase.h"
-
-
 #import "BFOpenCVColorTracker.h"
-
-
-
 #import "TSCamera.h"
 #import <AVFoundation/AVFoundation.h>
 
@@ -80,14 +75,12 @@ static const CGFloat FeedbackAmplificationFactor = 2.0;
 @property (nonatomic, strong) NSMutableArray *deltaPoints; // NSValue around CGPoints
 @property (nonatomic, strong) NSMutableArray *deltaTimes; // NSNumber around NSTimeIntervals since 1970
 
-
-
-@property (nonatomic, strong) UIImageView *imageView;
+// Camera
 @property (nonatomic, strong) TSCamera *camera;
 
-
-
+// debugging
 @property (nonatomic, strong) BFOpenCVColorTracker *colorTracker;
+@property (nonatomic, strong) UIImageView *imageView;
 
 
 @end
@@ -153,7 +146,7 @@ static const CGFloat FeedbackAmplificationFactor = 2.0;
     self.camera.videoPreviewLayer.frame = self.view.bounds;
     [self.previewImageView.layer insertSublayer:self.camera.videoPreviewLayer
                                         atIndex:0];
-    dispatch_queue_t queue = dispatch_queue_create("hihi", NULL);
+    dispatch_queue_t queue = dispatch_queue_create("video data output queue", NULL);
     [self.camera.videoDataOutput setSampleBufferDelegate:self
                                                    queue:queue];
     [self.camera start];
@@ -638,9 +631,10 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 
 - (IBAction)exitButtonTapped:(id)sender
 {
+    __weak typeof(self) weakSelf = self;
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Are you sure you want to exit?"
                                                         message:@""
-                                                       delegate:self
+                                                       delegate:weakSelf
                                               cancelButtonTitle:@"No"
                                               otherButtonTitles:@"Yes", nil];
     [alertView show];
@@ -669,15 +663,18 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 
 #pragma mark - AlertView Delegate
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 1)
         // should cancel session
     {
         // cancel session
         // dismiss vc
-        [self dismissViewControllerAnimated:YES
-                                 completion:nil];
+        self.measureMovementPhase.measureMovementDelegate = nil;
+        [self.camera.videoDataOutput setSampleBufferDelegate:nil queue:NULL];
+//        [self dismissViewControllerAnimated:YES
+//                                 completion:nil];
+        [self.delegate biofeedbackViewControllerWantsToExit:self];
     }
 }
 
