@@ -220,15 +220,10 @@
 
 #pragma mark - AlertView Delegate
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 1)
     {
-//        NSLog(@"save");
-//        CGFloat ratio = [BFSettings millimeterPerPixelRatio];
-//        CGFloat distanceBetweenPoints = sqrt((self.pointA.x - self.pointB.x)*(self.pointA.x - self.pointB.x) +
-//                                             (self.pointA.y - self.pointB.y)*(self.pointA.y - self.pointB.y));
-//        self.statusLabel.text = [NSString stringWithFormat:@"%f mm", ratio * distanceBetweenPoints];
         // get text
         UITextField *textField = [alertView textFieldAtIndex:0];
         NSString *text = textField.text;
@@ -238,21 +233,13 @@
             // newString consists only of the digits 0 through 9
         {
             [self saveMillimeterToPixelRatio];
+            [alertView dismissWithClickedButtonIndex:buttonIndex animated:YES];
             [self dismissViewControllerAnimated:YES completion:nil];
         }
         else
         {
-            self.shouldShowNotANumberAlertView = YES;
+            [self.notANumberAlertView show];
         }
-    }
-}
-
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    if (self.shouldShowNotANumberAlertView)
-    {
-        [self.notANumberAlertView show];
-        self.shouldShowNotANumberAlertView = NO;
     }
 }
 
