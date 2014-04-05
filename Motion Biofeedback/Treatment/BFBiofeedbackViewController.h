@@ -25,6 +25,7 @@ typedef NS_ENUM(NSInteger, BFBiofeedbackState)
 {
     BFBiofeedbackStateCapturingReference,
     BFBiofeedbackStateMatchingReference,
+    BFBiofeedbackStateCalibration,
     BFBiofeedbackStateMeasuringMovement,
     BFBiofeedbackStateNone,
 };
@@ -41,6 +42,8 @@ typedef NS_ENUM(NSInteger, BFBiofeedbackState)
                        deltaTimes:(NSArray *)deltaTimes;
 - (void)biofeedbackViewControllerWantsToExit:(BFBiofeedbackViewController *)biofeedbackViewController;
 - (void)biofeedbackViewControllerShouldForceQuit:(BFBiofeedbackViewController *)biofeedbackViewController;
+- (void)biofeedbackViewController:(BFBiofeedbackViewController *)biofeedbackViewController
+              didFindMarkerRadius:(NSInteger)radius;
 
 @end
 

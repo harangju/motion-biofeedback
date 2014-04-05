@@ -19,6 +19,7 @@
 #import "BFOpenCVColorTracker.h"
 #import "TSCamera.h"
 #import <AVFoundation/AVFoundation.h>
+#import "BFBiofeedbackColorCalibrationPhase.h"
 
 static const CGFloat FaceEllipseRectWidthPortrait = 700;
 static const CGFloat FaceEllipseRectHeightPortrait = 800;
@@ -35,7 +36,7 @@ static const CGFloat OffDeltaFromCenter = 5;
 
 static const CGFloat FeedbackAmplificationFactor = 2.0;
 
-@interface BFBiofeedbackViewController () <BFBiofeedbackPhaseDelegate, BFBiofeedbackCaptureReferencePhaseDelegate, BFBiofeedbackMatchReferencePhaseDelegate, BFBiofeedbackMeasureMovementPhaseDelegate, AVCaptureVideoDataOutputSampleBufferDelegate>
+@interface BFBiofeedbackViewController () <BFBiofeedbackPhaseDelegate, BFBiofeedbackCaptureReferencePhaseDelegate, BFBiofeedbackMatchReferencePhaseDelegate, BFBiofeedbackMeasureMovementPhaseDelegate, AVCaptureVideoDataOutputSampleBufferDelegate, BFBiofeedbackColorCalibrationPhaseDelegate>
 
 // GPUImage
 @property (nonatomic, weak) IBOutlet UIView *previewView;
@@ -60,6 +61,7 @@ static const CGFloat FeedbackAmplificationFactor = 2.0;
 @property (nonatomic, strong) BFBiofeedbackCaptureReferencePhase *captureReferencePhase;
 @property (nonatomic, strong) BFBiofeedbackMatchReferencePhase *matchReferencePhase;
 @property (nonatomic, strong) BFBiofeedbackMeasureMovementPhase *measureMovementPhase;
+@property (nonatomic, strong) BFBiofeedbackColorCalibrationPhase *calibrationPhase;
 @property (nonatomic, weak) BFBiofeedbackPhase *referencePhase;
 
 // States
@@ -193,6 +195,11 @@ static const CGFloat FeedbackAmplificationFactor = 2.0;
     self.measureMovementPhase = [BFBiofeedbackMeasureMovementPhase new];
     self.measureMovementPhase.delegate = self;
     self.measureMovementPhase.measureMovementDelegate = self;
+    
+    // calibration phase
+    self.calibrationPhase = [BFBiofeedbackColorCalibrationPhase new];
+    self.calibrationPhase.delegate = self;
+    self.calibrationPhase.calibrationDelegate = self;
 }
 
 - (void)initializeVisualization
@@ -285,6 +292,11 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
         [self.referencePhase processFrame:mat
                                 videoRect:videoRect];
     }
+    else if (self.state == BFBiofeedbackStateCalibration)
+    {
+        [self.calibrationPhase processFrame:mat
+                                  videoRect:videoRect];
+    }
     else if (self.state == BFBiofeedbackStateMeasuringMovement)
     {
         cv::Mat faceMat = mat(self.faceRect);
@@ -295,35 +307,35 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 
 #pragma mark - GPUImage VideoCamera Delegate
 
-- (void)willOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
-{
-    // get mat
-    cv::Mat mat = [BFOpenCVConverter matForSampleBuffer:sampleBuffer];
-    CGRect videoRect = [self videoRectFromBuffer:sampleBuffer];
-    
-    // orient mat
-    if ([self isUpright])
-    {
-        cv::transpose(mat, mat);
-    }
-    else if ([self isSideways])
-    {
-        cv::flip(mat, mat, 1);
-    }
-    
-    if (self.state == BFBiofeedbackStateCapturingReference ||
-        self.state == BFBiofeedbackStateMatchingReference)
-    {
-        [self.referencePhase processFrame:mat
-                                videoRect:videoRect];
-    }
-    else if (self.state == BFBiofeedbackStateMeasuringMovement)
-    {
-        cv::Mat faceMat = mat(self.faceRect);
-        [self.measureMovementPhase processFrame:faceMat
-                                      videoRect:videoRect];
-    }
-}
+//- (void)willOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
+//{
+//    // get mat
+//    cv::Mat mat = [BFOpenCVConverter matForSampleBuffer:sampleBuffer];
+//    CGRect videoRect = [self videoRectFromBuffer:sampleBuffer];
+//    
+//    // orient mat
+//    if ([self isUpright])
+//    {
+//        cv::transpose(mat, mat);
+//    }
+//    else if ([self isSideways])
+//    {
+//        cv::flip(mat, mat, 1);
+//    }
+//    
+//    if (self.state == BFBiofeedbackStateCapturingReference ||
+//        self.state == BFBiofeedbackStateMatchingReference)
+//    {
+//        [self.referencePhase processFrame:mat
+//                                videoRect:videoRect];
+//    }
+//    else if (self.state == BFBiofeedbackStateMeasuringMovement)
+//    {
+//        cv::Mat faceMat = mat(self.faceRect);
+//        [self.measureMovementPhase processFrame:faceMat
+//                                      videoRect:videoRect];
+//    }
+//}
 
 - (CGRect)videoRectFromBuffer:(CMSampleBufferRef)sampleBuffer
 {
@@ -603,6 +615,17 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     [self.delegate biofeedbackViewControllerShouldForceQuit:self];
 }
 
+#pragma mark - Color Calibration
+
+- (void)biofeedbackColorCalibrationPhase:(BFBiofeedbackColorCalibrationPhase *)biofeedbackColorCalibrationPhase
+                      didFindPixelRadius:(NSInteger)pixelRadius
+{
+    NSLog(@"calibration - pixel count: %lu", pixelRadius);
+    
+#warning Maybe get multiple ones and average them?
+    self.state = BFBiofeedbackStateMeasuringMovement;
+}
+
 #pragma mark - UI
 
 - (void)showThatFaceIsInCircle
@@ -661,7 +684,8 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 
 - (IBAction)beginButtonTapped:(id)sender
 {
-    self.state = BFBiofeedbackStateMeasuringMovement;
+//    self.state = BFBiofeedbackStateMeasuringMovement;
+    self.state = BFBiofeedbackStateCalibration;
     self.referencePhase.delegate = nil;
     [self displayMeasuringMovementUI];
 }

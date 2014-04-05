@@ -48,6 +48,7 @@
     // go to the end
     uchar *row_ptr = mat.ptr(centroid.y);
     NSUInteger radius = 0;
+#warning Do this better? What if one side is fuzzy?
     for (int c = centroid.x; c < mat.cols; c++)
     {
         int val = row_ptr[c];

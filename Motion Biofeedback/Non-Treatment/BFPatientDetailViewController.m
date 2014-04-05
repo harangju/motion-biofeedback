@@ -535,4 +535,14 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
      }];
 }
 
+- (void)biofeedbackViewController:(BFBiofeedbackViewController *)biofeedbackViewController
+              didFindMarkerRadius:(NSInteger)radius
+{
+    
+    
+#warning  This is hard coded in right now
+    CGFloat millimeterToPixelRatio = (CGFloat)15 / (CGFloat)radius;
+    [BFSettings setMillimeterPerPixelRatio:millimeterToPixelRatio];
+}
+
 @end
