@@ -10,10 +10,10 @@
 #import "DeltaPoint.h"
 #import "JBChartHeaderView.h"
 #import "JBLineChartFooterView.h"
+#import "JBChartInformationView.h"
 
 #define kJBNumericDefaultPadding 10.0f
 #define kJBNumericDefaultAnimationDuration 0.25f
-
 
 CGFloat const kJBLineChartViewControllerChartHeight = 250.0f;
 CGFloat const kJBLineChartViewControllerChartHeaderHeight = 75.0f;
@@ -21,12 +21,17 @@ CGFloat const kJBLineChartViewControllerChartHeaderPadding = 20.0f;
 CGFloat const kJBLineChartViewControllerChartFooterHeight = 20.0f;
 CGFloat const kJBLineChartViewControllerChartLineWidth = 6.0f;
 
+static NSDateFormatter *_dateFormatter;
+
 @interface BFPatientSessionDetailChartViewController ()
 
 @property (nonatomic, strong) NSMutableArray *deltaPoints;
 
 @property (nonatomic) CGFloat minimumDeltaX;
 @property (nonatomic) CGFloat minimumDeltaY;
+
+@property (nonatomic, strong) JBChartInformationView *informationXView;
+@property (nonatomic, strong) JBChartInformationView *informationYView;
 
 @end
 
@@ -44,10 +49,17 @@ CGFloat const kJBLineChartViewControllerChartLineWidth = 6.0f;
     //                                                alpha:1];
     self.view.backgroundColor = [UIColor darkGrayColor];
     
+    _dateFormatter = [NSDateFormatter new];
+    _dateFormatter.dateFormat = @"HH:mm:ss.SSS";
+    
     [self getData];
     [self setupCharts];
     [self.view layoutIfNeeded];
     [self setupHeadersAndFooters];
+    [self setupInfoViews];
+    
+    [self.view bringSubviewToFront:self.lineChartXView];
+    [self.view bringSubviewToFront:self.lineChartYView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -227,6 +239,21 @@ CGFloat const kJBLineChartViewControllerChartLineWidth = 6.0f;
     }
 }
 
+- (void)setupInfoViews
+{
+    self.informationXView = [[JBChartInformationView alloc] initWithFrame:self.lineChartYView.frame];
+    [self.informationXView setValueAndUnitTextColor:[UIColor whiteColor]];
+    [self.informationXView setTitleTextColor:[UIColor whiteColor]];
+    [self.informationXView setSeparatorColor:[UIColor whiteColor]];
+    [self.view addSubview:self.informationXView];
+    
+    self.informationYView = [[JBChartInformationView alloc] initWithFrame:self.lineChartXView.frame];
+    [self.informationYView setValueAndUnitTextColor:[UIColor whiteColor]];
+    [self.informationYView setTitleTextColor:[UIColor whiteColor]];
+    [self.informationYView setSeparatorColor:[UIColor whiteColor]];
+    [self.view addSubview:self.informationYView];
+}
+
 #pragma mark - LineChartView DataSource
 
 - (NSInteger)numberOfPointsInLineChartView:(JBLineChartView *)lineChartView
@@ -269,11 +296,44 @@ CGFloat const kJBLineChartViewControllerChartLineWidth = 6.0f;
 - (void)lineChartView:(JBLineChartView *)lineChartView didSelectChartAtIndex:(NSInteger)index
 {
     NSLog(@"selected at index %lu", index);
+    DeltaPoint *deltaPoint = self.deltaPoints[index];
+    if ([lineChartView isEqual:self.lineChartXView])
+    {
+        NSNumber *valueNumber = deltaPoint.x;
+        [self.informationXView setValueText:[NSString stringWithFormat:@"%.2f",
+                                             [valueNumber floatValue]]
+                                   unitText:@"mm"];
+        [self.informationXView setTitleText:[NSString stringWithFormat:@"%@",
+                                             [_dateFormatter stringFromDate:deltaPoint.timestamp]]];
+        [self.informationXView setHidden:NO animated:YES];
+        self.lineChartYView.hidden = YES;
+    }
+    else if ([lineChartView isEqual:self.lineChartYView])
+    {
+        NSNumber *valueNumber = deltaPoint.y;
+        [self.informationYView setValueText:[NSString stringWithFormat:@"%.2f",
+                                             [valueNumber floatValue]]
+                                   unitText:@"mm"];
+        [self.informationYView setTitleText:[NSString stringWithFormat:@"%@",
+                                             [_dateFormatter stringFromDate:deltaPoint.timestamp]]];
+        [self.informationYView setHidden:NO animated:YES];
+        self.lineChartXView.hidden = YES;
+    }
 }
 
 - (void)lineChartView:(JBLineChartView *)lineChartView didUnselectChartAtIndex:(NSInteger)index
 {
     NSLog(@"unselected at index %lu", index);
+    if ([lineChartView isEqual:self.lineChartXView])
+    {
+        self.lineChartYView.hidden = NO;
+        [self.informationXView setHidden:YES animated:YES];
+    }
+    else if ([lineChartView isEqual:self.lineChartYView])
+    {
+        self.lineChartXView.hidden = NO;
+        [self.informationYView setHidden:YES animated:YES];
+    }
 }
 
 #pragma mark - Orientation

@@ -32,6 +32,7 @@
 		7D2E6C2918D4F55800B03788 /* BFBiofeedbackViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E6C2818D4F55800B03788 /* BFBiofeedbackViewController.mm */; };
 		7D52E3B118EFCCC400874987 /* JBChartHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D52E3AE18EFCCC400874987 /* JBChartHeaderView.m */; };
 		7D52E3B218EFCCC400874987 /* JBLineChartFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D52E3B018EFCCC400874987 /* JBLineChartFooterView.m */; };
+		7D52E3B718EFD32800874987 /* JBChartInformationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D52E3B618EFD32800874987 /* JBChartInformationView.m */; };
 		7D9B75EA18E4A6B000A4A1C9 /* BFCalibrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D9B75E918E4A6B000A4A1C9 /* BFCalibrationViewController.m */; };
 		7D9B75EE18E4C65F00A4A1C9 /* BFCalibrationRulerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D9B75ED18E4C65F00A4A1C9 /* BFCalibrationRulerView.m */; };
 		7DB235D018E535A40000AA1C /* DeltaPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB235CF18E535A40000AA1C /* DeltaPoint.m */; };
@@ -130,6 +131,8 @@
 		7D52E3AF18EFCCC400874987 /* JBLineChartFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JBLineChartFooterView.h; path = "Non-Treatment/Session/JBLineChartFooterView.h"; sourceTree = "<group>"; };
 		7D52E3B018EFCCC400874987 /* JBLineChartFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JBLineChartFooterView.m; path = "Non-Treatment/Session/JBLineChartFooterView.m"; sourceTree = "<group>"; };
 		7D52E3B418EFCE6B00874987 /* JBFontConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JBFontConstants.h; path = "Non-Treatment/Session/JBFontConstants.h"; sourceTree = "<group>"; };
+		7D52E3B518EFD32800874987 /* JBChartInformationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JBChartInformationView.h; path = "Non-Treatment/Session/JBChartInformationView.h"; sourceTree = "<group>"; };
+		7D52E3B618EFD32800874987 /* JBChartInformationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JBChartInformationView.m; path = "Non-Treatment/Session/JBChartInformationView.m"; sourceTree = "<group>"; };
 		7D9B75E818E4A6B000A4A1C9 /* BFCalibrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BFCalibrationViewController.h; path = "Non-Treatment/Calibration/BFCalibrationViewController.h"; sourceTree = "<group>"; };
 		7D9B75E918E4A6B000A4A1C9 /* BFCalibrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BFCalibrationViewController.m; path = "Non-Treatment/Calibration/BFCalibrationViewController.m"; sourceTree = "<group>"; };
 		7D9B75EC18E4C65F00A4A1C9 /* BFCalibrationRulerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BFCalibrationRulerView.h; path = "Non-Treatment/Calibration/BFCalibrationRulerView.h"; sourceTree = "<group>"; };
@@ -243,6 +246,8 @@
 				7D15BD3818E50E8000EC05E3 /* BFPatientSessionDetailListViewController.m */,
 				7D15BD3518E50E8000EC05E3 /* BFPatientSessionDetailChartViewController.h */,
 				7D15BD3618E50E8000EC05E3 /* BFPatientSessionDetailChartViewController.m */,
+				7D52E3B518EFD32800874987 /* JBChartInformationView.h */,
+				7D52E3B618EFD32800874987 /* JBChartInformationView.m */,
 				7D52E3AD18EFCCC400874987 /* JBChartHeaderView.h */,
 				7D52E3AE18EFCCC400874987 /* JBChartHeaderView.m */,
 				7D52E3AF18EFCCC400874987 /* JBLineChartFooterView.h */,
@@ -594,6 +599,7 @@
 				7DD1705B18D6553900DEFD4F /* BFBiofeedbackCaptureReferencePhase.mm in Sources */,
 				7D2E6C2618D4F38300B03788 /* BFVisualizationBarView.m in Sources */,
 				7D1629A518EE348300EA3BF8 /* BFVisualizationCircleDrawingView.m in Sources */,
+				7D52E3B718EFD32800874987 /* JBChartInformationView.m in Sources */,
 				7D9B75EE18E4C65F00A4A1C9 /* BFCalibrationRulerView.m in Sources */,
 				7D2E6C2918D4F55800B03788 /* BFBiofeedbackViewController.mm in Sources */,
 				7DD1705E18D6555400DEFD4F /* BFBiofeedbackMatchReferencePhase.mm in Sources */,
