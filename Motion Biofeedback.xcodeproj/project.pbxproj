@@ -30,6 +30,8 @@
 		7D2E6C2318D4F37900B03788 /* BFVisualizationCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E6C2218D4F37900B03788 /* BFVisualizationCircleView.m */; };
 		7D2E6C2618D4F38300B03788 /* BFVisualizationBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E6C2518D4F38300B03788 /* BFVisualizationBarView.m */; };
 		7D2E6C2918D4F55800B03788 /* BFBiofeedbackViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E6C2818D4F55800B03788 /* BFBiofeedbackViewController.mm */; };
+		7D52E3B118EFCCC400874987 /* JBChartHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D52E3AE18EFCCC400874987 /* JBChartHeaderView.m */; };
+		7D52E3B218EFCCC400874987 /* JBLineChartFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D52E3B018EFCCC400874987 /* JBLineChartFooterView.m */; };
 		7D9B75EA18E4A6B000A4A1C9 /* BFCalibrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D9B75E918E4A6B000A4A1C9 /* BFCalibrationViewController.m */; };
 		7D9B75EE18E4C65F00A4A1C9 /* BFCalibrationRulerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D9B75ED18E4C65F00A4A1C9 /* BFCalibrationRulerView.m */; };
 		7DB235D018E535A40000AA1C /* DeltaPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB235CF18E535A40000AA1C /* DeltaPoint.m */; };
@@ -123,6 +125,11 @@
 		7D2E6C2518D4F38300B03788 /* BFVisualizationBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFVisualizationBarView.m; sourceTree = "<group>"; };
 		7D2E6C2718D4F55800B03788 /* BFBiofeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BFBiofeedbackViewController.h; path = Treatment/BFBiofeedbackViewController.h; sourceTree = "<group>"; };
 		7D2E6C2818D4F55800B03788 /* BFBiofeedbackViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = BFBiofeedbackViewController.mm; path = Treatment/BFBiofeedbackViewController.mm; sourceTree = "<group>"; };
+		7D52E3AD18EFCCC400874987 /* JBChartHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JBChartHeaderView.h; path = "Non-Treatment/Session/JBChartHeaderView.h"; sourceTree = "<group>"; };
+		7D52E3AE18EFCCC400874987 /* JBChartHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JBChartHeaderView.m; path = "Non-Treatment/Session/JBChartHeaderView.m"; sourceTree = "<group>"; };
+		7D52E3AF18EFCCC400874987 /* JBLineChartFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JBLineChartFooterView.h; path = "Non-Treatment/Session/JBLineChartFooterView.h"; sourceTree = "<group>"; };
+		7D52E3B018EFCCC400874987 /* JBLineChartFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JBLineChartFooterView.m; path = "Non-Treatment/Session/JBLineChartFooterView.m"; sourceTree = "<group>"; };
+		7D52E3B418EFCE6B00874987 /* JBFontConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JBFontConstants.h; path = "Non-Treatment/Session/JBFontConstants.h"; sourceTree = "<group>"; };
 		7D9B75E818E4A6B000A4A1C9 /* BFCalibrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BFCalibrationViewController.h; path = "Non-Treatment/Calibration/BFCalibrationViewController.h"; sourceTree = "<group>"; };
 		7D9B75E918E4A6B000A4A1C9 /* BFCalibrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BFCalibrationViewController.m; path = "Non-Treatment/Calibration/BFCalibrationViewController.m"; sourceTree = "<group>"; };
 		7D9B75EC18E4C65F00A4A1C9 /* BFCalibrationRulerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BFCalibrationRulerView.h; path = "Non-Treatment/Calibration/BFCalibrationRulerView.h"; sourceTree = "<group>"; };
@@ -232,10 +239,15 @@
 				7D15BD3C18E50EC100EC05E3 /* BFPatientSessionViewController.m */,
 				7D15BD5918E52E0800EC05E3 /* BFPatientSessionReferenceImageCell.h */,
 				7D15BD5A18E52E0800EC05E3 /* BFPatientSessionReferenceImageCell.m */,
-				7D15BD3518E50E8000EC05E3 /* BFPatientSessionDetailChartViewController.h */,
-				7D15BD3618E50E8000EC05E3 /* BFPatientSessionDetailChartViewController.m */,
 				7D15BD3718E50E8000EC05E3 /* BFPatientSessionDetailListViewController.h */,
 				7D15BD3818E50E8000EC05E3 /* BFPatientSessionDetailListViewController.m */,
+				7D15BD3518E50E8000EC05E3 /* BFPatientSessionDetailChartViewController.h */,
+				7D15BD3618E50E8000EC05E3 /* BFPatientSessionDetailChartViewController.m */,
+				7D52E3AD18EFCCC400874987 /* JBChartHeaderView.h */,
+				7D52E3AE18EFCCC400874987 /* JBChartHeaderView.m */,
+				7D52E3AF18EFCCC400874987 /* JBLineChartFooterView.h */,
+				7D52E3B018EFCCC400874987 /* JBLineChartFooterView.m */,
+				7D52E3B418EFCE6B00874987 /* JBFontConstants.h */,
 			);
 			name = Session;
 			sourceTree = "<group>";
@@ -590,6 +602,7 @@
 				7D15BD3D18E50EC100EC05E3 /* BFPatientSessionViewController.m in Sources */,
 				7D2E6C0518D4E27400B03788 /* BFOpenCVConverter.mm in Sources */,
 				7D2E6C0618D4E27400B03788 /* BFOpenCVEdgeDetector.mm in Sources */,
+				7D52E3B118EFCCC400874987 /* JBChartHeaderView.m in Sources */,
 				7DD1705718D6550F00DEFD4F /* BFBiofeedbackPhase.mm in Sources */,
 				7D16ED3018D2B4A400EF7D56 /* BFPatientListViewController.m in Sources */,
 				7D2E6C2318D4F37900B03788 /* BFVisualizationCircleView.m in Sources */,
@@ -597,6 +610,7 @@
 				7DB235DC18E537480000AA1C /* Session.m in Sources */,
 				7D15BD3A18E50E8000EC05E3 /* BFPatientSessionDetailListViewController.m in Sources */,
 				7DEC28B018E6FAE6008C7422 /* BFOpenCVColorTracker.mm in Sources */,
+				7D52E3B218EFCCC400874987 /* JBLineChartFooterView.m in Sources */,
 				7D15BD3918E50E8000EC05E3 /* BFPatientSessionDetailChartViewController.m in Sources */,
 				7DB9C2F518C2D2EF00CCDED9 /* BFAppDelegate.mm in Sources */,
 				7D2E6BED18D350EA00B03788 /* BFSettingsDetailInfoViewController.m in Sources */,

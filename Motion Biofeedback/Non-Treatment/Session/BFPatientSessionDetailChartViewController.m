@@ -8,7 +8,8 @@
 
 #import "BFPatientSessionDetailChartViewController.h"
 #import "DeltaPoint.h"
-//#define ARC4RANDOM_MAX 0x100000000
+
+static CGFloat const kJBLineChartViewControllerChartHeaderPadding = 20.0f;
 
 @interface BFPatientSessionDetailChartViewController ()
 
@@ -73,6 +74,7 @@
     self.lineChartXView.backgroundColor = [UIColor clearColor];
     self.lineChartXView.translatesAutoresizingMaskIntoConstraints = NO;
     self.lineChartXView.showsSelection = YES;
+    self.lineChartXView.headerPadding = kJBLineChartViewControllerChartHeaderPadding;
     [self.lineChartXView setState:JBChartViewStateCollapsed];
     [self.view addSubview:self.lineChartXView];
     
