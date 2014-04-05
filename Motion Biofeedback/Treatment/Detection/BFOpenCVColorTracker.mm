@@ -31,27 +31,27 @@
                       toFrame:(cv::Mat &)outputFrame
 {
     cv::cvtColor(inputFrame, outputFrame, CV_BGR2HSV);
-//    cv::Scalar min(35, 50, 50);
-//    cv::Scalar max(60, 255, 255);
-    cv::Scalar min(87 * (180.0/360.0), 50, 5 * (255/100));
-    cv::Scalar max(180 * (180.0/360.0), 255, 255);
+    // light green
+    cv::Scalar min(35, 50, 50);
+    cv::Scalar max(60, 255, 255);
+    // dark green
+//    cv::Scalar min(87 * (180.0/360.0), 50, 1 * (255/100));
+//    cv::Scalar max(180 * (180.0/360.0), 255, 255);
+    // light blue
+    
     cv::inRange(outputFrame, min, max, outputFrame);
 }
 
-- (CGPoint)absoluteDeltaFromFrame:(const cv::Mat &)inputFrame
+- (CGPoint)getCentroidOfMat:(cv::Mat &)mat
 {
-    // get color
-    cv::Mat filteredMat(inputFrame.rows, inputFrame.cols, CV_8UC1, cv::Scalar(0,0,255));
-    [self processFrameFromFrame:inputFrame toFrame:filteredMat];
-    
     // get point
     NSUInteger sumX = 0;
     NSUInteger sumY = 0;
     NSUInteger total = 0;
-    for (int r = 0; r < filteredMat.rows; r++)
+    for (int r = 0; r < mat.rows; r++)
     {
-        uchar *row_ptr = filteredMat.ptr(r);
-        for (int c = 0; c < filteredMat.cols; c++)
+        uchar *row_ptr = mat.ptr(r);
+        for (int c = 0; c < mat.cols; c++)
         {
             int val = row_ptr[c];
             if (val > 0)
@@ -70,18 +70,32 @@
     
     CGPoint point = CGPointMake((CGFloat)sumX / (CGFloat)total,
                                 (CGFloat)sumY / (CGFloat)total);
-//    NSLog(@"(%d, %d)", (int)point.x, (int)point.y);
+    return point;
+}
+
+- (CGPoint)absoluteDeltaFromFrame:(const cv::Mat &)inputFrame
+{
+    // get color
+    cv::Mat filteredMat(inputFrame.rows, inputFrame.cols, CV_8UC1, cv::Scalar(0,0,255));
+    [self processFrameFromFrame:inputFrame toFrame:filteredMat];
+    
+    // get point
+    CGPoint centroid = [self getCentroidOfMat:filteredMat];
+    if (centroid.x == 0 || centroid.y == 0)
+    {
+        return centroid;
+    }
     
     // get the difference
     if (_centerPoint.x == 0 && _centerPoint.y == 0)
     {
-        _centerPoint = point;
+        _centerPoint = centroid;
     }
     else
     {
         CGPoint delta;
-        delta.x = point.x - _centerPoint.x;
-        delta.y = point.y - _centerPoint.y;
+        delta.x = centroid.x - _centerPoint.x;
+        delta.y = centroid.y - _centerPoint.y;
         return delta;
     }
     

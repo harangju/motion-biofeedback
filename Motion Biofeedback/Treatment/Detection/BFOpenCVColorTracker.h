@@ -13,5 +13,6 @@
 - (void)processFrameFromFrame:(const cv::Mat &)inputFrame
                       toFrame:(cv::Mat &)outputFrame;
 - (CGPoint)absoluteDeltaFromFrame:(const cv::Mat &)inputFrame;
+- (CGPoint)getCentroidOfMat:(cv::Mat &)mat;
 
 @end

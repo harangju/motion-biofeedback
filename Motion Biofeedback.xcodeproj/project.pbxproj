@@ -15,6 +15,7 @@
 		7D15BD5B18E52E0800EC05E3 /* BFPatientSessionReferenceImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D15BD5A18E52E0800EC05E3 /* BFPatientSessionReferenceImageCell.m */; };
 		7D15BD6A18E5347300EC05E3 /* PatientModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7D15BD6818E5347300EC05E3 /* PatientModel.xcdatamodeld */; };
 		7D16221818F04179002A9698 /* BFVisualizationVectorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D16221718F04179002A9698 /* BFVisualizationVectorView.m */; };
+		7D16221B18F0586F002A9698 /* BFBiofeedbackColorCalibrationPhase.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7D16221A18F0586F002A9698 /* BFBiofeedbackColorCalibrationPhase.mm */; };
 		7D1629A518EE348300EA3BF8 /* BFVisualizationCircleDrawingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D1629A418EE348300EA3BF8 /* BFVisualizationCircleDrawingView.m */; };
 		7D16ED3018D2B4A400EF7D56 /* BFPatientListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D16ED2F18D2B4A400EF7D56 /* BFPatientListViewController.m */; };
 		7D16ED3E18D2BC3600EF7D56 /* BFAddPatientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D16ED3D18D2BC3600EF7D56 /* BFAddPatientViewController.m */; };
@@ -97,6 +98,8 @@
 		7D15BD6918E5347300EC05E3 /* PatientModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PatientModel.xcdatamodel; sourceTree = "<group>"; };
 		7D16221618F04179002A9698 /* BFVisualizationVectorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFVisualizationVectorView.h; sourceTree = "<group>"; };
 		7D16221718F04179002A9698 /* BFVisualizationVectorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFVisualizationVectorView.m; sourceTree = "<group>"; };
+		7D16221918F0586F002A9698 /* BFBiofeedbackColorCalibrationPhase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BFBiofeedbackColorCalibrationPhase.h; path = Treatment/Phases/BFBiofeedbackColorCalibrationPhase.h; sourceTree = "<group>"; };
+		7D16221A18F0586F002A9698 /* BFBiofeedbackColorCalibrationPhase.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = BFBiofeedbackColorCalibrationPhase.mm; path = Treatment/Phases/BFBiofeedbackColorCalibrationPhase.mm; sourceTree = "<group>"; };
 		7D1629A318EE348300EA3BF8 /* BFVisualizationCircleDrawingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFVisualizationCircleDrawingView.h; sourceTree = "<group>"; };
 		7D1629A418EE348300EA3BF8 /* BFVisualizationCircleDrawingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFVisualizationCircleDrawingView.m; sourceTree = "<group>"; };
 		7D16ED2E18D2B4A400EF7D56 /* BFPatientListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BFPatientListViewController.h; path = "Non-Treatment/BFPatientListViewController.h"; sourceTree = "<group>"; };
@@ -445,6 +448,8 @@
 				7DD1705A18D6553900DEFD4F /* BFBiofeedbackCaptureReferencePhase.mm */,
 				7DD1705C18D6555400DEFD4F /* BFBiofeedbackMatchReferencePhase.h */,
 				7DD1705D18D6555400DEFD4F /* BFBiofeedbackMatchReferencePhase.mm */,
+				7D16221918F0586F002A9698 /* BFBiofeedbackColorCalibrationPhase.h */,
+				7D16221A18F0586F002A9698 /* BFBiofeedbackColorCalibrationPhase.mm */,
 				7DD1705F18D6556B00DEFD4F /* BFBiofeedbackMeasureMovementPhase.h */,
 				7DD1706018D6556B00DEFD4F /* BFBiofeedbackMeasureMovementPhase.mm */,
 			);
@@ -606,6 +611,7 @@
 				7D2E6C0818D4E27400B03788 /* BFOpenCVTracker.mm in Sources */,
 				7D52E3BA18EFDDB600874987 /* Session.m in Sources */,
 				7D15BD3D18E50EC100EC05E3 /* BFPatientSessionViewController.m in Sources */,
+				7D16221B18F0586F002A9698 /* BFBiofeedbackColorCalibrationPhase.mm in Sources */,
 				7D2E6C0518D4E27400B03788 /* BFOpenCVConverter.mm in Sources */,
 				7D2E6C0618D4E27400B03788 /* BFOpenCVEdgeDetector.mm in Sources */,
 				7D52E3B118EFCCC400874987 /* JBChartHeaderView.m in Sources */,
