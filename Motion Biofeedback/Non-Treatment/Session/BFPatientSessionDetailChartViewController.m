@@ -26,10 +26,12 @@
 {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor colorWithRed:183.0/256.0
-                                                green:227.0/256.0
-                                                 blue:228.0/256.0
-                                                alpha:1];
+//    self.view.backgroundColor = [UIColor colorWithRed:183.0/256.0
+//                                                green:227.0/256.0
+//                                                 blue:228.0/256.0
+//                                                alpha:1];
+    self.view.backgroundColor = [UIColor darkGrayColor];
+    
     [self getData];
     [self setupCharts];
     [self.lineChartXView reloadData];
@@ -58,13 +60,13 @@
 - (void)setupCharts
 {
     self.lineChartXView = [[JBLineChartView alloc] init];
-    self.lineChartXView.backgroundColor = [UIColor purpleColor];
+    self.lineChartXView.backgroundColor = [UIColor clearColor];
     self.lineChartXView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.lineChartXView setState:JBChartViewStateCollapsed];
     [self.view addSubview:self.lineChartXView];
     
     self.lineChartYView = [[JBLineChartView alloc] init];
-    self.lineChartYView.backgroundColor = [UIColor brownColor];
+    self.lineChartYView.backgroundColor = [UIColor clearColor];
     self.lineChartYView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.lineChartYView setState:JBChartViewStateCollapsed];
     [self.view addSubview:self.lineChartYView];
@@ -133,6 +135,39 @@
     
     self.lineChartYView.dataSource = self;
     self.lineChartYView.delegate = self;
+    
+    // footers
+    self.lineChartXView.headerView = [[UIView alloc] init];
+    self.lineChartXView.headerView.backgroundColor = [UIColor purpleColor];
+    self.lineChartXView.headerView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.lineChartXView addConstraint:[NSLayoutConstraint constraintWithItem:self.lineChartXView.headerView
+                                                                    attribute:NSLayoutAttributeTop
+                                                                    relatedBy:NSLayoutRelationEqual
+                                                                       toItem:self.lineChartXView
+                                                                    attribute:NSLayoutAttributeTop
+                                                                   multiplier:1.0
+                                                                     constant:0]];
+    [self.lineChartXView addConstraint:[NSLayoutConstraint constraintWithItem:self.lineChartXView.headerView
+                                                                    attribute:NSLayoutAttributeRight
+                                                                    relatedBy:NSLayoutRelationEqual
+                                                                       toItem:self.lineChartXView
+                                                                    attribute:NSLayoutAttributeRight
+                                                                   multiplier:1.0
+                                                                     constant:0]];
+    [self.lineChartXView addConstraint:[NSLayoutConstraint constraintWithItem:self.lineChartXView.headerView
+                                                                    attribute:NSLayoutAttributeLeft
+                                                                    relatedBy:NSLayoutRelationEqual
+                                                                       toItem:self.lineChartXView
+                                                                    attribute:NSLayoutAttributeLeft
+                                                                   multiplier:1.0
+                                                                     constant:0]];
+    [self.lineChartXView.headerView addConstraint:[NSLayoutConstraint constraintWithItem:self.lineChartXView.headerView
+                                                                               attribute:NSLayoutAttributeHeight
+                                                                               relatedBy:NSLayoutRelationEqual
+                                                                                  toItem:nil
+                                                                               attribute:NSLayoutAttributeNotAnAttribute
+                                                                              multiplier:1.0
+                                                                                constant:10]];
     
     // debugging
     self.lineChartXView.layer.borderColor = [UIColor yellowColor].CGColor;

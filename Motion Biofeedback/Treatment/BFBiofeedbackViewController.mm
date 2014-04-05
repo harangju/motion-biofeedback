@@ -115,10 +115,11 @@ static const CGFloat FeedbackAmplificationFactor = 2.0;
     [self.view bringSubviewToFront:self.saveButton];
     [self.view bringSubviewToFront:self.statusLabel];
     
-    
     self.colorTracker = [BFOpenCVColorTracker new];
-    self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width/2.0, self.view.bounds.size.height/2.0)];
-//    self.imageView.backgroundColor = [UIColor purpleColor];
+    self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2.0,
+                                                                   self.view.bounds.size.height/2.0,
+                                                                   self.view.bounds.size.width/2.0,
+                                                                   self.view.bounds.size.height/2.0)];
     [self.view addSubview:self.imageView];
 }
 
@@ -595,7 +596,6 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 
 - (void)forceQuitSession
 {
-//    self.videoCamera.delegate = nil;
     [self.camera.videoDataOutput setSampleBufferDelegate:nil queue:NULL];
     self.measureMovementPhase.delegate = nil;
     self.measureMovementPhase.measureMovementDelegate = nil;
