@@ -34,6 +34,7 @@
     
     [self getData];
     [self setupCharts];
+    [self.view layoutSubviews];
     [self.lineChartXView reloadData];
     [self.lineChartYView reloadData];
 }
@@ -216,6 +217,11 @@
 - (CGFloat)lineWidthForLineChartView:(JBLineChartView *)lineChartView
 {
     return 2;
+}
+
+- (UIColor *)selectionColorForLineChartView:(JBLineChartView *)lineChartView
+{
+    return [UIColor whiteColor];
 }
 
 #pragma mark - Orientation

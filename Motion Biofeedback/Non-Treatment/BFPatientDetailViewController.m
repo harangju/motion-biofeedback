@@ -78,7 +78,9 @@ static const CGFloat TableViewHeightHorizontal = 320;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
+    self.splitViewController.presentsWithGesture = NO;
+    
     self.imageView.layer.cornerRadius = 30;
     self.startButton.layer.cornerRadius = 10;
     self.calibrateButton.layer.cornerRadius = 10;
