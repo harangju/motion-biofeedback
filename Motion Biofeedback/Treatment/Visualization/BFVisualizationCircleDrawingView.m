@@ -14,15 +14,30 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        [self setup];
     }
     return self;
+}
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        [self setup];
+    }
+    return self;
+}
+
+- (void)awakeFromNib
+{
+    [self setup];
 }
 
 #pragma mark - Setup
 
 - (void)setup
 {
+    self.backgroundColor = [UIColor clearColor];
     self.circleWidth = 10;
 }
 

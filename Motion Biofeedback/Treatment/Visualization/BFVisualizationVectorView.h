@@ -10,4 +10,7 @@
 
 @interface BFVisualizationVectorView : BFVisualizationView
 
+@property (nonatomic) CGFloat lineWidth;
+@property (nonatomic, strong) UIColor *lineColor;
+
 @end

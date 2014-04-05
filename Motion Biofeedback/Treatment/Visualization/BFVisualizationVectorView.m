@@ -9,10 +9,13 @@
 #import "BFVisualizationVectorView.h"
 #import "BFVisualizationCircleDrawingView.h"
 
+static const CGFloat CenterCircleRadius = 20;
+static const CGFloat DeltaCircleRadius = 20;
+
 @interface BFVisualizationVectorView ()
 
-@property (nonatomic, strong) BFVisualizationCircleDrawingView *circleDrawingViewCenter;
-@property (nonatomic, strong) BFVisualizationCircleDrawingView *circleDrawingViewDelta;
+@property (nonatomic, strong) BFVisualizationCircleDrawingView *centerCircleDrawingView;
+@property (nonatomic, strong) BFVisualizationCircleDrawingView *deltaCircleDrawingView;
 
 @end
 
@@ -33,9 +36,53 @@
 
 - (void)setup
 {
-    self.backgroundColor = [UIColor blueColor];
+    self.backgroundColor = [UIColor clearColor];
+    
+    self.lineWidth = 3;
+    self.lineColor = [UIColor yellowColor];
+    
+    self.centerCircleDrawingView = [[BFVisualizationCircleDrawingView alloc] initWithFrame:self.bounds];
+    self.centerCircleDrawingView.circleCenter = self.center;
+    self.centerCircleDrawingView.circleRadius = CenterCircleRadius;
+    self.centerCircleDrawingView.circleWidth = CenterCircleRadius * 2;
+    self.centerCircleDrawingView.circleColor = [UIColor blueColor];
+    self.centerCircleDrawingView.layer.opacity = 0.8;
+    [self addSubview:self.centerCircleDrawingView];
+    
+    self.deltaCircleDrawingView = [[BFVisualizationCircleDrawingView alloc] initWithFrame:self.bounds];
+    self.deltaCircleDrawingView.circleCenter = self.center;
+    self.deltaCircleDrawingView.circleRadius = DeltaCircleRadius;
+    self.deltaCircleDrawingView.circleWidth = DeltaCircleRadius * 2;
+    self.deltaCircleDrawingView.circleColor = [UIColor greenColor];
+    self.deltaCircleDrawingView.layer.opacity = 0.8;
+    [self addSubview:self.deltaCircleDrawingView];
 }
 
+- (void)setHeadPosition:(CGPoint)headPosition
+{
+    _headPosition = headPosition;
+    self.deltaCircleDrawingView.circleCenter = headPosition;
+    [self.deltaCircleDrawingView setNeedsDisplay];
+    [self setNeedsDisplay];
+}
 
+- (void)setDeltaColor:(UIColor *)deltaColor
+{
+    _deltaColor = deltaColor;
+    self.deltaCircleDrawingView.circleColor = deltaColor;
+    [self setNeedsDisplay];
+}
+
+#pragma mark - Drawing
+
+- (void)drawRect:(CGRect)rect
+{
+    UIBezierPath *path = [UIBezierPath bezierPath];
+    [path moveToPoint:self.center];
+    [path addLineToPoint:self.headPosition];
+    path.lineWidth = self.lineWidth;
+    [self.lineColor setStroke];
+    [path stroke];
+}
 
 @end
