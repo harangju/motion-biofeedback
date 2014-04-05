@@ -15,6 +15,7 @@
 @property (nonatomic, strong) NSMutableArray *deltaPoints;
 
 @property (nonatomic) CGFloat minimumDeltaX;
+@property (nonatomic) CGFloat minimumDeltaY;
 
 @end
 
@@ -35,16 +36,24 @@
     [self getData];
     [self setupCharts];
     [self.view layoutSubviews];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
     [self.lineChartXView reloadData];
     [self.lineChartYView reloadData];
+    [self.lineChartXView setState:JBChartViewStateCollapsed
+                         animated:YES];
+    [self.lineChartYView setState:JBChartViewStateCollapsed
+                         animated:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     
-    [self.lineChartXView reloadData];
-    [self.lineChartYView reloadData];
     [self.lineChartXView setState:JBChartViewStateExpanded
                          animated:YES];
     [self.lineChartYView setState:JBChartViewStateExpanded
@@ -63,12 +72,14 @@
     self.lineChartXView = [[JBLineChartView alloc] init];
     self.lineChartXView.backgroundColor = [UIColor clearColor];
     self.lineChartXView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.lineChartXView.showsSelection = YES;
     [self.lineChartXView setState:JBChartViewStateCollapsed];
     [self.view addSubview:self.lineChartXView];
     
     self.lineChartYView = [[JBLineChartView alloc] init];
     self.lineChartYView.backgroundColor = [UIColor clearColor];
     self.lineChartYView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.lineChartYView.showsSelection = YES;
     [self.lineChartYView setState:JBChartViewStateCollapsed];
     [self.view addSubview:self.lineChartYView];
     
@@ -193,6 +204,10 @@
         {
             self.minimumDeltaX = deltaPoint.x.floatValue;
         }
+        if (deltaPoint.y.floatValue < self.minimumDeltaY)
+        {
+            self.minimumDeltaY = deltaPoint.y.floatValue;
+        }
     }
 }
 
@@ -206,7 +221,16 @@
 - (CGFloat)lineChartView:(JBLineChartView *)lineChartView heightForIndex:(NSInteger)index
 {
     DeltaPoint *deltaPoint = self.deltaPoints[index];
-    return deltaPoint.x.floatValue - self.minimumDeltaX;
+    CGFloat height = 0;
+    if ([lineChartView isEqual:self.lineChartXView])
+    {
+        height = deltaPoint.x.floatValue - self.minimumDeltaX;
+    }
+    else if ([lineChartView isEqual:self.lineChartYView])
+    {
+        height = deltaPoint.y.floatValue - self.minimumDeltaY;
+    }
+    return height;
 }
 
 - (UIColor *)lineColorForLineChartView:(JBLineChartView *)lineChartView
@@ -221,7 +245,19 @@
 
 - (UIColor *)selectionColorForLineChartView:(JBLineChartView *)lineChartView
 {
-    return [UIColor whiteColor];
+    return [UIColor greenColor];
+}
+
+#pragma mark - LineChartView Delegate
+
+- (void)lineChartView:(JBLineChartView *)lineChartView didSelectChartAtIndex:(NSInteger)index
+{
+    NSLog(@"selected at index %lu", index);
+}
+
+- (void)lineChartView:(JBLineChartView *)lineChartView didUnselectChartAtIndex:(NSInteger)index
+{
+    NSLog(@"unselected at index %lu", index);
 }
 
 #pragma mark - Orientation
