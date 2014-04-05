@@ -12,6 +12,7 @@
 
 @property (nonatomic) CGPoint circleCenter;
 @property (nonatomic) CGFloat circleRadius;
+@property (nonatomic) CGFloat circleWidth;
 @property (nonatomic, strong) UIColor *circleColor;
 
 @end

@@ -357,9 +357,9 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
         {
             biofeedbackVC.visualizationType = BFVisualizationTypeCircle;
         }
-        else if (visualization == BFSettingsVisualizationBar)
+        else if (visualization == BFSettingsVisualizationVector)
         {
-            biofeedbackVC.visualizationType = BFVisualizationTypeBar;
+            biofeedbackVC.visualizationType = BFVisualizationTypeVector;
         }
         // connect to app delegate
         BFAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;

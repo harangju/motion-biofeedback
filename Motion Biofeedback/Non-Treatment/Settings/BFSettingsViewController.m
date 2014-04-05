@@ -31,7 +31,7 @@ static NSString * const SettingsDetailInfoVCSegue = @"SettingsDetailInfoVCSegue"
 + (void)initialize
 {
     _settings = @[@[@"Circle",
-                    @"Bar"],
+                    @"Vector"],
                   @[@"Horizontal (X)",
                     @"Vertical (Y)",
                     @"Horizontal & Vertical (X & Y)"],

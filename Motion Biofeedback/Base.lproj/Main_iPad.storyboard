@@ -931,7 +931,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </imageView>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qbQ-b1-Ixc" customClass="BFVisualizationBarView">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qbQ-b1-Ixc" customClass="BFVisualizationVectorView">
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1042,8 +1042,8 @@
                         <outlet property="referenceImageView" destination="yFL-V1-93X" id="lIf-VX-1Ad"/>
                         <outlet property="saveButton" destination="ZVe-fC-kZf" id="9DZ-rq-SCT"/>
                         <outlet property="statusLabel" destination="wHW-UR-Wbe" id="Z4Q-lI-b8f"/>
-                        <outlet property="visualizationBarView" destination="qbQ-b1-Ixc" id="eoE-51-3G0"/>
                         <outlet property="visualizationCircleView" destination="Hb4-9K-ySk" id="nsm-Oi-iaM"/>
+                        <outlet property="visualizationVectorView" destination="qbQ-b1-Ixc" id="2ck-12-tVv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zfu-eX-Arf" userLabel="First Responder" sceneMemberID="firstResponder"/>

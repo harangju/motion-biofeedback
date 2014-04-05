@@ -19,18 +19,25 @@
     return self;
 }
 
+#pragma mark - Setup
+
+- (void)setup
+{
+    self.circleWidth = 10;
+}
+
 #pragma mark - Drawing
 
 - (void)drawRect:(CGRect)rect
 {
-    UIBezierPath *deltaCircle = [self makeCircleWithCenter:self.circleCenter
-                                                    radius:self.circleRadius];
-    deltaCircle.lineWidth = 10;
-    [deltaCircle closePath];
+    UIBezierPath *circle = [self makeCircleWithCenter:self.circleCenter
+                                               radius:self.circleRadius];
+    circle.lineWidth = self.circleWidth;
+    [circle closePath];
     [[UIColor clearColor] setFill];
-    [deltaCircle fill];
+    [circle fill];
     [self.circleColor setStroke];
-    [deltaCircle stroke];
+    [circle stroke];
 }
 
 - (UIBezierPath *)makeCircleWithCenter:(CGPoint)center

@@ -9,7 +9,7 @@
 #import "BFBiofeedbackViewController.h"
 #import "BFOpenCVConverter.h"
 #import "BFVisualizationView.h"
-#import "BFVisualizationBarView.h"
+#import "BFVisualizationVectorView.h"
 #import "BFVisualizationCircleView.h"
 #import "BFFaceEllipseView.h"
 #import "BFBiofeedbackPhase.h"
@@ -42,7 +42,7 @@ static const CGFloat FeedbackAmplificationFactor = 2.0;
 
 // Visualization
 @property (nonatomic, strong) BFVisualizationView *visualizationView;
-@property (nonatomic, weak) IBOutlet BFVisualizationBarView *visualizationBarView;
+@property (nonatomic, weak) IBOutlet BFVisualizationVectorView *visualizationVectorView;
 @property (nonatomic, weak) IBOutlet BFVisualizationCircleView *visualizationCircleView;
 
 // Voice
@@ -203,7 +203,7 @@ static const CGFloat FeedbackAmplificationFactor = 2.0;
     self.visualizationCircleView.deltaCircleRadius = VisualizationCircleRadius;
     [self.visualizationCircleView drawCenterCircle];
     
-    self.visualizationBarView.barColor = [UIColor purpleColor];
+//    self.visualizationVectorView.barColor = [UIColor purpleColor];
 }
 
 - (void)initializeViews
@@ -240,9 +240,9 @@ static const CGFloat FeedbackAmplificationFactor = 2.0;
         self.referencePhase = self.matchReferencePhase;
     }
     // visualization
-    if (self.visualizationType == BFVisualizationTypeBar)
+    if (self.visualizationType == BFVisualizationTypeVector)
     {
-        self.visualizationView = self.visualizationBarView;
+        self.visualizationView = self.visualizationVectorView;
     }
     else
     {

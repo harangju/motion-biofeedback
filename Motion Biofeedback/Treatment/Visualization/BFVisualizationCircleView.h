@@ -12,6 +12,8 @@
 
 @property (nonatomic) CGFloat centerCircleRadius;
 @property (nonatomic) CGFloat deltaCircleRadius;
+@property (nonatomic) CGFloat centerCircleWidth;
+@property (nonatomic) CGFloat deltaCircleWidth;
 
 @property (nonatomic, strong) UIColor *centerCircleColor;
 

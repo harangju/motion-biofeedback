@@ -11,7 +11,7 @@
 typedef NS_ENUM(NSInteger, BFSettingsVisualization)
 {
     BFSettingsVisualizationCircle = 0,
-    BFSettingsVisualizationBar = 1,
+    BFSettingsVisualizationVector = 1,
     BFSettingsVisualizationSentry = 2,
 };
 

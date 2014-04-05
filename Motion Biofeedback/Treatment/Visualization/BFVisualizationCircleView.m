@@ -41,6 +41,9 @@
     self.circleDrawingView.backgroundColor = [UIColor clearColor];
     [self addSubview:self.circleDrawingView];
     
+    self.centerCircleWidth = 10;
+    self.deltaCircleWidth = 10;
+    
     self.viewCenter = self.center;
     self.headPosition = self.center;
     self.centerCircleColor = [UIColor blueColor];
@@ -94,6 +97,13 @@
 {
     _deltaColor = deltaColor;
     self.circleDrawingView.circleColor = deltaColor;
+    [self.circleDrawingView setNeedsDisplay];
+}
+
+- (void)setDeltaCircleWidth:(CGFloat)deltaCircleWidth
+{
+    _deltaCircleWidth = deltaCircleWidth;
+    self.circleDrawingView.circleWidth = deltaCircleWidth;
     [self.circleDrawingView setNeedsDisplay];
 }
 
