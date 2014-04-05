@@ -43,10 +43,6 @@ static NSDateFormatter *_dateFormatter;
 {
     [super viewDidLoad];
     
-    //    self.view.backgroundColor = [UIColor colorWithRed:183.0/256.0
-    //                                                green:227.0/256.0
-    //                                                 blue:228.0/256.0
-    //                                                alpha:1];
     self.view.backgroundColor = [UIColor darkGrayColor];
     
     _dateFormatter = [NSDateFormatter new];
@@ -58,20 +54,15 @@ static NSDateFormatter *_dateFormatter;
     [self setupHeadersAndFooters];
     [self setupInfoViews];
     
-    [self.view bringSubviewToFront:self.lineChartXView];
-    [self.view bringSubviewToFront:self.lineChartYView];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
     [self.lineChartXView reloadData];
     [self.lineChartYView reloadData];
     [self.lineChartXView setState:JBChartViewStateCollapsed
-                         animated:YES];
+                         animated:NO];
     [self.lineChartYView setState:JBChartViewStateCollapsed
-                         animated:YES];
+                         animated:NO];
+    
+    [self.view bringSubviewToFront:self.lineChartXView];
+    [self.view bringSubviewToFront:self.lineChartYView];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -94,17 +85,17 @@ static NSDateFormatter *_dateFormatter;
 - (void)setupCharts
 {
     self.lineChartXView = [[JBLineChartView alloc] init];
-    self.lineChartXView.backgroundColor = [UIColor clearColor];
+//    self.lineChartXView.backgroundColor = [UIColor clearColor];
     self.lineChartXView.translatesAutoresizingMaskIntoConstraints = NO;
-    self.lineChartXView.showsSelection = YES;
+    self.lineChartXView.showsVerticalSelection = YES;
     self.lineChartXView.headerPadding = kJBLineChartViewControllerChartHeaderPadding;
     [self.lineChartXView setState:JBChartViewStateCollapsed];
     [self.view addSubview:self.lineChartXView];
     
     self.lineChartYView = [[JBLineChartView alloc] init];
-    self.lineChartYView.backgroundColor = [UIColor clearColor];
+//    self.lineChartYView.backgroundColor = [UIColor clearColor];
     self.lineChartYView.translatesAutoresizingMaskIntoConstraints = NO;
-    self.lineChartYView.showsSelection = YES;
+    self.lineChartYView.showsVerticalSelection = YES;
     self.lineChartYView.headerPadding = kJBLineChartViewControllerChartHeaderPadding;
     [self.lineChartYView setState:JBChartViewStateCollapsed];
     [self.view addSubview:self.lineChartYView];
@@ -256,14 +247,39 @@ static NSDateFormatter *_dateFormatter;
 
 #pragma mark - LineChartView DataSource
 
-- (NSInteger)numberOfPointsInLineChartView:(JBLineChartView *)lineChartView
+- (NSUInteger)numberOfLinesInLineChartView:(JBLineChartView *)lineChartView
+{
+    return 1;
+}
+
+- (NSUInteger)lineChartView:(JBLineChartView *)lineChartView numberOfVerticalValuesAtLineIndex:(NSUInteger)lineIndex
 {
     return self.deltaPoints.count;
 }
 
-- (CGFloat)lineChartView:(JBLineChartView *)lineChartView heightForIndex:(NSInteger)index
+- (UIColor *)lineChartView:(JBLineChartView *)lineChartView
+   colorForLineAtLineIndex:(NSUInteger)lineIndex
 {
-    DeltaPoint *deltaPoint = self.deltaPoints[index];
+    return [UIColor whiteColor];
+}
+
+- (UIColor *)verticalSelectionColorForLineChartView:(JBLineChartView *)lineChartView
+{
+    return [UIColor whiteColor];
+}
+
+- (CGFloat)lineChartView:(JBLineChartView *)lineChartView widthForLineAtLineIndex:(NSUInteger)lineIndex
+{
+    return 2;
+}
+
+#pragma mark - LineChartView Delegate
+
+- (CGFloat)lineChartView:(JBLineChartView *)lineChartView
+verticalValueForHorizontalIndex:(NSUInteger)horizontalIndex
+             atLineIndex:(NSUInteger)lineIndex
+{
+    DeltaPoint *deltaPoint = self.deltaPoints[horizontalIndex];
     CGFloat height = 0;
     if ([lineChartView isEqual:self.lineChartXView])
     {
@@ -276,27 +292,12 @@ static NSDateFormatter *_dateFormatter;
     return height;
 }
 
-- (UIColor *)lineColorForLineChartView:(JBLineChartView *)lineChartView
+- (void)lineChartView:(JBLineChartView *)lineChartView
+ didSelectLineAtIndex:(NSUInteger)lineIndex
+      horizontalIndex:(NSUInteger)horizontalIndex
 {
-    return [UIColor whiteColor];
-}
-
-- (CGFloat)lineWidthForLineChartView:(JBLineChartView *)lineChartView
-{
-    return 2;
-}
-
-- (UIColor *)selectionColorForLineChartView:(JBLineChartView *)lineChartView
-{
-    return [UIColor greenColor];
-}
-
-#pragma mark - LineChartView Delegate
-
-- (void)lineChartView:(JBLineChartView *)lineChartView didSelectChartAtIndex:(NSInteger)index
-{
-    NSLog(@"selected at index %lu", index);
-    DeltaPoint *deltaPoint = self.deltaPoints[index];
+    NSLog(@"selected at index %lu", horizontalIndex);
+    DeltaPoint *deltaPoint = self.deltaPoints[horizontalIndex];
     if ([lineChartView isEqual:self.lineChartXView])
     {
         NSNumber *valueNumber = deltaPoint.x;
@@ -321,9 +322,9 @@ static NSDateFormatter *_dateFormatter;
     }
 }
 
-- (void)lineChartView:(JBLineChartView *)lineChartView didUnselectChartAtIndex:(NSInteger)index
+- (void)didUnselectLineInLineChartView:(JBLineChartView *)lineChartView
 {
-    NSLog(@"unselected at index %lu", index);
+    NSLog(@"unselected");
     if ([lineChartView isEqual:self.lineChartXView])
     {
         self.lineChartYView.hidden = NO;
