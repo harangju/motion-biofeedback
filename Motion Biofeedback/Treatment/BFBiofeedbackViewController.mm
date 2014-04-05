@@ -202,6 +202,8 @@ static const CGFloat FeedbackAmplificationFactor = 2.0;
     self.visualizationCircleView.centerCircleRadius = VisualizationCircleRadius;
     self.visualizationCircleView.deltaCircleRadius = VisualizationCircleRadius;
     [self.visualizationCircleView drawCenterCircle];
+    
+    self.visualizationBarView.barColor = [UIColor purpleColor];
 }
 
 - (void)initializeViews
@@ -503,7 +505,6 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
         [[NSOperationQueue mainQueue] addOperationWithBlock:^
          {
              weakSelf.visualizationView.headPosition = weakSelf.faceCenter;
-             [weakSelf.visualizationView setNeedsDisplay];
          }];
     }
 }

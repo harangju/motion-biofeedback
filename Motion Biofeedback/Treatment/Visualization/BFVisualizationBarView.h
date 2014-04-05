@@ -10,4 +10,6 @@
 
 @interface BFVisualizationBarView : BFVisualizationView
 
+@property (nonatomic, strong) UIColor *barColor;
+
 @end
