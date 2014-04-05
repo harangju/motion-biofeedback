@@ -8,8 +8,18 @@
 
 #import "BFPatientSessionDetailChartViewController.h"
 #import "DeltaPoint.h"
+#import "JBChartHeaderView.h"
+#import "JBLineChartFooterView.h"
 
-static CGFloat const kJBLineChartViewControllerChartHeaderPadding = 20.0f;
+#define kJBNumericDefaultPadding 10.0f
+#define kJBNumericDefaultAnimationDuration 0.25f
+
+
+CGFloat const kJBLineChartViewControllerChartHeight = 250.0f;
+CGFloat const kJBLineChartViewControllerChartHeaderHeight = 75.0f;
+CGFloat const kJBLineChartViewControllerChartHeaderPadding = 20.0f;
+CGFloat const kJBLineChartViewControllerChartFooterHeight = 20.0f;
+CGFloat const kJBLineChartViewControllerChartLineWidth = 6.0f;
 
 @interface BFPatientSessionDetailChartViewController ()
 
@@ -28,15 +38,16 @@ static CGFloat const kJBLineChartViewControllerChartHeaderPadding = 20.0f;
 {
     [super viewDidLoad];
     
-//    self.view.backgroundColor = [UIColor colorWithRed:183.0/256.0
-//                                                green:227.0/256.0
-//                                                 blue:228.0/256.0
-//                                                alpha:1];
+    //    self.view.backgroundColor = [UIColor colorWithRed:183.0/256.0
+    //                                                green:227.0/256.0
+    //                                                 blue:228.0/256.0
+    //                                                alpha:1];
     self.view.backgroundColor = [UIColor darkGrayColor];
     
     [self getData];
     [self setupCharts];
-    [self.view layoutSubviews];
+    [self.view layoutIfNeeded];
+    [self setupHeadersAndFooters];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -58,7 +69,7 @@ static CGFloat const kJBLineChartViewControllerChartHeaderPadding = 20.0f;
     [self.lineChartXView setState:JBChartViewStateExpanded
                          animated:YES];
     [self.lineChartYView setState:JBChartViewStateExpanded
-                        animated:YES];
+                         animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -82,6 +93,7 @@ static CGFloat const kJBLineChartViewControllerChartHeaderPadding = 20.0f;
     self.lineChartYView.backgroundColor = [UIColor clearColor];
     self.lineChartYView.translatesAutoresizingMaskIntoConstraints = NO;
     self.lineChartYView.showsSelection = YES;
+    self.lineChartYView.headerPadding = kJBLineChartViewControllerChartHeaderPadding;
     [self.lineChartYView setState:JBChartViewStateCollapsed];
     [self.view addSubview:self.lineChartYView];
     
@@ -150,45 +162,47 @@ static CGFloat const kJBLineChartViewControllerChartHeaderPadding = 20.0f;
     self.lineChartYView.dataSource = self;
     self.lineChartYView.delegate = self;
     
-    // footers
-    self.lineChartXView.headerView = [[UIView alloc] init];
-    self.lineChartXView.headerView.backgroundColor = [UIColor purpleColor];
-    self.lineChartXView.headerView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.lineChartXView addConstraint:[NSLayoutConstraint constraintWithItem:self.lineChartXView.headerView
-                                                                    attribute:NSLayoutAttributeTop
-                                                                    relatedBy:NSLayoutRelationEqual
-                                                                       toItem:self.lineChartXView
-                                                                    attribute:NSLayoutAttributeTop
-                                                                   multiplier:1.0
-                                                                     constant:0]];
-    [self.lineChartXView addConstraint:[NSLayoutConstraint constraintWithItem:self.lineChartXView.headerView
-                                                                    attribute:NSLayoutAttributeRight
-                                                                    relatedBy:NSLayoutRelationEqual
-                                                                       toItem:self.lineChartXView
-                                                                    attribute:NSLayoutAttributeRight
-                                                                   multiplier:1.0
-                                                                     constant:0]];
-    [self.lineChartXView addConstraint:[NSLayoutConstraint constraintWithItem:self.lineChartXView.headerView
-                                                                    attribute:NSLayoutAttributeLeft
-                                                                    relatedBy:NSLayoutRelationEqual
-                                                                       toItem:self.lineChartXView
-                                                                    attribute:NSLayoutAttributeLeft
-                                                                   multiplier:1.0
-                                                                     constant:0]];
-    [self.lineChartXView.headerView addConstraint:[NSLayoutConstraint constraintWithItem:self.lineChartXView.headerView
-                                                                               attribute:NSLayoutAttributeHeight
-                                                                               relatedBy:NSLayoutRelationEqual
-                                                                                  toItem:nil
-                                                                               attribute:NSLayoutAttributeNotAnAttribute
-                                                                              multiplier:1.0
-                                                                                constant:10]];
-    
     // debugging
-    self.lineChartXView.layer.borderColor = [UIColor yellowColor].CGColor;
+    self.lineChartXView.layer.borderColor = [UIColor whiteColor].CGColor;
     self.lineChartXView.layer.borderWidth = 1;
     
-    self.lineChartYView.layer.borderColor = [UIColor yellowColor].CGColor;
+    self.lineChartYView.layer.borderColor = [UIColor whiteColor].CGColor;
     self.lineChartYView.layer.borderWidth = 1;
+}
+
+- (void)setupHeadersAndFooters
+{
+    // headers
+    JBChartHeaderView *headerXView = [[JBChartHeaderView alloc] initWithFrame:CGRectMake(kJBNumericDefaultPadding,
+                                                                                         ceil(self.view.bounds.size.height * 0.5) - ceil(kJBLineChartViewControllerChartHeaderHeight * 0.5),
+                                                                                         self.view.bounds.size.width - (kJBNumericDefaultPadding * 2),
+                                                                                         kJBLineChartViewControllerChartHeaderHeight)];
+    headerXView.titleLabel.text = @"Horizontal Delta Values (mm)";
+    headerXView.titleLabel.textColor = [UIColor whiteColor];
+    headerXView.titleLabel.shadowColor = [UIColor colorWithWhite:1.0 alpha:0.25];
+    headerXView.titleLabel.shadowOffset = CGSizeMake(0, 1);
+    headerXView.subtitleLabel.text = @"touch graph to see more";
+    headerXView.subtitleLabel.textColor = [UIColor whiteColor];
+    headerXView.subtitleLabel.shadowColor = [UIColor colorWithWhite:1.0 alpha:0.25];
+    headerXView.subtitleLabel.shadowOffset = CGSizeMake(0, 1);
+    headerXView.separatorColor = [UIColor whiteColor];
+    self.lineChartXView.headerView = headerXView;
+    
+    // headers
+    JBChartHeaderView *headerYView = [[JBChartHeaderView alloc] initWithFrame:CGRectMake(kJBNumericDefaultPadding,
+                                                                                         ceil(self.view.bounds.size.height * 0.5) - ceil(kJBLineChartViewControllerChartHeaderHeight * 0.5),
+                                                                                         self.view.bounds.size.width - (kJBNumericDefaultPadding * 2),
+                                                                                         kJBLineChartViewControllerChartHeaderHeight)];
+    headerYView.titleLabel.text = @"Vertical Delta Values (mm)";
+    headerYView.titleLabel.textColor = [UIColor whiteColor];
+    headerYView.titleLabel.shadowColor = [UIColor colorWithWhite:1.0 alpha:0.25];
+    headerYView.titleLabel.shadowOffset = CGSizeMake(0, 1);
+    headerYView.subtitleLabel.text = @"touch graph to see more";
+    headerYView.subtitleLabel.textColor = [UIColor whiteColor];
+    headerYView.subtitleLabel.shadowColor = [UIColor colorWithWhite:1.0 alpha:0.25];
+    headerYView.subtitleLabel.shadowOffset = CGSizeMake(0, 1);
+    headerYView.separatorColor = [UIColor whiteColor];
+    self.lineChartYView.headerView = headerYView;
 }
 
 - (void)getData
@@ -266,7 +280,7 @@ static CGFloat const kJBLineChartViewControllerChartHeaderPadding = 20.0f;
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
-//    [self.lineChartView reloadData];
+    //    [self.lineChartView reloadData];
     __weak typeof(self) weakSelf = self;
     [self.lineChartXView setState:JBChartViewStateCollapsed
                          animated:YES
@@ -276,8 +290,8 @@ static CGFloat const kJBLineChartViewControllerChartHeaderPadding = 20.0f;
                                   animated:YES];
      }];
     [self.lineChartYView setState:JBChartViewStateCollapsed
-                        animated:YES
-                        callback:^
+                         animated:YES
+                         callback:^
      {
          [weakSelf.lineChartYView setState:JBChartViewStateExpanded
                                   animated:YES];
