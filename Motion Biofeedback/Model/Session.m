@@ -2,7 +2,7 @@
 //  Session.m
 //  Motion Biofeedback
 //
-//  Created by Harang Ju on 3/28/14.
+//  Created by Harang Ju on 4/5/14.
 //  Copyright (c) 2014 Harang Ju. All rights reserved.
 //
 
@@ -18,6 +18,7 @@
 @dynamic endTime;
 @dynamic number;
 @dynamic startTime;
+@dynamic samplingRateStandardDeviation;
 @dynamic deltaPoints;
 @dynamic patient;
 @dynamic referenceImage;

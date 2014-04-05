@@ -2,7 +2,7 @@
 //  Session.h
 //  Motion Biofeedback
 //
-//  Created by Harang Ju on 3/28/14.
+//  Created by Harang Ju on 4/5/14.
 //  Copyright (c) 2014 Harang Ju. All rights reserved.
 //
 
@@ -17,6 +17,7 @@
 @property (nonatomic, retain) NSDate * endTime;
 @property (nonatomic, retain) NSNumber * number;
 @property (nonatomic, retain) NSDate * startTime;
+@property (nonatomic, retain) NSNumber * samplingRateStandardDeviation;
 @property (nonatomic, retain) NSSet *deltaPoints;
 @property (nonatomic, retain) Patient *patient;
 @property (nonatomic, retain) ReferenceImage *referenceImage;
