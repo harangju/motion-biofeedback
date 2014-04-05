@@ -53,7 +53,7 @@ static NSString * const DataSegueIdentifier = @"SessionDetailInfoSegueIdentifier
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    return 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -68,6 +68,11 @@ static NSString * const DataSegueIdentifier = @"SessionDetailInfoSegueIdentifier
             cell.detailTextLabel.text = @"";
             break;
         case 1:
+            cell.textLabel.text = [NSString stringWithFormat:@"Sampling Rate Standard Deviation: %.2F per second",
+                                   self.session.samplingRateStandardDeviation.floatValue];
+            cell.detailTextLabel.text = @"";
+            break;
+        case 2:
             cell.textLabel.text = @"View Data";
             cell.detailTextLabel.text = @"";
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -83,7 +88,7 @@ static NSString * const DataSegueIdentifier = @"SessionDetailInfoSegueIdentifier
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.row == 1)
+    if (indexPath.row == 2)
     {
         [self performSegueWithIdentifier:DataSegueIdentifier
                                   sender:self];

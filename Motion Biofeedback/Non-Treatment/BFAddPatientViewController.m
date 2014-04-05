@@ -24,6 +24,13 @@
     [super didReceiveMemoryWarning];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [self.firstNameTextField becomeFirstResponder];
+}
+
 #pragma mark - Model
 
 - (void)saveContext

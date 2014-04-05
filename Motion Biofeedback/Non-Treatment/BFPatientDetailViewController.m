@@ -474,6 +474,25 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     NSLog(@"sampling rate - %f", samplingRate);
     session.averageSampleRate = @(samplingRate);
     
+    // get standard deviation of sampling rate
+    NSUInteger sumForStDev = 0;
+    // sort them first
+    NSMutableArray *sortedDeltaPoints = session.deltaPoints.allObjects.mutableCopy;
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"timestamp"
+                                                                     ascending:YES];
+    [sortedDeltaPoints sortUsingDescriptors:@[sortDescriptor]];
+    for (int i = 1; i < sortedDeltaPoints.count; i++)
+    {
+        DeltaPoint *deltaPoint = sortedDeltaPoints[i];
+        DeltaPoint *previousDeltaPoint = sortedDeltaPoints[i-1];
+        NSTimeInterval interval = [deltaPoint.timestamp timeIntervalSinceDate:previousDeltaPoint.timestamp];
+        CGFloat rate = 1.0 /  interval;
+        CGFloat squareOfSubtraction = (rate - samplingRate) * (rate - samplingRate);
+        sumForStDev += squareOfSubtraction;
+    }
+    CGFloat standardDeviation = sqrt(sumForStDev/sortedDeltaPoints.count);
+    session.samplingRateStandardDeviation = @(standardDeviation);
+    
     // add session to patient
     [self.patient addSessionsObject:session];
     
