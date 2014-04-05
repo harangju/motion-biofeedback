@@ -270,14 +270,14 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
         cv::flip(mat, mat, 1);
     }
     
-//    cv::Mat filteredMat(mat.rows, mat.cols, CV_8UC1, cv::Scalar(0,0,255));
-//    [self.colorTracker processFrameFromFrame:mat toFrame:filteredMat];
-//    
-//    UIImage *image = [BFOpenCVConverter imageForMat:filteredMat];
-//    [[NSOperationQueue mainQueue] addOperationWithBlock:^
-//     {
-//         self.imageView.image = image;
-//     }];
+    cv::Mat filteredMat(mat.rows, mat.cols, CV_8UC1, cv::Scalar(0,0,255));
+    [self.colorTracker processFrameFromFrame:mat toFrame:filteredMat];
+    
+    UIImage *image = [BFOpenCVConverter imageForMat:filteredMat];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^
+     {
+         self.imageView.image = image;
+     }];
     
     if (self.state == BFBiofeedbackStateCapturingReference ||
         self.state == BFBiofeedbackStateMatchingReference)
