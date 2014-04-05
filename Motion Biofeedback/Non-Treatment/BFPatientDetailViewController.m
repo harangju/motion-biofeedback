@@ -209,9 +209,12 @@ static const CGFloat TableViewHeightHorizontal = 320;
 
 - (void)patientButtonTapped:(UIBarButtonItem *)item
 {
-    [self.popover presentPopoverFromBarButtonItem:self.navigationItem.leftBarButtonItem
-                         permittedArrowDirections:UIPopoverArrowDirectionDown
-                                         animated:YES];
+    if (self.view.window)
+    {
+        [self.popover presentPopoverFromBarButtonItem:self.navigationItem.leftBarButtonItem
+                             permittedArrowDirections:UIPopoverArrowDirectionDown
+                                             animated:YES];
+    }
 }
 
 - (IBAction)startButtonTapped:(UIButton *)button
