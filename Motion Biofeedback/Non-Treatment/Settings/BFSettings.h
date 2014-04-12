@@ -25,9 +25,10 @@ typedef NS_ENUM(NSInteger, BFSettingsDimension)
 
 typedef NS_ENUM(NSInteger, BFSettingsDetection)
 {
-    BFSettingsDetectionMarker = 0,
-    BFSettingsDetectionFeature = 1,
-    BFSettingsDetectionSentry = 2,
+    BFSettingsDetectionMarkerCircle = 0,
+    BFSettingsDetectionMarkerColor = 1,
+    BFSettingsDetectionFeature = 2,
+    BFSettingsDetectionSentry = 3,
 };
 
 @interface BFSettings : NSObject

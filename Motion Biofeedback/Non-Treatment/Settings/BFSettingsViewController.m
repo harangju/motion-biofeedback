@@ -35,7 +35,8 @@ static NSString * const SettingsDetailInfoVCSegue = @"SettingsDetailInfoVCSegue"
                   @[@"Horizontal (X)",
                     @"Vertical (Y)",
                     @"Horizontal & Vertical (X & Y)"],
-                  @[@"Marker",
+                  @[@"Marker - Circle",
+                    @"Marker - Color",
                     @"Face"]]; // "Feature"
 }
 

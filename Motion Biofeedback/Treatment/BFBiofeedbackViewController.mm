@@ -238,17 +238,17 @@ static const CGFloat FeedbackAmplificationFactor = 2.0;
 - (void)configure
 {
     // first session
-//    self.state = BFBiofeedbackStateCalibration;
-    if (self.shouldCaptureReferenceImage)
-    {
-        self.state = BFBiofeedbackStateCapturingReference;
-        self.referencePhase = self.captureReferencePhase;
-    }
-    else
-    {
-        self.state = BFBiofeedbackStateMatchingReference;
-        self.referencePhase = self.matchReferencePhase;
-    }
+    self.state = BFBiofeedbackStateMeasuringMovement;
+//    if (self.shouldCaptureReferenceImage)
+//    {
+//        self.state = BFBiofeedbackStateCapturingReference;
+//        self.referencePhase = self.captureReferencePhase;
+//    }
+//    else
+//    {
+//        self.state = BFBiofeedbackStateMatchingReference;
+//        self.referencePhase = self.matchReferencePhase;
+//    }
     // visualization
     if (self.visualizationType == BFVisualizationTypeVector)
     {
@@ -297,6 +297,9 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
              UIImage *image = [BFOpenCVConverter imageForMat:filteredMat];
              self.imageView.image = image;
          }];
+        
+        [self.measureMovementPhase processFrame:mat
+                                      videoRect:videoRect];
     }
     
 //    if (self.state == BFBiofeedbackStateCapturingReference ||
