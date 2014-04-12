@@ -20,6 +20,7 @@
 #import "TSCamera.h"
 #import <AVFoundation/AVFoundation.h>
 #import "BFBiofeedbackColorCalibrationPhase.h"
+#import "BFOpenCVCircleTracker.h"
 
 static const CGFloat FaceEllipseRectWidthPortrait = 700;
 static const CGFloat FaceEllipseRectHeightPortrait = 800;
@@ -82,6 +83,7 @@ static const CGFloat FeedbackAmplificationFactor = 2.0;
 @property (nonatomic, strong) UIPinchGestureRecognizer *pinchGestureRecognizer;
 
 // debugging
+@property (nonatomic, strong) BFOpenCVCircleTracker *circleTracker;
 @property (nonatomic, strong) BFOpenCVColorTracker *colorTracker;
 @property (nonatomic, strong) UIImageView *imageView;
 
@@ -117,6 +119,7 @@ static const CGFloat FeedbackAmplificationFactor = 2.0;
     [self.view bringSubviewToFront:self.saveButton];
     [self.view bringSubviewToFront:self.statusLabel];
     
+    self.circleTracker = [BFOpenCVCircleTracker new];
     self.colorTracker = [BFOpenCVColorTracker new];
     self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width/2.0,
                                                                    self.view.bounds.size.height/2.0,
@@ -277,32 +280,42 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
         cv::flip(mat, mat, 1);
     }
     
-    cv::Mat filteredMat(mat.rows, mat.cols, CV_8UC1, cv::Scalar(0,0,255));
-    [self.colorTracker processFrameFromFrame:mat toFrame:filteredMat];
+    BOOL debug = NO;
+    debug = YES;
     
-    UIImage *image = [BFOpenCVConverter imageForMat:filteredMat];
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^
-     {
-         self.imageView.image = image;
-     }];
+    if (debug)
+    {
+        cv::Rect rect = cv::Rect(180 + 180/2, 320 + 320/2,
+                                 360 - 180/2, 640 - 320/2);
+        mat = mat(rect);
+        cv::cvtColor(mat, mat, CV_BGR2GRAY);
+        cv::Mat filteredMat(mat.rows, mat.cols, CV_8UC1, cv::Scalar(0,0,255));
+        [self.circleTracker processFrameFromFrame:mat toFrame:filteredMat];
+        
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^
+         {
+             UIImage *image = [BFOpenCVConverter imageForMat:filteredMat];
+             self.imageView.image = image;
+         }];
+    }
     
-    if (self.state == BFBiofeedbackStateCapturingReference ||
-        self.state == BFBiofeedbackStateMatchingReference)
-    {
-        [self.referencePhase processFrame:mat
-                                videoRect:videoRect];
-    }
-    else if (self.state == BFBiofeedbackStateCalibration)
-    {
-        [self.calibrationPhase processFrame:mat
-                                  videoRect:videoRect];
-    }
-    else if (self.state == BFBiofeedbackStateMeasuringMovement)
-    {
-        cv::Mat faceMat = mat(self.faceRect);
-        [self.measureMovementPhase processFrame:faceMat
-                                      videoRect:videoRect];
-    }
+//    if (self.state == BFBiofeedbackStateCapturingReference ||
+//        self.state == BFBiofeedbackStateMatchingReference)
+//    {
+//        [self.referencePhase processFrame:mat
+//                                videoRect:videoRect];
+//    }
+//    else if (self.state == BFBiofeedbackStateCalibration)
+//    {
+//        [self.calibrationPhase processFrame:mat
+//                                  videoRect:videoRect];
+//    }
+//    else if (self.state == BFBiofeedbackStateMeasuringMovement)
+//    {
+//        cv::Mat faceMat = mat(self.faceRect);
+//        [self.measureMovementPhase processFrame:faceMat
+//                                      videoRect:videoRect];
+//    }
 }
 
 #pragma mark - GPUImage VideoCamera Delegate
