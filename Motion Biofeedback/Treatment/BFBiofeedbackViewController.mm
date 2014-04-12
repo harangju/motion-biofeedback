@@ -21,6 +21,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "BFBiofeedbackColorCalibrationPhase.h"
 #import "BFOpenCVCircleTracker.h"
+#import "BFSettings.h"
 
 static const CGFloat FaceEllipseRectWidthPortrait = 700;
 static const CGFloat FaceEllipseRectHeightPortrait = 800;
@@ -118,6 +119,18 @@ static const CGFloat FeedbackAmplificationFactor = 2.0;
     [self.view bringSubviewToFront:self.beginButton];
     [self.view bringSubviewToFront:self.saveButton];
     [self.view bringSubviewToFront:self.statusLabel];
+    
+    // disable if free motion mode
+    if ([BFSettings biofeedbackMode] == BFSettingsBiofeedbackModeFreeMotion)
+    {
+        for (UIView *view in self.view.subviews)
+        {
+            if (![view isKindOfClass:UIButton.class])
+            {
+                [view removeFromSuperview];
+            }
+        }
+    }
     
     self.circleTracker = [BFOpenCVCircleTracker new];
     self.colorTracker = [BFOpenCVColorTracker new];

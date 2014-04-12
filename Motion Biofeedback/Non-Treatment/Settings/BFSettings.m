@@ -12,6 +12,7 @@ static NSString * const VisualizationKey = @"Visualization";
 static NSString * const DimensionKey = @"Dimension";
 static NSString * const DetectionKey = @"Detection";
 static NSString * const MillimeterToPixelRatioKey = @"MillimeterToPixel";
+static NSString * const BiofeedbackModeKey = @"BiofeedbackModeKey";
 
 @implementation BFSettings
 
@@ -68,6 +69,20 @@ static NSString * const MillimeterToPixelRatioKey = @"MillimeterToPixel";
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:@(ratio)
                      forKey:MillimeterToPixelRatioKey];
+    return [userDefaults synchronize];
+}
+
++ (BFSettingsBiofeedbackMode)biofeedbackMode
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    return [[userDefaults objectForKey:BiofeedbackModeKey] integerValue];
+}
+
++ (BOOL)setBiofeedbackMode:(BFSettingsBiofeedbackMode)biofeedbackMode
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:@(biofeedbackMode)
+                     forKey:BiofeedbackModeKey];
     return [userDefaults synchronize];
 }
 

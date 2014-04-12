@@ -31,6 +31,13 @@ typedef NS_ENUM(NSInteger, BFSettingsDetection)
     BFSettingsDetectionSentry = 3,
 };
 
+typedef NS_ENUM(NSInteger, BFSettingsBiofeedbackMode)
+{
+    BFSettingsBiofeedbackModeBiofeedback = 0,
+    BFSettingsBiofeedbackModeFreeMotion = 1,
+    BFSettingsBiofeedbackModeSentry = 2,
+};
+
 @interface BFSettings : NSObject
 
 + (BFSettingsVisualization)visualization;
@@ -41,5 +48,7 @@ typedef NS_ENUM(NSInteger, BFSettingsDetection)
 + (BOOL)setDetection:(BFSettingsDetection)detection;
 + (NSNumber *)millimeterPerPixelRatio;
 + (BOOL)setMillimeterPerPixelRatio:(CGFloat)ratio;
++ (BFSettingsBiofeedbackMode)biofeedbackMode;
++ (BOOL)setBiofeedbackMode:(BFSettingsBiofeedbackMode)biofeedbackMode;
 
 @end

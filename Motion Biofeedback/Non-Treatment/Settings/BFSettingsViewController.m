@@ -37,7 +37,9 @@ static NSString * const SettingsDetailInfoVCSegue = @"SettingsDetailInfoVCSegue"
                     @"Horizontal & Vertical (X & Y)"],
                   @[@"Marker - Circle",
                     @"Marker - Color",
-                    @"Face"]]; // "Feature"
+                    @"Face"],
+                  @[@"Biofeedback",
+                    @"Free Motion"]]; // "Feature"
 }
 
 #pragma mark - LifeCycle
@@ -106,6 +108,10 @@ static NSString * const SettingsDetailInfoVCSegue = @"SettingsDetailInfoVCSegue"
         {
             detailVC.selectedIndex = [BFSettings detection];
         }
+        else if (self.selectedIndexPath.row == 3)
+        {
+            detailVC.selectedIndex = [BFSettings biofeedbackMode];
+        }
     }
     else if ([segue.identifier isEqualToString:SettingsDetailInfoVCSegue])
     {
@@ -148,6 +154,14 @@ static NSString * const SettingsDetailInfoVCSegue = @"SettingsDetailInfoVCSegue"
         {
             [BFSettings setDetection:index];
             NSLog(@"set detection %lu", (long)index);
+        }
+    }
+    else if (settingsDetailVC.row == 3)
+    {
+        if (index < BFSettingsBiofeedbackModeSentry)
+        {
+            [BFSettings setBiofeedbackMode:index];
+            NSLog(@"set biofeedback mode %lu", (long)index);
         }
     }
 }
