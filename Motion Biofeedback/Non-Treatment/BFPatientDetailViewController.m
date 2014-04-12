@@ -541,7 +541,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     
     
 #warning  This is hard coded in right now
-    CGFloat millimeterToPixelRatio = (CGFloat)15 / (CGFloat)radius;
+    CGFloat millimeterToPixelRatio = (CGFloat)15 / (CGFloat)(radius * 2.0);
     [BFSettings setMillimeterPerPixelRatio:millimeterToPixelRatio];
 }
 

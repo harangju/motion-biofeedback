@@ -60,6 +60,7 @@
 		7DB9C32518C2D39800CCDED9 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DB9C32418C2D39800CCDED9 /* CoreVideo.framework */; };
 		7DB9C32718C2D39D00CCDED9 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DB9C32618C2D39D00CCDED9 /* CoreMedia.framework */; };
 		7DB9C32918C2D43500CCDED9 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DB9C32818C2D43500CCDED9 /* AssetsLibrary.framework */; };
+		7DC8F51618F8FF8000056A0A /* BFOpenCVContourTracker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7DC8F51518F8FF8000056A0A /* BFOpenCVContourTracker.mm */; };
 		7DD1705418D543D300DEFD4F /* BFFaceEllipseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DD1705318D543D300DEFD4F /* BFFaceEllipseView.m */; };
 		7DD1705718D6550F00DEFD4F /* BFBiofeedbackPhase.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7DD1705618D6550F00DEFD4F /* BFBiofeedbackPhase.mm */; };
 		7DD1705B18D6553900DEFD4F /* BFBiofeedbackCaptureReferencePhase.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7DD1705A18D6553900DEFD4F /* BFBiofeedbackCaptureReferencePhase.mm */; };
@@ -172,6 +173,8 @@
 		7DB9C32418C2D39800CCDED9 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		7DB9C32618C2D39D00CCDED9 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		7DB9C32818C2D43500CCDED9 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		7DC8F51418F8FF8000056A0A /* BFOpenCVContourTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFOpenCVContourTracker.h; sourceTree = "<group>"; };
+		7DC8F51518F8FF8000056A0A /* BFOpenCVContourTracker.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BFOpenCVContourTracker.mm; sourceTree = "<group>"; };
 		7DD1705218D543D300DEFD4F /* BFFaceEllipseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BFFaceEllipseView.h; path = Treatment/BFFaceEllipseView.h; sourceTree = "<group>"; };
 		7DD1705318D543D300DEFD4F /* BFFaceEllipseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BFFaceEllipseView.m; path = Treatment/BFFaceEllipseView.m; sourceTree = "<group>"; };
 		7DD1705518D6550F00DEFD4F /* BFBiofeedbackPhase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BFBiofeedbackPhase.h; path = Treatment/Phases/BFBiofeedbackPhase.h; sourceTree = "<group>"; };
@@ -320,6 +323,8 @@
 				7D2E6C0318D4E27400B03788 /* BFOpenCVTracker.mm */,
 				7DEC28AE18E6FAE6008C7422 /* BFOpenCVColorTracker.h */,
 				7DEC28AF18E6FAE6008C7422 /* BFOpenCVColorTracker.mm */,
+				7DC8F51418F8FF8000056A0A /* BFOpenCVContourTracker.h */,
+				7DC8F51518F8FF8000056A0A /* BFOpenCVContourTracker.mm */,
 				7D2E6C0418D4E27400B03788 /* haarcascade_frontalface_alt2.xml */,
 			);
 			name = Detection;
@@ -604,6 +609,7 @@
 				7DD1705B18D6553900DEFD4F /* BFBiofeedbackCaptureReferencePhase.mm in Sources */,
 				7D1629A518EE348300EA3BF8 /* BFVisualizationCircleDrawingView.m in Sources */,
 				7D52E3B718EFD32800874987 /* JBChartInformationView.m in Sources */,
+				7DC8F51618F8FF8000056A0A /* BFOpenCVContourTracker.mm in Sources */,
 				7D9B75EE18E4C65F00A4A1C9 /* BFCalibrationRulerView.m in Sources */,
 				7D2E6C2918D4F55800B03788 /* BFBiofeedbackViewController.mm in Sources */,
 				7DD1705E18D6555400DEFD4F /* BFBiofeedbackMatchReferencePhase.mm in Sources */,
