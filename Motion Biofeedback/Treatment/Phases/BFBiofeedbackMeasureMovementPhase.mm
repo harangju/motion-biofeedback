@@ -53,14 +53,17 @@
            videoRect:(CGRect)videoRect
 {
 //    NSLog(@"measure movement: processing frame");
-    CGPoint absoluteDelta = CGPointZero;
+//    CGPoint absoluteDelta = CGPointZero;
+    NSValue *absoluteDelta = nil;
     if (self.detectionAlgorithm == BFSettingsDetectionFeature)
     {
-        absoluteDelta = [self.tracker absoluteDeltaFromFrame:mat];
+        CGPoint point = [self.tracker absoluteDeltaFromFrame:mat];
+        absoluteDelta = [NSValue valueWithCGPoint:point];
     }
     else if (self.detectionAlgorithm == BFSettingsDetectionMarkerColor)
     {
-        absoluteDelta = [self.colorTracker absoluteDeltaFromFrame:mat];
+        CGPoint point = [self.colorTracker absoluteDeltaFromFrame:mat];
+        absoluteDelta = [NSValue valueWithCGPoint:point];
     }
     else if (self.detectionAlgorithm == BFSettingsDetectionMarkerCircle)
     {

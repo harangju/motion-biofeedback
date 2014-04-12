@@ -298,8 +298,8 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
              self.imageView.image = image;
          }];
         
-        [self.measureMovementPhase processFrame:mat
-                                      videoRect:videoRect];
+//        [self.measureMovementPhase processFrame:mat
+//                                      videoRect:videoRect];
     }
     
 //    if (self.state == BFBiofeedbackStateCapturingReference ||
@@ -538,11 +538,15 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 }
 
 - (void)biofeedbackMeasureMovementPhase:(BFBiofeedbackMeasureMovementPhase *)biofeedbackPhase
-                      withAbsoluteDelta:(CGPoint)delta
+                      withAbsoluteDelta:(NSValue *)delta
 {
+    if (delta == nil)
+    {
+        return;
+    }
     if (self.state == BFBiofeedbackStateMeasuringMovement)
     {
-        NSLog(@"delta %d %d", (int)delta.x, (int)delta.y);
+        NSLog(@"delta %d %d", (int)delta.CGPointValue.x, (int)delta.CGPointValue.y);
         
         CGPoint faceCenter = CGPointZero;
         UIColor *color = [UIColor greenColor];
@@ -551,10 +555,10 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
         if (self.dimension == BFDimensionX)
         {
             faceCenter = self.faceCenter;
-            faceCenter.x += delta.x * FeedbackAmplificationFactor;
-            if (ABS(delta.x) > OffDeltaFromCenter)
+            faceCenter.x += delta.CGPointValue.x;// * FeedbackAmplificationFactor;
+            if (ABS(delta.CGPointValue.x) > OffDeltaFromCenter)
             {
-                if (ABS(delta.x) > WarningDeltaFromCenter)
+                if (ABS(delta.CGPointValue.x) > WarningDeltaFromCenter)
                 {
                     color = [UIColor redColor];
                 }
@@ -567,10 +571,10 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
         else if (self.dimension == BFDimensionY)
         {
             faceCenter = self.faceCenter;
-            faceCenter.y += delta.y * FeedbackAmplificationFactor;
-            if (ABS(delta.y) > OffDeltaFromCenter)
+            faceCenter.y += delta.CGPointValue.y * FeedbackAmplificationFactor;
+            if (ABS(delta.CGPointValue.y) > OffDeltaFromCenter)
             {
-                if (ABS(delta.y) > WarningDeltaFromCenter)
+                if (ABS(delta.CGPointValue.y) > WarningDeltaFromCenter)
                 {
                     color = [UIColor redColor];
                 }
@@ -583,11 +587,11 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
         else if (self.dimension == BFDimensionXAndY)
         {
             faceCenter = self.faceCenter;
-            faceCenter.x += delta.x * FeedbackAmplificationFactor;
-            faceCenter.y += delta.y * FeedbackAmplificationFactor;
-            if (MAX(ABS(delta.x), ABS(delta.y)) > OffDeltaFromCenter)
+            faceCenter.x += delta.CGPointValue.x * FeedbackAmplificationFactor;
+            faceCenter.y += delta.CGPointValue.y * FeedbackAmplificationFactor;
+            if (MAX(ABS(delta.CGPointValue.x), ABS(delta.CGPointValue.y)) > OffDeltaFromCenter)
             {
-                if (MAX(ABS(delta.x), ABS(delta.y)) > WarningDeltaFromCenter)
+                if (MAX(ABS(delta.CGPointValue.x), ABS(delta.CGPointValue.y)) > WarningDeltaFromCenter)
                 {
                     color = [UIColor redColor];
                 }
@@ -597,6 +601,8 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
                 }
             }
         }
+        
+        NSLog(@"point %f %f", delta.CGPointValue.x, delta.CGPointValue.y);
         
         // check for maximum allowed delta
         if (MAX(ABS(self.faceCenter.x - self.view.center.x),
@@ -609,7 +615,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
         __weak typeof(self) weakSelf = self;
         [[NSOperationQueue mainQueue] addOperationWithBlock:^
          {
-             [weakSelf.deltaPoints addObject:[NSValue valueWithCGPoint:delta]];
+             [weakSelf.deltaPoints addObject:delta];
              [weakSelf.deltaTimes addObject:@([NSDate timeIntervalSinceReferenceDate])];
          }];
         

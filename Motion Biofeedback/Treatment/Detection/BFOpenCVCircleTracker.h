@@ -12,6 +12,7 @@
 
 - (void)processFrameFromFrame:(const cv::Mat &)inputFrame
                       toFrame:(cv::Mat &)outputFrame;
-- (CGPoint)absoluteDeltaFromFrame:(const cv::Mat &)inputFrame;
+- (NSValue *)absoluteDeltaFromFrame:(const cv::Mat &)inputFrame;
+// contains CGPoint
 
 @end

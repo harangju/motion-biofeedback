@@ -18,7 +18,7 @@
 - (void)biofeedbackMeasureMovementPhase:(BFBiofeedbackMeasureMovementPhase *)biofeedbackPhase
                          withNaiveDelta:(CGPoint)delta;
 - (void)biofeedbackMeasureMovementPhase:(BFBiofeedbackMeasureMovementPhase *)biofeedbackPhase
-                      withAbsoluteDelta:(CGPoint)delta;
+                      withAbsoluteDelta:(NSValue *)delta; // contains CGPoint
 
 @end
 
