@@ -11,6 +11,7 @@
 @interface BFOpenCVCircleTracker ()
 {
     cv::Point _centerPoint;
+    cv::Point _previousPoint;
 }
 
 @end
@@ -53,9 +54,10 @@
 - (NSValue *)absoluteDeltaFromFrame:(const cv::Mat &)inputFrame
 {
     cv::Mat blurredMat = [self blurredMatFromMat:inputFrame];
-    std::vector<cv::Vec3f> circles = [self circlesFromMat:inputFrame];
+    std::vector<cv::Vec3f> circles = [self circlesFromMat:blurredMat];
     if (circles.size() == 0)
     {
+        NSLog(@"no circles");
         return nil;
     }
     int brightestCircleIndex = [self brightestCircleIndexFromCircles:circles
@@ -75,6 +77,15 @@
         CGPoint deltaPoint;
         deltaPoint.x = brightestCircleCenter.x - _centerPoint.x;
         deltaPoint.y = brightestCircleCenter.y - _centerPoint.y;
+        CGPoint incrementalDeltaPoint;
+        incrementalDeltaPoint.x = brightestCircleCenter.x - _previousPoint.x;
+        incrementalDeltaPoint.y = brightestCircleCenter.y - _previousPoint.y;
+        _previousPoint.x = incrementalDeltaPoint.x;
+        _previousPoint.y = incrementalDeltaPoint.y;
+        if (MAX(incrementalDeltaPoint.x, incrementalDeltaPoint.y) > 50)
+        {
+            return nil;
+        }
         return [NSValue valueWithCGPoint:deltaPoint];
     }
     return nil;

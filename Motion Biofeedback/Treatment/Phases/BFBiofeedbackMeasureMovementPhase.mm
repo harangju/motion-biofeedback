@@ -68,6 +68,8 @@
     else if (self.detectionAlgorithm == BFSettingsDetectionMarkerCircle)
     {
         absoluteDelta = [self.circleTracker absoluteDeltaFromFrame:mat];
+//        [self.circleTracker processFrameFromFrame:mat
+//                                          toFrame:mat];
     }
     [self.measureMovementDelegate biofeedbackMeasureMovementPhase:self
                                                 withAbsoluteDelta:absoluteDelta];

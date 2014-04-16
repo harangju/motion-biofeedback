@@ -23,6 +23,7 @@ typedef NS_ENUM(NSInteger, BFDimension)
 
 typedef NS_ENUM(NSInteger, BFBiofeedbackState)
 {
+    BFBiofeedbackStateWaitingToBegin,
     BFBiofeedbackStateCapturingReference,
     BFBiofeedbackStateMatchingReference,
     BFBiofeedbackStateCalibration,

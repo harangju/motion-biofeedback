@@ -68,6 +68,7 @@ static const CGFloat FeedbackAmplificationFactor = 2.0;
 
 // States
 @property (nonatomic) BFBiofeedbackState state;
+@property (nonatomic) BFSettingsDetection detectionMode;
 
 // OpenCV
 @property (nonatomic) cv::Rect faceRect;
@@ -120,6 +121,7 @@ static const CGFloat FeedbackAmplificationFactor = 2.0;
     [self.view bringSubviewToFront:self.saveButton];
     [self.view bringSubviewToFront:self.statusLabel];
     
+#warning I should do this somewhere else
     // disable if free motion mode
     if ([BFSettings biofeedbackMode] == BFSettingsBiofeedbackModeFreeMotion)
     {
@@ -251,17 +253,24 @@ static const CGFloat FeedbackAmplificationFactor = 2.0;
 - (void)configure
 {
     // first session
-    self.state = BFBiofeedbackStateMeasuringMovement;
-//    if (self.shouldCaptureReferenceImage)
-//    {
-//        self.state = BFBiofeedbackStateCapturingReference;
-//        self.referencePhase = self.captureReferencePhase;
-//    }
-//    else
-//    {
-//        self.state = BFBiofeedbackStateMatchingReference;
-//        self.referencePhase = self.matchReferencePhase;
-//    }
+//    self.state = BFBiofeedbackStateMeasuringMovement;
+    if (self.shouldCaptureReferenceImage)
+    {
+        self.state = BFBiofeedbackStateCapturingReference;
+        self.referencePhase = self.captureReferencePhase;
+    }
+    else
+    {
+        self.state = BFBiofeedbackStateMatchingReference;
+        self.referencePhase = self.matchReferencePhase;
+    }
+    // marker - circle
+    self.detectionMode = [BFSettings detection];
+    if (self.detectionMode == BFSettingsDetectionMarkerCircle)
+    {
+        self.state = BFBiofeedbackStateWaitingToBegin;
+        self.beginButton.hidden = NO;
+    }
     // visualization
     if (self.visualizationType == BFVisualizationTypeVector)
     {
@@ -293,78 +302,65 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
         cv::flip(mat, mat, 1);
     }
     
+    if (self.detectionMode != BFSettingsDetectionMarkerColor)
+    {
+        cv::cvtColor(mat, mat, CV_BGR2GRAY);
+    }
+    
     BOOL debug = NO;
-    debug = YES;
+//    debug = YES;
     
     if (debug)
     {
         cv::Rect rect = cv::Rect(180 + 180/2, 320 + 320/2,
                                  360 - 180/2, 640 - 320/2);
         mat = mat(rect);
-        cv::cvtColor(mat, mat, CV_BGR2GRAY);
+//        cv::cvtColor(mat, mat, CV_BGR2GRAY);
+//        cv::cvtColor(mat, mat, CV_BGR2GRAY);
         cv::Mat filteredMat(mat.rows, mat.cols, CV_8UC1, cv::Scalar(0,0,255));
-        [self.circleTracker processFrameFromFrame:mat toFrame:filteredMat];
+        [self.colorTracker processFrameFromFrame:mat toFrame:filteredMat];
+//        [self.circleTracker processFrameFromFrame:mat toFrame:filteredMat];
         
         [[NSOperationQueue mainQueue] addOperationWithBlock:^
          {
              UIImage *image = [BFOpenCVConverter imageForMat:filteredMat];
              self.imageView.image = image;
          }];
-        
-//        [self.measureMovementPhase processFrame:mat
-//                                      videoRect:videoRect];
     }
     
-//    if (self.state == BFBiofeedbackStateCapturingReference ||
-//        self.state == BFBiofeedbackStateMatchingReference)
-//    {
-//        [self.referencePhase processFrame:mat
-//                                videoRect:videoRect];
-//    }
-//    else if (self.state == BFBiofeedbackStateCalibration)
-//    {
-//        [self.calibrationPhase processFrame:mat
-//                                  videoRect:videoRect];
-//    }
-//    else if (self.state == BFBiofeedbackStateMeasuringMovement)
-//    {
-//        cv::Mat faceMat = mat(self.faceRect);
-//        [self.measureMovementPhase processFrame:faceMat
-//                                      videoRect:videoRect];
-//    }
+    if (self.state == BFBiofeedbackStateWaitingToBegin)
+    {
+        
+    }
+    else if (self.state == BFBiofeedbackStateCapturingReference ||
+        self.state == BFBiofeedbackStateMatchingReference)
+    {
+        [self.referencePhase processFrame:mat
+                                videoRect:videoRect];
+    }
+    else if (self.state == BFBiofeedbackStateCalibration)
+    {
+        [self.calibrationPhase processFrame:mat
+                                  videoRect:videoRect];
+    }
+    else if (self.state == BFBiofeedbackStateMeasuringMovement)
+    {
+        if (self.detectionMode == BFSettingsDetectionMarkerCircle)
+        {
+            cv::Rect rect = cv::Rect(180 + 180/2, 320 + 320/2,
+                                     360 - 180/2, 640 - 320/2);
+            mat = mat(rect);
+            [self.measureMovementPhase processFrame:mat
+                                          videoRect:videoRect];
+        }
+        else
+        {
+            cv::Mat faceMat = mat(self.faceRect);
+            [self.measureMovementPhase processFrame:faceMat
+                                          videoRect:videoRect];
+        }
+    }
 }
-
-#pragma mark - GPUImage VideoCamera Delegate
-
-//- (void)willOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
-//{
-//    // get mat
-//    cv::Mat mat = [BFOpenCVConverter matForSampleBuffer:sampleBuffer];
-//    CGRect videoRect = [self videoRectFromBuffer:sampleBuffer];
-//    
-//    // orient mat
-//    if ([self isUpright])
-//    {
-//        cv::transpose(mat, mat);
-//    }
-//    else if ([self isSideways])
-//    {
-//        cv::flip(mat, mat, 1);
-//    }
-//    
-//    if (self.state == BFBiofeedbackStateCapturingReference ||
-//        self.state == BFBiofeedbackStateMatchingReference)
-//    {
-//        [self.referencePhase processFrame:mat
-//                                videoRect:videoRect];
-//    }
-//    else if (self.state == BFBiofeedbackStateMeasuringMovement)
-//    {
-//        cv::Mat faceMat = mat(self.faceRect);
-//        [self.measureMovementPhase processFrame:faceMat
-//                                      videoRect:videoRect];
-//    }
-//}
 
 - (CGRect)videoRectFromBuffer:(CMSampleBufferRef)sampleBuffer
 {
@@ -719,8 +715,8 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 
 - (IBAction)beginButtonTapped:(id)sender
 {
-//    self.state = BFBiofeedbackStateMeasuringMovement;
-    self.state = BFBiofeedbackStateCalibration;
+    self.state = BFBiofeedbackStateMeasuringMovement;
+//    self.state = BFBiofeedbackStateCalibration;
     self.referencePhase.delegate = nil;
     [self displayMeasuringMovementUI];
 }

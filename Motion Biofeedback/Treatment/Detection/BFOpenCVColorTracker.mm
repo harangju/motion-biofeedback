@@ -32,13 +32,18 @@
 {
     cv::cvtColor(inputFrame, outputFrame, CV_BGR2HSV);
     // light green
-    cv::Scalar min(35, 50, 50);
-    cv::Scalar max(60, 255, 255);
+//    cv::Scalar min(35, 0, 0);
+//    cv::Scalar max(60, 255, 255);
     // dark green
 //    cv::Scalar min(87 * (180.0/360.0), 50, 1 * (255/100));
 //    cv::Scalar max(180 * (180.0/360.0), 255, 255);
-    // light blue
-    
+    // silver
+//    cv::Scalar min(0, 0, 80);
+//    cv::Scalar min(0, 0, 00);
+//    cv::Scalar max(180, 20, 255);
+    // yellow
+    cv::Scalar min(20, 100, 0);
+    cv::Scalar max(30, 255, 255);
     cv::inRange(outputFrame, min, max, outputFrame);
 }
 
